@@ -1,0 +1,47 @@
+<div id="pagetitle-content" class="page-title" data-author="${author}" style="text-align: center;display:${show}">
+
+        <div class="page-icons">
+
+            <img src="icons/white/add.svg" class="page-icon" title="Skapa en ny sida" style="display:${showPages}"
+                onclick="onCreatePage()">
+
+            <img src="icons/white/delete.svg" class="page-icon" title="Radera sidan" style="display:${showPages}"
+                onclick="onDeletePage()">
+
+            <img src="icons/white/separator.svg" class="page-icon" style="display:${showPages}">
+
+            <img src="icons/white/edit.svg" class="page-icon" title="Byt namn på sidan" style="display:${isAuthor}"
+                onclick="onPageTitle()">
+
+            <img src="icons/white/${showIcon}.svg" class="page-icon" style="display:${isAuthor};background:${showTitleColor}"
+                id="pagetitle-toggle" title="${showMsg}" onclick="onTogglePageTitle()">
+
+            <img src="icons/white/text.svg" class="page-icon" title="Lägg till ett nytt avsnitt i sidan."
+                style="display:${isAuthor}" onclick="onAddBlock()">
+
+            <img src="icons/white/separator.svg" class="page-icon" style="display:${isAuthor}" disabled>
+
+            <img src="icons/white/pages.svg" class="page-icon" title="Redigera sidor." style="display:${showEditPages}"
+                onclick="onEditPages()">
+
+            <img src="icons/white/users.svg" class="page-icon" title="Redigera användare." style="display:${showEditUsers}"
+                onclick="onEditUsers()">
+
+            <img src="icons/white/palette.svg" class="page-icon" title="Redigera teman." style="display:${showEditThemes}"
+                onclick="onEditThemes()">
+
+            <img src="icons/white/tools.svg" class="page-icon" title="Redigera inställningar."
+                style="display:${showEditSettings}" onclick="onEditSettings()">
+            <img src="icons/white/separator.svg" class="page-icon" style="display:${showEditSettings}">
+        </div>
+
+        <div style="display:${isAuthor}">
+            <label for="page-public" class="form-label page-public">Publik</label>
+            <input id="page-public" class="form-checkbox page-public-checkbox" type="checkbox" ${pub}>
+        </div>
+
+        <div>
+            ${title}
+        </div>
+
+</div>

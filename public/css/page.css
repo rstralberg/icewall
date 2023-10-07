@@ -1,0 +1,71 @@
+
+.page-title {
+	background: var(--barBg);
+	color: var(--barFg);
+	font-family: var(--appFont);
+	position: fixed;
+	left: calc( (100vw - var(--appWidth))/2);
+	width: var(--appWidth);
+	font-weight: bold;
+	position: fixed;
+	top: calc( 3.4 * var(--appFsize));
+	border-radius: var(--appRadius);
+	outline-style: solid;
+	outline-width: var(--barBdW);
+	outline-color: var(--barBdFg);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--barShadow));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--barShadow));
+	font-style: bold;
+	font-size: calc( 1.6 * var(--appFsize));
+	line-height: calc( 1.6 * var(--appFsize));
+	text-shadow: 4px 4px 6px black;
+}
+
+.page-public {
+	font-size: medium;
+	margin-top: 0px !important;
+	position: absolute;
+	right: 36px;
+	color: var(--editFg);
+	font-weight: normal;
+}
+
+.page-public-checkbox {
+    margin-top:4px !important;
+    position: absolute;
+    right: 1em;
+    height:32px;
+}
+
+.page-icons {
+    display: flex;
+    position: absolute;
+	padding-left: 1vw;
+}
+
+.page-icon {
+    margin-top:4px;
+    height: 32px;
+}
+
+.page-icon:hover {
+    background: var(--toolActBg);
+}
+
+@media screen and (max-width: 600px) {
+	.page-title {	
+		left: 1vw;
+		width: 97vw;
+		margin-top: 3vh;
+		font-size: medium;
+	}
+
+	.page-icon,
+	.page-icons,
+	.page-public,
+	.page-public-checkbox {
+		display: none;
+	}
+	
+	
+}

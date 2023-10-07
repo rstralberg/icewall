@@ -1,0 +1,30 @@
+<form class="form" enctype="multipart/form-data">
+    
+    <div class="form-title">Radera konto</div>
+
+        <hr>
+
+        <div class="form-100 form-comment">
+            Kom ihåg att om du radera en sida som har undersidor så
+            raderas även dessa. Så tänk två gånger.
+        </div>
+
+        <div class="form-40-60">
+            <label class="form-label" for="deletepage-pages">Välj sida att radera:</label>
+            <select class="form-select" id="deletepage-pages">
+                <option value="none">Välj!</option>
+                ${pages}
+            </select>
+        </div>
+        
+        <hr>
+        
+        <div class="form-100">
+            <input class="form-button" type="button" value="Radera" onclick="onDeleteAccountApply()">
+        </div>
+        
+        <div class="form-100">
+            <input class="form-button" type="button" value="Avbryt" onclick="onDeleteAccountAbort()">
+        </div>
+        
+</form>

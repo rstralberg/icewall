@@ -1,0 +1,396 @@
+.form {
+    background: var(--formBg);
+    color: var(--formFg);
+    border-radius: var(--appRadius);
+    outline-style: solid;
+	outline-width: var(--formBdW);
+	outline-color: var(--formBdFg);
+    display: block;
+    float: left;
+    height: auto;
+    left: 10%;
+    margin: 10px;
+    min-height: 10vh;
+    min-width: 50vw;
+    overflow: hidden;
+    padding: 3%;
+    position: absolute;
+    font-family: var(--appFont);
+	padding: 2vh;
+    top: 10%;
+    width: auto;
+    z-index: 100;
+    box-shadow: 15px 15px 25px black;
+}
+
+.form-comment {
+    padding-bottom: 2vh;
+}
+
+.form-title {
+    font-size: calc(var(--appFsize) * 2);
+    font-weight: bold;
+    background: var(--titleBg);
+    color: var(--titleFg);
+	outline-style: solid;
+	outline-width: var(--titleBdW);
+	outline-color: var(--titleBdFg);
+    text-align: center;
+    -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--titleShadow));
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--titleShadow));
+    text-shadow: 1px 1px 2px black; 
+
+}
+
+.form-input:active,
+.form-input:hover, 
+.form-input:focus {
+    background: var(--inpActBg);
+    color: var(--inpActFg);
+}
+
+
+.form-label {
+    border: none;
+    display: grid;
+    margin: 8px;
+}
+
+.form-file, 
+.form-input {
+    height: 1em;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 8px;
+}
+
+.form-text,
+.form-input {
+    height: 1em;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 8px;
+}
+
+.form-color,
+.form-input  {
+    border: none;
+    border-radius: 6px;
+    margin: 8px;
+}
+
+.form-number,
+.form-input {
+    height: 1em;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 8px;
+    max-width: 60px;
+}
+
+.form-checkbox,
+.form-input {
+    margin: 8px;
+    width: 1em;
+}
+
+.form-textarea
+.form-input {
+    outline: none;
+    border:none;
+    font-weight: bold;
+    font-size: large;
+}
+
+.form-button {
+    background: var(--btnBg);
+    color: var(--btnFg);
+    outline-style: solid;
+	outline-width: var(--btnBdW);
+	outline-color: var(--btnBdFg);
+    border-radius: var(--appRadius);
+    width: -moz-available ;
+    margin: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 1.6em;
+}
+
+.form-button:disabled {
+    background-color: gray;
+    color: #202020;
+    pointer-events: none;
+}
+
+.form-button:focus,
+.form-button:active,
+.form-button:hover {
+    background: var(--btnActBg);
+    color: var(--btnActFg);
+}
+
+.form-combo,
+.form-input {
+    width: 98%;
+    height: 1em;
+    margin: 8px;
+
+}
+
+.form-slider,
+.form-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80%;
+    height: 1em;
+    outline: none;
+    opacity: 0.5;
+    margin: 8px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.form-slider:hover {
+    opacity: 1;
+}
+
+.form-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+.form-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+.form-value {
+    font-style: italic;
+    color: orange;
+    margin: 8px;
+
+}
+
+
+
+.form-select,
+.form-input {
+    min-width: 120px;   
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.form-option {
+    margin: 6px;
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.form-checklist,
+.form-input {
+    width: fit-content;
+    min-width: 120px;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 8px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+
+}
+
+.form-checkoption {
+    margin: 6px;
+    padding-left: 10px;
+}
+
+.form-40-30-30 {
+    display: grid;
+    grid-template-columns: 40% 30% 30%;
+    margin-bottom: 0.5em;
+}
+.form-60-40 {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin-bottom: 0.5em;
+}
+.form-40-60 {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin-bottom: 0.5em;
+}
+
+.form-50-50 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 0.5em;
+}
+
+.form-10-90 {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    margin-bottom: 0.5em;
+}
+
+.form-20-80 {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    margin-bottom: 0.5em;
+}
+
+.form-25-25-25-25 {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin-bottom: 0.5em;
+}
+
+.form-20-30-20-30 {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin-bottom: 0.5em;
+}
+
+
+.form-100 {
+    display: grid;
+    grid-template-columns: 100% 0%;
+    margin-bottom: 0.5em;
+}
+
+.fullscreen {
+    position: absolute;
+    width:100vw;
+    height: 100vh;
+    left:0;
+    top:0;
+    background: var(--appBg);
+    color: var(--appFg);
+    border: 2px solid var(--appFg);
+    z-index: 999;
+}
+
+.form-left,
+.form-input {
+    height:inherit;
+    margin-right: 10px !important;
+    resize: horizontal;
+    overflow: auto;
+}
+
+.form-right,
+.form-input {
+    height:inherit;
+    resize: horizontal;
+    overflow: auto;
+}
+
+.form-figure {
+    overflow: hidden;
+    resize: both;
+    padding: 32px;
+}
+
+.form-caption {
+	font-size: medium;
+	font-style: italic;
+	text-align: center;
+	font-weight: bold;
+}
+
+.form-image
+{
+    background: var(--inpBg);
+    color: var(--inpFg);
+}
+
+.form-image > img {
+    margin: 20px;
+}
+
+.form-image > canvas {
+    margin: 4px;
+    padding: 4px;
+}
+
+.form-fieldset {
+    display: grid;
+    background: black;
+}
+
+.form-tree {
+    list-style: none;
+    margin-left: -40px;
+}
+
+.form-tree>li,
+.form-input {
+    list-style: none;
+    cursor: pointer;
+}
+
+.form-ul {
+    list-style: none;
+}
+
+.form-tree>.form-selected {
+   font-weight: bold;
+   font-size: larger;
+}
+
+.form-tree>li::before {
+    content: "\25B6";
+    color: transparent;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.form-nested {
+    list-style-type: none;
+    display: none;
+
+}
+
+.form-nested>li,
+.form-input {
+    cursor: pointer;
+}
+
+.form.nested>li::before {
+    content: "\25B6";
+    color: transparent;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.form-caret {
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.form-caret-down::before {
+    transform: rotate(90deg);
+}
+
+.form-active {
+    display: block;
+}
+

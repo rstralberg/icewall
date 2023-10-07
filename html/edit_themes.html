@@ -1,0 +1,84 @@
+<form style="min-width:70vw" class="form" enctype="multipart/form-data">
+
+    <div class="form-title">Redigera teman</div>
+
+    <input type="hidden" id="cur-part">
+    <hr>
+
+    <div class="form-10-90">
+        <label class="theme-label" for="editthemes-theme">Tema</label>
+        <select class="theme-select" id="editthemes-theme" onchange="onEditThemesThemeSelected()">
+            <option class="theme-option" value="none">Välj!</option>
+            <option class="theme-option" value="add">Skapa nytt tema!</option>
+            ${themes}
+        </select>
+    </div>
+
+    <div class="form-10-90">
+        <label class="theme-label" for="editthemes-part">Område</label>
+        <select class="theme-select" id="editthemes-part" onchange="onEditThemesPartSelected()">
+            <option class="theme-option" value="none">Välj!</option>
+            <option class="theme-option" value="app">Övergripande</option>
+            <option class="theme-option" value="edit">Redigering</option>
+            <option class="theme-option" value="tool">Verktyg</option>
+            <option class="theme-option" value="title">Titlar</option>
+            <option class="theme-option" value="bar">Menyer</option>
+            <option class="theme-option" value="block">Innehåll</option>
+            <option class="theme-option" value="form">Forumlär</option>
+            <option class="theme-option" value="btn">Knappar</option>
+            <option class="theme-option" value="inp">Skrivfält</option>
+            <option class="theme-option" value="link">Webblänkar</option>
+        </select>
+    </div>
+
+    <hr>
+    <label class="theme-label" for="editthemes-bg">Normal Bakgrund</label>
+    <input class="theme-color" id="editthemes-bg" style="outline:none" type="color" value="#404040" oninput="onEditThemesBg()">
+    
+    <label class="theme-label" for="editthemes-fg">Normal Text</label>
+    <input class="theme-color" id="editthemes-fg" type="color" value="#404040" oninput="onEditThemesFg()">
+    
+    <label class="theme-label" for="editthemes-act-bg">Aktiv Bakgrund</label>
+    <input class="theme-color" id="editthemes-act-bg" type="color" value="#404040" oninput="onEditThemesActBg()">
+    
+    <label class="theme-label" for="editthemes-act-fg">Aktiv Text</label>
+    <input class="theme-color" id="editthemes-act-fg" type="color"  value="#404040" oninput="onEditThemesActFg()">
+    
+    <label class="theme-label" for="editthemes-border-color">Ramfärg</label>
+    <input class="theme-color" id="editthemes-border-color" type="color" value="#404040" oninput="onEditThemesBorderColor()">
+    
+
+    <hr>
+    <label class="theme-label" for="editthemes-border-size">Rambredd</label>
+    <input class="theme-number" id="editthemes-border-size" type="number" min="0" max="10" disabled oninput="onEditThemesBorderSize()">
+    <label class="theme-label" for="editthemes-fontsize">Teckenstorlek</label>
+    <input class="theme-number" id="editthemes-fontsize" type="number" step="0.05" min="0.6" max="1.4" disabled  oninput="onEditThemesFontSize()">
+    <label class="theme-label" for="editthemes-appwidth">Sidans bredd</label>
+    <input class="theme-number" id="editthemes-appwidth" type="number" min="50" max="100" disabled oninput="onEditThemesAppWidth()">
+    <label class="theme-label" for="editthemes-roundness">Rundning av ramar</label>
+    <input class="theme-number" id="editthemes-roundness" type="number" min="0" max="20" disabled  oninput="onEditThemesRoundness()">
+
+    <hr>
+    <label class="theme-label" for="editthemes-font">Teckensnitt</label>
+    <select class="theme-select" id="editthemes-font" disabled onchange="onEditThemesFont()">
+        ${fonts}
+    </select>
+    <label class="theme-label" for="editthemes-iconscolor">Ikonfärg</label>
+    <select class="theme-select" id="editthemes-iconscolor" disabled style="min-width:120px"  oninput="onEditThemesIconColor()">
+        <option class="form-option" value="black">Mörk</option>
+        <option class="form-option" value="white">Ljus</option>
+    </select>
+    <label class="theme-label" for="editthemes-shadow">Skugga</label>
+    <input class="form-checkbox" id="editthemes-shadow" disabled type="checkbox" oninput="onEditThemesShadow()">
+
+    <hr>
+
+    <div class="form-100">
+        <input class="form-button" type="button" value="Spara" onclick="onEditThemesApply()">
+    </div>
+
+    <div class="form-100">
+        <input class="form-button" type="button" value="Stäng" onclick="onEditThemesClose()">
+    </div>
+
+</form>

@@ -1,0 +1,54 @@
+.tools {
+	background: var(--toolBg);
+	font-family: var(--appFont);
+	color: var(--toolFg);
+	position: fixed;
+	left: calc( (100vw - var(--appWidth))/2);
+	width: var(--appWidth);
+	font-weight: bold;
+	position: fixed;
+    z-index: 100;
+	top: calc( 5.8 * var(--appFsize));
+	border-radius: var(--appRadius);
+	outline-style: solid;
+	outline-width: var(--toolBdW);
+	outline-color: var(--toolBdFg);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--toolShadow));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--toolShadow));
+	font-style: bold;
+	font-size: calc( 1.6 * var(--appFsize));
+	line-height: calc( 1.6 * var(--appFsize));
+	text-shadow: 4px 4px 6px black;
+}
+
+
+.tool {
+    width: 28px;
+    height: auto;
+    cursor: pointer;
+	background: var(--toolBg);
+	margin: 6px 4px 0px 4px;
+}
+
+.tool:hover {
+    outline-style: solid;
+	outline-width: 2px;
+	outline-color: var(--toolBdFg);
+	background: var(--toolActBg);
+}
+
+
+.tool-active {
+    width: 28px;
+    height: auto;
+    outline: 1px solid block;
+    cursor: pointer;
+	background: var(--toolActBg) !important;
+}
+
+@media screen and (max-width: 600px) {
+
+	.tools {
+		display: none !important;
+	}
+}

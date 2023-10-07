@@ -1,0 +1,114 @@
+
+body {
+	background: var(--appBg);
+	color: var(--appFg);
+	font-family: var(--appFont);
+	font-size: var(--appFsize);
+	width: var(--appWidth);
+    height: 100vh;
+	position: absolute;
+	left: calc((100vw - var(--appWidth)) / 2);
+}
+
+main {
+	font-family: var(--appFont);
+	margin-top: 10vh;
+	margin-left: -7px;
+	width: var(--appWidth);
+    margin-bottom: 10vh;
+}
+
+footer {
+	font-family: var(--appFont);
+	font-style: italic;
+	background: var(--barBg);
+	color: var(--barFg);
+	position: fixed;
+	left: inherit;
+	bottom: 1vh;
+	height: 4vh;
+	width: inherit;
+	border-radius: var(--appRadius);
+	outline-style: solid;
+	outline-width: var(--barBdW);
+	outline-color: var(--barBdFg);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--blockShadow));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--blockShadow));
+	font-style: italic;
+	line-height: calc( 2 * var(--appFsize));
+}
+
+button {
+    font-family: var(--appFont);
+	background: var(--btnBg);
+    color: var(--btnFg);
+    border-radius: var(--appRadius);
+	outline-style: solid;
+	outline-width: var(--barBdW);
+	outline-color: var(--barBdFg);
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--btnShadow));
+    box-shadow: 10px 10px 15px rgba(0,0,0,var(--btnShadow));
+    text-align: center;
+    font-weight: bold;
+    padding: calc( 2 * var(--appFsize) );
+}
+
+h1 {
+	background: var(--titleBg);
+	color: var(--titleFg);
+	outline-style: solid;
+	outline-width: var(--titleBdW);
+	outline-color: var(--titleBdFg);
+	border-radius: var(--appRadius);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--titleShadow));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--titleShadow));
+	text-shadow: 2px 2px 4px black; 
+}
+
+ul {
+	outline-style: solid;
+	outline-width: var(--inpBdW);
+	outline-color: var(--inpBdFg);
+    background: var(--inpBg);
+    color: var(--inpFg);
+}
+
+li {
+    background: var(--inpBg);
+    color: var(--inpFg);
+}
+
+li:hover {
+    background: var(--inpActBg);
+    color: var(--inpActFg);
+	outline-style: solid;
+	outline-width: var(--inpBdW);
+	outline-color: var(--inpBdFg);
+}
+
+@media screen and (max-width: 600px) {
+
+    body {
+        width: 95vw;
+        left: 1vw;
+    }
+
+    footer {
+        font-size: calc( 0.8 * var(--appFsize));
+        font-style: italic;
+        line-height: calc( 2 * var(--appFsize));
+    }
+
+	main {
+		width: 97vw;
+	}
+    
+	footer {
+		bottom: 1vh;
+		font-size: small;
+	}
+
+	nav {
+		margin-top: 1vh;
+	}
+}

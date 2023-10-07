@@ -1,0 +1,24 @@
+<form class="form" enctype="multipart/form-data">
+
+    <div class="form-title">Spotify</div>
+
+    <hr>
+
+    <div class="form-100" id="spotify-frame">
+        ${url}
+    </div>
+
+    <div class="form-40-60">
+        <label class="form-label" for="spotify-url">Klistra in:</label>
+        <input class="form-text" type="text" id="spotify-url" name="url" required onchange="onSpotifySelected()">
+    </div>
+
+    <div class="form-100">
+        <input class="form-button" type="button" value="OK" onclick="onSpotifyApply()">
+    </div>
+
+    <div class="form-100">
+        <input class="form-button" type="button" value="Avbryt" onclick="onSpotifyClose()">
+    </div>
+
+</form>
