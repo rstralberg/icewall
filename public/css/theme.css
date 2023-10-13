@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 .theme {
     display: block;
     
@@ -31,6 +32,9 @@
 }
 
 .theme label {
+=======
+.theme-label {
+>>>>>>> 6b4b065256fd51b751e680752129d27621f90b30
     width: 100px;
     display: inline-block;
 }
