@@ -8,7 +8,7 @@ assert_options(ASSERT_WARNING, 0);
 
 function assert_hander($file, $line, $code, $desc = null)
 {
-    echo 'Assert in ' . $file . ' at line ' . $line .': ' . $code . hex2bin('0d0a');
+    echo 'IceWall: ### Assert in ' . $file . ' at line ' . $line .': ' . $code . hex2bin('0d0a');
     if ($desc) {
         echo ": $desc" . hex2bin('0d0a');
     }
@@ -21,7 +21,7 @@ assert_options(ASSERT_CALLBACK, 'assert_handler');
 set_error_handler('appErrorHandler');
 function appErrorHandler($errno, $errstr, $errfile, $errline)
 {
-    echo ('ERROR [' . $errno . ']: ' . $errstr . '<br>' . hex2bin('0d0a'));
+    echo ('IceWall: ### ERROR [' . $errno . ']: ' . $errstr . '<br>' . hex2bin('0d0a'));
     echo ('FILE ' . $errfile . ' ' . ' at line ' . $errline . '<br>' . hex2bin('0d0a'));
 }
 
@@ -29,7 +29,7 @@ function appErrorHandler($errno, $errstr, $errfile, $errline)
 set_exception_handler("appExceptionHandler");
 function appExceptionHandler($exception)
 {
-    $out = 'Exception ' . 
+    $out = 'IceWall: ### Exception ' . 
         $exception->getMessage() . '<br>' .  hex2bin('0d0a') .
         $exception->getFile() . ' at line ' . $exception->getLine() . '<br>' . hex2bin('0d0a') .
         '------------------------------------------------<br>' . hex2bin('0d0a') ;
@@ -49,7 +49,7 @@ function appExceptionHandler($exception)
 }
 
 function userError(string $function, string $msg) : string {
-    echo ('ERROR in function ' . $function . '<br>' . hex2bin('0d0a'));
+    echo ('IceWall: ### ERROR in function ' . $function . '<br>' . hex2bin('0d0a'));
     echo ('Message: ' . $msg . '<br>' . hex2bin('0d0a'));
     return $function . ': ' . $msg;
 }

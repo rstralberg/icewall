@@ -1,0 +1,40 @@
+
+<figure class="tool-section">
+    <figcaption class="tool-section-title">Avsnitt</figcaption>
+    <hr class="tool-section-ruler">
+    <button id="lt-delete-content" class="tool-button" onclick="onDeleteContent()">Radera</a>
+    <button id="lt-save-content" class="tool-button" onclick="onSaveContent()">Spara</a>
+    <button id="lt-move-up" class="tool-button" onclick="onMove(1)">Flytta <b>&uarr;</b></button>
+    <button id="lt-move-down" class="tool-button" onclick="onMove(-1)">Flytta <b>&darr;</b></button>
+</figure>
+
+<figure class="tool-section">
+    <figcaption class="tool-section-title">Innehåll</figcaption>
+    <hr class="tool-section-ruler">
+    <button id="lt-bold" class="tool-button" onclick="onBold()">Fet stil</button>
+    <button id="lt-italic" class="tool-button" onclick="onItalic()">Kursiv stil</button>
+    <button id="lt-fontsize-plus" class="tool-button" onclick="onFontSize(1)">Tecken <b>&uarr;</b></button>
+    <button id="lt-fontsize-minus" class="tool-button" onclick="onFontSize(-1)">Tecken <b>&darr;</b></button>
+    <button id="lt-align-left" class="tool-button" onclick="onAlign('left')">Vänster</button>
+    <button id="lt-align-center" class="tool-button" onclick="onAlign('center')">Mitten</button>
+    <button id="lt-align-right" class="tool-button" onclick="onAlign('right')">Höger</button>
+</figure>
+
+<figure class="tool-section">
+    <figcaption class="tool-section-title">Lägg in</figcaption>
+    <hr class="tool-section-ruler">
+    <button id="lt-weblink" class="tool-button" onclick="onLink()">Webblänk</button>
+    <button id="lt-title" class="tool-button" onclick="onTitle()">Titel</button>
+    <button id="lt-hr" class="tool-button" onclick="onHorizontalRule()">Streck</button>
+    <button id="lt-image" class="tool-button" onclick="onImage()">Bild</button>
+    <button id="lt-audio" class="tool-button" onclick="onAudio()">Ljud MP3</button>
+    <button id="lt-spotify" class="tool-button" onclick="onSpotify()">Spotify</button>
+    <button id="lt-soundcloud" class="tool-button" onclick="onSoundcloud()">Soundcloud</button>
+    <button id="lt-youtube" class="tool-button" onclick="onYoutube()">Youtube</button>
+</figure>
+
+<figure class="tool-section">
+    <label class="tool-label" for="content-public">Publik</label>
+        <input title="Kryssa om avsnittet skall vara publikt" id="content-public"
+        class="form-checkbox" type="checkbox" onchange="onContentPublic(this)"> 
+</figure>

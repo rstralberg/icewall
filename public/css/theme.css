@@ -1,24 +1,57 @@
-.theme-label {
+
+.theme {
+    display: block;
+    
+    background: var(--bgForm);
+    color: var(--fgForm);
+    border-radius: var(--rForm);
+    outline-style: solid;
+	outline-width: var(--bdSizeForm);
+	outline-color: var(--bdColForm);
+
+    float: left;
+    height: auto;
+
+    left: 10%;
+    margin: 10px;
+    min-height: 10vh;
+    min-width: 50vw;
+
+    overflow: hidden;
+
+    padding: 3%;
+    position: absolute;
+
+    font-family: var(--font);
+	padding: 2vh;
+    top: 10%;
+    width: auto;
+    z-index: 100;
+    box-shadow: 15px 15px 25px var(--shForm);
+}
+
+.theme label {
     width: 100px;
     display: inline-block;
 }
 
-.theme-color {
-    border: none;
-    border-radius: var(--appRadius);
-    margin: 8px 3vw 8px 0px;
-    display: inline-block;
+.theme input[type="color"] {
+	border: none !important;
+	outline: none !important;
+	border-radius: var(--rInput);
+	margin: 4px 4px;
 }
 
-.theme-number {
+.theme input[type=number] {
     margin: 0px 1em 8px 0px;
     height: 1.5em;
     font-size: 1em;
     font-weight: bold;
     max-width: 75px;
+    border-radius: var(--rInput);
 }
 
-.theme-select {
+.theme select {
     min-width: 120px;   
     max-width: 120px;   
     font-size: 1em;
@@ -26,9 +59,45 @@
     margin-right: 1vh;
 }
 
-.theme-option {
+.theme option {
     margin: 6px;
     padding-left: 10px;
     font-weight: bold;
+}
+
+.theme input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20%;
+    height: 1em;
+    outline: none;
+    opacity: 0.5;
+    background: var(--bgInput);
+    color: var(--fgInput);
+    margin: 8px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.theme input[type=range]:hover {
+    opacity: 1;
+}
+
+.theme input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: red;
+    cursor: pointer;
+}
+
+.theme input[type=range]::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background: red;
+    cursor: pointer;
 }
 

@@ -1,0 +1,54 @@
+.content-item{
+	background: var(--bgContent);
+    color: var(--fgContent);
+    outline-style: solid;
+	outline-width: var(--bdSizeContent);
+	outline-color: var(--bdColContent);
+    border-radius: var(--rContent);
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shContent));
+    box-shadow: 10px 10px 15px rgba(0,0,0,var(--shContent));
+    padding: calc( 1 * var(--fzContent));
+    overflow: hidden;
+	display: block;
+	width: var(--wContent);
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: var(--dContent);
+	
+}
+
+.selected {
+    background: var(--bgHover);
+    color: var(--fgHover);
+}
+
+
+.content-public {
+	font-size: medium;
+	margin-top: 0px !important;
+	position: absolute;
+	right: 36px;
+	color: var(--fgContent);
+	font-weight: normal;
+	top: 0;
+	font-weight: bold;
+}
+
+.content-public-checkbox {
+	margin-top: 4px !important;
+	position: absolute;
+	right: 1em;
+	height: 32px;
+}
+
+
+.content-active {
+
+	background: var(--bgContentAct);
+	color: var(--fgContentAct);
+	outline-style: auto;
+	outline-width: var(--bdSizeContent);
+	outline-color: var(--bdColContent);
+    border-radius: var(--rContent);
+    overflow: auto;
+}

@@ -1,77 +1,53 @@
 
 body {
-	background: var(--appBg);
-	color: var(--appFg);
-	font-family: var(--appFont);
-	font-size: var(--appFsize);
-	width: var(--appWidth);
-    height: 100vh;
-	position: absolute;
-	left: calc((100vw - var(--appWidth)) / 2);
-}
-
-main {
-	font-family: var(--appFont);
-	margin-top: 10vh;
-	margin-left: -7px;
-	width: var(--appWidth);
-    margin-bottom: 10vh;
-}
-
-footer {
-	font-family: var(--appFont);
-	font-style: italic;
-	background: var(--barBg);
-	color: var(--barFg);
-	position: fixed;
-	left: inherit;
-	bottom: 1vh;
-	height: 4vh;
-	width: inherit;
-	border-radius: var(--appRadius);
-	outline-style: solid;
-	outline-width: var(--barBdW);
-	outline-color: var(--barBdFg);
-	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--blockShadow));
-	box-shadow: 10px 10px 15px rgba(0,0,0,var(--blockShadow));
-	font-style: italic;
-	line-height: calc( 2 * var(--appFsize));
+	background: var(--bgApp);
+	color: var(--fgApp);
+	font-family: var(--font);
+	font-size: var(--fontsize);
 }
 
 button {
-    font-family: var(--appFont);
-	background: var(--btnBg);
-    color: var(--btnFg);
-    border-radius: var(--appRadius);
+	background: var(--bgButton);
+    color: var(--fgButton);
+    border-radius: var(--rButton);
 	outline-style: solid;
-	outline-width: var(--barBdW);
-	outline-color: var(--barBdFg);
-    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--btnShadow));
-    box-shadow: 10px 10px 15px rgba(0,0,0,var(--btnShadow));
+	outline-width: var(--bdSizeButton);
+	outline-color: var(--bdColButton);
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shButton));
+    box-shadow: 10px 10px 15px rgba(0,0,0,var(--shButton));
     text-align: center;
-    font-weight: bold;
-    padding: calc( 2 * var(--appFsize) );
+    font-family: var(--font);
+    font-weight: var(--fwButton);
+	font-style: var(--fsButton);
+	font-family: var(--font);
+    padding: calc( 2 * var(--fzButton) );
 }
 
 h1 {
-	background: var(--titleBg);
-	color: var(--titleFg);
+	background: var(--bgTitle);
+	color: var(--fgTitle);
+	font-size: var(--fzTitle);
+	font-weight: var(--fwTitle);
+	font-style: var(--fsTitle);
+	line-height: calc( 2 * var(--fzTitle));
+	padding-left: 1vh;
 	outline-style: solid;
-	outline-width: var(--titleBdW);
-	outline-color: var(--titleBdFg);
-	border-radius: var(--appRadius);
-	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--titleShadow));
-	box-shadow: 10px 10px 15px rgba(0,0,0,var(--titleShadow));
+	text-align: center;
+	outline-width: var(--bdSizeTitle);
+	outline-color: var(--bdColTitle);
+	border-radius: var(--rTitle);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shTitle));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--shTitle));
 	text-shadow: 2px 2px 4px black; 
 }
 
-ul {
+/* ul {
 	outline-style: solid;
-	outline-width: var(--inpBdW);
-	outline-color: var(--inpBdFg);
-    background: var(--inpBg);
-    color: var(--inpFg);
-}
+	outline-width: var(--bdSizeInput);
+	outline-color: var(--bdColInput);
+    background: var(--bgInput);
+    color: var(--fgInput);
+} */
 
 li {
     background: var(--inpBg);
@@ -79,11 +55,25 @@ li {
 }
 
 li:hover {
-    background: var(--inpActBg);
-    color: var(--inpActFg);
+    background: var(--bgHover);
+    color: var(--fgHover);
 	outline-style: solid;
-	outline-width: var(--inpBdW);
-	outline-color: var(--inpBdFg);
+	outline-width: var(--bdSizeInput);
+	outline-color: var(--bdColInput);
+	border-radius: var(--rInput);
+
+}
+
+input {
+	background: var(--bgInput);
+	color: var(--fgInput);
+	border-radius: var(--rInput);
+	outline-style: solid;
+	outline-color: var(--bdColInput);
+	outline-width: var(--bdSizeInput);
+	font-size: var(--fzInput);
+	font-style: var(--fsInput);
+	font-weight: var(--fwInput);
 }
 
 @media screen and (max-width: 600px) {
@@ -100,7 +90,8 @@ li:hover {
     }
 
 	main {
-		width: 97vw;
+		width: 100%;
+		margin-left: -6px;
 	}
     
 	footer {
@@ -108,7 +99,7 @@ li:hover {
 		font-size: small;
 	}
 
-	nav {
+	/* nav {
 		margin-top: 1vh;
-	}
+	} */
 }

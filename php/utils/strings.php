@@ -24,7 +24,9 @@ function surround(string $str, string $char) : string {
     return $char . $str . $char;
 }
 
-function replace( string $str, string $replace, string $replacement) {
+function replace( string $str, string $replace, stdClass|string|null $replacement ) {
+    if( $replacement === null ) return 'FEL:"' . $str . '"';
+    else if( gettype($replacement) === 'object' ) return 'FEL:"' . $str . '" => "' . json_encode($replacement) . '"';
     return str_replace($replace, $replacement, $str);
 
 }

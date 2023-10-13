@@ -2,49 +2,75 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/utils/error.php';
 
-require_once __DIR__ . '/storage/db.php';
-require_once __DIR__ . '/storage/themes.php';
-require_once __DIR__ . '/storage/settings.php';
-require_once __DIR__ . '/storage/blocks.php';
-require_once __DIR__ . '/storage/pages.php';
-require_once __DIR__ . '/storage/users.php';
+require_once __DIR__ . '/utils/db.php';
+require_once __DIR__ . '/theme/theme.php';
+require_once __DIR__ . '/settings/settings.php';
+require_once __DIR__ . '/content/content.php';
+require_once __DIR__ . '/page/page.php';
+require_once __DIR__ . '/page/pagetheme.php';
+require_once __DIR__ . '/user/user.php';
+require_once __DIR__ . '/site/site.php';
 
-require_once __DIR__ . '/generators/fonts.php';
-require_once __DIR__ . '/generators/html.php';
+require_once __DIR__ . '/framework/fonts.php';
+require_once __DIR__ . '/framework/html.php';
 
+
+
+$site = $_SERVER['REQUEST_URI']; // = '/km
+if ($site === null || $site === '/') {
+    echo ('IceWall: #ERROR. No site given! Aborting!');
+    return;
+}
+
+$site = substr($site, 1);
+if ($site === null || strlen($site) === 0) {
+    echo ('IceWall: #ERROR. No site given! Aborting!');
+    return;
+}
+
+if( !dbDatabaseExist($site)) {
+    echo ('IceWall: #ERROR. Tried to load "' . $site . '" but no such site here!');
+    return;
+}
 
 session_start();
 
 // Database support
-$cli = dbConnect();
+try {
+    $cli = dbConnect($site);
 
-createSettings($cli);
-createThemes($cli);
-createUsers($cli);
-createPages($cli);
-createBlocks($cli);
+    createSite($cli);
+    createSettings($cli);
+    createPageTheme($cli);
+    createThemes($cli);
+    createUser($cli);
+    createPage($cli);
+    createContents($cli);
 
-// Settings
-$settingsArray = selectSettings($cli);
-if( !$settingsArray ) {
-    die('Kan inte ladda inställningar');
-}
-$settings = $settingsArray[0];
-
-// Get page id to load
-$pageId = getFirstPageId($cli);
-if( array_key_exists('REQUEST_URI', $_SERVER) )
-{
-    $reqPage = ltrim($_SERVER['REQUEST_URI'], '/');
-    if( strlen($reqPage) > 0 &&
-        $reqPage[0] !== '?' && 
-        $reqPage[strlen($reqPage)-1] !== '?' ) {
-            $pageId = (int)$reqPage; // arg was a page!        
+    // Settings
+    $settingsArray = selectSettings($cli);
+    if (!$settingsArray) {
+        die('Kan inte ladda inställningar');
     }
+    $settings = $settingsArray[0];
+
+    // Get page id to load
+    $pageId = getFirstPageId($cli);
+    if (array_key_exists('REQUEST_URI', $_SERVER)) {
+        $reqPage = ltrim($_SERVER['REQUEST_URI'], '/');
+        if (
+            strlen($reqPage) > 0 &&
+            $reqPage[0] !== '?' &&
+            $reqPage[strlen($reqPage) - 1] !== '?'
+        ) {
+            $pageId = (int) $reqPage; // arg was a page!        
+        }
+    }
+
+    echo (generateHTML($cli, $settings['name'], $pageId));
+
+    dbDisonnect($cli);
+} catch (Exception $e) {
+    echo ('<br>IceWall: #EXCEPTION ' . $e->getMessage());
 }
-
-echo( generateHTML($cli, $settings['host'], $settings['name'], $pageId));
-
-dbDisonnect($cli);
-
 ?>

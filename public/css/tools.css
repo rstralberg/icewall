@@ -1,49 +1,126 @@
-.tools {
-	background: var(--toolBg);
+.tools-left {
+	background: var(--bgTools);
 	font-family: var(--appFont);
-	color: var(--toolFg);
+	color: var(--fgTools);
 	position: fixed;
-	left: calc( (100vw - var(--appWidth))/2);
-	width: var(--appWidth);
+	top: 1vh;
+	left: 10px;
+	width:auto;
 	font-weight: bold;
 	position: fixed;
     z-index: 100;
-	top: calc( 5.8 * var(--appFsize));
-	border-radius: var(--appRadius);
-	outline-style: solid;
-	outline-width: var(--toolBdW);
-	outline-color: var(--toolBdFg);
-	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--toolShadow));
-	box-shadow: 10px 10px 15px rgba(0,0,0,var(--toolShadow));
+	border-radius: var(--rTools);
+	outline: none;
 	font-style: bold;
-	font-size: calc( 1.6 * var(--appFsize));
-	line-height: calc( 1.6 * var(--appFsize));
+	font-size: calc( 1.6 * var(--fzTools));
+	line-height: calc( 1.6 * var(--fzTools));
 	text-shadow: 4px 4px 6px black;
 }
 
+.tools-right {
+	background: var(--bgTools);
+	font-family: var(--font);
+	color: var(--fgTools);
+	position: fixed;
+	top: 1vh;
+	right: calc( var(--wApp)/8);
+	width:auto;
+	font-weight: var(--fwTools);
+	position: fixed;
+    z-index: 100;
+	border-radius: var(--rTools);
+	outline: none;
+	font-style: var(--fsTools);
+	font-size: calc( 1.6 * var(--fzTools));
+}
+
+
+.tool-section {
+	border: 1px solid;
+	border-radius: var(--rTools);
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 4px;
+	text-align: left;
+}
+
+.tool-section-title {
+	border: none;
+	padding: 0;
+	text-align: left;
+	font-size: medium;
+	font-weight: normal;
+}
+
+.tool-section-ruler {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+.tool-label {
+	font-size: medium;
+	font-weight: normal;
+	font-style: normal;
+	text-align: left;
+}
+
+
+.tool-button {
+	display: block;
+	background: var(--bgTools);
+	color: var(--fgTools);
+	outline: none;
+	border: none;
+	font-weight: normal;
+	padding:2px; 
+	box-shadow: none;
+
+}
+
+.tool-button:hover {
+	background: var(--bgHover);
+	color: var(--fgHover);
+	outline-style: solid;
+	outline-width: var(--bdSizeTools);
+	outline-color: var(--bdColTools);
+	width: -moz-available;
+	box-shadow: none;
+}
+
+.tool-button-disabled {
+	display: block;
+	background: var(--bgTools);
+	color: grey;
+	outline: none;
+	border: none;
+	font-weight: normal;
+	padding:2px;
+	pointer-events: none; 
+	box-shadow: none;
+}
 
 .tool {
     width: 28px;
     height: auto;
     cursor: pointer;
-	background: var(--toolBg);
+	background: var(--bgTools);
 	margin: 6px 4px 0px 4px;
 }
 
 .tool:hover {
     outline-style: solid;
 	outline-width: 2px;
-	outline-color: var(--toolBdFg);
-	background: var(--toolActBg);
+	outline-color: var(--bdColTools);
+	background: var(--bgHover);
 }
 
 
 .tool-active {
     width: 28px;
     height: auto;
-    outline: 1px solid block;
+    outline: 1px solid content;
     cursor: pointer;
-	background: var(--toolActBg) !important;
+	background: var(--bgHover) !important;
 }
 
 @media screen and (max-width: 600px) {

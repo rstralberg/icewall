@@ -1,10 +1,10 @@
 .form {
-    background: var(--formBg);
-    color: var(--formFg);
-    border-radius: var(--appRadius);
+    background: var(--bgForm);
+    color: var(--fgForm);
+    border-radius: var(--rForm);
     outline-style: solid;
-	outline-width: var(--formBdW);
-	outline-color: var(--formBdFg);
+	outline-width: var(--bdSizeForm);
+	outline-color: var(--bdColForm);
     display: block;
     float: left;
     height: auto;
@@ -15,7 +15,7 @@
     overflow: hidden;
     padding: 3%;
     position: absolute;
-    font-family: var(--appFont);
+    font-family: var(--font);
 	padding: 2vh;
     top: 10%;
     width: auto;
@@ -28,16 +28,17 @@
 }
 
 .form-title {
-    font-size: calc(var(--appFsize) * 2);
+    font-size: calc(var(--fzTitle) * 2);
     font-weight: bold;
-    background: var(--titleBg);
-    color: var(--titleFg);
+    background: var(--bgTitle);
+    color: var(--fgTitle);
+    border-radius: var(--rTitle);
 	outline-style: solid;
-	outline-width: var(--titleBdW);
-	outline-color: var(--titleBdFg);
+	outline-width: var(--bdSizeTitle);
+	outline-color: var(--bdColTitle);
     text-align: center;
-    -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--titleShadow));
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--titleShadow));
+    -webkit-box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--shTitle));
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--shTitle));
     text-shadow: 1px 1px 2px black; 
 
 }
@@ -45,8 +46,8 @@
 .form-input:active,
 .form-input:hover, 
 .form-input:focus {
-    background: var(--inpActBg);
-    color: var(--inpActFg);
+    background: var(--bgHover);
+    color: var(--fgHover);
 }
 
 
@@ -91,10 +92,12 @@
     max-width: 60px;
 }
 
-.form-checkbox,
+.form-checkbox, 
 .form-input {
-    margin: 8px;
-    width: 1em;
+	margin: 8px;
+	width: 1em;
+	border: none;
+	outline: none;
 }
 
 .form-textarea
@@ -106,12 +109,12 @@
 }
 
 .form-button {
-    background: var(--btnBg);
-    color: var(--btnFg);
+    background: var(--bgButton);
+    color: var(--fgButton);
     outline-style: solid;
-	outline-width: var(--btnBdW);
-	outline-color: var(--btnBdFg);
-    border-radius: var(--appRadius);
+	outline-width: var(--bdSizeButton);
+	outline-color: var(--bdColButton);
+    border-radius: var(--rButton);
     width: -moz-available ;
     margin: 8px;
     font-size: 1.2em;
@@ -128,8 +131,8 @@
 .form-button:focus,
 .form-button:active,
 .form-button:hover {
-    background: var(--btnActBg);
-    color: var(--btnActFg);
+    background: var(--bgHover);
+    color: var(--fgHover);
 }
 
 .form-combo,
@@ -275,9 +278,9 @@
     height: 100vh;
     left:0;
     top:0;
-    background: var(--appBg);
-    color: var(--appFg);
-    border: 2px solid var(--appFg);
+    background: var(--bgApp);
+    color: var(--fgApp);
+    border: 2px solid var(--fgApp);
     z-index: 999;
 }
 
@@ -311,8 +314,8 @@
 
 .form-image
 {
-    background: var(--inpBg);
-    color: var(--inpFg);
+    background: var(--bgInput);
+    color: var(--fgInput);
 }
 
 .form-image > img {

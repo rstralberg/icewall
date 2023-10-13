@@ -26,7 +26,8 @@
 .li-mark {
     background: var(--inpActFg);
     color: var(--inpActBg);
-	outline-style: solid;
-	outline-width: var(--inpBdW);
-	outline-color: var(--inpBdFg);
+    outline-style: solid;
+    outline-width: var(--inpBdW);
+    outline-color: var(--inpBdFg);
 }
+

@@ -1,5 +1,5 @@
 
-.page-title {
+/* .page-title {
 	background: var(--barBg);
 	color: var(--barFg);
 	font-family: var(--appFont);
@@ -20,12 +20,12 @@
 	line-height: calc( 1.6 * var(--appFsize));
 	text-shadow: 4px 4px 6px black;
 }
-
+ */
 .page-public {
 	font-size: medium;
 	margin-top: 0px !important;
 	position: absolute;
-	right: 36px;
+	right: 20%;
 	color: var(--editFg);
 	font-weight: normal;
 }
@@ -33,8 +33,10 @@
 .page-public-checkbox {
     margin-top:4px !important;
     position: absolute;
-    right: 1em;
-    height:32px;
+    right: 16%;
+    height:1.3em;
+	border:none;
+	outline:none;
 }
 
 .page-icons {

@@ -1,0 +1,44 @@
+<form class="form" enctype="multipart/form-data">
+    
+    <div class="form-title">Skapa ny sida</div>
+
+        <hr>
+
+        <div class="form-40-60">
+            <label class="form-label" for="createpage-title">Sidans titel:</label>
+            <input class="form-text" type="text" id="createpage-title" name="title" required> 
+        </div>
+        
+        <div class="form-40-60">
+            <label class="form-label" for="createpage-placement">Placering:</label>
+            <select id="createpage-placement">
+                <option value="none">Välj</option>
+                <option value="top">I toppmeny UTAN underliggande sidor</option>
+                <option value="parent">I toppmeny MED underliggande sidor</option>
+                ${pages}
+            </select>   
+        </div>
+        
+        <div class="form-40-60">
+            <label class="form-label" for="createpage-show">Visa sidans titel</label>
+            <input class="form-checkbox" type="checkbox" id="createpage-show" name="show">
+        </div>
+        
+        <div class="form-40-60">
+            <label class="form-label" for="createpage-author">Författare</label>
+            <select class="form-select" id="createpage-author" name="author">
+                ${users}
+            </select>
+        </div>
+        
+        
+        <hr>
+        <div class="form-100">
+            <input class="form-button" type="button" value="OK" onclick="createPage()">
+        </div>
+        
+        <div class="form-100">
+            <input class="form-button" type="button" value="Stäng" onclick="closeCreatePage()">
+        </div>
+        
+</form>
