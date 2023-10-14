@@ -33,8 +33,6 @@ require_once __DIR__ . '/../php/theme/borders.php';
 require_once __DIR__ . '/../php/theme/fonts.php';
 require_once __DIR__ . '/../php/theme/sizes.php';
 require_once __DIR__ . '/../php/theme/shadows.php';
-require_once __DIR__ . '/../php/theme/misc.php';
-require_once __DIR__ . '/../php/theme/system.php';
 require_once __DIR__ . '/../php/user/password.php';
 require_once __DIR__ . '/../php/user/delete.php';
 require_once __DIR__ . '/../php/user/edit.php';
