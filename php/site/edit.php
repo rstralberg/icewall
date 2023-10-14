@@ -4,11 +4,11 @@ require_once __DIR__ . '/../utils/reqrep.php';
 require_once __DIR__ . '/../utils/load.php';
 require_once __DIR__ . '/settings.php';
 
-function editSettings(stdClass|null $args) : Reply {
+function editSettings(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
-    $settings = selectSettings($mysqli)[0];
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); $db->open();
+    $settings = selectSettings($db)[0];
+    $db->close();
 
     return loadForm('settings/html/edit', [
         'size' => 128 ,

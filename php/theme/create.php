@@ -5,78 +5,79 @@ require_once __DIR__ . '/theme.php';
 function createDefaultTheme(stdClass $args) : Reply {
 
     
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
     
     $theme = [
         
-            sqlString( $mysqli, $args->themeName), // theme
-            sqlString( $mysqli, '#202020'), // appBg
-            sqlString( $mysqli, '#ffffff'), // appFg
-            sqlString( $mysqli, 'Ariel'), // appFont
-            sqlString( $mysqli, '1em'), // appFsize
-            sqlString( $mysqli, '80vw'), // appWidth
-            sqlString( $mysqli, '8px'), // appRadius
-            sqlString( $mysqli, 'icons/white'), // appFolder
-            sqlString( $mysqli, '#303030'), // editBg
-            sqlString( $mysqli, '#ffffff'), // editFg
-            sqlString( $mysqli, '#404040'), // editActBg
-            sqlString( $mysqli, '#ffffff'), // editActFg
-            sqlString( $mysqli, '#ffffff'), // editBdFg
-            sqlString( $mysqli, '1px'), // editBdW
-            sqlString( $mysqli, '#202020'), // toolBg
-            sqlString( $mysqli, '#ffffff'), // toolFg
-            sqlString( $mysqli, '#ff1010'), // toolActBg
-            sqlString( $mysqli, '#ffffff'), // toolActFg
-            sqlString( $mysqli, '#ffffff'), // toolBdFg
-            sqlString( $mysqli, '1px'), // toolBdW
-            sqlBoolean(true), // toolShadow
-            sqlString( $mysqli, '#404040'), // titleBg
-            sqlString( $mysqli, '#ffff00'), // titleFg
-            sqlString( $mysqli, '#fff'), // titleBdFg
-            sqlString( $mysqli, '1px'), // titleBdW
-            sqlBoolean(true), // titleShadow'
-            sqlString( $mysqli, '#101010'), // barBg
-            sqlString( $mysqli, '#ffffff'), // barFg
-            sqlString( $mysqli, '#ff2200'), // barActBg
-            sqlString( $mysqli, '#000000'), // barActFg
-            sqlString( $mysqli, '#ffffff'), // barBdFg
-            sqlString( $mysqli, '1px'), // barBdW
-            sqlBoolean(true), // barShadow
-            sqlString( $mysqli, '#404040'), // contentBg
-            sqlString( $mysqli, '#ffffff'), // contentFg
-            sqlString( $mysqli, '#505050'), // contentActBg
-            sqlString( $mysqli, '#ffffff'), // contentActFg
-            sqlString( $mysqli, '#ffffff'), // contentBdFg
-            sqlString( $mysqli, '1px'), // contentBdW
-            sqlBoolean(true), // contentShadow
-            sqlString( $mysqli, '#202020'), // formBg
-            sqlString( $mysqli, '#ffffff'), // formFg
-            sqlString( $mysqli, '#ffffff'), // formBdFg
-            sqlString( $mysqli, '2px'), // formBdW
-            sqlBoolean(true), // formShadow
-            sqlString( $mysqli, '#082626'), // btnBg
-            sqlString( $mysqli, '#000000'), // btnFg
-            sqlString( $mysqli, '#088686'), // btnActBg
-            sqlString( $mysqli, '#000000'), // btnActFg
-            sqlString( $mysqli, '#000000'), // btnBdFg
-            sqlString( $mysqli, '1px'), // btnBdW
-            sqlBoolean(true), // btnShadow
-            sqlString( $mysqli, '#ffffff'), // inpBg
-            sqlString( $mysqli, '#000000'), // inpFg
-            sqlString( $mysqli, '#ffffee'), // inpActBg
-            sqlString( $mysqli, '#000000'), // inpActFg
-            sqlString( $mysqli, '#000000'), // inpBdFg
-            sqlString( $mysqli, '1px'), // inpBdW
-            sqlBoolean(true), // inpShadow
-            sqlString( $mysqli, '#000000'), // linkBg
-            sqlString( $mysqli, '#112244'), // linkFg
-            sqlString( $mysqli, '#4400ff'), // linkActBg
-            sqlString( $mysqli, '#550022'), // linkActFg
+            $db->string($args->themeName), // theme
+            $db->string('#202020'), // appBg
+            $db->string('#ffffff'), // appFg
+            $db->string('Ariel'), // appFont
+            $db->string('1em'), // appFsize
+            $db->string('80vw'), // appWidth
+            $db->string('8px'), // appRadius
+            $db->string('icons/white'), // appFolder
+            $db->string('#303030'), // editBg
+            $db->string('#ffffff'), // editFg
+            $db->string('#404040'), // editActBg
+            $db->string('#ffffff'), // editActFg
+            $db->string('#ffffff'), // editBdFg
+            $db->string('1px'), // editBdW
+            $db->string('#202020'), // toolBg
+            $db->string('#ffffff'), // toolFg
+            $db->string('#ff1010'), // toolActBg
+            $db->string('#ffffff'), // toolActFg
+            $db->string('#ffffff'), // toolBdFg
+            $db->string('1px'), // toolBdW
+            $db->bool(true), // toolShadow
+            $db->string('#404040'), // titleBg
+            $db->string('#ffff00'), // titleFg
+            $db->string('#fff'), // titleBdFg
+            $db->string('1px'), // titleBdW
+            $db->bool(true), // titleShadow'
+            $db->string('#101010'), // barBg
+            $db->string('#ffffff'), // barFg
+            $db->string('#ff2200'), // barActBg
+            $db->string('#000000'), // barActFg
+            $db->string('#ffffff'), // barBdFg
+            $db->string('1px'), // barBdW
+            $db->bool(true), // barShadow
+            $db->string('#404040'), // contentBg
+            $db->string('#ffffff'), // contentFg
+            $db->string('#505050'), // contentActBg
+            $db->string('#ffffff'), // contentActFg
+            $db->string('#ffffff'), // contentBdFg
+            $db->string('1px'), // contentBdW
+            $db->bool(true), // contentShadow
+            $db->string('#202020'), // formBg
+            $db->string('#ffffff'), // formFg
+            $db->string('#ffffff'), // formBdFg
+            $db->string('2px'), // formBdW
+            $db->bool(true), // formShadow
+            $db->string('#082626'), // btnBg
+            $db->string('#000000'), // btnFg
+            $db->string('#088686'), // btnActBg
+            $db->string('#000000'), // btnActFg
+            $db->string('#000000'), // btnBdFg
+            $db->string('1px'), // btnBdW
+            $db->bool(true), // btnShadow
+            $db->string('#ffffff'), // inpBg
+            $db->string('#000000'), // inpFg
+            $db->string('#ffffee'), // inpActBg
+            $db->string('#000000'), // inpActFg
+            $db->string('#000000'), // inpBdFg
+            $db->string('1px'), // inpBdW
+            $db->bool(true), // inpShadow
+            $db->string('#000000'), // linkBg
+            $db->string('#112244'), // linkFg
+            $db->string('#4400ff'), // linkActBg
+            $db->string('#550022'), // linkActFg
     ];
     
-    $id = insertTheme($mysqli,$theme);
+    $id = insertTheme($db,$theme);
     
-    dbDisonnect($mysqli);
+    $db->close();
     return new Reply( $id>0? 'ok':'error', $id);
 }
 ?>

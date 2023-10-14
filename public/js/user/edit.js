@@ -113,6 +113,7 @@ function userImageSeleced() {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
+        let folder = Session.site.folder + '/uploads/users';
         uploadImage(selectedImage, maxWidth, 'users' ).then(
             (resolve) => {
                 if (resolve.status === 'ok') {

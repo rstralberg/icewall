@@ -25,9 +25,9 @@ class Cookie {
         return null;
     }
 
-    static set username(v) { this.#set('ice-u',v); }
-    static get username() { return this.#get('ice-u'); }
+    static set username(v) { this.#set(Session.item('ice-u'),v); }
+    static get username() { return this.#get(Session.item('ice-u')); }
 
-    static set pageId(v) { this.#set('ice-pid', parseInt(v)); }
-    static get pageId() { return parseInt(this.#get('ice-pid')); }
+    static set pageId(v) { this.#set(Session.item('ice-pid'), parseInt(v)); }
+    static get pageId() { return parseInt(this.#get(Session.item('ice-pid'))); }
 }

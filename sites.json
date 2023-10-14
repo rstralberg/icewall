@@ -1,0 +1,19 @@
+{
+    "sites": [
+      {
+        "name": "KalixMixen",
+        "key": "km",
+        "folder": "km",
+        "database": "km",
+        "admin": "roland"
+      },
+      {
+        "name": "GrafitGubben",
+        "key": "gg",
+        "folder": "gg",
+        "database": "gg",
+        "admin": "roland"
+      }
+    ]
+  }
+  

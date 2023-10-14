@@ -61,10 +61,15 @@ function generateScripts() : string {
 
     // theme
     $html.= script('theme/create');
-    $html.= script('theme/edit');
+    $html.= script('theme/theme');
     $html.= script('theme/get');
     $html.= script('theme/page');
     $html.= script('theme/save');
+    $html.= script('theme/shadows');
+    $html.= script('theme/colors');
+    $html.= script('theme/borders');
+    $html.= script('theme/fonts');
+    $html.= script('theme/sizes');
 
     // user
     $html.= script('user/account');

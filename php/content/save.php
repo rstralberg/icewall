@@ -4,40 +4,38 @@ require_once __DIR__ . '/../content/content.php';
 
 function saveContent( stdClass $args ) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
     
     $content = null;
-    $contents = selectContent($mysqli, $args->id);
+    $contents = selectContent($db, $args->id);
     if( $contents ) {
         $content = $contents[0];
-        $content['style'] = sqlString($mysqli,$args->style);
-        $content['html'] = sqlString($mysqli,$args->html);
-        $content['public'] = sqlBoolean($args->pub);
+        $content['html'] = $db->string($args->html);
+        $content['public'] = $db->bool($args->pub);
 
-        if( !updateContent($mysqli, ['style','html','public','pos'], [
-            sqlString($mysqli, $args->style),
-            sqlString($mysqli,$args->html),
-            sqlBoolean($args->pub),
+        if( !updateContent($db, ['html','public','pos'], [
+            $db->string($args->html),
+            $db->bool($args->pub),
             $args->pos],
             $args->id) ) {
-            dbDisonnect($mysqli);
-            return new Reply( 'error', '### Kunde inte spara avsnittet: ' .  mysqli_error($mysqli) );
+            $db->close();
+            return new Reply( 'error', '### Kunde inte spara avsnittet: ' .  $db->lastError() );
         }
     }
     else {
         $content['pageId'] = $args->pageId;
-        $content['style'] = sqlString($mysqli,$args->style);
-        $content['html'] = sqlString($mysqli,$args->html);
+        $content['html'] = $db->string($args->html);
         $content['pos'] = $args->pos;
-        $content['public'] = sqlBoolean($args->pub);
-        $content['id'] = insertContent($mysqli, $content);
+        $content['public'] = $db->bool($args->pub);
+        $content['id'] = insertContent($db, $content);
         if( $content['id'] < 1 ) {
-            dbDisonnect($mysqli);
-            return new Reply( 'error', '### Kunde inte spara avsnittet: ' .  mysqli_error($mysqli) );
+            $db->close();
+            return new Reply( 'error', '### Kunde inte spara avsnittet: ' .  $db->lastError() );
         }
     }   
 
-    dbDisonnect($mysqli);
+    $db->close();
     return new Reply('ok', generateContent($content));
 
 }

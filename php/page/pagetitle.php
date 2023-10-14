@@ -8,9 +8,10 @@ function getPageTitle(stdClass|null $args): Reply
 {
     if( $args === null ) return new Reply('error', 'Argument saknas vid hämtning av titel');
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $settings = selectSettings($mysqli);
+    $settings = selectSettings($db);
 
     $user = [
             'id' => 0,
@@ -27,14 +28,14 @@ function getPageTitle(stdClass|null $args): Reply
     ];
 
     if ($args->username) {
-        $users = selectUser($mysqli, $args->username);
+        $users = selectUser($db, $args->username);
         if ($users) {
             $user = $users[0];
         }
     }
 
-    $pages = selectPage($mysqli, $args->pageId);
-    dbDisonnect($mysqli);
+    $pages = selectPage($db, $args->pageId);
+    $db->close();
     if (!$pages) {
         return new Reply('error', 'Kunde inte ladda sökta sida ' . $args->pageId);
     }
@@ -51,30 +52,32 @@ function getPageTitle(stdClass|null $args): Reply
 
 function hidePageTitle(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
-    $pages = selectPage($mysqli, $args->pageId);
+    $db = new Db($args->database); 
+    $db->open();
+    $pages = selectPage($db, $args->pageId);
     if( $pages ) {
-        updateShowPageTitle($mysqli, $args->pageId, false );
-        dbDisonnect($mysqli);
+        updateShowPageTitle($db, $args->pageId, false );
+        $db->close();
         return new Reply('ok', true);
     }
     else {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply('error', false);
     }
 }
 
 function showPageTitle(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
-    $pages = selectPage($mysqli, $args->pageId);
+    $db = new Db($args->database); 
+    $db->open();
+    $pages = selectPage($db, $args->pageId);
     if( $pages ) {
-        updateShowPageTitle($mysqli, $args->pageId, true);
-        dbDisonnect($mysqli);
+        updateShowPageTitle($db, $args->pageId, true);
+        $db->close();
         return new Reply('ok', true);
     }
     else {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply('error', false);
     }
 }

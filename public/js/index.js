@@ -1,5 +1,14 @@
 
-function index(pageId) {
+function index(pageId, sitekey, sitefolder, sitedb, siteName) {
+
+    Session.key = sitekey;
+
+    Session.site =  {
+        key:sitekey,
+        folder:sitefolder,
+        db:sitedb,
+        name:siteName
+    };
 
     // Load any user logged in
     let user = Session.user;

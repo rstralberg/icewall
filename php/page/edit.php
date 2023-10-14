@@ -3,11 +3,12 @@
 require_once __DIR__ . '/page.php';
 require_once __DIR__ . '/../utils/load.php';
 
-function editPages(stdClass|null $args) : Reply {
+function editPages(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $pages = selectPages($mysqli);
+    $pages = selectPages($db);
 
     $all = '';
     foreach ($pages as $page) {

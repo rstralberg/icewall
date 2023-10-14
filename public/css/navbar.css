@@ -40,13 +40,14 @@ nav .menu .links {
     width: 100%;
     float: left;
     font-weight: var(--fwNavbar);
+    font-style: var(--fsNavbar);
+    font-size: var(--fzNavbar);
 }
 
 nav .menu .links li {
     display: inline-block;
     margin-top: 10px;
     margin-right: 4px;
-
 }
 
 nav .childs {

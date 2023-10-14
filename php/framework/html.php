@@ -3,11 +3,9 @@ require_once __DIR__ . '/head.php';
 require_once __DIR__ . '/../page/page.php';
 require_once __DIR__ . '/../utils/html.php';
 
-function generateHTML(mysqli $cli, string $siteName, int $pageId ) : string {
+function generateHTML(Db $cli, string $sitekey, string $sitefolder, string $sitedb, string $siteName ) : string {
 
-    if( $pageId < 1 ) {
-        $pageId = getFirstPageId($cli);
-    }
+    $pageId = getFirstPageId($cli);
     
     $html = '<!DOCTYPE html><html lang="sv">';
     $html.= generateHead($cli, $siteName, DEFAULT_THEME);
@@ -25,7 +23,12 @@ function generateHTML(mysqli $cli, string $siteName, int $pageId ) : string {
     
     // Jscript loading ....
     $html.= '<script type="module"> 
-                addEventListener("DOMContentLoaded", (event) => { index('. $pageId . ');})
+                addEventListener("DOMContentLoaded", (event) => { index('. 
+                    $pageId . ',"' . 
+                    $sitekey .'","' . 
+                    'sites/' . $sitefolder .'","' . 
+                    $sitedb .'","' . 
+                    $siteName .'");})
             </script>';
 
     return compressHTML($html . '</html>');

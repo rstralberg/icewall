@@ -6,39 +6,40 @@ require_once __DIR__ . '/user.php';
 function userUpdate(stdClass $args)
 {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
     if (str_contains($args->picture, 'http')) {
         $args->picture = 'uploads' . explode('uploads', $args->picture)[1];
     }
-    $users = selectUser($mysqli, $args->username);
+    $users = selectUser($db, $args->username);
     $result = false;
     if (!$users) {
-        $result = insertUser($mysqli, [
-            sqlString($mysqli, $args->username),
-            sqlString($mysqli, $args->fullname),
-            sqlString($mysqli, $args->email),
-            sqlString($mysqli, $args->picture),
-            sqlString($mysqli, password_hash($args->password, PASSWORD_DEFAULT)),
-            sqlBoolean($args->permPage),
-            sqlBoolean($args->permContent),
-            sqlBoolean($args->permUser),
-            sqlBoolean($args->permTheme),
-            sqlBoolean($args->permSettings)
+        $result = insertUser($db, [
+            $db->string( $args->username),
+            $db->string( $args->fullname),
+            $db->string( $args->email),
+            $db->string( $args->picture),
+            $db->string( password_hash($args->password, PASSWORD_DEFAULT)),
+            $db->bool($args->permPage),
+            $db->bool($args->permContent),
+            $db->bool($args->permUser),
+            $db->bool($args->permTheme),
+            $db->bool($args->permSettings)
         ]) > 0;
     } else {
-        $result = updateUser($mysqli, $args->username, [
-            sqlString($mysqli, $args->fullname),
-            sqlString($mysqli, $args->email),
-            sqlString($mysqli, $args->picture),
-            sqlBoolean($args->permPage),
-            sqlBoolean($args->permContent),
-            sqlBoolean($args->permUser),
-            sqlBoolean($args->permTheme),
-            sqlBoolean($args->permSettings)
+        $result = updateUser($db, $args->username, [
+            $db->string( $args->fullname),
+            $db->string( $args->email),
+            $db->string( $args->picture),
+            $db->bool($args->permPage),
+            $db->bool($args->permContent),
+            $db->bool($args->permUser),
+            $db->bool($args->permTheme),
+            $db->bool($args->permSettings)
         ]);
     }
-    dbDisonnect($mysqli);
+    $db->close();
     return new Reply($result ? 'ok' : 'error', $args->username);
 }
 

@@ -8,9 +8,11 @@ function delPage(stdClass  $args) : Reply {
 
     $options = '';
     
-    $mysqli = dbConnect();
-    $pages = selectPages($mysqli);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+
+    $pages = selectPages($db);
+    $db->close();
 
     for( $i=0; $i < count($pages); $i++) {
         $page = $pages[$i];
@@ -29,20 +31,21 @@ function delPage(stdClass  $args) : Reply {
 
 function removePage(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    deletePage($mysqli, $args->pageId);
+    deletePage($db, $args->pageId);
     $files = glob('uploads/p' . $args->pageId . '/*'); 
     foreach($files as $file) { 
         if(is_file($file)) {
             unlink($file); 
         }
     }
-    deletePageContents($mysqli, $args->pageId);
+    deletePageContents($db, $args->pageId);
 
-    $firstId = getFirstPageId($mysqli);
+    $firstId = getFirstPageId($db);
 
-    dbDisonnect($mysqli);
+    $db->close();
     
     return new Reply('ok', $firstId );
 }

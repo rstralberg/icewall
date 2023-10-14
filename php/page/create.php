@@ -3,13 +3,14 @@
 require_once __DIR__ . '/page.php';
 require_once __DIR__ . '/../utils/load.php';
 
-function createNewPage() : Reply {
+function createNewPage(stdClass $args) : Reply {
 
     
-    $mysqli = dbConnect();
-    $pages = selectPages($mysqli);
-    $users = selectUsers($mysqli);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+    $pages = selectPages($db);
+    $users = selectUsers($db);
+    $db->close();
 
     $parents = '';
     for( $i=0; $i < count($pages); $i++) {
@@ -33,24 +34,25 @@ function createNewPage() : Reply {
     ]);
 }
 
-function saveNewPage($args) {
+function saveNewPage(stdClass $args) {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
     $page =  [
-        sqlString($mysqli, $args->title),
+        $db->string( $args->title),
         $args->parentId,
-        sqlBoolean($args->isParent),
-        sqlString($mysqli, $args->author),
-        sqlBoolean($args->showTitle),
+        $db->bool($args->isParent),
+        $db->string( $args->author),
+        $db->bool($args->showTitle),
         $args->pos,
-        sqlBoolean($args->public),
-        sqlString($mysqli, $args->style) 
+        $db->bool($args->public),
+        $db->string( $args->style) 
     ];
 
-    $page['id'] = insertPage($mysqli, $page );
+    $page['id'] = insertPage($db, $page );
     
-    dbDisonnect($mysqli);
+    $db->close();
 
     return new Reply(((int)$page['id'])>0?'ok':'error', json_encode($page) );
 }

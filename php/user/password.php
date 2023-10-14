@@ -9,9 +9,12 @@ function password(stdClass|null $args) : Reply {
 
 function update_Password(stdClass $args) {
 
-    $mysqli = dbConnect();
-    updatePassword($mysqli, $args->username, $args->password);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+
+    updatePassword($db, $args->username, $args->password);
+    
+    $db->close();
     return new Reply( 'ok', true);
 }
 

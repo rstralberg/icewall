@@ -9,11 +9,10 @@ const SettingsCols = [
     'logo'
 ];
 
-function createSettings(mysqli $mysqli): void
+function createSettings(Db $db): void
 {
     if (
-        dbCreate(
-            $mysqli,
+        $db->createTable(
             'settings',
             array_merge(['id'], SettingsCols),
             [
@@ -24,16 +23,16 @@ function createSettings(mysqli $mysqli): void
             ]
         )
     ) {
-        dbAddDefaultRow($mysqli, 'settings');
+        $db->addDefaultRow('settings');
     }
 }
-function selectSettings(mysqli $mysqli): array
+function selectSettings(Db $db): array
 {
-    return dbSelect($mysqli, 'settings', array_merge(['id'], SettingsCols), sqlName('id') . '=1');
+    return $db->select( 'settings', array_merge(['id'], SettingsCols), $db->name('id') . '=1');
 }
-function updateSettings(mysqli $mysqli, $values): int
+function updateSettings(Db $db, $values): int
 {
-    return dbUpdate($mysqli, 'settings', SettingsCols, $values, sqlName('id') . '=1');
+    return $db->update( 'settings', SettingsCols, $values, $db->name('id') . '=1');
 }
 
 ?>

@@ -5,11 +5,13 @@ require_once __DIR__ . '/../utils/load.php';
 
 function editAccount(stdClass|null $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $users = selectUser($mysqli, $args->username);
+    $users = selectUser($db, $args->username);
     if( $users ) {
         $user = $users[0];
+        $db->close();
         return loadForm('user/html/editAccount', [
             'username' => $user['username'],
             'picture' => $user['picture'],
@@ -19,15 +21,19 @@ function editAccount(stdClass|null $args) : Reply {
         ]);
     }
     else {
+        $db->close();
         return new Reply('error', 'Kunde inte ladda "'.$args->username.'"');
     }
 }
 
 function editUsers(stdClass|null $args) : Reply {
 
-    $mysqli = dbConnect();
-    $users = selectUsers($mysqli);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+
+    $users = selectUsers($db);
+    
+    $db->close();
 
     $options = '';
     for($i=0; $i<count($users); $i++) {

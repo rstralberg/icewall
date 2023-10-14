@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 .theme {
     display: block;
     
@@ -13,11 +12,10 @@
     float: left;
     height: auto;
 
+    top: 10%;
     left: 10%;
     margin: 10px;
-    min-height: 10vh;
-    min-width: 50vw;
-
+    
     overflow: hidden;
 
     padding: 3%;
@@ -25,16 +23,13 @@
 
     font-family: var(--font);
 	padding: 2vh;
-    top: 10%;
-    width: auto;
+    width: max-content !important;
+    
     z-index: 100;
     box-shadow: 15px 15px 25px var(--shForm);
 }
 
 .theme label {
-=======
-.theme-label {
->>>>>>> 6b4b065256fd51b751e680752129d27621f90b30
     width: 100px;
     display: inline-block;
 }
@@ -47,12 +42,25 @@
 }
 
 .theme input[type=number] {
-    margin: 0px 1em 8px 0px;
+    margin: 0px 1em 8px 2em;
     height: 1.5em;
     font-size: 1em;
     font-weight: bold;
     max-width: 75px;
     border-radius: var(--rInput);
+}
+
+.theme input[type="checkbox"] {
+	margin: 0px 8em 0px 0em;
+	height: 1em;
+	font-size: 1em;
+}
+
+.theme input[type="checkbox"]:checked {
+	margin: 0px 8em 0px 0em;
+	height: 1em;
+	font-size: 1em;
+    color: var(--fgHover);
 }
 
 .theme select {
@@ -68,6 +76,36 @@
     padding-left: 10px;
     font-weight: bold;
 }
+
+.theme input[type=button] {
+    background: var(--bgButton);
+    color: var(--fgButton);
+    outline-style: solid;
+	outline-width: var(--bdSizeButton);
+	outline-color: var(--bdColButton);
+    border-radius: var(--rButton);
+    width: -moz-available ;
+    margin: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 1.6em;
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shButton));
+    box-shadow: 10px 10px 15px rgba(0,0,0,var(--shButton));
+}
+
+.theme input[type=button]:disabled {
+    background-color: gray;
+    color: #202020;
+    pointer-events: none;
+}
+
+.theme input[type=button]:focus,
+.theme input[type=button]:active,
+.theme input[type=button]:hover {
+    background: var(--bgHover);
+    color: var(--fgHover);
+}
+
 
 .theme input[type=range] {
     -webkit-appearance: none;
@@ -105,3 +143,11 @@
     cursor: pointer;
 }
 
+.theme figcaption {
+    font-weight: bold;;
+    color: var( --fgTitle);
+}
+
+.theme hr {
+    color: var( --fgTitle);
+}

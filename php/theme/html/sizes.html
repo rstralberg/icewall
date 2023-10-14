@@ -1,0 +1,43 @@
+<form class="theme" enctype="multipart/form-data">
+
+    <div class="title">Storlekar</div>
+
+    <figure>
+        <figcaption>Bredd</figcaption>
+        <label>Vänster</label>
+        <input title="Bredd" style="outline:none" min="0.1" max="10" step="0.01" type="number" value="${wLeft}" oninput="onWLeft(this)">
+        <label>Mitten</label>
+        <input title="Bredd" style="outline:none" min="0.1" max="10" step="0.01" type="number" value="${wCenter}" oninput="onWCenter(this)">
+        <label>Höger</label>
+        <input title="Bredd" style="outline:none" min="0.1" max="10" step="0.01" type="number" value="${wRight}" oninput="onWRight(this)">
+        <label>Innehåll</label>
+        <input title="Bredd" style="outline:none" min="10" max="90" type="number" value="${wContent}" oninput="onWContent(this)">
+    </figure>
+
+    <figure>
+        <figcaption>Höjd</figcaption>
+        <label>Sidan</label>
+        <input title="Höjd" style="outline:none" type="number" min="1" max="100" value="${hApp}" oninput="onHApp(this)">
+        <label>Meny</label>
+        <input title="Höjd" style="outline:none" min="0.1" max="10" step="0.01" type="number" value="${hNavbar}" oninput="onHNavbar(this)">
+        <label>Fotrad</label>
+        <input title="Höjd" style="outline:none" min="0.1" max="10" step="0.01" type="number" value="${hFooter}" oninput="onHFooter(this)">
+    </figure>
+
+    <figure>
+        <figcaption>Mellanrum</figcaption>
+        <label>Vertikalt</label>
+        <input title="Mellanrum" style="outline:none" min="1" max="90" type="number" value="${vGap}" oninput="onVGap(this)">
+        <label>Horisontellt</label>
+        <input title="Mellanrum" style="outline:none" min="1" max="90" type="number" value="${hGap}" oninput="onGGap(this)">
+        <label>Avsnitt</label>
+        <input title="Mellanrum" style="outline:none" min="1" max="90" type="number" value="${dContent}" oninput="onDContent(this)">
+    </figure>
+
+    <hr>
+
+    <div class="form-100">
+        <input type="button" value="Stäng" onclick="closeSizes()">
+    </div>
+
+</form>

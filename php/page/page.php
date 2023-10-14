@@ -13,11 +13,11 @@ const PageCols = [
     'public',
     'style'
 ];
-function createPage(mysqli $mysqli): void
+function createPage(Db $db): void
 {
 
     if (
-        dbCreate($mysqli, 'page', array_merge(['id'], PageCols), [
+        $db->createTable( 'page', array_merge(['id'], PageCols), [
             'INT(11) NOT NULL AUTO_INCREMENT',
                         'VARCHAR(60) NOT NULL DEFAULT \'Start\'',
             'INT(11) NOT NULL DEFAULT 0',
@@ -29,99 +29,96 @@ function createPage(mysqli $mysqli): void
             'VARCHAR(64) NOT NULL DEFAULT \'Standard\'',
         ])
     ) {
-        dbAddDefaultRow($mysqli, 'page');
+        $db->addDefaultRow( 'page');
     }
 }
 
-function selectPage(mysqli $mysqli, int|null $id): array
+function selectPage(Db $db, int|null $id): array
 {
     if( $id === null) {
-        $id = getFirstPageId($mysqli);
+        $id = getFirstPageId($db);
     }
-    return dbSelect($mysqli, 'page', array_merge(['id'],PageCols), sqlName('id') . '=' . $id);
+    return $db->select( 'page', array_merge(['id'],PageCols), $db->name('id') . '=' . $id);
 }
 
-function selectPages(mysqli $mysqli): array
+function selectPages(Db $db): array
 {
-    return dbSelect($mysqli, 'page', array_merge(['id'],PageCols), null, sqlName('pos') . ' asc');
+    return $db->select( 'page', array_merge(['id'],PageCols), null, $db->name('pos') . ' asc');
 }
 
-function selectChildPages(mysqli $mysqli, $id): array
+function selectChildPages(Db $db, $id): array
 {
-    return dbSelect($mysqli, 'page', array_merge(['id'],PageCols), sqlName('parentId') . '=' . $id, sqlName('pos') . ' asc');
+    return $db->select( 'page', array_merge(['id'],PageCols), $db->name('parentId') . '=' . $id, $db->name('pos') . ' asc');
 }
 
-function insertPage(mysqli $mysqli, $values): int
+function insertPage(Db $db, $values): int
 {
-    return dbInsert($mysqli, 'page', PageCols, $values);
+    return $db->insert( 'page', PageCols, $values);
 }
 
-function updatePage(mysqli $mysqli, $id, $values): int
+function updatePage(Db $db, $id, $values): int
 {
-    return dbUpdate($mysqli, 'page', PageCols, $values, sqlName('id') . '=' . $id);
+    return $db->update( 'page', PageCols, $values, $db->name('id') . '=' . $id);
 }
 
-function updatePagePos(mysqli $mysqli, $positions): void
+function updatePagePos(Db $db, $positions): void
 {   
     for($i=0; $i < count($positions); $i++) {
         $position = $positions[$i];
-        dbUpdate($mysqli, 'page', ['pos'], [$position->pos], sqlName('id') . '=' . $position->id);
+        $db->update( 'page', ['pos'], [$position->pos], $db->name('id') . '=' . $position->id);
     }
 }
-function updatePageParent(mysqli $mysqli, $pageId, $parentId): void
+function updatePageParent(Db $db, $pageId, $parentId): void
 {   
-    dbUpdate($mysqli, 'page', ['parentId'], [$parentId], sqlName('id') . '=' . $pageId);
+    $db->update( 'page', ['parentId'], [$parentId], $db->name('id') . '=' . $pageId);
 }
 
-function updatePagePublic(mysqli $mysqli, $pageId, $pub): void
+function updatePagePublic(Db $db, $pageId, $pub): void
 {   
-    dbUpdate($mysqli, 'page', ['public'], [sqlBoolean($pub)], sqlName('id') . '=' . $pageId);
+    $db->update( 'page', ['public'], [$db->bool($pub)], $db->name('id') . '=' . $pageId);
 }
-function updatePageTitle(mysqli $mysqli, int $pageId, string $title): void
+function updatePageTitle(Db $db, int $pageId, string $title): void
 {   
-    dbUpdate($mysqli, 'page', ['title'], [sqlString( $mysqli, $title)], sqlName('id') . '=' . $pageId);
+    $db->update( 'page', ['title'], [$db->string($title)], $db->name('id') . '=' . $pageId);
 }
 
-function updateShowPageTitle(mysqli $mysqli, int $pageId, bool $show) : void {
-    dbUpdate($mysqli, 'page', ['showTitle'], [sqlBoolean($show)], sqlName('id') . '=' . $pageId);
+function updateShowPageTitle(Db $db, int $pageId, bool $show) : void {
+    $db->update( 'page', ['showTitle'], [$db->bool($show)], $db->name('id') . '=' . $pageId);
 }
 
-function deletePage(mysqli $mysqli, $id): void
+function deletePage(Db $db, $id): void
 {
-    dbDelete($mysqli, 'page', sqlName('id') . '=' . $id);
+    $db->delete( 'page', $db->name('id') . '=' . $id);
 }
 
-function getFirstPageId(mysqli $mysqli)
+function getFirstPageId(Db $db)
 {
-    $pages = dbSelect(
-        $mysqli,
+    $pages = $db->select(
         'page', ['id'],
-        sqlName('isParent') . '=' . sqlBoolean(false) . ' AND ' .
-        sqlName('public') . '=1' .  ' AND ' .
-        sqlName('parentId') . '=0',
-        sqlName('pos') . ' asc',
+        $db->name('isParent') . '=' . $db->bool(false) . ' AND ' .
+        $db->name('public') . '=1' .  ' AND ' .
+        $db->name('parentId') . '=0',
+        $db->name('pos') . ' asc',
         'LIMIT 1'
     );
     if( !$pages) {
-        $pages = dbSelect(
-            $mysqli,
+        $pages = $db->select(
             'page', ['id'],
-            sqlName('isParent') . '=' . sqlBoolean(false) . ' AND ' .
-            sqlName('parentId') . '=0',
-            sqlName('pos') . ' asc',
+            $db->name('isParent') . '=' . $db->bool(false) . ' AND ' .
+            $db->name('parentId') . '=0',
+            $db->name('pos') . ' asc',
             'LIMIT 1'
         );
     }
     return $pages ? $pages[0]['id'] : -1;
 }
 
-function selectPageGroup(mysqli $mysqli, string $where) : array {
-    $pages = dbSelect(
-        $mysqli,
+function selectPageGroup(Db $db, string $where) : array {
+    $pages = $db->select(
         'page',
         array_merge(['id'], PageCols),
         $where,
-        sqlName('pos') . ' asc'
+        $db->name('pos') . ' asc'
     );
     return $pages;
 }

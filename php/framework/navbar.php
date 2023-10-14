@@ -6,14 +6,14 @@ require_once __DIR__ . '/../user/user.php';
 require_once __DIR__ . '/../settings/settings.php';
 require_once __DIR__ . '/../theme/theme.php';
 
-function generate_navbar(string $theme, string|null $username): Reply
+function generate_navbar(stdClass $args, string $theme, string|null $username): Reply
 {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); $db->open();
 
     $logo = '';
     $config = null;
-    $configs = selectSettings($mysqli);
+    $configs = selectSettings($db);
     if ($configs) {
         $config = $configs[0];
         $logo = '<a href="#" onclick="onLogin()">
@@ -21,7 +21,7 @@ function generate_navbar(string $theme, string|null $username): Reply
         </a>';
     }
 
-    $pages = selectPages($mysqli);
+    $pages = selectPages($db);
     $pagesAtTop = array();
     for ($i = 0; $i < count($pages); $i++) {
         $page = $pages[$i];
@@ -32,14 +32,14 @@ function generate_navbar(string $theme, string|null $username): Reply
 
     $user = null;
     if ($username) {
-        $users = selectUser($mysqli, $username);
+        $users = selectUser($db, $username);
         if ($users) {
             $user = $users[0];
         }
     }
 
     if ($username) {
-        $users = selectUser($mysqli, $username);
+        $users = selectUser($db, $username);
         if ($users) {
             $user = $users[0];
             $logo = '<a href="#" onclick="onLogout()">
@@ -48,7 +48,7 @@ function generate_navbar(string $theme, string|null $username): Reply
         }
     }
 
-    $themesnames  = selectThemeNames($mysqli);
+    $themesnames  = selectThemeNames($db);
 
     $html = 
     '<nav>
@@ -71,7 +71,7 @@ function generate_navbar(string $theme, string|null $username): Reply
             $html .= '<li class="parent" onclick="navbarParentClicked(this)"><a href="#">' . $page['title'] . '</a>
                     <ul class="childs">';
 
-            $childs = selectChildPages($mysqli, $page['id']);
+            $childs = selectChildPages($db, $page['id']);
             for ($j = 0; $j < count($childs); $j++) {
                 $child = $childs[$j];
                 if ($username || $child['public'] === '1') {
@@ -101,5 +101,5 @@ function generate_navbar(string $theme, string|null $username): Reply
 }
 
 function getNavbar( stdClass|null $args) : Reply {
-    return generate_navbar($args->theme, $args?$args->username:null);
+    return generate_navbar($args, $args->theme, $args?$args->username:null);
 }

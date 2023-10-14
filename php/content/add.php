@@ -4,17 +4,18 @@ require_once __DIR__ . '/../content/content.php';
 
 function addContent(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database);
+    $db->open();
 
-    $content_id = insertContent($mysqli, [
+    $content_id = insertContent($db, [
         $args->pageId,
-        sqlString( $mysqli, 'text-algin:center'),
-        sqlString( $mysqli, rawurldecode('Här är ett nytt avsnitt')),
+        $db->string('text-algin:center'),
+        $db->string(rawurldecode('Här är ett nytt avsnitt')),
         $args->pos,
-        sqlBoolean(false)
+        $db->bool(false)
     ]);
 
-    dbDisonnect($mysqli);
+    $db->close();
 
     return new Reply($content_id>0?'ok':'error', $content_id);
 }

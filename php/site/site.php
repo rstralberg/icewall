@@ -15,11 +15,10 @@ const SiteCols = [
     'folder'
 ];
 
-function createSite(mysqli $mysqli): void
+function createSite(Db $db): void
 {
     if (
-        dbCreate(
-            $mysqli,
+        $db->createTable(
             'site',
             array_merge(['id'], SiteCols),            
             [
@@ -31,26 +30,26 @@ function createSite(mysqli $mysqli): void
             ])
             
     ) {
-        $id = dbAddDefaultRow($mysqli, 'site');
-        $sites = dbSelect($mysqli, 'site', ['name', 'folder'], dbWereInt('id', $id));
+        $id = $db->addDefaultRow('site');
+        $sites = $db->select( 'site', ['name', 'folder'], $db->where('id', $id));
         if( $sites ) {
             $site = $sites[0];
             createSiteFolder($site['name'], $site['folder']);
         }
     }
 }
-function selectSite(mysqli $mysqli, string $name): array
+function selectSite(Db $db, string $name): array
 {
-    return dbSelect($mysqli, 'site', array_merge(['id'], SiteCols), sqlName('name') . '=' . sqlString($mysqli, $name));
+    return $db->select( 'site', array_merge(['id'], SiteCols), $db->name('name') . '=' . $db->string( $name));
 }
-function updateSite(mysqli $mysqli, string $name, array $cols, array $values): bool
+function updateSite(Db $db, string $name, array $cols, array $values): bool
 {
-    return dbUpdate($mysqli, 'site', $cols, $values, sqlName('name') . '=' . sqlString($mysqli, $name));
+    return $db->update( 'site', $cols, $values, $db->name('name') . '=' . $db->string( $name));
 }
 
-function insertSite(mysqli $mysqli, array $cols, array $values): int
+function insertSite(Db $db, array $cols, array $values): int
 {
-    $id =  dbInsert($mysqli, 'site', $cols, $values);
+    $id =  $db->insert('site', $cols, $values);
     if( $id  > 0 ) {
         
         $folder = __DIR__ . '/../../public/sites';
@@ -68,17 +67,17 @@ function insertSite(mysqli $mysqli, array $cols, array $values): int
     return $id;
 }
 
-function deleteSite(mysqli $mysqli, string $name): bool
+function deleteSite(Db $db, string $name): bool
 {
-    $sites = selectSite($mysqli, $name);
+    $sites = selectSite($db, $name);
     if( $sites ) {
         $site = $sites[0];
-        if( dbDelete($mysqli, 'site', sqlName('name') . '=' . sqlString($mysqli, $name)) ) {
-            // deleteSitePages($mysqli, $site->id);
-            // deleteSitePageTheme($mysqli, $site->id);
-            // deleteSiteContent($mysqli, $site->id);
-            // deleteSiteThemes($mysqli, $site->id);
-            // deleteSiteSettings($mysqli, $site->id);
+        if( $db->delete( 'site', $db->name('name') . '=' . $db->string( $name)) ) {
+            // deleteSitePages($db, $site->id);
+            // deleteSitePageTheme($db, $site->id);
+            // deleteSiteContent($db, $site->id);
+            // deleteSiteThemes($db, $site->id);
+            // deleteSiteSettings($db, $site->id);
             // deleteSiteUploads($site->upload);
             return true;
         }
@@ -96,12 +95,68 @@ function createSiteFolder(string $sitename, string $sitefolder) : void {
     if (!file_exists($folder)) {
         mkdir($folder, 0777, true);
 
-        $fh = fopen($folder . '/readme.txt', 'w');
+        $fh = fopen($folder . '/index.php', 'w');
         if( $fh ) {
-            fwrite($fh, 'This folder contains resources for ' . $sitename);
+            fwrite($fh, '<?php header(\'location: /index.php?site=' .$sitename.'&page=0\'); ?>');
             fflush($fh);
             fclose($fh);
         }
+    }
+}
+
+function generateSites() {
+
+    $fh = fopen(__DIR__ . '/../../sites.json', 'r');
+    if( $fh === null )  die ('IceWall: #ERROR. No sites defined. Aborting!');
+
+    $sites = fread($fh, 32000);
+    if( $fh === null ) die ('IceWall: #ERROR. No sites defined. Aborting!');
+
+    $sites = json_decode($sites);
+
+    for( $i=0; $i < count($sites->sites); $i++ ) {
+        $site = $sites->sites[$i];
+        
+        $sitefolder = __DIR__ . '/../../public/sites/' . $site->folder;
+        if( !file_exists($sitefolder)) {
+            mkdir($sitefolder, 0777, true);
+        }
+
+        $uploadfolder = $sitefolder . '/uploads';
+        if( !file_exists($uploadfolder)) {
+            mkdir($uploadfolder, 0777, true);
+        }
+
+        $readme = $sitefolder . '/readme.txt';
+        if( !file_exists($readme)) {
+            $fh = fopen($readme,'w');
+            if( $fh )  {
+                fwrite($fh, PHP_EOL);
+                fwrite($fh, '=====================================================================' . PHP_EOL);
+                fwrite($fh, 'This is the root folder for ' . $site->name .  PHP_EOL);
+                fwrite($fh, 'Upload for ' . $site->name . ' will got to the subfolder uploads.' . PHP_EOL);
+                fwrite($fh, 'Created by IceWall at ' . Date('Y-m-d H:i') . PHP_EOL);
+                fwrite($fh, '=====================================================================' . PHP_EOL);
+                fwrite($fh, 'Stralberg Development, rstralberg@pm.me' . PHP_EOL);
+                fwrite($fh, '=====================================================================' . PHP_EOL);
+                fwrite($fh, PHP_EOL);
+            }
+        }
+
+        $db = new Db($site->database);
+        $db->open();
+        try {
+            createSite($db);
+            createSettings($db);
+            createPageTheme($db);
+            createThemes($db);
+            createUser($db);
+            createPage($db);
+        }
+        catch( Exception $e) {
+            die( 'Failed to create site "' . $site->name . '"' );
+        }
+        $db->close();
     }
 }
 

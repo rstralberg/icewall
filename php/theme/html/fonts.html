@@ -1,0 +1,121 @@
+<form class="theme" enctype="multipart/form-data">
+
+    <div class="title">Tecken</div>
+
+    <figure>
+        <figcaption>Teckensnitt</figcaption>
+        <hr>
+        <select onchange="onFontSelected(this)">
+            ${fonts}
+        </select>
+        <input title="Teckenstorlek" style="outline:none" type="number" step="0.1" value="${fontsize}"
+            oninput="onFontSize(this)">
+    </figure>
+
+
+    <figure>
+        <figcaption>Övriga storlekar</figcaption>
+        <hr>
+        <div style="display: flex;">
+            <label>Meny</label>
+            <input title="Teckenstorlek" style="outline:none" type="number" step="0.1" value="${fzNavbar}"
+                oninput="onFzNavbar(this)">
+            <label>Titlar</label>
+            <input title="Teckenstorlek" style="outline:none" type="number" step="0.1" value="${fzTitle}"
+                oninput="onFzTitle(this)">
+        </div>
+        <div style="display: flex;">
+            <label>Innehåll</label>
+            <input title="Teckenstorlek" style="outline:none" type="number" step="0.1" value="${fzContent}"
+                oninput="onFzContent(this)">
+            <label>Raden längst ned</label>
+            <input title="Teckenstorlek" style="outline:none" type="number" step="0.1" value="${fzFooter}"
+                oninput="onFzFooter(this)">
+        </div>
+        <div style="display: flex;">
+            <label>Formulär</label>
+            <input title="Kursiv text" style="outline:none" type="number" step="0.1" value="${fzForm}"
+                oninput="onFzForm(this)">
+            <label>Knappar</label>
+            <input title="Kursiv text" style="outline:none" type="number" step="0.1" value="${fzButton}"
+                oninput="onFzButton(this)">
+        </div>
+        <div style="display: flex;">
+            <label>Skrivfält</label>
+            <input title="Kursiv text" style="outline:none" type="number" step="0.1" value="${fzInput}"
+                oninput="onFzInput(this)">
+            <label>Verktyg</label>
+            <input title="Kursiv text" style="outline:none" type="number" step="0.1" value="${fzTools}"
+                oninput="onFzTools(this)">
+        </div>
+    </figure>
+
+    <figure>
+        <figcaption>Fet stil</figcaption>
+        <hr>
+        <div style="display: flex;">
+            <label>Meny</label>
+            <input title="Fet stil" style="outline:none" type="checkbox" value="${fwNavbar}" oninput="onFwNavbar(this)">
+            <label>Titlar</label>
+            <input title="Fet stil" style="outline:none" type="checkbox" value="${fwTitle}" oninput="onFwTitle(this)">
+            <label>Innehåll</label>
+            <input title="Fet stil" style="outline:none" type="checkbox" value="${fwContent}"
+                oninput="onFwContent(this)">
+            <label>Fotrad</label>
+            <input title="Fet stil" style="outline:none" type="checkbox" value="${fwFooter}" oninput="onFwFooter(this)">
+        </div>
+        <div style="display: flex;">
+            <label>Formulär</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fwForm}" oninput="onFwForm(this)">
+            <label>Knappar</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fwButton}"
+                oninput="onFwButton(this)">
+            <label>Skrivfält</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fwInput}"
+                oninput="onFwInput(this)">
+            <label>Verktyg</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fwTools}"
+                oninput="onFwTools(this)">
+        </div>
+    </figure>
+
+    <figure>
+        <figcaption>Kursiv text</figcaption>
+        <hr>
+        <div style="display: flex;">
+            <label>Meny</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsNavbar}"
+                oninput="onFsNavbar(this)">
+            <label>Titlar</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsTitle}"
+                oninput="onFsTitle(this)">
+            <label>Innehåll</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsContent}"
+                oninput="onFsContent(this)">
+            <label>Fotrad</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsFooter}"
+                oninput="onFsFooter(this)">
+        </div>
+        <div style="display: flex;">
+            <label>Formulär</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsForm}" oninput="onFsForm(this)">
+            <label>Knappar</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsButton}"
+                oninput="onFsButton(this)">
+            <label>Skrivfält</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsInput}"
+                oninput="onFsInput(this)">
+            <label>Verktyg</label>
+            <input title="Kursiv text" style="outline:none" type="checkbox" value="${fsTools}"
+                oninput="onFsTools(this)">
+        </div>
+    </figure>
+
+
+    <hr>
+
+    <div class="form-100">
+        <input type="button" value="Klar" onclick="closeFonts()">
+    </div>
+
+</form>

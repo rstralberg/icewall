@@ -8,9 +8,11 @@ require_once __DIR__ . '/theme.php';
 
 function editThemes(stdClass|null $args) : Reply {
 
-    $mysqli = dbConnect();
-    $themes = selectThemeNames($mysqli);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+    
+    $themes = selectThemeNames($db);
+    $db->close();
 
     $fonts = getFontNames();
 

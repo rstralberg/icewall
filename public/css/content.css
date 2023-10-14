@@ -1,16 +1,22 @@
 .content-item{
+	display: block;
+	overflow: hidden;
+
 	background: var(--bgContent);
     color: var(--fgContent);
-    outline-style: solid;
+  
+	outline-style: solid;
 	outline-width: var(--bdSizeContent);
 	outline-color: var(--bdColContent);
     border-radius: var(--rContent);
-    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shContent));
+    
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shContent));
     box-shadow: 10px 10px 15px rgba(0,0,0,var(--shContent));
-    padding: calc( 1 * var(--fzContent));
-    overflow: hidden;
-	display: block;
+    
+	padding: calc( 1 * var(--fzContent));
+    
 	width: var(--wContent);
+
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: var(--dContent);

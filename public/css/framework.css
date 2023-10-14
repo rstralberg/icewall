@@ -53,8 +53,9 @@
     background: var(--bgFooter);
     color: var(--fgFooter);
     border-radius: var(--rFooter);
-    border-color: var(--bdColFooter);
-    border-width: var(--bdSizeFooter);
+    outline-color: var(--bdColFooter);
+    outline-width: var(--bdSizeFooter);
+    outline-style: solid;
     -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shFooter));
 	box-shadow: 10px 10px 15px rgba(0,0,0,var(--shFooter));
     text-align: center;
@@ -67,23 +68,33 @@
 
 .right {
     grid-area: 1 / 3 / 5 / 4;
-    background: var(--bgApp);
-    color: var(--fgApp);
+    background: transparent;
+    color: var(--fgTools);
+    border-radius: var(--rTools);
     display: none;
     margin-top: 18vh;
     position: fixed;
-    right: 1vw;
+    right: 4vw;
+}
+
+.right figure {
+    background: var(--bgTools);
 }
 
 .left {
     grid-area: 1 / 1 / 5 / 2;
-    background: var(--bgApp);
-    color: var(--fgApp);
+    background: transparent;
+    color: var(--fgTools);
+    border-radius: var(--rTools);
     display: none;
     margin-top: 18vh;
     position: fixed;
+    left: 4vw;
 }
 
+.left figure {
+    background: var(--bgTools);
+}
 
 
 @media screen and (max-width: 600px) {

@@ -115,38 +115,45 @@ function getThemeParts(stdClass|null $args): Reply
             return new Reply('error', 'Okänd Temadel "' . $args->part . '" efterfrågad');
 
     }
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $parts = selectThemeParts($mysqli, $cols, $args->theme);
+    $parts = selectThemeParts($db, $cols, $args->theme);
     if (!$parts) {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply('error', 'Kunde inte ladda temat "' . $args->theme . '"');
     }
+    $db->close();
 
     return new Reply('ok', json_encode($parts));
 }
 
 function getTheme(stdClass|null $args): Reply
 {
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $themes = selectTheme($mysqli, $args->themeName);
+    $themes = selectTheme($db, $args->themeName);
     if (!$themes) {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply('error', 'Kunde inte ladda temat "' . $args->themeName . '"');
     }
-
+    $db->close();
     return new Reply('ok', json_encode($themes[0]));
 }
 
 
 function getThemeNames(stdClass|null $args) : Reply {
 
-    $mysqli = dbConnect();
-    $themenames = selectThemeNames($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+
+    $themenames = selectThemeNames($db);
     if( $themenames ) {
+        $db->close();
         return new Reply('ok', json_encode($themenames));
     }
+    $db->close();
     return new Reply('error', 'Hittade några teman');
 }
 

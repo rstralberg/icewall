@@ -8,6 +8,7 @@ const ThemeCols = [
     'wLeft',
     'wCenter',
     'wRight',
+    'wContent',
 
     'vGap',
     'hGap',
@@ -81,6 +82,7 @@ const ThemeCols = [
     'fzContent',
     'fzFooter',
     'fzForm',
+    'fzButton',
     'fzInput',
     'fzTools',
 
@@ -89,6 +91,7 @@ const ThemeCols = [
     'fwContent',
     'fwFooter',
     'fwForm',
+    'fwButton',
     'fwInput',
     'fwTools',
 
@@ -97,6 +100,7 @@ const ThemeCols = [
     'fsContent',
     'fsFooter',
     'fsForm',
+    'fsButton',
     'fsInput',
     'fsTools',
 
@@ -105,10 +109,10 @@ const ThemeCols = [
     'iconsfolder'
 ];
 
-function createThemes(mysqli $mysqli): void
+function createThemes(Db $db): void
 {
     if (
-        dbCreate($mysqli, 'theme', array_merge(['id'], ThemeCols), [
+        $db->createTable( 'theme', array_merge(['id'], ThemeCols), [
             'INT(11) NOT NULL AUTO_INCREMENT',
             // id
             
@@ -120,6 +124,8 @@ function createThemes(mysqli $mysqli): void
             // wCenter
             'FLOAT NOT NULL DEFAULT 0.3',
             // wRight
+            'TINYINT NOT NULL DEFAULT 80',
+            // wContent
             'TINYINT NOT NULL DEFAULT 20',
             // vGap
             'TINYINT NOT NULL DEFAULT 30',
@@ -256,6 +262,8 @@ function createThemes(mysqli $mysqli): void
             'FLOAT NOT NULL DEFAULT 1.0',
             // fzForm
             'FLOAT NOT NULL DEFAULT 1.0',
+            // fzButton
+            'FLOAT NOT NULL DEFAULT 1.0',
             // fzInput
             'FLOAT NOT NULL DEFAULT 0.8',
             // fzTools
@@ -270,6 +278,8 @@ function createThemes(mysqli $mysqli): void
             // fwFooter
             'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
             // fwForm
+            'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
+            // fwButton
             'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
             // fwInput
             'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
@@ -286,11 +296,13 @@ function createThemes(mysqli $mysqli): void
             'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
             // fsForm
             'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
+            // fsButton
+            'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
             // fsInput
             'VARCHAR(8) NOT NULL DEFAULT \'normal\'',
             // fsTools
 
-            'VARCHAR(64) NOT NULL DEFAULT \'Ariel\'',
+            'VARCHAR(64) NOT NULL DEFAULT \'Arial\'',
             // font
             'FLOAT NOT NULL DEFAULT 1.0',
             // fontsize
@@ -298,46 +310,46 @@ function createThemes(mysqli $mysqli): void
             // iconsfolder
         ])
     ) {
-        dbAddDefaultRow($mysqli, 'theme');
+        $db->addDefaultRow( 'theme');
     }
 }
 
-function selectTheme(mysqli $mysqli, string $name): array
+function selectTheme(Db $db, string $name): array
 {
-    return dbSelect($mysqli, 'theme', array_merge(['id'], ThemeCols), 
-        sqlName('name') . '=' . sqlString($mysqli, $name));
+    return $db->select( 'theme', array_merge(['id'], ThemeCols), 
+        $db->name('name') . '=' . $db->string( $name));
 }
 
-function selectThemes(mysqli $mysqli): array
+function selectThemes(Db $db): array
 {
-    return dbSelect($mysqli, 'theme', array_merge(['id'],ThemeCols), 
-        null, sqlName('name') . ' asc');
+    return $db->select( 'theme', array_merge(['id'],ThemeCols), 
+        null, $db->name('name') . ' asc');
 }
 
-function insertTheme(mysqli $mysqli, $values): int
+function insertTheme(Db $db, $values): int
 {
-    return dbInsert($mysqli, 'theme', ThemeCols, $values);
+    return $db->insert( 'theme', ThemeCols, $values);
 }
 
-function updateTheme(mysqli $mysqli, $name, $values): int
+function updateTheme(Db $db, $name, $values): int
 {
-    return dbUpdate($mysqli, 'theme', ThemeCols, $values, 
-        sqlName('name') . '=' . sqlString($mysqli, $name));
+    return $db->update( 'theme', ThemeCols, $values, 
+        $db->name('name') . '=' . $db->string( $name));
 }
 
-function deleteTheme(mysqli $mysqli, $name): void
+function deleteTheme(Db $db, $name): void
 {
-    dbDelete($mysqli, 'theme', sqlName('name') . '=' . sqlString($mysqli, $name));
+    $db->delete( 'theme', $db->name('name') . '=' . $db->string( $name));
 }
 
-function selectThemeNames(mysqli $mysqli)
+function selectThemeNames(Db $db)
 {
-    return dbSelect($mysqli, 'theme', ['name']);
+    return $db->select( 'theme', ['name']);
 }
 
-function selectThemeParts(mysqli $mysqli, array $cols, string $themeName)
+function selectThemeParts(Db $db, array $cols, string $themeName)
 {
-    return dbSelect($mysqli, 'theme', $cols, sqlName('name') . '=' . sqlString($mysqli, $themeName));
+    return $db->select( 'theme', $cols, $db->name('name') . '=' . $db->string( $themeName));
 }
 
 ?>

@@ -6,9 +6,11 @@ require_once __DIR__ . '/page.php';
 
 function renamePage(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
-    $pages = selectPage($mysqli, $args->pageId);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+    
+    $pages = selectPage($db, $args->pageId);
+    $db->close();
     $page = $pages[0];
 
     return loadForm('page/html/rename', [

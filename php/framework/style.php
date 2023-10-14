@@ -2,15 +2,15 @@
 require_once __DIR__ . '/../theme/theme.php';
 require_once __DIR__ . '/../page/pagetheme.php';
 
-function generateStyle(mysqli $mysqli, string $themeName): string
+function generateStyle(Db $db, string $themeName): string
 {
 
-    $themes = selectTheme($mysqli, $themeName);
+    $themes = selectTheme($db, $themeName);
     if (count($themes) === 0) {
         throw new Exception('Kunde inte ladda applikationens tema ' . $themeName);
     }
 
-    $pagestyles = selectPagestyle($mysqli, 'Standard');
+    $pagestyles = selectPagestyle($db, 'Standard');
     if (count($pagestyles) === 0) {
         throw new Exception('Kunde inte ladda sidans temma ' . 'Standard');
     }
@@ -96,6 +96,7 @@ function generateStyle(mysqli $mysqli, string $themeName): string
     $root .= '--fzContent:' . $theme['fzContent'] . 'em;';
     $root .= '--fzFooter:' . $theme['fzFooter'] . 'em;';
     $root .= '--fzForm:' . $theme['fzForm'] . 'em;';
+    $root .= '--fzButton:' . $theme['fzButton'] . 'em;';
     $root .= '--fzInput:' . $theme['fzInput'] . 'em;';
     $root .= '--fzTools:' . $theme['fzTools'] . 'em;';
     
@@ -104,6 +105,7 @@ function generateStyle(mysqli $mysqli, string $themeName): string
     $root .= '--fwContent:' . $theme['fwContent'] . ';';
     $root .= '--fwFooter:' . $theme['fwFooter'] . ';';
     $root .= '--fwForm:' . $theme['fwForm'] . ';';
+    $root .= '--fwButton:' . $theme['fwButton'] . ';';
     $root .= '--fwInput:' . $theme['fwInput'] . ';';
     $root .= '--fwTools:' . $theme['fwTools'] . ';';
     
@@ -112,6 +114,7 @@ function generateStyle(mysqli $mysqli, string $themeName): string
     $root .= '--fsContent:' . $theme['fsContent'] . ';';
     $root .= '--fsFooter:' . $theme['fsFooter'] . ';';
     $root .= '--fsForm:' . $theme['fsForm'] . ';';
+    $root .= '--fsButton:' . $theme['fsButton'] . ';';
     $root .= '--fsInput:' . $theme['fsInput'] . ';';
     $root .= '--fsTools:' . $theme['fsTools'] . ';';
 

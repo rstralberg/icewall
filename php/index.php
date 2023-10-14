@@ -14,62 +14,74 @@ require_once __DIR__ . '/site/site.php';
 require_once __DIR__ . '/framework/fonts.php';
 require_once __DIR__ . '/framework/html.php';
 
+// Generate any new sites
+generateSites();
 
-
-$site = $_SERVER['REQUEST_URI']; // = '/km
-if ($site === null || $site === '/') {
-    echo ('IceWall: #ERROR. No site given! Aborting!');
-    return;
+// Get site and page id to load
+$siteKey = '';
+if (array_key_exists('site', $_GET)) {
+    $siteKey = $_GET['site'];
 }
+if( $siteKey === '') die ('IceWall: #ERROR. No site given in argument. Aborting!'); 
 
-$site = substr($site, 1);
-if ($site === null || strlen($site) === 0) {
-    echo ('IceWall: #ERROR. No site given! Aborting!');
-    return;
+// We need site information
+$fh = fopen(__DIR__ . '/../sites.json', 'r');
+if( $fh === null )  die ('IceWall: #ERROR. No sites defined. Aborting!');
+
+$sites = fread($fh, 32000);
+if( $fh === null ) die ('IceWall: #ERROR. No sites defined. Aborting!');
+
+$sites = json_decode($sites);
+
+// Which site is requested
+if ($siteKey === null || strlen($siteKey) === 0) die ('IceWall: #ERROR. No site given! Aborting!');
+
+// Is the request site really defined
+$validSite = null;
+for( $i=0; $i < count($sites->sites); $i++ ) {
+    $s = $sites->sites[$i];
+    if( $s->key === $siteKey) {
+        $validSite = $s;
+        break;
+    }
 }
+if( $validSite === null ) die ('IceWall: #ERROR. Request "' . $site . '" lacks informantion!');
 
-if( !dbDatabaseExist($site)) {
-    echo ('IceWall: #ERROR. Tried to load "' . $site . '" but no such site here!');
-    return;
-}
+// Database must exist or be created
+$db = new Db($validSite->key);
+$db->open();
 
+
+if( $db === null ) die ('IceWall: #ERROR. Failed to open database for "' . $site . '"');
+
+// Greate. Were ready to start
 session_start();
 
 // Database support
 try {
-    $cli = dbConnect($site);
-
-    createSite($cli);
-    createSettings($cli);
-    createPageTheme($cli);
-    createThemes($cli);
-    createUser($cli);
-    createPage($cli);
-    createContents($cli);
+    createSite($db);
+    createSettings($db);
+    createPageTheme($db);
+    createThemes($db);
+    createUser($db);
+    createPage($db);
+    createContents($db, $validSite->name);
 
     // Settings
-    $settingsArray = selectSettings($cli);
-    if (!$settingsArray) {
-        die('Kan inte ladda inställningar');
-    }
+    $settingsArray = selectSettings($db);
+    if (!$settingsArray) die('Kan inte ladda inställningar');
+
     $settings = $settingsArray[0];
 
-    // Get page id to load
-    $pageId = getFirstPageId($cli);
-    if (array_key_exists('REQUEST_URI', $_SERVER)) {
-        $reqPage = ltrim($_SERVER['REQUEST_URI'], '/');
-        if (
-            strlen($reqPage) > 0 &&
-            $reqPage[0] !== '?' &&
-            $reqPage[strlen($reqPage) - 1] !== '?'
-        ) {
-            $pageId = (int) $reqPage; // arg was a page!        
-        }
-    }
+    $pageId = getFirstPageId($db);
 
-    echo (generateHTML($cli, $settings['name'], $pageId));
+    echo (generateHTML($db, 
+        $validSite->key, 
+        $validSite->folder,
+        $validSite->database,
+        $settings['name']));
 
-    dbDisonnect($cli);
+    $db->close();
 } catch (Exception $e) {
     echo ('<br>IceWall: #EXCEPTION ' . $e->getMessage());
 }

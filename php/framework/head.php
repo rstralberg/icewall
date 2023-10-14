@@ -6,7 +6,7 @@ require_once __DIR__ . '/icons.php';
 require_once __DIR__ . '/scripts.php';
 require_once __DIR__ . '/style.php';
 
-function generateHead(mysqli $cli, string $siteName, string $themeName) : string {
+function generateHead(Db $cli, string $siteName, string $themeName) : string {
     
     $html = '<head>';
     $html.= '<title>' . $siteName . '</title>';

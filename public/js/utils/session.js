@@ -1,8 +1,16 @@
 
 class Session {
 
+    static set key(v) {
+        sessionStorage.setItem('key', v);
+    }
+    static get key() {
+        return sessionStorage.getItem('key');
+    }
+
     static set user(v) { 
-        if( v === null ) sessionStorage.removeItem('user');
+        Session.validate();
+        if( v === null ) sessionStorage.removeItem(Session.item('user'));
         else {
             let u = {
                 username: v.username,
@@ -16,11 +24,12 @@ class Session {
                 permTheme: v.permTheme==='1',
                 permSettings: v.permSettings==='1'
             };
-            sessionStorage.setItem('user', JSON.stringify(u)); 
+            sessionStorage.setItem(Session.item('user'), JSON.stringify(u)); 
         }
     }
     static get user() { 
-        let u = sessionStorage.getItem('user');
+        Session.validate();
+        let u = sessionStorage.getItem(Session.item('user'));
         if( u ) return  JSON.parse(u); 
         else return {
             username: '',
@@ -37,7 +46,8 @@ class Session {
     }
 
     static set page(v) { 
-        if( v === null ) sessionStorage.removeItem('page');
+        Session.validate();
+        if( v === null ) sessionStorage.removeItem(Session.item('page'));
         else {
             let p = {
                 id:v.id,
@@ -50,12 +60,13 @@ class Session {
                 public:v.public==='1',
                 style:v.style
             };
-            sessionStorage.setItem('page', JSON.stringify(p));
+            sessionStorage.setItem(Session.item('page'), JSON.stringify(p));
         }
     }
 
     static get page() {
-        let p = sessionStorage.getItem('page');
+        Session.validate();
+        let p = sessionStorage.getItem(Session.item('page'));
         if( p ) return JSON.parse(p);
         else return {
             id:0,
@@ -70,21 +81,54 @@ class Session {
         }
     }
 
+    static set site(v) {
+        Session.validate();
+        if( v === null ) sessionStorage.removeItem(Session.item('site'));
+        else {
+            let p = {
+                key:v.key,
+                folder:v.folder,
+                db:v.db,
+                name:v.name
+            };
+            sessionStorage.setItem(Session.item('site'), JSON.stringify(p));
+        }
+    }
+
+    static get site() {
+        Session.validate();
+        let p = sessionStorage.getItem(Session.item('site'));
+        if( p ) return JSON.parse(p);
+        else return null;
+    }
+    
     static set selected(v) {
-        sessionStorage.setItem('selected',v);
+        Session.validate();
+        sessionStorage.setItem(Session.item('selected'),v);
     }
 
     static get selected() {
-        let id = sessionStorage.getItem('selected');
+        Session.validate();
+        let id = sessionStorage.getItem(Session.item('selected'));
         return  id && id.length > 0 ? document.getElementById(id) : null;
     }
 
     static set selectedChild(v) {
-        sessionStorage.setItem('selectedChild',v);
+        Session.validate();
+        sessionStorage.setItem(Session.item('selectedChild'),v);
     }
 
     static get selectedChild() {
-        let id = sessionStorage.getItem('selectedChild');
+        Session.validate();
+        let id = sessionStorage.getItem(Session.item('selectedChild'));
         return  id && id.length > 0 ? document.getElementById(id) : null;
+    }
+
+    static validate() {
+        if( !isValid(Session.key) ) { alert('No session key. Did you forget to call Session.key at start?');  }
+    }
+
+    static item(v) {
+        return Session.key + '-' + v;
     }
 }

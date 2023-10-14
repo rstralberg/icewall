@@ -1,0 +1,75 @@
+<form class="theme" enctype="multipart/form-data">
+
+    <div class="title">Ramar</div>
+
+    <div style="display:flex;">
+        <figure>
+            <figcaption>Meny</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColNavbar}" oninput="onBdColNavbar(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeNavbar}"
+                oninput="onBdSizeNavbar(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rNavbar}" oninput="onRNavbar(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Titlar</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColTitle}" oninput="onBdColTitle(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeTitle}" oninput="onBdSizeTitle(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rTitle}" oninput="onRTitle(this)">
+        </figure>
+
+    </div>
+    <div style="display:flex;">
+    <figure>
+            <figcaption>Innehåll</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColContent}"
+                oninput="onBdColContent(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeContent}"
+                oninput="onBdSizeContent(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rContent}" oninput="onRContent(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Fotrad</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColFooter}" oninput="onBdColFooter(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeFooter}"
+                oninput="onBdSizeFooter(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rFooter}" oninput="onRFooter(this)">
+        </figure>
+    </div>
+    <div style="display:flex;">
+        <figure>
+            <figcaption>Formulär</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColForm}" oninput="onBdColForm(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeForm}" oninput="onBdSizeForm(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rForm}" oninput="onRForm(this)">
+        </figure>
+        <figure>
+            <figcaption>Knappar</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColButton}" oninput="onBdColButton(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeButton}"
+                oninput="onBdSizeButton(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rButton}" oninput="onRButton(this)">
+        </figure>
+    </div>
+    <div style="display:flex;">
+        <figure>
+            <figcaption>Skrivfält</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColInput}" oninput="onBdColInput(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeInput}" oninput="onBdSizeInput(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rInput}" oninput="onRInput(this)">
+        </figure>
+        <figure>
+            <figcaption>Verktyg</figcaption>
+            <input title="Färg" style="outline:none" type="color" value="${bdColTools}" oninput="onBdColTools(this)">
+            <input title="Storlek" type="number" min="0" max="10" value="${bdSizeTools}" oninput="onBdSizeTools(this)">
+            <input title="Rundning" type="number" min="0" max="20" value="${rTools}" oninput="onRTools(this)">
+        </figure>
+    </div>
+    <hr>
+
+    <div class="form-100">
+        <input type="button" value="Klar" onclick="closeBorders()">
+    </div>
+
+</form>

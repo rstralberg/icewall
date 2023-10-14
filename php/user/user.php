@@ -15,12 +15,11 @@ const UserCols = [
     'permTheme',
     'permSettings'
 ];
-function createUser(mysqli $mysqli): void
+function createUser(Db $db): void
 {
 
     if (
-        dbCreate(
-            $mysqli,
+        $db->createTable(
             'user',
             array_merge(['id'], UserCols),[
                 'INT(11) NOT NULL AUTO_INCREMENT',
@@ -37,61 +36,59 @@ function createUser(mysqli $mysqli): void
             ]
         )
     ) {
-        dbAddDefaultRow($mysqli, 'user');
+        $db->addDefaultRow('user');
     }
 }
 
-function selectUser(mysqli $mysqli, string $userName): array
+function selectUser(Db $db, string $userName): array
 {
-    return dbSelect($mysqli, 'user', array_merge(['id'], UserCols),
-     sqlName('username') . '=' . sqlString($mysqli, $userName));
+    return $db->select( 'user', array_merge(['id'], UserCols),
+     $db->name('username') . '=' . $db->string( $userName));
 }
 
-function selectUsers(mysqli $mysqli): array
+function selectUsers(Db $db): array
 {
-    return dbSelect($mysqli, 'user', array_merge(['id'], UserCols), 
-        null, sqlName('username') . ' asc');
+    return $db->select( 'user', array_merge(['id'], UserCols), 
+        null, $db->name('username') . ' asc');
 }
 
-function insertUser(mysqli $mysqli, $values): int
+function insertUser(Db $db, $values): int
 {
-    return dbInsert($mysqli, 'user', UserCols, $values);
+    return $db->insert( 'user', UserCols, $values);
 }
 
-function updateUser(mysqli $mysqli, string $username, array $values): int
+function updateUser(Db $db, string $username, array $values): int
 {
     $cols = array_values( array_diff(UserCols, array('username', 'password')) );
-    return dbUpdate(
-        $mysqli,
+    return $db->update(
         'user',
         $cols,
         $values,
-        sqlName('username') . '=' . sqlString($mysqli, $username)
+        $db->name('username') . '=' . $db->string( $username)
     );
 }
-function updatePassword(mysqli $mysqli, string $username, string $password): void
+function updatePassword(Db $db, string $username, string $password): void
 {
-    dbUpdate(
-        $mysqli,
+    $db->update(
         'user',
         ['password'],
-        [sqlString($mysqli, password_hash($password, PASSWORD_DEFAULT))],
-        sqlName('username') . '=' . sqlString($mysqli, $username)
+        [$db->string( password_hash($password, PASSWORD_DEFAULT))],
+        $db->name('username') . '=' . $db->string( $username)
     );
 }
-function deleteUser(mysqli $mysqli, $userName): void
+function deleteUser(Db $db, $userName): void
 {
-    dbDelete($mysqli, 'user', sqlName('username') . '=' . sqlString($mysqli, $userName));
+    $db->delete( 'user', $db->name('username') . '=' . $db->string( $userName));
 }
 
-function verifyUser(mysqli $myscli, string $username, string $password): string
+function verifyUser(Db $db, string $username, string $password): string
 {
-    $passwords = dbSelect($myscli, 'user', ['password'], sqlName('username') . '=' . sqlString($myscli, $username));
+    $passwords = $db->select( 'user', ['password'], $db->name('username') . '=' . $db->string($username));
     if (!$passwords) {
         return '';
     }
 
-    $users = selectUser($myscli, $username);
+    $users = selectUser($db, $username);
     if (!$users)
         return '';
 
@@ -105,11 +102,12 @@ function verifyUser(mysqli $myscli, string $username, string $password): string
 
 function _deleteUser(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database);
+    $db->open();
 
-    deleteUser($mysqli, $args->username);
+    deleteUser($db, $args->username);
 
-    dbDisonnect($mysqli);
+    $db->close();
 
     return new Reply('ok', true);
 }

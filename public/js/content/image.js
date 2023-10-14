@@ -10,7 +10,8 @@ function imageSelected() {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
-        uploadImage(selectedImage, maxWidth, 'p' + Session.page.id).then(
+        let folder = Session.site.folder + '/uploads/' + Session.page.id;
+        uploadImage(selectedImage, maxWidth, folder).then(
             (resolve) => {
                 if (resolve.status === 'ok') {
                     document.getElementById('image-img').src = resolve.content;

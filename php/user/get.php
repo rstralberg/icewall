@@ -4,9 +4,13 @@ require_once __DIR__ . '/user.php';
 
 function getUser(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $users = selectUser($mysqli, $args->username);
+    $users = selectUser($db, $args->username);
+    
+    $db->close();
+
     if( $users ) {
         $user = $users[0];
         return new Reply('ok', json_encode($user));

@@ -7,9 +7,10 @@ function rightTools(stdClass $args): Reply
     if ($args === null)
         return new Reply('error', 'Argument saknas vid hämtning av titel');
 
-    $mysqli = dbConnect();
+    $db = new Db($args->datbase); 
+    $db->open();
 
-    $settings = selectSettings($mysqli);
+    $settings = selectSettings($db);
 
     $user = [
         'id' => 0,
@@ -26,14 +27,14 @@ function rightTools(stdClass $args): Reply
     ];
 
     if ($args->username) {
-        $users = selectUser($mysqli, $args->username);
+        $users = selectUser($db, $args->username);
         if ($users) {
             $user = $users[0];
         }
     }
 
-    $pages = selectPage($mysqli, $args->pageId);
-    dbDisonnect($mysqli);
+    $pages = selectPage($db, $args->pageId);
+    $db->close();
     if (!$pages) {
         return new Reply('error', 'Kunde inte ladda sökta sida ' . $args->pageId);
     }

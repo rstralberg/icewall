@@ -16,7 +16,8 @@ function accountImageSelected() {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
-        uploadImage(selectedImage, maxWidth, 'users' ).then(
+        let folder = Session.site.folder + '/uploads/users';
+        uploadImage(selectedImage, maxWidth, folder).then(
             (resolve) => {
                 if (resolve.status === 'ok') {
                     document.getElementById(EDIT_ACCOUNT_PICTURE).src = resolve.content;

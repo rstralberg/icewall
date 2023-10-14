@@ -19,11 +19,11 @@ const PageThemeCols = [
     'fsContent',
     'fontContent'
 ];
-function createPageTheme(mysqli $mysqli): void
+function createPageTheme(Db $db): void
 {
 
     if (
-        dbCreate($mysqli, 'pagetheme', array_merge(['id'], PageThemeCols), [
+        $db->createTable('pagetheme', array_merge(['id'], PageThemeCols), [
             'INT(11) NOT NULL AUTO_INCREMENT',
             // id
 
@@ -45,65 +45,67 @@ function createPageTheme(mysqli $mysqli): void
 
         ])
     ) {
-        dbAddDefaultRow($mysqli, 'pagetheme');
+        $db->addDefaultRow('pagetheme');
     }
 }
 
-function selectPagestyle(mysqli $mysqli, string $name): array
+function selectPagestyle(Db $db, string $name): array
 {
-    return dbSelect($mysqli, 'pagetheme', array_merge(['id'], PageThemeCols), 
-        sqlName('name') . '=' . sqlString($mysqli, $name));
+    return $db->select( 'pagetheme', array_merge(['id'], PageThemeCols), 
+        $db->name('name') . '=' . $db->string( $name));
 }
 
-function selectPagestyles(mysqli $mysqli): array
+function selectPagestyles(Db $db): array
 {
-    return dbSelect($mysqli, 'pagetheme', array_merge(['id'], PageThemeCols), null, sqlName('name') . ' asc');
+    return $db->select( 'pagetheme', array_merge(['id'], PageThemeCols), null, $db->name('name') . ' asc');
 }
 
-function insertPagestyles(mysqli $mysqli, $values): int
+function insertPagestyles(Db $db, $values): int
 {
-    return dbInsert($mysqli, 'pagetheme', PageThemeCols, $values);
+    return $db->insert( 'pagetheme', PageThemeCols, $values);
 }
 
-function updatePagestyles(mysqli $mysqli, $name, $values): int
+function updatePagestyles(Db $db, $name, $values): int
 {
-    return dbUpdate($mysqli, 'pagetheme', PageThemeCols, $values, sqlName('name') . '=' . sqlString($mysqli, $name));
+    return $db->update( 'pagetheme', PageThemeCols, $values, $db->name('name') . '=' . $db->string( $name));
 }
 
-function deletePagestyles(mysqli $mysqli, $name): void
+function deletePagestyles(Db $db, $name): void
 {
-    dbDelete($mysqli, 'pagetheme', sqlName('name') . '=' . sqlString($mysqli, $name));
+    $db->delete( 'pagetheme', $db->name('name') . '=' . $db->string( $name));
 }
 
-function selectPagestyleNames(mysqli $mysqli)
+function selectPagestyleNames(Db $db)
 {
-    return dbSelect($mysqli, 'pagetheme', ['name'], null, sqlName('name') . ' asc');
+    return $db->select( 'pagetheme', ['name'], null, $db->name('name') . ' asc');
 }
 
-function deleteSitePageTheme(mysqli $mysqli, int $siteId) : void {
-    $themes = dbSelect($mysqli, 'pagetheme', ['id'], dbWereInt('siteId', $siteId) );
+function deleteSitePageTheme(Db $db, int $siteId) : void {
+    $themes = $db->select( 'pagetheme', ['id'], $db->where('siteId', $siteId) );
     if( $themes ) {
         foreach($themes as $theme) {
-            dbDelete($mysqli, 'pagetheme', dbWereInt('id', $theme['id']));
+            $db->delete( 'pagetheme', $db->where('id', $theme['id']));
         }
     }
 }
 
-function getPageTheme(stdClass|null $args): Reply
+function getPageTheme(stdClass $args): Reply
 {
-    $mysqli = dbConnect();
+    $db = new Db($args->database);
+    $db->open();
 
-    $pages = selectPage($mysqli, $args->pageId);
+    $pages = selectPage($db, $args->pageId);
     if( !$pages ) {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply('error', 'Kunde inte ladda temat för sidan med id "' . $args->pageId . '"');
     }
     $name = $pages[0]['style'];
-    $styles = selectPagestyle($mysqli, $name);
+    $styles = selectPagestyle($db, $name);
     if (!$styles) {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply('error', 'Kunde inte ladda temat "' . $name . '"');
     }
+    $db->close();
 
     return new Reply('ok', json_encode($styles[0]));
 }

@@ -22,8 +22,20 @@ class Request {
     #args = null;
 
     constructor(what, args = null) {
+        if( args === null) {
+            this.#args = {
+                database : Session.site.db
+            }
+        } else {
+            // Object.defineProperty(args,'database', {
+            //     value: Session.database,
+            //     writable: true
+            // });
+            this.#args = args;
+            this.#args['database'] = Session.site.db;
+        }
+
         this.#what = what;
-        this.#args = args;
     }
 
     send() {

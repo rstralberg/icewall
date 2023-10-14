@@ -3,11 +3,12 @@
 require_once __DIR__ . '/../settings/settings.php';
 require_once __DIR__ . '/../utils/load.php';
 
-function footer() : Reply {
+function footer(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
-    $settingsRecords = selectSettings($mysqli);
-    dbDisonnect($mysqli);
+    $db = new Db($args->database); 
+    $db->open();
+    $settingsRecords = selectSettings($db);
+    $db->close();
 
     if(!$settingsRecords) {
         return new Reply( 'error','Kunde inte ladda uppgifter om ägare från inställningar');

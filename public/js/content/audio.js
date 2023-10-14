@@ -9,7 +9,8 @@ function mp3Selected() {
     if (audioInput.files.length > 0) {
         const selectedAudio = audioInput.files[0];
 
-        uploadAudio(selectedAudio, 'p' + Session.page.id).then(
+        let folder = Session.site.folder + '/uploads/' + Session.page.id;
+        uploadAudio(selectedAudio, folder).then(
             (resolve) => {
                 if (resolve.status === 'ok') {
                     document.getElementById('audio-player').src = resolve.content;

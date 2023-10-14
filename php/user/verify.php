@@ -4,16 +4,17 @@ require_once __DIR__ . '/user.php';
 
 function loginVerify( stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    $users = selectUser($mysqli, $args->username);
+    $users = selectUser($db, $args->username);
     if( !$users) {
-        dbDisonnect($mysqli);
+        $db->close();
         return new Reply( 'error', 'Användaren "'. $args->username . '" finns inte');
     }   
     
-    $result = verifyUser($mysqli, $args->username, $args->password );
-    dbDisonnect($mysqli);
+    $result = verifyUser($db, $args->username, $args->password );
+    $db->close();
 
     if( $result ) {
         return new Reply('ok',$result);

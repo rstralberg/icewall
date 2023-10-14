@@ -108,7 +108,8 @@
     font-size: large;
 }
 
-.form-button {
+.form button,
+.form input[type=button] {
     background: var(--bgButton);
     color: var(--fgButton);
     outline-style: solid;
@@ -116,6 +117,8 @@
 	outline-color: var(--bdColButton);
     border-radius: var(--rButton);
     width: -moz-available ;
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--shButton));
+    box-shadow: 10px 10px 15px rgba(0,0,0,var(--shButton));
     margin: 8px;
     font-size: 1.2em;
     font-weight: bold;

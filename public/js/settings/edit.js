@@ -17,7 +17,8 @@ function settingImageSelected() {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
-        uploadImage(selectedImage, maxWidth, 'shared' ).then(
+        let folder = Session.site.folder + '/uploads/shared';
+        uploadImage(selectedImage, maxWidth, folder ).then(
             (resolve) => {
                 if (resolve.status === 'ok') {
                     document.getElementById(EDIT_SETTINGS_LOGO).src = resolve.content;

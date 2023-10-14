@@ -4,11 +4,12 @@ require_once __DIR__ . '/../content/content.php';
 
 function contentDelete(stdClass $args) : Reply {
 
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
 
-    deleteContent($mysqli, $args->contentId);
+    deleteContent($db, $args->contentId);
 
-    dbDisonnect($mysqli);
+    $db->close();
 
     return new Reply('ok', true);
 }

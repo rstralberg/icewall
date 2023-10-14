@@ -5,14 +5,16 @@ require_once __DIR__ . '/../content/content.php';
 
 function pageUpdate(stdClass $args) 
 {
-    $mysqli = dbConnect();
+    $db = new Db($args->database); 
+    $db->open();
+    
     switch( $args->type ) {
-        case 'parentId': updatePageParent($mysqli, $args->pageId, $args->newParent); break;
-        case 'pos': updatePagePos($mysqli, json_decode($args->positions)); break;
-        case 'public': updatePagePublic($mysqli, $args->pageId, $args->pub); break;
-        case 'title': updatePageTitle($mysqli, $args->pageId, $args->title); break;
+        case 'parentId': updatePageParent($db, $args->pageId, $args->newParent); break;
+        case 'pos': updatePagePos($db, json_decode($args->positions)); break;
+        case 'public': updatePagePublic($db, $args->pageId, $args->pub); break;
+        case 'title': updatePageTitle($db, $args->pageId, $args->title); break;
     }
-    dbDisonnect($mysqli);
+    $db->close();
     return new Reply('ok', true);
 }
 ?>
