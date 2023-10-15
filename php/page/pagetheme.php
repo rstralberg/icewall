@@ -12,12 +12,8 @@ const PageThemeCols = [
     'bdSizeContent',
     'bgContent',
     'fgContent',
-    'bgContentAct',
-    'fgContentAct',
     'fzContent',
-    'fwContent',
-    'fsContent',
-    'fontContent'
+    'dContent'
 ];
 function createPageTheme(Db $db): void
 {
@@ -35,12 +31,8 @@ function createPageTheme(Db $db): void
            'TINYINT NOT NULL DEFAULT 1', // bdSizeContent'
            'VARCHAR(10) NOT NULL DEFAULT \'#404040\'', // bgContent'
            'VARCHAR(10) NOT NULL DEFAULT \'#aaaaaa\'', // fgContent'
-           'VARCHAR(10) NOT NULL DEFAULT \'#505050\'', // bgContentAct'
-           'VARCHAR(10) NOT NULL DEFAULT \'#ffffff\'', // fgContentact'
            'FLOAT NOT NULL DEFAULT 1.0', // fzContent'
-           'VARCHAR(8) NOT NULL DEFAULT \'normal\'', // fwContent'
-           'VARCHAR(8) NOT NULL DEFAULT \'normal\'', // fsContent'
-           'VARCHAR(64) NOT NULL DEFAULT \'Ariel\'', // fontContent
+           'TINYINT NOT NULL DEFAULT 3', // dContent
 
 
         ])
@@ -49,33 +41,33 @@ function createPageTheme(Db $db): void
     }
 }
 
-function selectPagestyle(Db $db, string $name): array
+function selectPageTheme(Db $db, string $name): array
 {
     return $db->select( 'pagetheme', array_merge(['id'], PageThemeCols), 
         $db->name('name') . '=' . $db->string( $name));
 }
 
-function selectPagestyles(Db $db): array
+function selectPageThemes(Db $db): array
 {
     return $db->select( 'pagetheme', array_merge(['id'], PageThemeCols), null, $db->name('name') . ' asc');
 }
 
-function insertPagestyles(Db $db, $values): int
+function insertPageTheme(Db $db, $values): int
 {
     return $db->insert( 'pagetheme', PageThemeCols, $values);
 }
 
-function updatePagestyles(Db $db, $name, $values): int
+function updatePageTheme(Db $db, $name, $values): int
 {
     return $db->update( 'pagetheme', PageThemeCols, $values, $db->name('name') . '=' . $db->string( $name));
 }
 
-function deletePagestyles(Db $db, $name): void
+function deletePageThemes(Db $db, $name): void
 {
     $db->delete( 'pagetheme', $db->name('name') . '=' . $db->string( $name));
 }
 
-function selectPagestyleNames(Db $db)
+function selectPageThemeNames(Db $db)
 {
     return $db->select( 'pagetheme', ['name'], null, $db->name('name') . ' asc');
 }
@@ -100,7 +92,7 @@ function getPageTheme(stdClass $args): Reply
         return new Reply('error', 'Kunde inte ladda temat för sidan med id "' . $args->pageId . '"');
     }
     $name = $pages[0]['style'];
-    $styles = selectPagestyle($db, $name);
+    $styles = selectPageTheme($db, $name);
     if (!$styles) {
         $db->close();
         return new Reply('error', 'Kunde inte ladda temat "' . $name . '"');

@@ -1,0 +1,18 @@
+<form class="theme" enctype="multipart/form-data">
+
+    <div class="title">Spara tema</div>
+
+    <label>Under vilket namn vill du sparat temat?</label>
+    <input id="theme-name" title="Temats namn" style="outline:none" type="text"  >
+        
+    <hr>
+
+    <div class="form-100">
+        <input type="button" value="Spara" onclick="saveThemeAs('theme-name')">
+    </div>
+
+    <div class="form-100">
+        <input type="button" value="Avbryt" onclick="closeSaveAs()">
+    </div>
+
+</form>

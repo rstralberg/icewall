@@ -67,3 +67,7 @@ function isValid(v) {
     if( typeof v === 'number' && isNaN(v) ) return false;
     return true;
 }
+
+function sqlString(s) {
+    return '\'' + s + '\'';
+}

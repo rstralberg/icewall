@@ -210,3 +210,23 @@ function moveDown() {
 function closeEditPages() {
     closeForm('editPages');
 }
+
+function onEditPageTheme() {
+    webForm( 'editPageTheme', {
+        pageId: Session.page.id
+    });
+}
+
+function closePageTheme() {
+    closeForm('editPageTheme');
+}
+
+function onWContent(e) { set_style('WContent', e.value);}
+function onRContent(e) { set_style('RContent', e.value);}
+function onBdColContent(e) { set_style('BdColContent', e.value);}
+function onBdSizeContent(e) { set_style('BdSizeContent', e.value);}
+function onShContent(e) { set_style('ShContent', e.value);}
+function onBgContent(e) { set_style('BgContent', e.value);}
+function onFgContent(e) { set_style('FgContent', e.value);}
+function onFzContent(e) { set_style('FzContent', e.value);}
+function onDContent(e) { set_style('DContent', e.value);}

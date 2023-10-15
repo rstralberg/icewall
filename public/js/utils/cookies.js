@@ -25,9 +25,16 @@ class Cookie {
         return null;
     }
 
-    static set username(v) { this.#set(Session.item('ice-u'),v); }
-    static get username() { return this.#get(Session.item('ice-u')); }
+    static #key='';
+    static key(v) { this.#key=v; }
+    
+    static set username(v) { this.#set(this.#item('ice-u'),v); }
+    static get username() { return this.#get(this.#item('ice-u')); }
 
-    static set pageId(v) { this.#set(Session.item('ice-pid'), parseInt(v)); }
-    static get pageId() { return parseInt(this.#get(Session.item('ice-pid'))); }
+    static set pageId(v) { this.#set(this.#item('ice-pid'), parseInt(v)); }
+    static get pageId() { return parseInt(this.#get(this.#item('ice-pid'))); }
+
+    static #item(name) {
+        return this.#key + '-' + name;
+    }
 }

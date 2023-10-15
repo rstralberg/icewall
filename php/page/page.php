@@ -56,9 +56,9 @@ function insertPage(Db $db, $values): int
     return $db->insert( 'page', PageCols, $values);
 }
 
-function updatePage(Db $db, $id, $values): int
+function updatePage(Db $db, $cols, $values, $where): int
 {
-    return $db->update( 'page', PageCols, $values, $db->name('id') . '=' . $id);
+    return $db->update( 'page', $cols, $values, $where);
 }
 
 function updatePagePos(Db $db, $positions): void

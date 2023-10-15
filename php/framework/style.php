@@ -10,7 +10,7 @@ function generateStyle(Db $db, string $themeName): string
         throw new Exception('Kunde inte ladda applikationens tema ' . $themeName);
     }
 
-    $pagestyles = selectPagestyle($db, 'Standard');
+    $pagestyles = selectPageTheme($db, 'Standard');
     if (count($pagestyles) === 0) {
         throw new Exception('Kunde inte ladda sidans temma ' . 'Standard');
     }
@@ -130,12 +130,8 @@ function generateStyle(Db $db, string $themeName): string
     $root .= '--bdSizeContent:' . $pagestyle['bdSizeContent'] . 'px;';
     $root .= '--bgContent:' . $pagestyle['bgContent'] . ';';
     $root .= '--fgContent:' . $pagestyle['fgContent'] . ';';
-    $root .= '--bgContentAct:' . $pagestyle['bgContentAct'] . ';';
-    $root .= '--fgContentAct:' . $pagestyle['fgContentAct'] . ';';
     $root .= '--fzContent:' . $pagestyle['fzContent'] . 'em;';
-    $root .= '--fwContent:' . $pagestyle['fwContent'] . ';';
-    $root .= '--fsContent:' . $pagestyle['fsContent'] . ';';
-    $root .= '--fontContent:' . $pagestyle['fontContent'] . ';';
+    $root .= '--dContent:' . $pagestyle['dContent'] . 'vh;';
 
     $root .= '}';
     return '<style>' . $root . '</style>';

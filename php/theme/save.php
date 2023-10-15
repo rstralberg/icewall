@@ -148,4 +148,22 @@ function saveTheme($args) {
     }
 }
 
+function themeInsert(stdClass $args) : Reply{
+
+    $db = new Db($args->database); 
+    $db->open();
+    
+    $id = insertTheme($db, $args->theme); 
+    
+    $db->close();
+
+    return new Reply( 
+        $id>0 ? 'ok' : 'error',
+        $id>0 ? $id : $db->lastError());
+}
+
+function saveThemeAs( stdClass $args ) : Reply {
+    
+    return loadForm('theme/html/save_as');
+}
 ?>
