@@ -34,9 +34,10 @@ function index(pageId, sitekey, sitefolder, sitedb, siteName) {
     getPage(pageId).then(
         (page) => {
             Session.page = page;
+            loadPageTheme(Session.page.id);
             getNavbar(user.username);
-            getPageTitle(pageId, user.username);
-            getContents(pageId);
+            getPageTitle(Session.page.id, user.username);
+            getContents(Session.page.id);
             getFooter();
 
             let rtPublic = document.getElementById('rt-public');

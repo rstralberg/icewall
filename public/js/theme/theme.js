@@ -401,8 +401,10 @@ function onSaveTheme() {
             if( resolve.status === 'ok') {
                 popup(theme[0] + ' sparat!');
             }
+            closeSaveAs();
         },
         (reject) => {
+            closeSaveAs();
         }
     );
 }
@@ -429,9 +431,11 @@ function saveThemeAs(nameId) {
             if( resolve.status === 'ok') {
                 popup(name + ' sparat!');
                 getNavbar(Session.user.username);
+                closeDeleteTheme();
             }
         },
         (reject) => {
+            closeDeleteTheme();
         }
     );
 

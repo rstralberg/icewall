@@ -217,6 +217,68 @@ function onEditPageTheme() {
     });
 }
 
+function pageStyles2ValueArray()  {
+    return new Array(
+        parseInt(get_style('wContent')),
+        parseInt(get_style('rContent')),
+        parseInt(get_style('shContent')),
+        sqlString(get_style('bdColContent')),
+        parseInt(get_style('bdSizeContent')),
+        sqlString(get_style('bgContent')),
+        sqlString(get_style('fgContent')),
+        parseFloat(get_style('fzContent')),
+        parseInt(get_style('dContent'))
+    );
+
+}
+
+function object2PageStyle(obj)  {
+
+    set_style('wContent',obj.wContent + '%');
+    set_style('dContent',obj.dContent + 'vh');
+    set_style('rContent',obj.rContent + 'px');
+    set_style('shContent',obj.shContent);
+    set_style('bdColContent',obj.bdColContent);
+    set_style('bdSizeContent',obj.bdSizeContent + 'px');
+    set_style('bgContent',obj.bgContent);
+    set_style('fgContent',obj.fgContent);
+    set_style('fzContent',obj.fzContent + 'em');
+}
+
+
+function loadPageTheme(pageId) {
+
+    let request = new Request('getPageTheme', { pageId: pageId});
+    request.send().then( 
+        (resolve) => {
+            if( resolve.status === 'ok') {
+                object2PageStyle(JSON.parse(resolve.content));
+            }
+        }
+    )
+
+}
+
+function savePageTheme() {
+
+    let theme = pageStyles2ValueArray();
+    let request = new Request('updPageTheme', {
+        pageId : Session.page.id,
+        theme: theme });
+
+    request.send().then(
+        (resolve) => {
+            if( resolve.status === 'ok') {
+                popup('Tema sparat!');
+            }
+            closePageTheme();
+        },
+        (reject) => {
+            closePageTheme();
+        }
+    );
+}
+
 function closePageTheme() {
     closeForm('editPageTheme');
 }

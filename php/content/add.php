@@ -9,7 +9,6 @@ function addContent(stdClass $args) : Reply {
 
     $content_id = insertContent($db, [
         $args->pageId,
-        $db->string('text-algin:center'),
         $db->string(rawurldecode('Här är ett nytt avsnitt')),
         $args->pos,
         $db->bool(false)

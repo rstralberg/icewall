@@ -13,7 +13,7 @@ function navbarPageSelected(id) {
     getPage(id).then( 
         (page) => {
             Session.page = page;
-            getPageTheme(id);
+            loadPageTheme(id);
             //getTools('right');
             getPageTitle(id, Session.user.username);
             getContents(id);

@@ -1,19 +1,4 @@
 
-function getPageTheme(pageId) {
-    let request = new Request('getPageTheme', {
-        pageId: pageId
-    });
-    request.send().then(
-        (resolve) => { 
-            if( resolve.status === 'ok')
-                updatePageTheme( JSON.parse(resolve.content)); 
-            else 
-                alert(resolve.content);
-            },
-
-        (reject) => { alert(reject); });
-}
-
 
 function updatePageTheme(theme) {
 

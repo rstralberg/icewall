@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/../utils/db.php';
 require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/page.php';
+require_once __DIR__ . '/pagetheme.php';
 
 const PageThemeCols = [
     'name',
@@ -57,9 +59,10 @@ function insertPageTheme(Db $db, $values): int
     return $db->insert( 'pagetheme', PageThemeCols, $values);
 }
 
-function updatePageTheme(Db $db, $name, $values): int
+function updatePageTheme(Db $db, $name, $values): bool
 {
-    return $db->update( 'pagetheme', PageThemeCols, $values, $db->name('name') . '=' . $db->string( $name));
+    $cols = array_values( array_diff(PageThemeCols, array('name')) );
+    return $db->update( 'pagetheme', $cols, $values, $db->name('name') . '=' . $db->string( $name));
 }
 
 function deletePageThemes(Db $db, $name): void
@@ -102,4 +105,18 @@ function getPageTheme(stdClass $args): Reply
     return new Reply('ok', json_encode($styles[0]));
 }
 
+function updPageTheme(stdClass $args) {
+
+    $db = new Db($args->database);
+    $db->open();
+
+    $pages = selectPage($db, $args->pageId);
+    if( !$pages ) {
+        $db->close();
+        return new Reply('error', 'Kan inte ladda sidan ' . $args->pageId . ' som hör ihop med temat!');
+    }
+    $page = $pages[0];
+    $res = updatePageTheme($db, $page['style'], $args->theme );
+    return new Reply( $res ? 'ok' : 'error', $res);
+}
 ?>
