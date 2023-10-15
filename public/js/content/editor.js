@@ -1,5 +1,7 @@
 
 var curAttachment = null;
+var curFocus = null;
+var curSelection = null;;
 
 function attachEditor(content) {
 
@@ -9,12 +11,15 @@ function attachEditor(content) {
     Session.selected = content.id;
     Session.selectedChild = null;
 
+    curFocus = null;
+    curSelection = null;;
+    
     curAttachment = content;
     content.contentEditable = true;
     content.addEventListener('click', onEditorClick);
 
     document.getElementById('content-public').checked = content.getAttribute('pub') === 'true';
-    
+
 
     addEditorEvents(curAttachment);
     addBorders(curAttachment);
@@ -30,7 +35,7 @@ function hideEditor() {
 function addBorders(element) {
     element.style.border = '1px dashed ' + get_style('editFg');
     for (let i = 0; i < element.childElementCount; i++) {
-        addBorders(element.children[i]);
+        //addBorders(element.children[i]);
     }
 }
 
@@ -41,27 +46,40 @@ function removeBorders(element) {
     }
 }
 
-
-var curSelection = null;;
 function addEditorEvents(element) {
 
-    // element.addEventListener('click', (e) => {
+    element.addEventListener('mouseenter', (e) => {
+        if (curFocus) {
+            curFocus.style.outline = 'none';
+        }
+        curFocus = element;
+        curFocus.style.outline = '1px solid ' + get_style('bgHover');
+    });
 
-    //     if (curSelection) {
-    //         curSelection.style.outline = 'none';
-    //         curSelection.style.height = 'auto';
-    //     }
-    //     curSelection = e.target;
-    //     curSelection.style.outline = '1px solid red';
-    // });
+    element.addEventListener('mouseleave', (e) => {
+        element.style.outline = 'none';
+        curFocus = null;
+    });
 
-    // for (let i = 0; i < element.childElementCount; i++) {
-    //     addEditorEvents(element.children[i]);
-    // }
+    element.addEventListener('mousedown', (e) => {
+        if (element.tagName !== 'SECTION') {
+            curFocus.style.outline = '3px solid ' + get_style('bgHover');
+            curSelection = element;
+        }
+    });
+
+    for (let i = 0; i < element.childElementCount; i++) {
+        addEditorEvents(element.children[i]);
+    }
 }
 
 function removeEditorEvents(element) {
     element.removeEventListener('click', (e) => { });
+    element.removeEventListener('mouseenter', (e) => { });
+    element.removeEventListener('mouseleave', (e) => { });
+    element.removeEventListener('mousedown', (e) => { });
+    element.removeEventListener('mouseup', (e) => { });
+    element.removeEventListener('dblclick', (e) => { });
     element.style.outline = 'none';
     for (let i = 0; i < element.childElementCount; i++) {
         removeEditorEvents(element.children[i]);
@@ -79,8 +97,10 @@ function detachEditor(content) {
     content.contentEditable = false;
     Session.selected = null;
     Session.selectedChild = null;
-}
+    curFocus = null;
+    curSelection = null;;
 
+}
 
 function onBold() {
 
@@ -120,7 +140,6 @@ function onTitle() {
     }
 }
 
-
 function onEditorClick() {
 
     let content = document.querySelector('.content');
@@ -132,8 +151,8 @@ function onEditorClick() {
     }
 
     content = Session.selected;
-    if( content === null) return;
-    
+    if (content === null) return;
+
     content.classList.add('content-active');
 
     getSelectedNode(0, content.childNodes).then(
@@ -153,10 +172,11 @@ function onEditorClick() {
     );
 
 }
+
 function onClear() {
 
     let content = Session.selected;
-    if( content === null) return ;
+    if (content === null) return;
 
     getSelectedNode(0, content.childNodes).then(
         (resolve) => {
@@ -184,7 +204,7 @@ function isToolActive(toolName) {
 
 function onMove(dir) {
     let content = Session.selected;
-    if( content === null) return ;
+    if (content === null) return;
 
     let moved = false;
     if (dir > 0) {
@@ -199,24 +219,24 @@ function onMove(dir) {
             moved = true;
         }
     }
-    if( moved )  {
+    if (moved) {
         let positions = new Array();
         let container = document.querySelector('.content');
-        for( let pos=0; pos < container.childElementCount; pos++ ) {
+        for (let pos = 0; pos < container.childElementCount; pos++) {
             let child = container.children[pos];
-            positions.push( {
+            positions.push({
                 id: parseInt(child.id.substring('sec-'.length)),
                 pos: pos
             });
         }
         updateContentPositions(positions);
     }
-    
+
 }
 
 function onFontSize(value) {
     let content = Session.selected;
-    if( content === null) return ;
+    if (content === null) return;
 
     let fsize = parseFloat(content.style.fontSize);
     if (isNaN(fsize) || fsize === 0) {
@@ -231,21 +251,28 @@ function onFontSize(value) {
 
 function onAlign(arg) {
     let content = Session.selected;
-    let child = Session.selectedChild;
-    if (child) {
+    if (curSelection) {
+        let w = content.clientWidth - curSelection.clientWidth;
         switch (arg) {
             case 'left':
-                child.style.marginLeft = '0px';
+                if (curSelection.tagName === 'FIGURE')
+                    curSelection.style.marginLeft = '0px';
+                else
+                    curSelection.style.textAlign = 'left';
                 break;
             case 'center':
-                child.style.marginLeft = ((content.clientWidth - child.clientWidth) / 2) + 'px';
+                if (curSelection.tagName === 'FIGURE')
+                    curSelection.style.marginLeft = Math.round(w / 2) + 'px';
+                else
+                    curSelection.style.textAlign = 'center';
                 break;
             case 'right':
-                child.style.marginLeft = (content.clientWidth - child.clientWidth - SHADOW_DISTANCE) + 'px';
+                if (curSelection.tagName === 'FIGURE')
+                    curSelection.style.marginLeft = (w - SHADOW_DISTANCE) + 'px';
+                else
+                    curSelection.style.textAlign = 'right';
                 break;
         }
-    } else if (content) {
-        content.style.textAlign = arg;
     }
 }
 
@@ -258,32 +285,28 @@ function onHorizontalRule() {
 }
 
 function onLink() {
-    webForm('weblink', {
-        text: getSelectedText(),
-        cursorPos: getCaretPosition()
-    });
+    if (curSelection) {
+        webForm('weblink', {
+            text: getSelectedText(),
+            cursorPos: getCaretPosition()
+        });
+    }
 }
 
 function saveWeblink(cursorPos) {
 
-    let selected = Session.selected;
-    if( selected ) selected.focus();
+    if (curSelection) curSelection.focus();
 
     let text = document.getElementById('weblink-text').value;
     let url = document.getElementById('weblink-url').value;
-    let a = document.createElement('a');
-    a.classList.add('weblink');
-    a.href = url;
-    a.innerHTML = text;
-    setCaretPosition(cursorPos);
-    insertElement(a);
+    
+    curSelection.innerHTML += '<a class="weblink" href="' + url + '" target="_blank">' + text + '<a>';
     closeWeblink();
 }
 
 function closeWeblink() {
     closeForm('weblink');
 }
-
 
 function getSelectedText() {
     var selectedText = "";
@@ -338,7 +361,7 @@ function insertElement(element, at) {
 
 function getCaretPosition() {
     const content = Session.selected;
-    if( content === null ) return false;
+    if (content === null) return false;
 
     let caretPos = 0;
     const sel = window.getSelection();
@@ -356,7 +379,7 @@ function getCaretPosition() {
 function setCaretPosition(pos) {
 
     let content = Session.selected;
-    if( content === null ) return ;
+    if (content === null) return;
 
     var range = document.createRange();
     var selection = window.getSelection();
@@ -376,7 +399,6 @@ function setCaretPosition(pos) {
     // Focus the editable div to show the caret
     content.focus();
 }
-
 
 function getSelectedNode(start, nodes) {
     return new Promise((resolve, reject) => {
@@ -448,7 +470,5 @@ function selectText(startPos, endPos) {
 }
 
 function onContentPublic(e) {
-
     updateContentPublic(Session.selected, e.checked);
-
 }
