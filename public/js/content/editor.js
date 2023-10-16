@@ -63,7 +63,7 @@ function addEditorEvents(element) {
 
     element.addEventListener('mousedown', (e) => {
         if (element.tagName !== 'SECTION') {
-            curFocus.style.outline = '3px solid ' + get_style('bgHover');
+            if( curFocus ) curFocus.style.outline = '3px solid ' + get_style('bgHover');
             curSelection = element;
         }
     });
@@ -234,8 +234,8 @@ function onMove(dir) {
 
 }
 
-function onFontSize(value) {
-    let content = Session.selected;
+function onEditFontSize(value) {
+    let content = curSelection;
     if (content === null) return;
 
     let fsize = parseFloat(content.style.fontSize);
@@ -245,7 +245,7 @@ function onFontSize(value) {
 
     let newFsize = fsize + (value < 0 ? (-FONTSIZE_STEP) : (FONTSIZE_STEP));
     if (newFsize >= MIN_FONTSIZE && newFsize < MAX_FONTSIZE) {
-        content.style.fontSize = newFsize + 'em';
+        curSelection.style.fontSize = newFsize + 'em';
     }
 }
 

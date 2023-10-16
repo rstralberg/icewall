@@ -10,7 +10,7 @@ function userUpdate(stdClass $args)
     $db->open();
 
     if (str_contains($args->picture, 'http')) {
-        $args->picture = 'uploads' . explode('uploads', $args->picture)[1];
+        $args->picture = 'sites' . explode('sites', $args->picture)[1];
     }
     $users = selectUser($db, $args->username);
     $result = false;

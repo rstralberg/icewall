@@ -5,14 +5,13 @@ function uploadImage(fileFromInput, maxWidth, folder) {
         var item = fileFromInput;
         var reader = new FileReader();
 
-        //image turned to base64-encoded Data URI.
         reader.readAsDataURL(item);
         reader.name = item.name;
         reader.size = item.size;
         reader.onload = (event) => {
 
             var img = new Image();
-            img.src = event.target.result; //result is base64-encoded Data URI
+            img.src = event.target.result; 
             img.alt = event.target.name;
             img.size = event.target.size;
 
@@ -31,10 +30,6 @@ function uploadImage(fileFromInput, maxWidth, folder) {
                 //get the base64-encoded Data URI from the resize image
                 var srcEncoded = ctx.canvas.toDataURL('image/png', 1);
 
-                /*Now you can send "srcEncoded" to the server and
-                convert it to a png o jpg. Also can send
-                "el.target.name" that is the file's name.*/
-                //get the resized image from src
                 var resized = srcEncoded;
 
                 //note: remember that the image is now base64-encoded Data URI
