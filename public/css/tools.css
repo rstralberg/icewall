@@ -50,6 +50,8 @@
 	text-align: left;
 	font-size: medium;
 	font-weight: normal;
+	margin-top: 0.5em;
+	color: var(--fgTitle);
 }
 
 .tool-section-ruler {
@@ -74,6 +76,7 @@
 	font-weight: normal;
 	padding:2px; 
 	box-shadow: none;
+	margin-bottom: 0.5em;
 
 }
 

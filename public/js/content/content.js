@@ -89,24 +89,51 @@ function prepareContents() {
     }
 }
 
-function onAddContent() {
-    addContent(document.querySelector('.content').childElementCount);
+function onEditFontSize(value) {
+    let content = EditorSelection;
+    if (content === null) return;
+
+    let fsize = parseFloat(content.style.fontSize);
+    if (isNaN(fsize) || fsize === 0) {
+        fsize = parseFloat(get_style('fontsize'))
+    }
+
+    let newFsize = fsize + (value < 0 ? (-FONTSIZE_STEP) : (FONTSIZE_STEP));
+    if (newFsize >= MIN_FONTSIZE && newFsize < MAX_FONTSIZE) {
+        EditorSelection.style.fontSize = newFsize + 'em';
+    }
 }
 
-function onDeleteContent() {
-    let content = Session.selected;
-    if( content === null) return;
-    deleteContent(content);
-}
 
-function onSaveContent() {
+function moveContent(dir) {
     let content = Session.selected;
-    if( content === null) return;
+    if (content === null) return;
 
-    saveContent(
-        document.getElementById('content-public').checked,
-        Session.page.id, 
-        content);
-  
+    let moved = false;
+    if (dir > 0) {
+        if (content.previousElementSibling) {
+            content.parentNode.insertBefore(content, content.previousElementSibling);
+            moved = true;
+        }
+    }
+    else {
+        if (content.nextElementSibling) {
+            content.parentNode.insertBefore(content.nextElementSibling, content);
+            moved = true;
+        }
+    }
+    if (moved) {
+        let positions = new Array();
+        let container = document.querySelector('.content');
+        for (let pos = 0; pos < container.childElementCount; pos++) {
+            let child = container.children[pos];
+            positions.push({
+                id: parseInt(child.id.substring('sec-'.length)),
+                pos: pos
+            });
+        }
+        updateContentPositions(positions);
+    }
+
 }
 

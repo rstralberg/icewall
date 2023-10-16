@@ -1,13 +1,9 @@
 const RENAME_PAGE_TITLE = 'renamepage-title';
 
-function onPageTitle() {
+function onRenamePage() {
     webForm('renamePage',{
         pageId: Session.page.id
     });
-}
-
-function onRenamePage() {
-    onPageTitle();
 }
 
 function renamePage(id) {

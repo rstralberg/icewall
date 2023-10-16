@@ -45,6 +45,8 @@ function generateScripts() : string {
     $html.= script('framework/footer');
     $html.= script('framework/navbar');
     $html.= script('framework/tools');
+    $html.= script('framework/left');
+    $html.= script('framework/right');
 
     // page
     $html.= script('page/create');

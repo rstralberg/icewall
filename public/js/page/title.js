@@ -71,8 +71,3 @@ function updatePageTitle(pageId, title) {
         );
     });
 }
-
-function togglePagePublic(e) {
-    e.innerText = e.innerText === 'Publik' ? 'Intern' : 'Publik';
-    updatePagePublic(e.innerText==='Publik');
-}

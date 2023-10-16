@@ -1,40 +1,37 @@
 <figure class="tool-section">
     <figcaption class="tool-section-title">Avsnitt</figcaption>
     <hr class="tool-section-ruler">
-    <button id="lt-delete-content" class="tool-button" onclick="onDeleteContent()">Radera</button>
-    <button id="lt-save-content" class="tool-button" onclick="onSaveContent()">Spara</button>
-    <button id="lt-move-up" class="tool-button" onclick="onMove(1)">Flytta <b>&uarr;</b></button>
-    <button id="lt-move-down" class="tool-button" onclick="onMove(-1)">Flytta <b>&darr;</b></button>
+    <button id="lt-delete-content" class="tool-button" onclick="evDeleteContent()">Radera</button>
+    <button id="lt-save-content" class="tool-button" onclick="evSaveContent()">Spara</button>
+    <button id="lt-move-up" class="tool-button" onclick="evMoveUp()">Flytta <b>&uarr;</b></button>
+    <button id="lt-move-down" class="tool-button" onclick="evMoveDown()">Flytta <b>&darr;</b></button>
+    <button id="content-public" class="tool-button" onclick="evToggleContentPublic(this)">Publik</button>
 </figure>
 
 <figure class="tool-section">
     <figcaption class="tool-section-title">Innehåll</figcaption>
     <hr class="tool-section-ruler">
-    <button id="lt-bold" class="tool-button" onclick="onBold()">Fet stil</button>
-    <button id="lt-italic" class="tool-button" onclick="onItalic()">Kursiv stil</button>
-    <button id="lt-fontsize-plus" class="tool-button" onclick="onEditFontSize(1)">Tecken <b>&uarr;</b></button>
-    <button id="lt-fontsize-minus" class="tool-button" onclick="onEditFontSize(-1)">Tecken <b>&darr;</b></button>
-    <button id="lt-align-left" class="tool-button" onclick="onAlign('left')">Vänster</button>
-    <button id="lt-align-center" class="tool-button" onclick="onAlign('center')">Mitten</button>
-    <button id="lt-align-right" class="tool-button" onclick="onAlign('right')">Höger</button>
-    <button id="lt-theme" class="tool-button" onclick="onEditPageTheme()">Utseende</button>
+    <button id="lt-bold" class="tool-button" onclick="evBold()">Fet stil</button>
+    <button id="lt-italic" class="tool-button" onclick="evItalic()">Kursiv stil</button>
+    <button id="lt-fontsize-plus" class="tool-button" onclick="evFontSizeUp()">Tecken <b>&uarr;</b></button>
+    <button id="lt-fontsize-minus" class="tool-button" onclick="evFontSizeDown()">Tecken <b>&darr;</b></button>
+    <button id="lt-align-left" class="tool-button" onclick="evAlignLeft()">Vänster</button>
+    <button id="lt-align-center" class="tool-button" onclick="evAlignCenter()">Mitten</button>
+    <button id="lt-align-right" class="tool-button" onclick="evAlignRight()">Höger</button>
+    <button id="lt-theme" class="tool-button" onclick="evEditPageTheme()">Utseende</button>
+    <button id="lt-shadown" class="tool-button" onclick="evShadow()">Skugga</button>
 </figure>
 
 <figure class="tool-section">
     <figcaption class="tool-section-title">Lägg in</figcaption>
     <hr class="tool-section-ruler">
-    <button id="lt-weblink" class="tool-button" onclick="onLink()">Webblänk</button>
-    <button id="lt-title" class="tool-button" onclick="onTitle()">Titel</button>
-    <button id="lt-hr" class="tool-button" onclick="onHorizontalRule()">Streck</button>
-    <button id="lt-image" class="tool-button" onclick="onImage()">Bild</button>
-    <button id="lt-audio" class="tool-button" onclick="onAudio()">Ljud MP3</button>
-    <button id="lt-spotify" class="tool-button" onclick="onSpotify()">Spotify</button>
-    <button id="lt-soundcloud" class="tool-button" onclick="onSoundcloud()">Soundcloud</button>
-    <button id="lt-youtube" class="tool-button" onclick="onYoutube()">Youtube</button>
+    <button id="lt-weblink" class="tool-button" onclick="evLink()">Webblänk</button>
+    <button id="lt-title" class="tool-button" onclick="evTitle()">Titel</button>
+    <button id="lt-hr" class="tool-button" onclick="evLine()">Streck</button>
+    <button id="lt-image" class="tool-button" onclick="evImage()">Bild</button>
+    <button id="lt-audio" class="tool-button" onclick="evAudio()">Ljud MP3</button>
+    <button id="lt-spotify" class="tool-button" onclick="evSpotify()">Spotify</button>
+    <button id="lt-soundcloud" class="tool-button" onclick="evSoundcloud()">Soundcloud</button>
+    <button id="lt-youtube" class="tool-button" onclick="evYoutube()">Youtube</button>
 </figure>
 
-<figure class="tool-section">
-    <label class="tool-label" for="content-public">Publik</label>
-    <input title="Kryssa om avsnittet skall vara publikt" id="content-public" class="form-checkbox" type="checkbox"
-        onchange="onContentPublic(this)">
-</figure>

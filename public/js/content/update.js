@@ -13,6 +13,7 @@ function updateContentPositions(positions) {
     );
 }
 
+
 function updateContentPublic(content,pub) {
     let request = new Request('updateContentPublic', {
         id: parseInt(content.id.substring('sec-'.length)),
