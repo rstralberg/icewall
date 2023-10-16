@@ -6,10 +6,10 @@ function onRenamePage() {
     });
 }
 
-function renamePage(id) {
+function renamePage(pageId, titleId) {
 
-    let title = document.getElementById(RENAME_PAGE_TITLE).value;
-    updatePageTitle(id, title);
+    let title = document.getElementById(titleId).value;
+    updatePageTitle(pageId, title);
     closeRenamePage();
 }
 

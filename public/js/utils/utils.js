@@ -50,11 +50,11 @@ function canEdit( what ) {
     if (isValid(user)) {
 
         switch (what) {
-            case 'page': return user.permPage;
-            case 'content': return user.permContent || ( page ? user.username === page.author : false);
-            case 'user': return user.permUser;
-            case 'theme': return user.permTheme;
-            case 'settings': return user.permSettings;
+            case 'page': return user.isAdmin;
+            case 'content': return user.isAdmin|| ( page ? user.username === page.author : false);
+            case 'user': return user.isAdmin;
+            case 'theme': return user.isAdmin;
+            case 'settings': return user.isAdmin;
         }
     }
     return false;

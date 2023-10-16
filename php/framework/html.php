@@ -3,12 +3,12 @@ require_once __DIR__ . '/head.php';
 require_once __DIR__ . '/../page/page.php';
 require_once __DIR__ . '/../utils/html.php';
 
-function generateHTML(Db $cli, string $sitekey, string $sitefolder, string $sitedb, string $siteName ) : string {
+function generateHTML(Db $cli, string $sitekey, string $siteName ) : string {
 
     $pageId = getFirstPageId($cli);
     
     $html = '<!DOCTYPE html><html lang="sv">';
-    $html.= generateHead($cli, $siteName, DEFAULT_THEME);
+    $html.= generateHead($cli, $pageId, $siteName, DEFAULT_THEME);
 
     $html.= '<body>';
     $html.= '<div class="container">';
@@ -26,8 +26,6 @@ function generateHTML(Db $cli, string $sitekey, string $sitefolder, string $site
                 addEventListener("DOMContentLoaded", (event) => { index('. 
                     $pageId . ',"' . 
                     $sitekey .'","' . 
-                    'sites/' . $sitefolder .'","' . 
-                    $sitedb .'","' . 
                     $siteName .'");})
             </script>';
 

@@ -20,11 +20,7 @@ function getPageTitle(stdClass|null $args): Reply
             'email' => '',
             'picture' => $settings[0]['logo'],
             'password' => '',
-            'permPage' => '0',
-            'permContent' => '0',
-            'permUser' => '0',
-            'permTheme' => '0',
-            'permSettings' => '0'
+            'isAdmin' => '0'
     ];
 
     if ($args->username) {

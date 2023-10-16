@@ -1,13 +1,11 @@
 
-function index(pageId, sitekey, sitefolder, sitedb, siteName) {
+function index(pageId, sitekey, siteName) {
 
     Session.key = sitekey;
     Cookie.key(sitekey);
 
     Session.site = {
         key: sitekey,
-        folder: sitefolder,
-        db: sitedb,
         name: siteName
     };
 
@@ -20,14 +18,14 @@ function index(pageId, sitekey, sitefolder, sitedb, siteName) {
         if (username && username.length > 0) {
             getUser(username).then((reply) => {
                 Session.user = reply;
-                left.style.display = Session.user.permContent ? 'block' : 'none';
-                right.style.display = Session.user.permSettings ? 'block' : 'none';
+                left.style.display = Session.user.isAdmin || Session.user.username === Session.page.author ? 'block' : 'none';
+                right.style.display = Session.user.isAdmin ? 'block' : 'none';
             });
         }
     }
     else {
-        left.style.display = user.permContent ? 'block' : 'none';
-        right.style.display = user.permSettings ? 'block' : 'none';
+        left.style.display = Session.user.isAdmin || Session.user.username === Session.page.author ? 'block' : 'none';
+        right.style.display = Session.user.isAdmin ? 'block' : 'none';
     }
 
     // Load current page and then draw everyting

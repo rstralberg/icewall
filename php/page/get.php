@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/page.php';
-require_once __DIR__ . '/pagetheme.php';
 
 function getPage(stdClass $args) : Reply {
 

@@ -1,20 +1,14 @@
 <?php
 require_once __DIR__ . '/../theme/theme.php';
-require_once __DIR__ . '/../page/pagetheme.php';
+require_once __DIR__ . '/../page/page.php';
 
-function generateStyle(Db $db, string $themeName): string
+function generateStyle(Db $db, int $pageId, string $themeName): string
 {
 
     $themes = selectTheme($db, $themeName);
     if (count($themes) === 0) {
         throw new Exception('Kunde inte ladda applikationens tema ' . $themeName);
     }
-
-    $pagestyles = selectPageTheme($db, 'Standard');
-    if (count($pagestyles) === 0) {
-        throw new Exception('Kunde inte ladda sidans temma ' . 'Standard');
-    }
-    $pagestyle = $pagestyles[0];
 
     $theme = $themes[0];
 
@@ -60,7 +54,7 @@ function generateStyle(Db $db, string $themeName): string
     $root .= '--bdColButton:' . $theme['bdColButton'] . ';';
     $root .= '--bdColInput:' . $theme['bdColInput'] . ';';
     $root .= '--bdColTools:' . $theme['bdColTools'] . ';';
-    
+
     $root .= '--bdSizeNavbar:' . $theme['bdSizeNavbar'] . 'px;';
     $root .= '--bdSizeTitle:' . $theme['bdSizeTitle'] . 'px;';
     $root .= '--bdSizeFooter:' . $theme['bdSizeFooter'] . 'px;';
@@ -99,7 +93,7 @@ function generateStyle(Db $db, string $themeName): string
     $root .= '--fzButton:' . $theme['fzButton'] . 'em;';
     $root .= '--fzInput:' . $theme['fzInput'] . 'em;';
     $root .= '--fzTools:' . $theme['fzTools'] . 'em;';
-    
+
     $root .= '--fwNavbar:' . $theme['fwNavbar'] . ';';
     $root .= '--fwTitle:' . $theme['fwTitle'] . ';';
     $root .= '--fwContent:' . $theme['fwContent'] . ';';
@@ -108,7 +102,7 @@ function generateStyle(Db $db, string $themeName): string
     $root .= '--fwButton:' . $theme['fwButton'] . ';';
     $root .= '--fwInput:' . $theme['fwInput'] . ';';
     $root .= '--fwTools:' . $theme['fwTools'] . ';';
-    
+
     $root .= '--fsNavbar:' . $theme['fsNavbar'] . ';';
     $root .= '--fsTitle:' . $theme['fsTitle'] . ';';
     $root .= '--fsContent:' . $theme['fsContent'] . ';';
@@ -120,9 +114,14 @@ function generateStyle(Db $db, string $themeName): string
 
     $root .= '--font:' . $theme['font'] . ';';
     $root .= '--fontsize:' . $theme['fontsize'] . 'em;';
-    $root .= '--iconsfolder:' . $theme['iconsfolder'] . ';';
 
-    $root .= '--pageTheme:' . $pagestyle['name'] . ';';
+    $pages = selectPage($db, $pageId);
+    if (!$pages) {
+        getFirstPageId($db);
+        $pages = selectPage($db, getFirstPageId($db));
+    }
+    $pagestyle = $pages[0];
+
     $root .= '--wContent:' . $pagestyle['wContent'] . '%;';
     $root .= '--rContent:' . $pagestyle['rContent'] . 'px;';
     $root .= '--shContent:' . $pagestyle['shContent'] . ';';

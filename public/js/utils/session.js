@@ -17,12 +17,7 @@ class Session {
                 fullname: v.fullname,
                 email: v.email,
                 picture: v.picture,
-                password: '',
-                permPage: v.permPage==='1',
-                permContent: v.permContent==='1',
-                permUser: v.permUser==='1',
-                permTheme: v.permTheme==='1',
-                permSettings: v.permSettings==='1'
+                isAdmin: v.isAdmin==='1',
             };
             sessionStorage.setItem(Session.item('user'), JSON.stringify(u)); 
         }
@@ -36,12 +31,7 @@ class Session {
             fullname: '',
             email: '',
             picture: '',
-            password: '',
-            permPage: false,
-            permContent: false,
-            permUser: false,
-            permTheme: false,
-            permSettings: false
+            isAdmin: false
         };
     }
 
@@ -87,8 +77,6 @@ class Session {
         else {
             let p = {
                 key:v.key,
-                folder:v.folder,
-                db:v.db,
                 name:v.name
             };
             sessionStorage.setItem(Session.item('site'), JSON.stringify(p));

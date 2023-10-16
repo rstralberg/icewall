@@ -3,16 +3,14 @@
       {
         "name": "KalixMixen",
         "key": "km",
-        "folder": "km",
-        "database": "km",
-        "admin": "roland"
+        "owner": "Roland Strålberg",
+        "logo": "icewall-512x512.png"
       },
       {
         "name": "GrafitGubben",
         "key": "gg",
-        "folder": "gg",
-        "database": "gg",
-        "admin": "roland"
+        "owner": "Roland Strålberg",
+        "logo": "icewall-512x512.png"
       }
     ]
   }

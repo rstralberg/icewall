@@ -8,7 +8,7 @@ function pageUpdate(stdClass $args)
     $db = new Db($args->database); 
     $db->open();
     
-    switch( $args->type ) {
+    switch( $args->what ) {
         case 'parentId': updatePageParent($db, $args->pageId, $args->newParent); break;
         case 'pos': updatePagePos($db, json_decode($args->positions)); break;
         case 'public': updatePagePublic($db, $args->pageId, $args->pub); break;

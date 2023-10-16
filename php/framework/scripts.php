@@ -49,13 +49,12 @@ function generateScripts() : string {
     $html.= script('framework/right');
 
     // page
+    $html.= script('page/page');
+    $html.= script('page/pagestyle');
     $html.= script('page/create');
     $html.= script('page/delete');
-    $html.= script('page/edit');
-    $html.= script('page/get');
     $html.= script('page/rename');
     $html.= script('page/title');
-    $html.= script('page/update');
 
     // settings
     $html.= script('settings/edit');
@@ -74,16 +73,12 @@ function generateScripts() : string {
     $html.= script('theme/sizes');
 
     // user
+    $html.= script('user/user');
     $html.= script('user/account');
-    $html.= script('user/delete');
     $html.= script('user/edit');
-    $html.= script('user/get');
     $html.= script('user/login');
     $html.= script('user/logout');
-    $html.= script('user/password');
-    $html.= script('user/update');
-    $html.= script('user/verify');
-
+    
     return $html;
 
 }

@@ -4,14 +4,23 @@ require_once __DIR__ . '/../utils/db.php';
 require_once __DIR__ . '/../config.php';
 
 const PageCols = [
-        'title',
+    'title',
     'parentId',
     'isParent',
     'author',
     'showTitle',
     'pos',
     'public',
-    'style'
+    'wContent',
+    'rContent',
+    'shContent',
+    'bdColContent',
+    'bdSizeContent',
+    'bgContent',
+    'fgContent',
+    'fzContent',
+    'dContent'
+
 ];
 function createPage(Db $db): void
 {
@@ -19,14 +28,39 @@ function createPage(Db $db): void
     if (
         $db->createTable( 'page', array_merge(['id'], PageCols), [
             'INT(11) NOT NULL AUTO_INCREMENT',
-                        'VARCHAR(60) NOT NULL DEFAULT \'Start\'',
+            // id
+            'VARCHAR(60) NOT NULL DEFAULT \'Start\'',
+            // title
             'INT(11) NOT NULL DEFAULT 0',
+            // pageId
             'TINYINT NOT NULL DEFAULT 0',
+            // isParent
             'VARCHAR(120) NOT NULL DEFAULT \''.DEFAULT_USERNAME.'\'',
+            // author
             'TINYINT NOT NULL DEFAULT 1',
+            // showTitle
             'TINYINT NOT NULL DEFAULT 0',
+            // pos
             'TINYINT NOT NULL DEFAULT 1',
-            'VARCHAR(64) NOT NULL DEFAULT \'Standard\'',
+            // public
+            'TINYINT NOT NULL DEFAULT 80',
+            // wContent'
+            'TINYINT NOT NULL DEFAULT 16',
+            // rContent'
+            'TINYINT NOT NULL DEFAULT 1',
+            // shContent'
+            'VARCHAR(10) NOT NULL DEFAULT \'#ffffff\'',
+            // bdColContent'
+            'TINYINT NOT NULL DEFAULT 1',
+            // bdSizeContent'
+            'VARCHAR(10) NOT NULL DEFAULT \'#404040\'',
+            // bgContent'
+            'VARCHAR(10) NOT NULL DEFAULT \'#aaaaaa\'',
+            // fgContent'
+            'FLOAT NOT NULL DEFAULT 1.0',
+            // fzContent'
+            'TINYINT NOT NULL DEFAULT 3',
+            // dContent
         ])
     ) {
         $db->addDefaultRow( 'page');

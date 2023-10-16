@@ -9,11 +9,7 @@ const UserCols = [
     'email',
     'picture',
     'password',
-    'permPage',
-    'permContent',
-    'permUser',
-    'permTheme',
-    'permSettings'
+    'isAdmin'
 ];
 function createUser(Db $db): void
 {
@@ -28,10 +24,6 @@ function createUser(Db $db): void
                 'VARCHAR(256) NOT NULL DEFAULT \'' . DEFAULT_EMAIL . '\'',
                 'VARCHAR(128) NOT NULL DEFAULT \'' . DEFAULT_PICTURE . '\'',
                 'VARCHAR(256) NOT NULL DEFAULT \'' . password_hash(DEFAULT_PASSW, PASSWORD_DEFAULT) . '\'',
-                'TINYINT NOT NULL DEFAULT 1',
-                'TINYINT NOT NULL DEFAULT 1',
-                'TINYINT NOT NULL DEFAULT 1',
-                'TINYINT NOT NULL DEFAULT 1',
                 'TINYINT NOT NULL DEFAULT 1'
             ]
         )
@@ -100,14 +92,3 @@ function verifyUser(Db $db, string $username, string $password): string
     }
 }
 
-function _deleteUser(stdClass $args) : Reply {
-
-    $db = new Db($args->database);
-    $db->open();
-
-    deleteUser($db, $args->username);
-
-    $db->close();
-
-    return new Reply('ok', true);
-}

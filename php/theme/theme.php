@@ -105,8 +105,7 @@ const ThemeCols = [
     'fsTools',
 
     'font',
-    'fontsize',
-    'iconsfolder'
+    'fontsize'
 ];
 
 function createThemes(Db $db): void
@@ -304,10 +303,8 @@ function createThemes(Db $db): void
 
             'VARCHAR(64) NOT NULL DEFAULT \'Arial\'',
             // font
-            'FLOAT NOT NULL DEFAULT 1.0',
+            'FLOAT NOT NULL DEFAULT 1.0'
             // fontsize
-            'VARCHAR(64) NOT NULL DEFAULT \'icons/white\'',
-            // iconsfolder
         ])
     ) {
         $db->addDefaultRow( 'theme');

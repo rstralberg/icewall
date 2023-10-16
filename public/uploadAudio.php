@@ -2,16 +2,21 @@
 require_once __DIR__ . '/../php/utils/reqrep.php';
 
 $mp3 = $_POST['file'];
-$folder = $_POST['folder'];
+$key = $_POST['key'];
 $name = $_POST['name'];
 
 $data = base64_decode($mp3);
+
+$folder = 'sites/' + $key + '/mp3';
+if (!file_exists($folder)) {
+    mkdir($folder, 0777, true);
+}
 
 $file = $folder.'/'.$name;
 
 $bytes = file_put_contents($file, $data);
 
-$reply = new Reply($bytes <= 0?'error':'ok', $file);
+$reply = new Reply($bytes <= 0?'error':'ok', $name);
 $reply->send();
 
 ?> 

@@ -24,7 +24,7 @@ class Request {
     constructor(what, args = null) {
         if( args === null) {
             this.#args = {
-                database : Session.site.db
+                database : Session.site.key
             }
         } else {
             // Object.defineProperty(args,'database', {
@@ -32,7 +32,7 @@ class Request {
             //     writable: true
             // });
             this.#args = args;
-            this.#args['database'] = Session.site.db;
+            this.#args['database'] = Session.site.key;
         }
 
         this.#what = what;

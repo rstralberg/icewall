@@ -5,6 +5,9 @@ function onLogout() {
     });
 }
 
+function closeLogout() {
+    closeForm('logout');
+}
 
 function logoutSelected() {
     closeLogout();
@@ -13,9 +16,5 @@ function logoutSelected() {
     Cookie.username = '';
     getNavbar('');
     getPageTitle(page.id, '');
-}
-
-function closeLogout() {
-    closeForm('logout');
 }
 
