@@ -20,7 +20,7 @@ function hideTitle() {
     });
     request.send().then( 
         (resolve) => {
-            getPageTitle(Session.page.id, Session.user.username);
+            getPageTitle(Session.page.id);
             document.querySelector('.title').style.display='none';
             set_style('hTitle','0.0fr');
         },
@@ -36,7 +36,7 @@ function showTitle() {
     });
     request.send().then( 
         (resolve) => {
-            getPageTitle(Session.page.id,Session.user.username);
+            getPageTitle(Session.page.id);
             document.querySelector('.title').style.display='block';
             set_style('hTitle','0.4fr');
         },
@@ -57,11 +57,9 @@ function updatePageTitle(pageId, title) {
         });
         request.send().then(
             (result) => {
-                if( result.status === 'ok' ) {
-                    let user = Session.user;
-                    let page = Session.page;
-                    getNavbar(user.username);
-                    getPageTitle(page.id,user.username);
+                if( result.ok ) {
+                    getNavbar();
+                    getPageTitle(pageId);
                     resolve();
                 }
             },

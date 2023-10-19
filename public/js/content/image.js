@@ -10,11 +10,11 @@ function imageSelected() {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
-        let folder = Session.site.folder + '/uploads/' + Session.page.id;
-        uploadImage(selectedImage, maxWidth, folder).then(
+        uploadImage(selectedImage, maxWidth).then(
             (resolve) => {
-                if (resolve.status === 'ok') {
-                    document.getElementById('image-img').src = resolve.content;
+                if (resolve.ok) {
+                    let src = 'sites/' + Session.site.key + '/images/' + resolve.content ;
+                    document.getElementById('image-img').src = src;
                 }
             },
             (reject) => {

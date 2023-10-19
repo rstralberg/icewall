@@ -1,22 +1,23 @@
 <?php
 
-require_once __DIR__ . '/../settings/settings.php';
+require_once __DIR__ . '/../utils/db.php';
 require_once __DIR__ . '/../utils/load.php';
 
 function footer(stdClass $args) : Reply {
 
     $db = new Db($args->database); 
     $db->open();
-    $settingsRecords = selectSettings($db);
+    $settings = $db->select('settings', ['owner'], $db->name('id').'=1');
+    $lastError = $db->lastError();
     $db->close();
 
-    if(!$settingsRecords) {
-        return new Reply( 'error','Kunde inte ladda uppgifter om ägare från inställningar');
+    if(!$settings) {
+        return new Reply(false, $lastError);
     }
     
-     $settings = $settingsRecords[0];
+     $setting = $settings[0];
      return loadForm('framework/html/footer', [
-            'owner' => $settings['owner'],
+            'owner' => $setting['owner'],
             'year' => Date('Y')
         ]);
 }

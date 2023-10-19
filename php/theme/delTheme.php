@@ -13,11 +13,11 @@ function delTheme(stdClass $args): Reply
     $db->close();
 
     if (!$names) {
-        return new Reply('error', 'Det finns inga teman att radera längre');
+        return new Reply(false,'Inga teman finns att radera');
     }
 
     if (count($names) === 1) {
-        return new Reply('error', 'Det är inte tillåtet att radera det enda tema som finns');
+        return new Reply(false, 'Det är inte tillåtet att radera alla teman');
     }
 
     foreach ($names as $name) {
@@ -39,7 +39,7 @@ function themeDelete(stdClass $args) : Reply {
     deleteTheme($db, $args->name );
     $db->close();
 
-    return new Reply('ok', true);
+    return new Reply(true,'');
 
 }
 

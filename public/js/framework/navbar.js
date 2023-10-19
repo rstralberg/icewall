@@ -9,13 +9,12 @@ function navbarToggle(navbar) {
 }
 
 
-function navbarPageSelected(id) {
+function evPageSelected(id) {
     getPage(id).then( 
         (page) => {
             Session.page = page;
-            loadPageTheme(id);
-            //getTools('right');
-            getPageTitle(id, Session.user.username);
+            //loadPageTheme(id);
+            getPageTitle(id);
             getContents(id);
         },
         (error) => {
@@ -39,7 +38,7 @@ function onThemeSelect() {
 
 }
 
-function navbarParentClicked(e) {
+function evParentSelected(e) {
 
 	let ul = e.querySelectorAll('ul')[0];
 	if (ul) {
@@ -52,7 +51,7 @@ function navbarParentClicked(e) {
 	}
 }
 
-function navbarToggleIconClicked(e) {
+function evToggleIcon(e) {
 	let menu = document.querySelector('#menu');
 	toggleDisplay(menu);
 
@@ -65,10 +64,10 @@ function navbarToggleIconClicked(e) {
 }
 
 
-function getNavbar(username) {
+function getNavbar() {
     let request = new Request('getNavbar', {
-        username: username,
-        theme: get_style('name')
+        theme: get_style('name'),
+        username: Session.user ? Session.user.username : null
     });
     request.send().then(
         (resolve) => { 

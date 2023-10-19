@@ -35,11 +35,9 @@ function renPage() {
     let pageId = parseInt(document.getElementById(EDIT_PAGES_SELECTED).value);
     updatePageTitle(pageId, title).then(
         (resolve) => {
-            if (resolve.status === 'ok') {
-                getNavbar(Session.user.username);
-                getPageTitle(
-                    Session.page.id,
-                    Session.user.username);
+            if (resolve.ok) {
+                getNavbar();
+                getPageTitle(pageId);
                 onEditPagesFill(pageId);
 
             }
@@ -54,7 +52,7 @@ function onEditPagesFill(pageId) {
 
     getPageGroup(pageId).then(
         (resolve) => {
-            if (resolve.status === 'ok') {
+            if (resolve.ok) {
                 let ul = document.getElementById(EDIT_PAGES_LIST);
                 ul.innerHTML = '';
                 let pages = JSON.parse(resolve.content);
@@ -97,8 +95,8 @@ function parentSelected() {
 
     updatePageParent(curId, parentId).then(
         (resolve) => {
-            if (resolve.status === 'ok') {
-                getNavbar(Session.user.username);
+            if (resolve.ok) {
+                getNavbar();
                 onEditPagesFill(curId);
             }
         },
@@ -212,9 +210,7 @@ function closeEditPages() {
 }
 
 function onEditPageTheme() {
-    webForm( 'editPageTheme', {
-        pageId: Session.page.id
-    });
+    webForm( 'editPageTheme');
 }
 
 function pageStyles2ValueArray()  {
@@ -251,7 +247,7 @@ function loadPageTheme(pageId) {
     let request = new Request('getPageTheme', { pageId: pageId});
     request.send().then( 
         (resolve) => {
-            if( resolve.status === 'ok') {
+            if( resolve.ok) {
                 object2PageStyle(JSON.parse(resolve.content));
             }
         }
@@ -268,7 +264,7 @@ function savePageTheme() {
 
     request.send().then(
         (resolve) => {
-            if( resolve.status === 'ok') {
+            if( resolve.ok) {
                 popup('Tema sparat!');
             }
             closePageTheme();

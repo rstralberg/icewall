@@ -4,7 +4,6 @@ require_once __DIR__ . '/utils/error.php';
 
 require_once __DIR__ . '/utils/db.php';
 require_once __DIR__ . '/theme/theme.php';
-require_once __DIR__ . '/settings/settings.php';
 require_once __DIR__ . '/content/content.php';
 require_once __DIR__ . '/page/page.php';
 require_once __DIR__ . '/user/user.php';
@@ -49,7 +48,7 @@ for ($i = 0; $i < count($sites->sites); $i++) {
     }
 }
 if ($validSite === null)
-    die('IceWall: #ERROR. Request "' . $site . '" lacks informantion!');
+    die('IceWall: #ERROR. Request "' . $siteKey . '" lacks informantion!');
 
 // Database must exist or be created
 $db = new Db($validSite->key);

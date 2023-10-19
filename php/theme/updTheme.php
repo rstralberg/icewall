@@ -4,18 +4,20 @@ require_once __DIR__ . '/../utils/reqrep.php';
 require_once __DIR__ . '/theme.php';
 
 
-function themeUpdate(stdClass $args) : Reply{
+function themeUpdate(stdClass $args): Reply
+{
 
-    $db = new Db($args->database); 
+    $db = new Db($args->database);
     $db->open();
-    
-    $id = updateTheme($db, $args->theme[0], $args->theme); 
-    
+
+    $res = updateTheme($db, $args->theme[0], $args->theme);
+    $lastError = $db->lastError();
     $db->close();
 
-    return new Reply( 
-        $id>0 ? 'ok' : 'error',
-        $id>0 ? $id : $db->lastError());
+    if ($res)
+        return new Reply(true,'');
+    else
+        return new Reply(false, $lastError);
 }
 
 

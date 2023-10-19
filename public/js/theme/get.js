@@ -7,7 +7,7 @@ function getTheme( themeName ) {
     });
     request.send().then(
         (reply) => { 
-            if( reply.status === 'ok') {
+            if( reply.ok) {
                 resolve(JSON.parse(reply.content));
             }
             else {

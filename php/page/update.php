@@ -15,6 +15,6 @@ function pageUpdate(stdClass $args)
         case 'title': updatePageTitle($db, $args->pageId, $args->title); break;
     }
     $db->close();
-    return new Reply('ok', true);
+    return new Reply(true, '');
 }
 ?>

@@ -1,4 +1,4 @@
-function uploadImage(fileFromInput, maxWidth, folder) {
+function uploadImage(fileFromInput, maxWidth) {
 
     return new Promise((resolve, reject) => {
 
@@ -36,7 +36,7 @@ function uploadImage(fileFromInput, maxWidth, folder) {
                 //sendind the image to the server (php)
                 var fd = new FormData();
                 fd.append("image", resized);
-                fd.append('folder', folder);
+                fd.append('key', Session.site.key);
                 fd.append('name', item.name);
                 fd.append('type', 'png');
 

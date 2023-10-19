@@ -1,23 +1,24 @@
 
-const DELETE_PAGE_SELECT = 'deletepage-pages';
-
-function onDeletePage() {
+function evDeletePage() {
     webForm('delPage', {
-        username: Session.user.username,
-        isAdmin: canEdit('settings')
+        isAdmin: Session.user.isAdmin,
+        username: Session.user.username
     });
 }
 
-function deletePage() {
-    let select = document.getElementById(DELETE_PAGE_SELECT);
-    let value = select.options[select.selectedIndex].value;
-    let pageId = parseInt(value);
-
-    removePage(pageId);
-    closeDeletePage();
+function evDeletePageSelected(e) {
+    if( e.selectedIndex > 0 ) {
+        enable('dp-delete');
+    }
 }
 
-function closeDeletePage() {
+function evPageDelete() {
+    let pageId = parseInt(getElemValue('dp-pages'));
+    removePage(pageId);
+    evCloseDeletePage();
+}
+
+function evCloseDeletePage() {
     closeForm('delPage');
 }
 

@@ -3,10 +3,6 @@
     Events from Right sidebar
     ============================== */
 
-    function evRenamePage() {
-        onRenamePage();
-    }
-
     function evToggleTitle() {
         toggleTitle();
     }
@@ -18,14 +14,6 @@
     function evTogglePagePublic(e) {
         e.innerText = e.innerText === 'Publik' ? 'Intern' : 'Publik';
         updatePagePublic(e.innerText==='Publik');
-    }
-
-    function evCreatePage() {
-        onCreatePage();
-    }
-
-    function evDeletePage() {
-        onDeletePage();
     }
 
     function evEditPages() {

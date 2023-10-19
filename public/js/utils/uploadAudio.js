@@ -1,4 +1,4 @@
-function uploadAudio(fileFromInput, folder) {
+function uploadAudio(fileFromInput) {
 
     return new Promise((resolve, reject) => {
 
@@ -7,7 +7,7 @@ function uploadAudio(fileFromInput, folder) {
                 var fd = new FormData();
                 fd.append('name', fileFromInput.name);
                 fd.append("file", b64);
-                fd.append('folder', folder);
+                fd.append('key', Session.key);
 
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = () => {

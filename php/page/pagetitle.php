@@ -4,41 +4,22 @@ require_once __DIR__ . '/../user/user.php';
 require_once __DIR__ . '/../utils/load.php';
 require_once __DIR__ . '/page.php';
 
-function getPageTitle(stdClass|null $args): Reply
+function getPageTitle(stdClass $args): Reply
 {
-    if( $args === null ) return new Reply('error', 'Argument saknas vid hämtning av titel');
+    if( $args === null ) return new Reply(false, 'Tom begäran');
 
     $db = new Db($args->database); 
     $db->open();
 
-    $settings = selectSettings($db);
-
-    $user = [
-            'id' => 0,
-            'username' => '',
-            'fullname' => '',
-            'email' => '',
-            'picture' => $settings[0]['logo'],
-            'password' => '',
-            'isAdmin' => '0'
-    ];
-
-    if ($args->username) {
-        $users = selectUser($db, $args->username);
-        if ($users) {
-            $user = $users[0];
-        }
-    }
-
     $pages = selectPage($db, $args->pageId);
     $db->close();
     if (!$pages) {
-        return new Reply('error', 'Kunde inte ladda sökta sida ' . $args->pageId);
+        return new Reply(false, 'Hittade inte sidan');
     }
 
     $page = $pages[0];
     $args = [
-        'show' => $page['showTitle'] === '1' || strlen($user['username'])>0 ? 'content' : 'none',
+        'show' => $page['showTitle'] === '1' || strlen($args->username)>0 ? 'content' : 'none',
         'author' => $page['author'],
         'title' => $page['title']
     ];
@@ -54,11 +35,11 @@ function hidePageTitle(stdClass $args) : Reply {
     if( $pages ) {
         updateShowPageTitle($db, $args->pageId, false );
         $db->close();
-        return new Reply('ok', true);
+        return new Reply(true, '');
     }
     else {
         $db->close();
-        return new Reply('error', false);
+        return new Reply(false, 'Hittade inte sidan');
     }
 }
 
@@ -70,11 +51,11 @@ function showPageTitle(stdClass $args) : Reply {
     if( $pages ) {
         updateShowPageTitle($db, $args->pageId, true);
         $db->close();
-        return new Reply('ok', true);
+        return new Reply(true, '');
     }
     else {
         $db->close();
-        return new Reply('error', false);
+        return new Reply(false, 'Hittade inte sidan');
     }
 }
 

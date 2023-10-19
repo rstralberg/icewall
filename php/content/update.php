@@ -14,7 +14,7 @@ function updateContentPositions(stdClass $args) : Reply {
         updateContent($db, ['pos'], [$pos->pos], $pos->id);
     }
     $db->close();
-    return new Reply('ok', true);
+    return new Reply(true, '');
 }
 
 function updateContentPublic(stdClass $args): Reply {
@@ -23,7 +23,7 @@ function updateContentPublic(stdClass $args): Reply {
     $db->open();
     updateContent($db, ['public'], [$db->bool($args->pub)], $args->id);
     $db->close();
-    return new Reply('ok', true);
+    return new Reply(true,'');
 }
 ?>
 

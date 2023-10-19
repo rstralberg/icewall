@@ -17,7 +17,7 @@ class Session {
                 fullname: v.fullname,
                 email: v.email,
                 picture: v.picture,
-                isAdmin: v.isAdmin==='1',
+                isAdmin: v.username === 'admin',
             };
             sessionStorage.setItem(Session.item('user'), JSON.stringify(u)); 
         }
@@ -25,14 +25,7 @@ class Session {
     static get user() { 
         Session.validate();
         let u = sessionStorage.getItem(Session.item('user'));
-        if( u ) return  JSON.parse(u); 
-        else return {
-            username: '',
-            fullname: '',
-            email: '',
-            picture: '',
-            isAdmin: false
-        };
+        return  u ? JSON.parse(u) :null;
     }
 
     static set page(v) { 

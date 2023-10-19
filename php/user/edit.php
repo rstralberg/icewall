@@ -1,48 +1,44 @@
 <?php
 
 require_once __DIR__ . '/user.php';
+require_once __DIR__ . '/../utils/image.php';
 require_once __DIR__ . '/../utils/load.php';
 
-function editAccount(stdClass|null $args) : Reply {
+function editAccount(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
-
-    $users = selectUser($db, $args->username);
-    if( $users ) {
-        $user = $users[0];
-        $db->close();
-        return loadForm('user/html/editAccount', [
-            'username' => $user['username'],
-            'picture' => $user['picture'],
-            'fullname' => $user['fullname'],
-            'email' => $user['email'],
+    
+    $reply = getUser($args);
+    if( !$reply->ok ) {
+        return $reply;
+    }
+    $user = json_decode($reply->content);
+    $pic = safeImageFile($args->key,'sites/' . $args->key . '/images/' . $user->picture);
+    return loadForm('user/html/editAccount', [
+            'username' => $user->username,
+            'picture' => $pic,
+            'fullname' => $user->fullname,
+            'email' => $user->email,
             'size' => 128
         ]);
-    }
-    else {
-        $db->close();
-        return new Reply('error', 'Kunde inte ladda "'.$args->username.'"');
-    }
 }
 
-function editUsers(stdClass|null $args) : Reply {
+function editUsers(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
-
-    $users = selectUsers($db);
+    $reply = getUserNames($args);
+    if( !$reply->ok) {
+        return $reply;
+    }
     
-    $db->close();
-
+    $names = json_decode($reply->content);
     $options = '';
-    for($i=0; $i<count($users); $i++) {
-        $options .= '<option value="'. $users[$i]['username'].'">'.$users[$i]['username'].'</option>';
+    for($i=0; $i<count($names); $i++) {
+        $name = $names[$i]->username;
+        $options .= '<option value="'. $name.'">'.$name.'</option>';
     }
 
     return loadForm('user/html/editUsers', [
         'users' => $options,
-        'size' => $args->size
+        'size' => 128
     ]);
 }
 

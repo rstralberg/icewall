@@ -10,8 +10,9 @@ function editPageTheme(stdClass $args) : Reply {
 
     $pages = selectPage($db, $args->pageId);
     if( !$pages ) {
+        $lastError = $db->lastError();
         $db->close();
-        return new Reply('error', $db->lastError());
+        return new Reply(false, $lastError);
     }
     
     $page = $pages[0];

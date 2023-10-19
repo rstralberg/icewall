@@ -5,14 +5,13 @@
         <hr>
 
         <div class="form-40-60">
-            <label class="form-label" for="createpage-title">Sidans titel:</label>
-            <input class="form-text" type="text" id="createpage-title" name="title" required> 
+            <label class="form-label" for="cp-title">Sidans titel:</label>
+            <input class="form-text" type="text" id="cp-title" name="title" required> 
         </div>
         
         <div class="form-40-60">
-            <label class="form-label" for="createpage-placement">Placering:</label>
-            <select id="createpage-placement">
-                <option value="none">Välj</option>
+            <label class="form-label" for="cp-placement">Placering:</label>
+            <select id="cp-placement">
                 <option value="top">I toppmeny UTAN underliggande sidor</option>
                 <option value="parent">I toppmeny MED underliggande sidor</option>
                 ${pages}
@@ -20,17 +19,16 @@
         </div>
         
         <div class="form-40-60">
-            <label class="form-label" for="createpage-show">Visa sidans titel</label>
-            <input class="form-checkbox" type="checkbox" id="createpage-show" name="show">
+            <label class="form-label" for="cp-showtitle">Visa sidans titel</label>
+            <input class="form-checkbox" type="checkbox" id="cp-showtitle" checked>
         </div>
         
         <div class="form-40-60">
-            <label class="form-label" for="createpage-author">Författare</label>
-            <select class="form-select" id="createpage-author" name="author">
+            <label class="form-label" for="cp-author">Författare</label>
+            <select class="form-select" id="cp-author">
                 ${users}
             </select>
         </div>
-        
         
         <hr>
         <div class="form-100">

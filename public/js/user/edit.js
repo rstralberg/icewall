@@ -1,132 +1,197 @@
+//  ===============================================
+//  Support for php/user/html/editUsers.html
+//  ===============================================
 
-const EDIT_USERS_SELECT = 'editusers-select';
-const EDIT_USERS_PICTURE = 'editusers-picture';
-const EDIT_USERS_IMGFILE = 'editusers-imgfile';
-const EDIT_USERS_FULLNAME = 'editusers-fullname';
-const EDIT_USERS_EMAIL = 'editusers-email';
-const EDIT_USERS_PASSWORD = 'editusers-password';
-const EDIT_USERS_PERM_PAGES = 'editusers-perm-pages';
-const EDIT_USERS_PERM_BLOCKS = 'editusers-perm-contents';
-const EDIT_USERS_PERM_USERS = 'editusers-perm-users';
-const EDIT_USERS_PERM_THEMES = 'editusers-perm-themes';
-const EDIT_USERS_PERM_SETTINGS = 'editusers-perm-settings';
-
-function onEditUsers() 
-{
-    webForm('editUsers', { size: 128 } );
+function evCloseEditUser() {
+    closeForm('editUsers');
 }
 
-function onNewUser() {
-    let eValue = getTheValue();
-    if( eValue ) {
-        let select = document.getElementById(EDIT_USERS_SELECT);
-        let option = document.createElement('option');
-        option.value = eValue;
-        option.innerText = eValue;
-        select.appendChild(option);
-
-        for( let i=0; i < select.childElementCount; i++) {
-            let child = select.children[i];
-            if( child.value === eValue) {
-                select.selectedIndex = i;
-                break;
-            }
-        }
+function evEuUsername(e) {
+    let eUsername = getElement('eu-username');
+    if (eUsername.getAttribute('disabled')) {
+        euUpdateButton('eu-save');
+        disable('eu-save-new');
     }
-    getValue('Lösenord för användaren', 'Lösenord', 'password', '', 'onNewUserPassword')
+    else {
+        euUpdateButton('eu-save-new');
+        disable('eu-save');
+    }
 }
 
-function onNewUserPassword() {
-    let eValue = getTheValue();
-    if( eValue ) {
-        let password = eValue;
-        if( password.length < 8) {
-            popup('Lösenord', 'Lösenordet måste ha minst 8 tecken');
+function evEuFullname(e) {
+    let eUsername = getElement('eu-username');
+    if (eUsername.getAttribute('disabled')) {
+        euUpdateButton('eu-save');
+        disable('eu-save-new');
+    }
+    else {
+        euUpdateButton('eu-save-new');
+        disable('eu-save');
+    }
+}
+
+function evEuEmail(e) {
+    let eUsername = getElement('eu-username');
+    if (eUsername.getAttribute('disabled')) {
+        euUpdateButton('eu-save');
+        disable('eu-save-new');
+    }
+    else {
+        euUpdateButton('eu-save-new');
+        disable('eu-save');
+    }
+}
+
+function evEuPassword(e) {
+}
+
+function euUpdateButton(buttonId) {
+    let values = [
+        getElemValue('eu-username'),
+        getElemValue('eu-fullname'),
+        getElemValue('eu-email'),
+    ];
+    for (let i = 0; i < values.length; i++) {
+        if (isEmpty(values[i])) {
+            disable(buttonId);
             return;
         }
-        document.getElementById(EDIT_USERS_PASSWORD).value = password;
     }
-    document.getElementById(EDIT_USERS_PICTURE).src = '';
-    document.getElementById(EDIT_USERS_FULLNAME).value = '';
-    document.getElementById(EDIT_USERS_EMAIL).value = '';
-    
+    enable(buttonId);
 }
 
 
-function userSelected() {
-    let select = document.getElementById(EDIT_USERS_SELECT);
-    let username = select.options[select.selectedIndex].value;
-
-    if( username === 'add') {
-        getValue('Ny användare', 'Användarnamn', 'text', '', 'onNewUser' );
+function evUserSelected(eSelect) {
+    let username = eSelect.value;
+    if (username === 'none') {
+        euClear();
         return;
     }
-    if( username === 'none') {
+
+    if (username === 'add') {
+        enable('eu-username');
+        setElemValue('eu-username', '');
+
+        enable('eu-picture');
+        getElement('eu-picture').src = 'icons/avatar.png';
+
+        enable('eu-fullname');
+        setElemValue('eu-fullname', '');
+
+        enable('eu-email');
+        setElemValue('eu-email', '');
+
+        enable('eu-password');
+        setElemValue('eu-password', '');
+
+        disable('eu-delete');
+        disable('eu-save');
+        euUpdateButton('eu-save-new');
         return;
     }
 
     getUser(username).then(
         (user) => {
-            document.getElementById(EDIT_USERS_PICTURE).src = user.picture;
-            document.getElementById(EDIT_USERS_FULLNAME).value = user.fullname;
-            document.getElementById(EDIT_USERS_EMAIL).value = user.email;
-            document.getElementById(EDIT_USERS_PERM_PAGES).checked = user.permPage === '1';
-            document.getElementById(EDIT_USERS_PERM_BLOCKS).checked = user.permContent === '1';
-            document.getElementById(EDIT_USERS_PERM_USERS).checked = user.permUser === '1';
-            document.getElementById(EDIT_USERS_PERM_THEMES).checked = user.permTheme === '1';
-            document.getElementById(EDIT_USERS_PERM_SETTINGS).checked = user.permSettings === '1';
+            getElement('eu-image').src = addImagePath(user.picture);
+            setElemValue('eu-fullname', user.fullname);
+            setElemValue('eu-email', user.email);
+            setElemValue('eu-username', user.username);
+            setElemValue('eu-password','');
+            disable('eu-username');
+            enable('eu-picture');
+            enable('eu-fullname');
+            enable('eu-email');
+            enable('eu-password');
+            enable('eu-save');
+            disable('eu-save-new');
+            if (username === 'admin') disable('eu-delete'); else enable('eu-delete');
         },
-        (error) => { popup('FEL', error);}
+        () => { }
     );
 }
 
-function saveEditUser() {
+function evUserImage(eFile) {
 
-    let select = document.getElementById(EDIT_USERS_SELECT);
-    let username = select.options[select.selectedIndex].value;
-
-    updateUser(null,
-        username,
-        document.getElementById(EDIT_USERS_PICTURE).src,
-        document.getElementById(EDIT_USERS_FULLNAME).value,
-        document.getElementById(EDIT_USERS_EMAIL).value,
-        document.getElementById(EDIT_USERS_PASSWORD).value,
-        document.getElementById(EDIT_USERS_PERM_PAGES).checked,
-        document.getElementById(EDIT_USERS_PERM_BLOCKS).checked,
-        document.getElementById(EDIT_USERS_PERM_USERS).checked,
-        document.getElementById(EDIT_USERS_PERM_THEMES).checked,
-        document.getElementById(EDIT_USERS_PERM_SETTINGS).checked);
-
-}
-
-function deleteEditUser() 
-{
-    let select = document.getElementById(EDIT_USERS_SELECT);
-    let username = select.options[select.selectedIndex].value;
-    deleteUser(username);
-}
-
-function userImageSeleced() {
-
-    const imageInput = document.getElementById(EDIT_USERS_IMGFILE);
+    const imageInput = getElement('eu-picture');
     if (imageInput.files.length > 0) {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
-        let folder = Session.site.folder + '/uploads/users';
-        uploadImage(selectedImage, maxWidth, folder ).then(
+        uploadImage(selectedImage, maxWidth).then(
             (resolve) => {
-                if (resolve.status === 'ok') {
-                    document.getElementById(EDIT_USERS_PICTURE).src = resolve.content;
+                if (resolve.ok) {
+                    getElement('eu-image').src = addImagePath(resolve.content);
+                }
+                else {
+                    error(resolve.content);
                 }
             },
             (reject) => {
-                alert(reject.content);
+                error(reject.content);
             }
         );
     }
 }
 
-function closeEditUser() {
-    closeForm('editUsers');
+function evSaveNewUser() {
+    addUser(getElemValue('eu-username'),
+        getElemValue('eu-fullname'),
+        getElemValue('eu-email'),
+        getElement('eu-image').src,
+        getElemValue('eu-password')).then(
+            (added) => {
+                popup('Användare', added + ' har sparats');
+                let select = getElement('eu-users');
+                let option = document.createElement('option');
+                option.value = added;
+                option.innerText = added;
+                select.appendChild(option);
+                select.value = select.options[0].value;
+            },
+            (failed) => {
+                popup('Användare', failed);
+            }
+        )
 }
+
+function evSaveUser() {
+
+    updateUser(getElemValue('eu-username'),
+        getElemValue('eu-fullname'),
+        getElemValue('eu-email'),
+        getElement('eu-image').src,
+        getElemValue('eu-password'));
+}
+
+function evDeleteUser() {
+    deleteUser(getElemValue('eu-users')).then(
+        (deleted) => {
+            let select = getElement('eu-users');
+            for (let i = 0; i < select.childElementCount; i++) {
+                if (select.options[i].value === deleted) {
+                    select.removeChild(select.options[i]);
+                    euClear();
+                    break;
+                }
+            }
+        },
+        (failed) => { }
+    )
+}
+
+
+function euClear() {
+    setElemValue('eu-username','');
+    setElemValue('eu-fullname','');
+    setElemValue('eu-email','');
+    setElemValue('eu-password','');
+    getElement('eu-image').src = 'icons/avatar.png';
+    getElement('eu-users').selectedIndex = 0;
+    disable('eu-save');
+    disable('eu-save-new');
+    disable('eu-delete');
+    disable('eu-username');
+    disable('eu-password');
+    
+}
+

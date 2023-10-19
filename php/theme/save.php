@@ -75,8 +75,12 @@ function saveTheme($args) {
             $db->string($args->theme->linkActBg),
             $db->string($args->theme->linkActFg)
         ]);
+        $lastError = $db->lastError();
         $db->close();
-        return new Reply($id>0?'ok':'error', $id > 0 );
+        if( $id > 0 ) 
+            return new Reply(true, $id);
+        else
+            return new Reply(false, $lastError);
     }
     else {
         $result = updateTheme($db, $args->themeName, [
@@ -143,8 +147,12 @@ function saveTheme($args) {
             $db->string($args->theme->linkActBg),
             $db->string($args->theme->linkActFg)
         ]);
+        $lastError = $db->lastError();
         $db->close();
-        return new Reply($result?'ok': 'error', $result);
+        if( $result ) 
+            return new Reply(true, '');
+        else
+            return new Reply(false,$lastError);
     }
 }
 
@@ -154,12 +162,13 @@ function themeInsert(stdClass $args) : Reply{
     $db->open();
     
     $id = insertTheme($db, $args->theme); 
-    
+    $lastError = $db->lastError();
     $db->close();
 
-    return new Reply( 
-        $id>0 ? 'ok' : 'error',
-        $id>0 ? $id : $db->lastError());
+    if( $id > 0)
+        return new Reply( true, $id);
+    else 
+        return new Reply( false , $lastError);
 }
 
 function saveThemeAs( stdClass $args ) : Reply {

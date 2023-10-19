@@ -1,15 +1,80 @@
 <?php
 
 require_once __DIR__ . '/../utils/strings.php';
+require_once __DIR__ . '/../site/site.php';
 
 class Db
 {
     private mysqli $mysqli;
-    private string $database;
+    private string $dbUser;
+    private string $dbPassword;
+    public string $dbDatabase;
 
-    public function __construct($database) {
-        $this->database = $database;
-    }
+    public function __construct(string|null $key=null)
+    {
+
+        $this->dbUser = DB_USER;
+        $this->dbPassword = gethostname() === DEV_HOSTNAME ? DB_PASSW_DEVEL : DB_PASSW;
+        $this->dbDatabase = DB_DATABASE;
+        $this->open();
+        $this->createTable('sites', [
+            'id',
+            'key',
+            'name',
+            'url',
+            'owner',
+            'logo',
+            'admin',
+            'email',
+            'dbUser',
+            'dbDatabase',
+            'dbPassword'
+        ], [
+            'INT(11) NOT NULL AUTO_INCREMENT',
+            // id
+            'VARCHAR(64) NOT NULL',
+            // key
+            'VARCHAR(128) NOT NULL',
+            // name
+            'VARCHAR(256) NOT NULL',
+            // url
+            'VARCHAR(256) NOT NULL',
+            // owner
+            'VARCHAR(256) NOT NULL',
+            // logo
+            'VARCHAR(128) NOT NULL',
+            // admin
+            'VARCHAR(128) NOT NULL',
+            // email
+            'VARCHAR(128) NOT NULL',
+            // dbUser
+            'VARCHAR(128) NOT NULL',
+            // dbDatabase
+            'VARCHAR(128) NOT NULL' // dbPassword
+        ]);
+
+        if( $key ) {
+            $sites = $this->select('sites', [
+                'name',
+                'url',
+                'owner',
+                'logo',
+                'admin',
+                'email',
+                'dbUser',
+                'dbDatabase',
+                'dbPassword'
+            ], $this->name('key').'='.$this->string($key));
+            if( !$sites ) {
+                die( 'Can\'t open database for site key "'.$key.'"');
+            }
+            $site = $sites[0];
+            $this->close();
+            $this->dbDatabase = $site['dbDatabase'];
+            $this->dbUser = $site['dbUser'];
+            $this->dbPassword = $site['dbPassword'];
+        }
+    }   
 
     static function databaseExist(string $dbName): bool
     {
@@ -27,29 +92,31 @@ class Db
         return $exist;
     }
 
-    function open() : bool
+
+    function open(): bool
     {
-        $this->mysqli = mysqli_connect(DB_HOST, DB_USER, gethostname() === DEV_HOSTNAME ? DB_PASSW_DEVEL : DB_PASSW);
+        $this->mysqli = mysqli_connect(DB_HOST, $this->dbUser, $this->dbPassword);
         if ($this->mysqli === null) {
             throw new Exception('MySQL connection failed');
         }
 
-        mysqli_query($this->mysqli, 'CREATE DATABASE IF NOT EXISTS ' . $this->database);
+        mysqli_query($this->mysqli, 'CREATE DATABASE IF NOT EXISTS ' . $this->dbDatabase);
         $this->mysqli->close();
 
         $this->mysqli = mysqli_connect(DB_HOST, DB_USER, gethostname() === DEV_HOSTNAME ? DB_PASSW_DEVEL : DB_PASSW);
         if ($this->mysqli->connect_error) {
-            throw new Exception('Failed to open database ' . $this->database . ': ' . $this->mysqli->connect_error);
+            throw new Exception('Failed to open database ' . $this->dbDatabase . ': ' . $this->mysqli->connect_error);
         }
 
-        mysqli_query($this->mysqli, 'USE ' . $this->database);
+        mysqli_query($this->mysqli, 'USE ' . $this->dbDatabase);
 
         return $this->mysqli !== null;
     }
 
     function close(): void
     {
-        if ($this->mysqli) mysqli_close($this->mysqli);
+        if ($this->mysqli)
+            mysqli_close($this->mysqli);
     }
 
     // returns true if table was created
@@ -75,9 +142,9 @@ class Db
 
     function tableExist(string $table): bool
     {
-        $query = 'SELECT count(*) FROM information_schema.tables WHERE table_schema = "' . $this->database . '" AND table_name = "' . $table . '"';
+        $query = 'SELECT count(*) FROM information_schema.tables WHERE table_schema = "' . $this->dbDatabase . '" AND table_name = "' . $table . '"';
         try {
-          $res = mysqli_query($this->mysqli, $query);
+            $res = mysqli_query($this->mysqli, $query);
         } catch (Exception $e) {
             echo ('PHP: Database execption  [' . $query . '] ' . '<br>' . $e->getMessage());
             echo ('PHP: Error [' . $e->getMessage() . ']');
@@ -216,7 +283,8 @@ class Db
         return surround($str, '`');
     }
 
-    function lastError() : string {
+    function lastError(): string
+    {
         return mysqli_error($this->mysqli);
     }
 

@@ -5,7 +5,7 @@ function updateContentPositions(positions) {
     });
     request.send().then(
         (resolve) => { 
-            if( resolve.status !== 'ok' ) {
+            if( resolve.ok === false ) {
                 alert(resolve.content);
             }
         },
@@ -21,7 +21,7 @@ function updateContentPublic(content,pub) {
     });
     request.send().then(
         (resolve) => { 
-            if( resolve.status !== 'ok' ) {
+            if( resolve.ok === false ) {
                 alert(resolve.content);
             }
         },

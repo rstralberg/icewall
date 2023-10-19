@@ -3,7 +3,7 @@
 function loadTheme(themeName) {
 
     getTheme(themeName).then((resolve) => {
-        if (resolve.status === 'ok') {
+        if (resolve.ok) {
             let theme = resolve.content;
 
             set_style('name', theme['name'] + '');
@@ -398,7 +398,7 @@ function onSaveTheme() {
     let request = new Request('updTheme', theme);
     request.send().then(
         (resolve) => {
-            if( resolve.status === 'ok') {
+            if( resolve.ok) {
                 popup(theme[0] + ' sparat!');
             }
             closeSaveAs();
@@ -428,9 +428,9 @@ function saveThemeAs(nameId) {
     let request = new Request('insTheme', args);
     request.send().then(
         (resolve) => {
-            if( resolve.status === 'ok') {
+            if( resolve.ok) {
                 popup(name + ' sparat!');
-                getNavbar(Session.user.username);
+                getNavbar();
                 closeDeleteTheme();
             }
         },
@@ -461,9 +461,9 @@ function deleteTheme(selectId) {
     });
     request.send().then(
         (resolve) => {
-            if( resolve.status === 'ok') {
+            if( resolve.ok) {
                 popup(themeName + ' raderat!');
-                getNavbar(Session.user.username);
+                getNavbar();
             }
         },
         (reject) => {

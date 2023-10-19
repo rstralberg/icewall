@@ -5,19 +5,19 @@
         <hr>
 
         <div class="form-40-60">
-            <label class="form-label" for="login-username">Username:</label>
-            <input class="form-text" type="text" id="login-username" name="username" required >
+            <label class="form-label" for="li-username">Username:</label>
+            <input class="form-text" type="text" id="li-username" onchange="evLoginUsername('li-password')">
         </div>
         
         <div class="form-40-60">
-            <label class="form-label" for="login-password">Password:</label>
-            <input class="form-text" type="password" id="login-password" name="password" required >
+            <label class="form-label" for="li-password">Password:</label>
+            <input class="form-text" disabled type="password" id="li-password" onchange="evLoginPassword('li-login')">
         </div>
         
         <hr>
         
         <div class="form-100">
-            <input class="form-button" type="button" value="Login" onclick="loginSelected()">
+            <input class="form-button" disabled id="li-login" type="button" value="Login" onclick="login('li-username', 'li-password')">
         </div>
         
         <div class="form-100">

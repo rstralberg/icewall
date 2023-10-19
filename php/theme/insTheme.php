@@ -10,12 +10,13 @@ function insTheme(stdClass $args) : Reply{
     
     $args->theme[0] = "'" . $args->name . "'";
     $id = insertTheme($db, $args->theme); 
-    
+    $lastError = $db->lastError();
     $db->close();
 
-    return new Reply( 
-        $id>0 ? 'ok' : 'error',
-        $id>0 ? $id : $db->lastError());
+    if( $id>0 )
+        return new Reply( true, $id ) ;
+    else
+        return new Reply( false, $lastError);
 }
 
 

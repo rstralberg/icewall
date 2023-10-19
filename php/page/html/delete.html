@@ -10,9 +10,9 @@
         </div>
 
         <div class="form-40-60">
-            <label class="form-label" for="deletepage-pages">Välj sida att radera:</label>
-            <select class="form-select" id="deletepage-pages">
-                <option value="none">Välj!</option>
+            <label class="form-label" for="dp-pages">Välj sida att radera:</label>
+            <select class="form-select" id="dp-pages" onchange="evDeletePageSelected(this)">
+                <option value="none">Välj sida!</option>
                 ${pages}
             </select>
         </div>
@@ -20,11 +20,11 @@
         <hr>
         
         <div class="form-100">
-            <input class="form-button" type="button" value="Radera" onclick="deletePage()">
+            <input class="form-button" disabled id="dp-delete" type="button" value="Radera" onclick="evPageDelete()">
         </div>
         
         <div class="form-100">
-            <input class="form-button" type="button" value="Stäng" onclick="closeDeletePage()">
+            <input class="form-button" type="button" value="Stäng" onclick="evCloseDeletePage()">
         </div>
         
 </form>

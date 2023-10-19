@@ -20,8 +20,8 @@ const PageCols = [
     'fgContent',
     'fzContent',
     'dContent'
-
 ];
+
 function createPage(Db $db): void
 {
 
@@ -69,7 +69,7 @@ function createPage(Db $db): void
 
 function selectPage(Db $db, int|null $id): array
 {
-    if( $id === null) {
+    if( $id === null || $id === 0 ) {
         $id = getFirstPageId($db);
     }
     return $db->select( 'page', array_merge(['id'],PageCols), $db->name('id') . '=' . $id);
@@ -87,6 +87,18 @@ function selectChildPages(Db $db, $id): array
 
 function insertPage(Db $db, $values): int
 {
+    $PageThemeDefaults =  [
+        80,
+        16,
+        1,
+        $db->string('#ffffff'),
+        1,
+        $db->string('#404040'),
+        $db->string('#aaaaaa'),
+        1.0,
+        3,
+    ];
+    $values = array_merge($values, $PageThemeDefaults );
     return $db->insert( 'page', PageCols, $values);
 }
 

@@ -1,26 +1,30 @@
+//  =====================================
+//  Support for /php/user/html/editAccount.html
+const EDIT_ACCOUNT_USERNAME = 'ea-username';
+const EDIT_ACCOUNT_PICTURE = 'ea-picture';
+const EDIT_ACCOUNT_FULLNAME = 'ea-fullname';
+const EDIT_ACCOUNT_EMAIL = 'ea-email';
+const EDIT_ACCOUNT_IMGFILE = 'ea-file';
 
-const EDIT_ACCOUNT_USERNAME = 'editaccount-username';
-const EDIT_ACCOUNT_PICTURE = 'editaccount-picture';
-const EDIT_ACCOUNT_FULLNAME = 'editaccount-fullname';
-const EDIT_ACCOUNT_EMAIL = 'editaccount-email';
-const EDIT_ACCOUNT_IMGFILE = 'accountform-imgfile';
-
-function editAccountSelected() {
-    webForm('editAccount', { username: Session.user.username });
+function evEditAccount() {
+    webForm('editAccount', {
+        username: Session.user.username
+    });
 }
 
-function accountImageSelected() {
 
-    const imageInput = document.getElementById(EDIT_ACCOUNT_IMGFILE);
+function accountImageSelected(fileId, imgId) {
+
+    const imageInput = document.getElementById(fileId);
     if (imageInput.files.length > 0) {
         const selectedImage = imageInput.files[0];
         const maxWidth = IMAGE_MAX_WIDTH;
 
-        let folder = Session.site.folder + '/uploads/users';
-        uploadImage(selectedImage, maxWidth, folder).then(
+        uploadImage(selectedImage, maxWidth).then(
             (resolve) => {
-                if (resolve.status === 'ok') {
-                    document.getElementById(EDIT_ACCOUNT_PICTURE).src = resolve.content;
+                if (resolve.ok) {
+                    document.getElementById(imgId).src = 
+                    'sites/' + Session.site.key + '/images/' + resolve.content;
                 }
             },
             (reject) => {
@@ -32,21 +36,19 @@ function accountImageSelected() {
 
 function saveAccount() {
 
-    let user = Session.user;
-    updateUser('editAccount',
-        document.getElementById(EDIT_ACCOUNT_USERNAME).value,
-        document.getElementById(EDIT_ACCOUNT_PICTURE).src,
-        document.getElementById(EDIT_ACCOUNT_FULLNAME).value,
-        document.getElementById(EDIT_ACCOUNT_EMAIL).value,
-        user.permPage , user.permContent, user.permUser , user.permTheme , user.permSettings
-    );
+    let username = document.getElementById('ea-username').value;
+    let picture = document.getElementById('ea-picture').src;
+    let fullname = document.getElementById('ea-fullname').value;
+    let email = document.getElementById('ea-email').value;
+    closeEditAccount();
+
+    updateUser(username, fullname, email, picture );
 }
 
 function closeEditAccount() {
     closeForm('editAccount');
 }
 
-function deteteAccountSelected() {
-    const username = document.getElementById(EDIT_ACCOUNT_USERNAME).value;
-    deleteUser(username);
+function evDeleteAccount() {
+    deleteUser(document.getElementById('ea-username').value);
 }

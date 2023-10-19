@@ -61,9 +61,7 @@ function evAlignRight() {
 }
 
 function evEditPageTheme() {
-    webForm('editPageTheme', {
-        pageId: Session.page.id
-    });
+    webForm('editPageTheme');
 }
 
 function evShadow() {
@@ -101,10 +99,6 @@ function evLine() {
 
 function evImage() {
     onImage();
-}
-
-function evAudio() {
-    onAudio();
 }
 
 function evSpotify() {

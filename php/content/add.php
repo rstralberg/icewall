@@ -7,16 +7,18 @@ function addContent(stdClass $args) : Reply {
     $db = new Db($args->database);
     $db->open();
 
-    $content_id = insertContent($db, [
+    $id = insertContent($db, [
         $args->pageId,
         $db->string(rawurldecode('Här är ett nytt avsnitt')),
         $args->pos,
         $db->bool(false)
     ]);
-
+    $lastErrror = $db->lastError();
     $db->close();
-
-    return new Reply($content_id>0?'ok':'error', $content_id);
+    if( $id > 0 ) 
+        return new Reply( true, $id);
+    else 
+        return new Reply( false, $lastErrror );
 }
 
 ?>

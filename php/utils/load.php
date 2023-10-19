@@ -7,9 +7,9 @@ function loadForm(string $page, array $args = null ) : Reply {
 
     $loaded = loadHTML(__DIR__. '/' . '../' . $page . '.html', $args);
     if( $loaded ) {
-        return new Reply('ok',  compressHTML($loaded));
+        return new Reply(true, compressHTML($loaded));
     }
     else {
-        return new Reply('error', 'Kunde inte ladda önskad sida "' . $page . '.html"');
+        return new Reply(false, 'Kunde inte ladda önskad sida "' . $page . '.html"');
     }
 }

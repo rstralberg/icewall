@@ -1,19 +1,21 @@
 <?php 
 
+
+
 class Reply {
 
-    private $status = '';
-    private $content = ':';
+    public bool $ok = false;
+    public string $content = ':';
 
-    function __construct(string $status, string|stdClass|bool $content ) {
-        $this->status = $status;
+    function __construct(bool $ok, string|stdClass|bool $content ) {
+        $this->ok = $ok;
         $this->content = $content;
     }
 
     function send() : void {
         header('Content-Type: application/json');
         echo( json_encode( [
-            'status' => $this->status,
+            'ok' => $this->ok,
             'content' => $this->content
         ]));
     }

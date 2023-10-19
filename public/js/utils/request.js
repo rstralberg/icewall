@@ -4,14 +4,14 @@
 
 class Reply {
 
-    #status = '';
+    #ok = false;
     #content = ':'
 
-    get status() { return this.#status; }
+    get ok() { return this.#ok; }
     get content() { return this.#content; }
 
     constructor(reply) {
-        this.#status = reply.status;
+        this.#ok = reply.ok;
         this.#content = reply.content;
     }
 }
@@ -19,22 +19,19 @@ class Reply {
 class Request {
 
     #what = '';
-    #args = null;
+    #args = {};
 
     constructor(what, args = null) {
         if( args === null) {
             this.#args = {
-                database : Session.site.key
+                key: Session.site.key,
+                database : Session.site.key,
             }
         } else {
-            // Object.defineProperty(args,'database', {
-            //     value: Session.database,
-            //     writable: true
-            // });
             this.#args = args;
+            this.#args['key'] = Session.site.key;
             this.#args['database'] = Session.site.key;
         }
-
         this.#what = what;
     }
 
@@ -62,12 +59,10 @@ class Request {
                         resolve(new Reply(res));
                     })
                     .catch(err => {
-                        alert(err);
                         reject(err)
                     });
 
             } catch (error) {
-                alert( error );
                 reject(error);
             }
         });

@@ -8,14 +8,14 @@ const HOSTNAME = DEV_HOSTNAME;
 //  MySQL access
 const DB_HOST = 'localhost';
 const DB_USER = 'root';
-const DB_DATABASE = 'km';
+const DB_DATABASE = 'icewall';
 
 const DB_PASSW_DEVEL = 'p5sk06a';
 const DB_PASSW_SERVER = '';
 const DB_PASSW = DB_PASSW_DEVEL;
 
 //  Default settings
-const DEFAULT_SITENAME = 'KalixMixen';
+const DEFAULT_SITENAME = 'IceWall';
 const DEFAULT_SITEOWNER = 'Roland Strålberg';
 const DEFAULT_LOGO = 'icons/icewall-512x512.png';
 const DEFAULT_THEME = 'Standard';

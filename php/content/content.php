@@ -74,7 +74,7 @@ function deletePageContents(Db $db, $pageId): void
 
 function getContent(stdClass|null $args) : Reply {
 
-    if( $args === null ) return new Reply('error', 'Argument saknas vid hämtning av Content');
+    if( $args === null ) return new Reply(false, "Tom fråga!");
     
     $db = new Db($args->database);
     $db->open();
@@ -85,7 +85,7 @@ function getContent(stdClass|null $args) : Reply {
     $db->close();
 
     if( !$contents ) {
-        return new Reply('error', 'Sidan "' . $page['title'] . '" saknar innehåll');
+        return new Reply(false, 'Sidan ' . $page['title'] . ' är tom');
     }
     else {
         $html = '';
@@ -93,7 +93,7 @@ function getContent(stdClass|null $args) : Reply {
             if( $content['public']==='1' || ($args->username && strlen($args->username)>0))
             $html .= generateContent($content);
         }
-        return new Reply('ok', $html);
+        return new Reply(true,  $html);
     }
 }
 

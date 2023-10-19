@@ -1,19 +1,18 @@
 
-function onAudio() {
-    webForm('audio');
-}
+//  ======================================
+//  Support for content/html/audio.html
+//  ======================================
 
-function mp3Selected() {
+function mp3Selected(fileId, playerId) {
 
-    const audioInput = document.getElementById('audio-file');
+    const audioInput = document.getElementById(fileId);
     if (audioInput.files.length > 0) {
-        const selectedAudio = audioInput.files[0];
 
-        let folder = Session.site.folder + '/uploads/' + Session.page.id;
-        uploadAudio(selectedAudio, folder).then(
+        const selectedAudio = audioInput.files[0];
+        uploadAudio(selectedAudio).then(
             (resolve) => {
-                if (resolve.status === 'ok') {
-                    document.getElementById('audio-player').src = resolve.content;
+                if (resolve.ok) {
+                    document.getElementById(playerId).src = resolve.content;
                 }
             },
             (reject) => {

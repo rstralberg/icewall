@@ -19,8 +19,9 @@ function saveContent( stdClass $args ) : Reply {
             $db->bool($args->pub),
             $args->pos],
             $args->id) ) {
+            $lastError = $db->lastError();
             $db->close();
-            return new Reply( 'error', '### Kunde inte spara avsnittet: ' .  $db->lastError() );
+            return new Reply(false, $lastError);
         }
     }
     else {
@@ -30,13 +31,14 @@ function saveContent( stdClass $args ) : Reply {
         $content['public'] = $db->bool($args->pub);
         $content['id'] = insertContent($db, $content);
         if( $content['id'] < 1 ) {
+            $lastError = $db->lastError();
             $db->close();
-            return new Reply( 'error', '### Kunde inte spara avsnittet: ' .  $db->lastError() );
+            return new Reply(false, $lastError);
         }
     }   
 
     $db->close();
-    return new Reply('ok', generateContent($content));
+    return new Reply(true, generateContent($content));
 
 }
 ?>

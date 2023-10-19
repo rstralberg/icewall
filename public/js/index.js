@@ -13,7 +13,7 @@ function index(pageId, sitekey, siteName) {
     let left = document.querySelector('.left');
     let right = document.querySelector('.right');
     let user = Session.user;
-    if (user.username === '') {
+    if (user === null) {
         let username = Cookie.username;
         if (username && username.length > 0) {
             getUser(username).then((reply) => {
@@ -32,10 +32,10 @@ function index(pageId, sitekey, siteName) {
     getPage(pageId).then(
         (page) => {
             Session.page = page;
-            loadPageTheme(Session.page.id);
-            getNavbar(user.username);
-            getPageTitle(Session.page.id, user.username);
-            getContents(Session.page.id);
+            loadPageTheme(pageId);
+            getNavbar();
+            getPageTitle(pageId);
+            getContents(pageId);
             getFooter();
 
             let rtPublic = document.getElementById('rt-public');

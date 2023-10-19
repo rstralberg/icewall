@@ -1,15 +1,18 @@
 const RENAME_PAGE_TITLE = 'renamepage-title';
 
-function onRenamePage() {
-    webForm('renamePage',{
-        pageId: Session.page.id
-    });
+function evRenamePage() {
+    webForm('renamePage', { pageId: Session.page.id});
 }
 
-function renamePage(pageId, titleId) {
+function evNewTitle(e) { 
+    if( e.value.length > 0 ) 
+        enable('rp-save');
+    else 
+        disable('rp-save');
+}
 
-    let title = document.getElementById(titleId).value;
-    updatePageTitle(pageId, title);
+function evSaveNewPageTitle(pageId) {
+    updatePageTitle(pageId, getElemValue('rp-new'));
     closeRenamePage();
 }
 

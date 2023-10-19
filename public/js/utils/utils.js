@@ -71,3 +71,40 @@ function isValid(v) {
 function sqlString(s) {
     return '\'' + s + '\'';
 }
+
+function filenameOnly(path) {
+    let fileNameIndex = path.lastIndexOf("/") + 1;
+    return  path.substr(fileNameIndex);
+}
+
+function enable(elementId) {
+    getElement(elementId).removeAttribute('disabled');
+}
+
+function disable(elementId) {
+    getElement(elementId).setAttribute('disabled','');
+}
+
+function getElemValue(elementId) {
+    return getElement(elementId).value;
+}
+function setElemValue(elementId, value) {
+    getElement(elementId).value = value;
+}
+
+function getElement(elementId) {
+    return document.getElementById(elementId);
+}
+
+function isEmpty( str ) {
+    if( !isValid(str)) return true;
+    return str.length === 0;
+}
+
+function addImagePath(imgfile) {
+    return 'sites/' + Session.site.key + '/images/' + imgfile;
+}
+
+function stripImagePath(imgurl) {
+    return filenameOnly(imgurl);
+}

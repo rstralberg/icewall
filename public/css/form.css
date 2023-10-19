@@ -125,10 +125,11 @@
     height: 1.6em;
 }
 
-.form-button:disabled {
-    background-color: gray;
-    color: #202020;
-    pointer-events: none;
+.form button:disabled,
+.form input[type=button]:disabled {
+    background-color: #303030;
+    color: #101010;
+    cursor: not-allowed;
 }
 
 .form-button:focus,
@@ -138,12 +139,35 @@
     color: var(--fgHover);
 }
 
+.form input[type=text]:disabled {
+    background-color: #303030;
+    color: #101010;
+    cursor: not-allowed;
+}
+
+.form input[type=password]:disabled {
+    background-color: #303030;
+    color: #101010;
+    cursor: not-allowed;
+}
+
+.form input[type=email]:disabled {
+    background-color: #303030;
+    color: #101010;
+    cursor: not-allowed;
+}
+
+.form input[type=file]:disabled {
+    background-color: #303030;
+    color: #101010;
+    cursor: not-allowed;
+}
+
 .form-combo,
 .form-input {
     width: 98%;
     height: 1em;
     margin: 8px;
-
 }
 
 .form-slider,

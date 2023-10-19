@@ -20,7 +20,7 @@ function settingImageSelected() {
         let folder = Session.site.folder + '/uploads/shared';
         uploadImage(selectedImage, maxWidth, folder ).then(
             (resolve) => {
-                if (resolve.status === 'ok') {
+                if (resolve.ok) {
                     document.getElementById(EDIT_SETTINGS_LOGO).src = resolve.content;
                 }
             },

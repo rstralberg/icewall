@@ -11,6 +11,6 @@ function contentDelete(stdClass $args) : Reply {
 
     $db->close();
 
-    return new Reply('ok', true);
+    return new Reply(true, '');
 }
 ?>

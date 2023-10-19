@@ -1,8 +1,8 @@
 function getContents(pageId) {
     let request = new Request('getContent', {
-        pageId: pageId,
+        pageId: Session.page.id,
+        username: Session.user ? Session.user.username : null,
         barheight: vh2px('6vh'),
-        username: Session.user.username
     });
     request.send().then(
         (resolve) => {

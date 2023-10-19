@@ -16,7 +16,7 @@ $file = $folder.'/'.$name;
 
 $bytes = file_put_contents($file, $data);
 
-$reply = new Reply($bytes <= 0?'error':'ok', $name);
+$reply = new Reply($bytes > 0, $name);
 $reply->send();
 
 ?> 

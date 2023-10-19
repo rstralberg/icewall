@@ -3,12 +3,12 @@ function getPage(pageId) {
 
     return new Promise( (resolve, reject) => 
     {
-        let request = new Request('getPage', {
-            pageId: pageId
+        let request = new Request('getPage', { 
+            pageId: pageId 
         });
         request.send().then(
             (result) => { 
-                if( result.status==='ok') {
+                if( result.ok) {
                     let page = JSON.parse(result.content);
                     object2PageStyle(page);
                     resolve(page);
@@ -21,28 +21,26 @@ function getPage(pageId) {
 }
 
 function removePage(pageId) {
-    let request = new Request('removePage', {
-        pageId: pageId
-    });
+    let request = new Request('removePage', {pageId: pageId});
     request.send().then(
         (resolve) => {
-            if (resolve.status === 'ok') {
-                let firstPageId = parseInt(resolve.content);
+            if (resolve.ok) {
+                pageId = parseInt(resolve.content);
                 if (pageId === Session.page.id) {
-                    getPage(firstPageId).then(
-                        (page) => { Session.page = page; }
+                    getPage(pageId).then(
+                        (page) => { 
+                            Session.page = page; 
+                            getNavbar();
+                            getPageTitle(Session.page.id);
+                        }
                     );
                 }
-                getNavbar(Session.user.username);
-                getPageTitle(
-                    Session.page.id,
-                    Session.user.username);
             }
             else {
-                popup('FEL', resolve.content);
+                error( resolve.content);
             }
         },
-        (reject) => { }
+        (reject) => { error( reject ) }
     );
 }
 
@@ -66,13 +64,14 @@ function updatePageParent(pageId, parentId) {
 function updatePagePosition(positions) {
 
     let request = new Request('pageUpdate', {
+        pageId: Session.page.id,
         positions: JSON.stringify(positions),
         type: 'pos',
     });
     request.send().then(
         (resolve) => {
-            if( resolve.status === 'ok') {
-                getNavbar(Session.user.username);
+            if( resolve.ok) {
+                getNavbar();
             }
         }
     );
@@ -86,8 +85,8 @@ function updatePagePublic(pub) {
     });
     request.send().then(
         (resolve) => {
-            if( resolve.status === 'ok') {
-                getPageTitle(Session.page.id, Session.user.username);
+            if( resolve.ok) {
+                getPageTitle(Session.page.id);
             }
         }
     );
@@ -109,10 +108,10 @@ function getPageGroup(pageId) {
 }
 
 
-function getPageTitle(pageId, username) {
+function getPageTitle(pageId) {
     let request = new Request('getPageTitle', {
-        pageId: pageId,
-        username: username
+        pageId: pageId ,
+        username: Session.user ? Session.user.username : null
     });
     request.send().then(
         (resolve) => { 

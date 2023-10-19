@@ -5,7 +5,7 @@ function webForm(formName, args = null) {
     let request = new Request(formName, args);
     request.send().then(
         (res) => {
-            if (res.status === 'ok') {
+            if (res.ok) {
                 openForm(formName, res.content);
             }
             else {

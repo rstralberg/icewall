@@ -2,7 +2,7 @@
 
 const GETVALUE_VALUE = 'getvalue-value';
 
-function getValue(title, label, type, value, onApply ) {
+function getValue(title, label, type, value, onApply, opt = '' ) {
 
     return new Promise( (resolve, _reject) => {
         webForm('getvalue',  {
@@ -10,7 +10,8 @@ function getValue(title, label, type, value, onApply ) {
             label: label,
             type: type,
             value: value,
-            callback: onApply
+            callback: onApply,
+            opt: opt
         });
     });
 }

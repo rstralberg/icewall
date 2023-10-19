@@ -5,27 +5,27 @@
         <hr>
 
         <div class="form-40-60">
-            <label class="form-label" for="editaccount-username">Användarnamn</label>
-            <input class="form-text" type="text" id="editaccount-username" readonly value="${username}" >
+            <label class="form-label" for="ea-username">Användarnamn</label>
+            <input class="form-text" type="text" id="ea-username" readonly value="${username}" >
         </div>
         
         <div class="form-100">
-            <img class="form-image" width="${size}px" height="auto" id="editaccount-picture" src="${picture}">
+            <img class="form-image" width="${size}px" height="auto" id="ea-picture" src="${picture}">
         </div>
         
         <div class="form-40-60">
-            <label class="form-label" for="accountform-imgfile">Bild:</label>
-            <input class="form-file" accept=".jpeg, .png, .jpg" type="file" id="accountform-imgfile" name="file" required onchange="accountImageSelected()">
+            <label class="form-label" for="ea-file">Bild:</label>
+            <input class="form-file" accept=".jpeg, .png, .jpg" type="file" id="ea-file" name="file" onchange="accountImageSelected('ea-file','ea-picture')">
         </div>
 
         <div class="form-40-60">
-            <label class="form-label" for="editaccount-fullname">Fullständigt namn:</label>
-            <input class="form-text" type="text" id="editaccount-fullname" value="${fullname}" >
+            <label class="form-label" for="ea-fullname">Fullständigt namn:</label>
+            <input class="form-text" type="text" id="ea-fullname" value="${fullname}" >
         </div>
         
         <div class="form-40-60">
-            <label class="form-label" for="editaccount-email">Epost:</label>
-            <input class="form-text" type="email" id="editaccount-email" value="${email}">
+            <label class="form-label" for="ea-email">Epost:</label>
+            <input class="form-text" type="email" id="ea-email" value="${email}">
         </div>
         
         <hr>

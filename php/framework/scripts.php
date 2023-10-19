@@ -25,6 +25,7 @@ function generateScripts() : string {
     $html.= script('utils/uploadAudio');
     $html.= script('utils/uploadImage');
     $html.= script('utils/utils');
+    $html.= script('utils/error');
     $html.= script('utils/webform');
 
     // content
@@ -44,7 +45,6 @@ function generateScripts() : string {
     // framework
     $html.= script('framework/footer');
     $html.= script('framework/navbar');
-    $html.= script('framework/tools');
     $html.= script('framework/left');
     $html.= script('framework/right');
 
@@ -78,6 +78,8 @@ function generateScripts() : string {
     $html.= script('user/edit');
     $html.= script('user/login');
     $html.= script('user/logout');
+    $html.= script('user/password');
+    $html.= script('user/newUser');
     
     return $html;
 

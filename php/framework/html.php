@@ -3,7 +3,7 @@ require_once __DIR__ . '/head.php';
 require_once __DIR__ . '/../page/page.php';
 require_once __DIR__ . '/../utils/html.php';
 
-function generateHTML(Db $cli, string $sitekey, string $siteName ) : string {
+function generateHTML(Db $cli, string $sitekey, string $siteName) : string {
 
     $pageId = getFirstPageId($cli);
     

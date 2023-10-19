@@ -1,20 +1,23 @@
+//  =====================================
+//  Support for user/html/logout.html form
+//  =====================================
 
-function onLogout() {
-    webForm('logout',{
-        username: Session.user.username
-    });
+
+function evLogout() {
+    webForm('logout', { username: Session.user.username });
 }
 
 function closeLogout() {
     closeForm('logout');
 }
 
-function logoutSelected() {
+function evLogoutSelect() {
     closeLogout();
+
     Session.user = null;
-    let page = Session.page;
     Cookie.username = '';
-    getNavbar('');
-    getPageTitle(page.id, '');
+
+    getNavbar();
+    getPageTitle(Session.page.id);
 }
 
