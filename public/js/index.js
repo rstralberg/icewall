@@ -1,5 +1,5 @@
 function index(pageId, sitekey, siteName) {
-    var _a;
+
     Session.edit = false;
     Session.key = sitekey;
     Cookie.key(sitekey);

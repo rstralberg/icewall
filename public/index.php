@@ -1,3 +1,4 @@
 <?php
-require_once __DIR__ . '/../php/index.php';
+phpinfo();
+// require_once __DIR__ . '/../php/index.php';
 ?>

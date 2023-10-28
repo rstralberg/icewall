@@ -1,15 +1,14 @@
 <?php
 
-require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/dbTable.php';
 require_once __DIR__ . '/../config.php';
 
-function initializeUser(Db $db, string $email, string $logo): void
-{
+class dbUsers extends dbTable {
 
-    if (
-        $db->createTable(
-            'user',
-            [
+    public function __construct() { parent::__construct('users');}
+
+    public function create(db $db) : bool|string {
+        if ( $db->createTable($this->tableName, [
                 'username',
                 'fullname',
                 'email',
@@ -19,14 +18,13 @@ function initializeUser(Db $db, string $email, string $logo): void
             [
                 'VARCHAR(64) NOT NULL DEFAULT \'admin\' UNIQUE',
                 'VARCHAR(256) NOT NULL DEFAULT \'Administrator\'',
-                'VARCHAR(256) NOT NULL DEFAULT \'' . $email . '\'',
-                'VARCHAR(128) NOT NULL DEFAULT \'' . $logo . '\'',
+                'VARCHAR(256) NOT NULL DEFAULT \'email@email.se\'',
+                'VARCHAR(128) NOT NULL DEFAULT \'/icons/icewall-180x180.png\'',
                 'VARCHAR(256) NOT NULL DEFAULT \'' . password_hash('winterfall', PASSWORD_DEFAULT) . '\''
-            ]
-        )
-    ) {
-        $db->addDefaultRow('user');
+                ]) ) return true;
+        else return $db->lastError();
     }
 }
+
 
 ?>

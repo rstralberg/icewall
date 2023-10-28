@@ -1,5 +1,6 @@
 {
     "configurations": [
+        
         {
             "name": "Launch GrafitGubben",
             "type": "php",
@@ -17,10 +18,10 @@
             "port": 9003,
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
-                "uriFormat": "http://localhost:%s/?site=grafitgubben",
+                "uriFormat": "http://localhost:%s/?site=gg",
                 "action": "openExternally"
             },
-            "runtimeExecutable": "/usr/bin/php"
+            "runtimeExecutable": "c:/php/php.exe"
         },
         {
             "name": "Launch KalixMixen",
@@ -39,10 +40,10 @@
             "port": 9003,
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
-                "uriFormat": "http://localhost:%s/?site=kalixmixen",
+                "uriFormat": "http://localhost:%s/?site=km",
                 "action": "openExternally"
             },
-            "runtimeExecutable": "/usr/bin/php"
+            "runtimeExecutable": "c:/php/php.exe"
         }
     ]
 }

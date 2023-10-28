@@ -2,81 +2,58 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/utils/error.php';
 
-require_once __DIR__ . '/utils/db.php';
-require_once __DIR__ . '/theme/theme.php';
-require_once __DIR__ . '/content/content.php';
-require_once __DIR__ . '/page/page.php';
-require_once __DIR__ . '/user/user.php';
-require_once __DIR__ . '/site/site.php';
+require_once __DIR__ . '/db/db.php';
+require_once __DIR__ . '/db/dbSites.php';
+require_once __DIR__ . '/db/dbManager.php';
 
-require_once __DIR__ . '/framework/fonts.php';
-require_once __DIR__ . '/framework/html.php';
+require_once __DIR__ . '/generate/html.php';
 
-// Generate any new sites
-generateSites();
+// ===  ===  ===  ===  ===  ===  ===  ===  ==
+// === AND HERE WE GO !!! ===
+// ===  ===  ===  ===  ===  ===  ===  ===  ==
+
+$dbManager = new dbManager();
+$dbManager->init();
 
 // Get site and page id to load
 $siteKey = '';
-if (array_key_exists('site', $_GET)) {
-    $siteKey = $_GET['site'];
+if ( array_key_exists( 'site', $_GET ) ) {
+    $siteKey = $_GET[ 'site' ];
 }
-if ($siteKey === '')
-    die('IceWall: #ERROR. No site given in argument. Aborting!');
+if ( $siteKey === '' )
+die( 'IceWall: #ERROR. No site given in argument. Aborting!' );
 
 // We need site information
-$fh = fopen(__DIR__ . '/../sites.json', 'r');
-if ($fh === null)
-    die('IceWall: #ERROR. No sites defined. Aborting!');
+$db = new Db( $siteKey );
+if ( $db === null )
+die( 'IceWall: #ERROR. Failed to open database for "' . $siteKey . '"' );
 
-$sites = fread($fh, 32000);
-if ($fh === null)
-    die('IceWall: #ERROR. No sites defined. Aborting!');
-
-$sites = json_decode($sites);
-
-// Which site is requested
-if ($siteKey === null || strlen($siteKey) === 0)
-    die('IceWall: #ERROR. No site given! Aborting!');
-
-// Is the request site really defined
-$validSite = null;
-for ($i = 0; $i < count($sites->sites); $i++) {
-    $s = $sites->sites[$i];
-    if ($s->key === $siteKey) {
-        $validSite = $s;
-        break;
-    }
-}
-if ($validSite === null)
-    die('IceWall: #ERROR. Request "' . $siteKey . '" lacks informantion!');
-
-// Database must exist or be created
-$db = new Db($validSite->key);
 $db->open();
-
-
-if ($db === null)
-    die('IceWall: #ERROR. Failed to open database for "' . $site . '"');
+$sites = $db->select( 'sites', [ 'key', 'title' ], $db->whereStr( 'key', $siteKey ) );
+if ( $sites === false ) {
+    die( 'IceWall: #ERROR. Requested site wont load. Aborting!' );
+}
+$site = $sites[ 0 ];
 
 // Greate. Were ready to start
 session_start();
 
-// Database support
+// Lets generate the basic page
+// and then scripts will do the rest
 try {
-    $pageId = getFirstPageId($db);
+    $pageId = getFirstPageId( $db );
 
     echo (
         generateHTML(
             $db,
-            $validSite->key,
-            $validSite->name
-        )
-    );
+            $pageId,
+            $site[ 'key' ],
+            $site[ 'title' ]
+        ) );
 
-    $db->close();
-} 
-catch (Exception $e) {
-    echo ('<br>IceWall: #EXCEPTION ' . $e->getMessage());
-}
+        $db->close();
+    } catch ( Exception $e ) {
+        echo ( '<br>IceWall: #EXCEPTION ' . $e->getMessage() );
+    }
 
-?>
+    ?>

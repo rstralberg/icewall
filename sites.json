@@ -1,28 +1,16 @@
 {
     "sites": [
       {
-        "key": "kalixmixen",
-        "name": "KalixMixen",
-        "url": "kalixmixen.se",
+        "key": "km",
+        "title": "KalixMixen",
         "owner": "Roland Strålberg",
-        "logo": "km-512x512.png",
-        "admin": "Roland Strålberg",
-        "email": "rstralberg@pm.me",
-        "dbUser": "root",
-        "dbDatabase": "kalixmixen",
-        "dbPassword": "p5sk06a"
+        "email": "roland.stralberg@outlook.com"
       },
       {
-        "key": "grafitgubben",
-        "name": "GrafitGubben",
-        "url": "grafitgubben.se",
+        "key": "gg",
+        "title": "GrafitGubben",
         "owner": "Roland Strålberg",
-        "logo": "gg-512x512.png",
-        "admin": "Roland Strålberg",
-        "email": "rstralberg@pm.me",
-        "dbUser": "root",
-        "dbDatabase": "grafitgubben",
-        "dbPassword": "p5sk06a"
+        "email": "roland.stralberg@outlook.com"
       }
     ]
   }

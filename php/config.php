@@ -1,7 +1,7 @@
 <?php
 
 //  
-const DEV_HOSTNAME = 'mx';
+const DEV_HOSTNAME = 'roland';
 const SERVER_HOSTNAME = 'localhost';
 const HOSTNAME = DEV_HOSTNAME;
 
@@ -11,14 +11,14 @@ const DB_USER = 'root';
 const DB_DATABASE = 'icewall';
 
 const DB_PASSW_DEVEL = 'p5sk06a';
-const DB_PASSW_SERVER = '';
+const DB_PASSW_SERVER = 'p5sk06a';
 const DB_PASSW = DB_PASSW_DEVEL;
 
 //  Default settings
 const DEFAULT_SITENAME = 'IceWall';
 const DEFAULT_SITEOWNER = 'Roland Strålberg';
 const DEFAULT_LOGO = 'icons/icewall-512x512.png';
-const DEFAULT_THEME = 'Standard';
+const DEFAULT_THEME = 'IceWall';
 const DEFAULT_UPLOAD = 'km';
 
 //  Default user = admin

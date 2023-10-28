@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../tools/strings.php';
 require_once __DIR__ . '/../db/sites.php';
 
-class Db
+class db
 {
     private mysqli $mysqli;
     private string $dbUser;
@@ -258,6 +258,17 @@ class Db
         }
     }
 
+    function drop( string $table) : bool | string {
+        $query = 'DROP TABLE IF EXIST ' . $this->name($table) . ' ';
+        try { 
+            return mysqli_query($this->mysqli, $query);
+        }
+        catch (mysqli_sql_exception $e) { 
+            return $e->getMessage();
+        }
+        return true;
+    }
+
     function string(string $str): string
     {
         return surround(mysqli_real_escape_string($this->mysqli, $str), '\'');
@@ -278,7 +289,13 @@ class Db
         return mysqli_error($this->mysqli);
     }
 
+    function whereInt(string $left, int $right) {
+        return $this->name($left).'='.$right;
+    }
 
+    function whereStr(string $left, string $right) {
+        return $this->name($left).'='.$this->string($right);
+    }
 }
 
 

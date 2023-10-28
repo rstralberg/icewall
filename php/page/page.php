@@ -137,27 +137,6 @@ function deletePage(Db $db, $id): void
     $db->delete( 'page', $db->name('id') . '=' . $id);
 }
 
-function getFirstPageId(Db $db)
-{
-    $pages = $db->select(
-        'page', ['id'],
-        $db->name('isParent') . '=' . $db->bool(false) . ' AND ' .
-        $db->name('public') . '=1' .  ' AND ' .
-        $db->name('parentId') . '=0',
-        $db->name('pos') . ' asc',
-        'LIMIT 1'
-    );
-    if( !$pages) {
-        $pages = $db->select(
-            'page', ['id'],
-            $db->name('isParent') . '=' . $db->bool(false) . ' AND ' .
-            $db->name('parentId') . '=0',
-            $db->name('pos') . ' asc',
-            'LIMIT 1'
-        );
-    }
-    return $pages ? $pages[0]['id'] : -1;
-}
 
 function selectPageGroup(Db $db, string $where) : array {
     $pages = $db->select(
