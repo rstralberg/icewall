@@ -1,0 +1,30 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>Radera sida</h1>
+
+    <hr>
+
+    <div class="cols-100">
+        Kom ihåg att om du radera en sida som har undersidor så
+        raderas även dessa. Så tänk två gånger.
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="dp-pages">Välj sida att radera:</label>
+        <select id="dp-pages" onchange="pageDeleteSelected(this)">
+            <option value="none">Välj sida!</option>
+            ${pages}
+        </select>
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input disabled id="dp-delete" type="button" value="Radera" onclick="pageDelete()">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="closeDeletePage()">
+    </div>
+
+</form>

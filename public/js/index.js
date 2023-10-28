@@ -1,19 +1,20 @@
-
 function index(pageId, sitekey, siteName) {
-
+    var _a;
+    Session.edit = false;
     Session.key = sitekey;
     Cookie.key(sitekey);
-
     Session.site = {
         key: sitekey,
         name: siteName
     };
-
+    (_a = eGet('body')) === null || _a === void 0 ? void 0 : _a.addEventListener('keydown', (e) => {
+        if (!Session.edit)
+            e.preventDefault();
+    });
     // Load any user logged in
-    let left = document.querySelector('.left');
-    let right = document.querySelector('.right');
-    let user = Session.user;
-    if (user === null) {
+    let left = eGet('.left');
+    let right = eGet('.right');
+    if (Session.user.username === '') {
         let username = Cookie.username;
         if (username && username.length > 0) {
             getUser(username).then((reply) => {
@@ -27,30 +28,22 @@ function index(pageId, sitekey, siteName) {
         left.style.display = Session.user.isAdmin || Session.user.username === Session.page.author ? 'block' : 'none';
         right.style.display = Session.user.isAdmin ? 'block' : 'none';
     }
-
     // Load current page and then draw everyting
-    getPage(pageId).then(
-        (page) => {
-            Session.page = page;
-            loadPageTheme(pageId);
-            getNavbar();
-            getPageTitle(pageId);
-            getContents(pageId);
-            getFooter();
-
-            let rtPublic = document.getElementById('rt-public');
-            if (isValid(rtPublic)) {
-                rtPublic.innerText = Session.page.public === '0' ? 'Intern' : 'Publik';
-            }
-
-        },
-        (error) => {
-            popup('FEL', error);
-        });
-
+    getPage(pageId).then((page) => {
+        Session.page = page;
+        loadPageTheme(pageId);
+        getTop();
+        getSub(pageId);
+        getContents(pageId);
+        bottom();
+        let rtPublic = document.getElementById('rt-public');
+        if (isValid(rtPublic)) {
+            rtPublic.innerText = Session.page.publ ? 'Intern' : 'Publik';
+        }
+    }, (err) => {
+        error(err);
+    });
 }
-
 function bavClick(e) {
     e.preventDefault();
-
 }

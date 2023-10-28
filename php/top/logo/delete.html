@@ -1,0 +1,24 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>Radera användare</h1>
+
+    <hr>
+
+    <div class="cols-40-40-30">
+        <label for="delete-account">Välj en den användare du vill radera:</label>
+        <select id="delete-account">
+            ${options}
+        </select>
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="Radera" onclick="delAccount('delete-account')">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="closeDeleteAccount()">
+    </div>
+
+</form>

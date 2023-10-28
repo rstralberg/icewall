@@ -1,0 +1,27 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>Webblänk</h1>
+
+    <hr>
+
+    <div class="cols-40-40-30">
+        <label for="wl-text">Text:</label>
+        <input type="text" id="wl-text" value="${text}">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="wl-url">Address:</label>
+        <input type="url" id="wl-url">
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="Skapa" onclick="saveWeblink('${cursorpos}')">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="closeWeblink()">
+    </div>
+
+</form>

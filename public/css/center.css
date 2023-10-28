@@ -1,0 +1,64 @@
+.center {
+    grid-area: 3 / 2 / 4 / 3;
+    background: var(--centerBg);
+    color: var(--centerFg);
+    border-radius: var(--centerBorderRadius);
+    border-color: var(--centerBorderColor);
+    border-width: var(--centerBorderSize);
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--centerShadows));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--centerShadows));
+    padding-top: 2vh;
+}
+
+.center section {
+	display: block;
+	overflow: hidden;
+	background: var(--sectionsBg);
+	color: var(--sectionsFg);
+	outline-style: solid;
+	outline-width: var(--sectionsBorderSize);
+	outline-color: var(--sectionsBorderColor);
+	border-radius: var(--sectionsBorderRadius);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--sectionsShadows));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--sectionsShadows));
+	padding: calc( 1 * var(--sectionsFontsize));
+	width: var(--sectionsWidth);
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: calc( 10 * var(--sectionsFontsize) );
+}
+
+.selected {
+    background: var(--centerBhHi);
+}
+
+
+.center-public {
+	font-size: medium;
+	margin-top: 0px !important;
+	position: absolute;
+	right: 36px;
+	color: var(--fgCenter);
+	font-weight: normal;
+	top: 0;
+	font-weight: bold;
+}
+
+.center-public-checkbox {
+	margin-top: 4px !important;
+	position: absolute;
+	right: 1em;
+	height: 32px;
+}
+
+
+.center-active {
+
+	background: var(--bgCenterActive);
+	color: var(--fgCenter);
+	outline-style: auto;
+	outline-width: var(--borderWidth);
+	outline-color: var(--borderColor);
+    border-radius: var(--rRoundness);
+    overflow: auto;
+}

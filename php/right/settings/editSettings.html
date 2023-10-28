@@ -1,0 +1,58 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>Redigera Inställningar</h1>
+    
+    <hr>
+    <!-- logo |km-512x512.png  | -->
+    <div class="cols-100">
+        <img style="min-height:${size}px" width="${size}px" height="auto" id="es-image" src="icons/icewall-512x512.png">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="es-logo">Bild</label>
+        <input accept=".jpeg, .png, .jpg" type="file" id="es-logo" 
+            onchange="esLogo()">
+    </div>
+    
+    <!-- name |KalixMixen      | -->
+    <div class="cols-40-40-30">
+        <label for="es-name">Namn</label>
+        <input type="text" id="es-name" value="${name}">
+    </div>
+    
+    <!-- url  |kalixmixen.se   | -->
+    <div class="cols-40-40-30">
+        <label for="es-url">Namn</label>
+        <input type="url" id="es-url" value="${url}">
+    </div>
+    
+    <!-- owner|Roland Strålberg| -->
+    <div class="cols-40-40-30">
+        <label for="es-owner">Ägare</label>
+        <input type="text" id="es-owner" value="${owner}">
+    </div>
+    
+    <!-- admin|Roland Strålberg| -->
+    <div class="cols-40-40-30">
+        <label for="es-admin">Admin</label>
+        <input type="text" id="es-admin" value="${admin}">
+    </div>
+    
+    <!-- email|rstralberg@pm.me| -->
+    <div class="cols-40-40-30">
+        <label for="es-email">EPost</label>
+        <input type="email" id="es-email" value="${email}">
+    </div>
+    
+
+    <hr>
+
+    <div class="cols-100">
+        <input  id='es-save' type="button" value="Spara" onclick="esSave()">
+    </div>
+
+    <div class="cols-100">
+        <input  type="button" value="Klar" onclick="closeEditSettings()">
+    </div>
+
+</form>

@@ -1,0 +1,20 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>${title}</h1>
+
+    <div class="cols-40-40-30">
+        <label for="getvalue-value">${label}</label>
+        <input type="${type}" id="getvalue-value" value="${value}">
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="OK" onclick="${apply}('getvalue-value',${opt})">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="closeGetValue()">
+    </div>
+
+</form>

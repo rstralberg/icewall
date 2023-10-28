@@ -1,0 +1,42 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>Redigera konto</h1>
+
+    <hr>
+
+    <div class="cols-40-40-30">
+        <label for="ea-username">Användarnamn</label>
+        <input type="text" id="ea-username" readonly value="${username}">
+    </div>
+
+    <div class="cols-100">
+        <img width="${size}px" height="auto" id="ea-picture" src="${picture}">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="ea-file">Bild:</label>
+        <input accept=".jpeg, .png, .jpg" type="file" id="ea-file" name="file"
+            onchange="accountImageSelected('ea-file','ea-picture')">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="ea-fullname">Fullständigt namn:</label>
+        <input type="text" id="ea-fullname" value="${fullname}">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="ea-email">Epost:</label>
+        <input type="email" id="ea-email" value="${email}">
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="Spara" onclick="saveAccount()">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="closeEditAccount()">
+    </div>
+
+</form>

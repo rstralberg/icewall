@@ -1,4 +1,3 @@
-
 const SHADOW_DISTANCE = 32;
 const IMAGE_MAX_WIDTH = 1024;
 const MIN_FONTSIZE = 0.5;

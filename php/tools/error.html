@@ -1,0 +1,22 @@
+<form class="error" enctype="multipart/form-data">
+    
+    <h1>Felmeddelande</h1>
+
+        <hr>
+        <input type="hidden" name="fake-input">
+
+        <div>
+            ${msg}
+        </div>
+        <hr>
+        <div>
+            ${stack}
+        </div>
+        
+        <hr>
+        
+        <div>
+            <input type="button" value="Stäng" onclick="closeErrorMsg()">
+        </div>
+        
+</form>

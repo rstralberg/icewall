@@ -1,0 +1,19 @@
+
+.sub {
+    grid-area: 2 / 2 / 3 / 3;
+    background: var(--subBg);
+    color: var(--subFg);
+    border-radius: var(--subBorderRadius);
+    border-color: var(--subBorderColor);
+    border-width: var(--subBorderSize);
+    border-style: solid;
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--subShadows));
+    box-shadow: 10px 10px 15px rgba(0,0,0,var(--subShadows));
+    font-size: var(--subFontsize);
+    font-style: var(--subFontstyle);
+    font-weight: var(--subFontweight);
+    text-align: center;
+    line-height: calc( 1.3 * var(--subFontsize) );
+    height: var(--subHeight);
+}
+

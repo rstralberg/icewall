@@ -1,0 +1,30 @@
+<form class="form" enctype="multipart/form-data">
+
+    <h1>Bild</h1>
+
+    <hr>
+
+    <div class="cols-100">
+        <img width="${size}px" height="auto" id="image-img" name="image" src="${url}">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="image-file">Välj:</label>
+        <input accept=".jpeg, .png, .jpg" type="file" id="image-file" name="file" required onchange="imageSelected()">
+    </div>
+
+    <div class="cols-40-40-30">
+        <label for="image-caption">Kommentar:</label>
+        <input type="text" id="image-caption" name="caption" value="">
+    </div>
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="OK" onclick="saveImage()">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="closeImage()">
+    </div>
+
+</form>
