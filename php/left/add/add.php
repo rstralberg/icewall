@@ -94,8 +94,8 @@ function youtube(stdClass $args) : Reply {
 
 function addContent(stdClass $args) : Reply {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $id = insertContent($db, [
         $args->pageId,

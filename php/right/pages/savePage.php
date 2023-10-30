@@ -17,8 +17,8 @@ function saveNewPage(stdClass $args)
     );
     if( $argErr ) return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $id = $db->insert('page', [
         'title',

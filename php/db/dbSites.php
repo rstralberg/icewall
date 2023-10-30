@@ -12,8 +12,10 @@ class dbSites extends dbTable{
             'key',
             'title',
             'owner',
-            'email'], [
+            'email',
+            'theme'], [
                 'VARCHAR(32) NOT NULL UNIQUE',
+                'VARCHAR(128) NOT NULL',
                 'VARCHAR(128) NOT NULL',
                 'VARCHAR(128) NOT NULL',
                 'VARCHAR(128) NOT NULL'
@@ -44,7 +46,8 @@ function loadSites(): array
             'key' => $site->key,
             'title' => $site->title,
             'owner' => $site->owner,
-            'email' => $site->email]
+            'email' => $site->email,
+            'theme' => $site->theme]
         );
     }
     return $sites;

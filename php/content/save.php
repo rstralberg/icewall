@@ -4,19 +4,19 @@ require_once __DIR__ . '/../content/content.php';
 
 function saveContent( stdClass $args ) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     
     $content = null;
     $contents = selectContent($db, $args->id);
     if( $contents ) {
         $content = $contents[0];
-        $content['html'] = $db->string($args->html);
-        $content['public'] = $db->bool($args->pub);
+        $content['html'] = $args->html;
+        $content['public'] = $args->pub;
 
         if( !updateContent($db, ['html','public','pos'], [
-            $db->string($args->html),
-            $db->bool($args->pub),
+            $args->html,
+            $args->pub,
             $args->pos],
             $args->id) ) {
             $lastError = $db->lastError();
@@ -26,9 +26,9 @@ function saveContent( stdClass $args ) : Reply {
     }
     else {
         $content['pageId'] = $args->pageId;
-        $content['html'] = $db->string($args->html);
+        $content['html'] = $args->html;
         $content['pos'] = $args->pos;
-        $content['public'] = $db->bool($args->pub);
+        $content['public'] = $args->pub;
         $content['id'] = insertContent($db, $content);
         if( $content['id'] < 1 ) {
             $lastError = $db->lastError();

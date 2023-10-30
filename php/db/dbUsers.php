@@ -16,11 +16,11 @@ class dbUsers extends dbTable {
                 'password'
             ],
             [
-                'VARCHAR(64) NOT NULL DEFAULT \'admin\' UNIQUE',
-                'VARCHAR(256) NOT NULL DEFAULT \'Administrator\'',
-                'VARCHAR(256) NOT NULL DEFAULT \'email@email.se\'',
-                'VARCHAR(128) NOT NULL DEFAULT \'/icons/icewall-180x180.png\'',
-                'VARCHAR(256) NOT NULL DEFAULT \'' . password_hash('winterfall', PASSWORD_DEFAULT) . '\''
+                'VARCHAR(64) NOT NULL UNIQUE',
+                'VARCHAR(256) NOT NULL',
+                'VARCHAR(256) NOT NULL',
+                'VARCHAR(128) NOT NULL',
+                'VARCHAR(256) NOT NULL'
                 ]) ) return true;
         else return $db->lastError();
     }

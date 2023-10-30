@@ -1,0 +1,16 @@
+.titlebar {
+    grid-area: 2 / 2 / 3 / 3;
+    background: var(--titlebarBg);
+    color: var(--titlebarFg);
+    border-radius: var(--titlebarBorderRadius);
+    border-color: var(--titlebarBorderColor);
+    border-width: var(--titlebarBorderSize);
+    border-style: solid;
+    -webkit-box-shadow: 10px 10px 15px rgba(0,0,0,var(--titlebarShadows));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--titlebarShadows));
+    font-size: var(--titlebarFontsize);
+    font-style: var(--titlebarFontstyle);
+    font-weight: var(--titlebarFontweight);
+    text-align: center;
+    line-height: calc( 1.3 * var(--titlebarFontsize ) );
+}

@@ -12,8 +12,8 @@ function getPageTheme(stdClass $args): Reply
     if ($argErr)
         return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $pages = $db->select(
         'page',

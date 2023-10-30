@@ -12,8 +12,8 @@ function getColors(stdClass $args ) : Reply {
     ]);
     if( $argErr ) {return $argErr; }
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $id = themeName2id($args->name);
     $themeName = $args->theme;

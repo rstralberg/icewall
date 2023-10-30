@@ -12,8 +12,8 @@ function sql(stdClass $args): Reply
     if ($argErr)
         return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $reply = new Reply(false, '#' . 'Uknown SQL command "' . $args->command . '"');
     switch ($args->command) {

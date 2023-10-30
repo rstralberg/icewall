@@ -11,8 +11,8 @@ function updatePagePositions(stdClass $args): Reply
     ]);
     if( $argErr ) return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $positions = json_decode($args->positions, true);
     for( $i = 0; $i < count($positions); $i++ ) {

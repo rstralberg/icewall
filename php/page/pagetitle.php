@@ -1,15 +1,15 @@
 <?php
 
 require_once __DIR__ . '/../user/user.php';
-require_once __DIR__ . '/../utils/load.php';
+require_once __DIR__ . '/../tools/loadForm.php';
 require_once __DIR__ . '/page.php';
 
 function getPageTitle(stdClass $args): Reply
 {
     if( $args === null ) return new Reply(false, 'Tom begäran');
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
 
     $pages = selectPage($db, $args->pageId);
     $db->close();
@@ -29,8 +29,8 @@ function getPageTitle(stdClass $args): Reply
 
 function hidePageTitle(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     $pages = selectPage($db, $args->pageId);
     if( $pages ) {
         updateShowPageTitle($db, $args->pageId, false );
@@ -45,8 +45,8 @@ function hidePageTitle(stdClass $args) : Reply {
 
 function showPageTitle(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     $pages = selectPage($db, $args->pageId);
     if( $pages ) {
         updateShowPageTitle($db, $args->pageId, true);

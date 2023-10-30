@@ -5,8 +5,8 @@ require_once __DIR__ . '/../tools/loadForm.php';
 
 function bottom(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     $settings = $db->select('settings', ['owner'], $db->name('id').'=1');
     $lastError = $db->lastError();
     $db->close();

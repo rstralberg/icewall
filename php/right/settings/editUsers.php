@@ -9,8 +9,8 @@ function editUsers(stdClass $args) : Reply {
     $argErr = argError('editUsers', $args, []);
     if( $argErr ) return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $users = $db->select('user', ['username'], null, $db->name('username').' asc');
     $options = '';

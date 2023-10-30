@@ -9,8 +9,8 @@ function editSettings(stdClass $args) : Reply {
     $argErr = argError('editSettings', $args, []);
     if( $argErr ) return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $settings = $db->select('settings', ['*'], 'id=1');
 

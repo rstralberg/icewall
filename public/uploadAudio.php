@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../php/utils/reqrep.php';
+require_once __DIR__ . '/../php/tools/reply.php';
 
 $mp3 = $_POST['file'];
 $key = $_POST['key'];

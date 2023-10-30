@@ -11,8 +11,8 @@ function hidePageTitle(stdClass $args): Reply
     if ($argErr)
         return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $res = $db->update('page', ['showTitle'], [0], $db->name('id') . '=' . $args->pageId);
     $lastError = $db->lastError();
@@ -32,8 +32,8 @@ function showPageTitle(stdClass $args): Reply
     if ($argErr)
         return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $res = $db->update('page', ['showTitle'], [1], $db->name('id') . '=' . $args->pageId);
     $lastError = $db->lastError();

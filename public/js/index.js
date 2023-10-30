@@ -7,10 +7,13 @@ function index(pageId, sitekey, siteName) {
         key: sitekey,
         name: siteName
     };
-    (_a = eGet('body')) === null || _a === void 0 ? void 0 : _a.addEventListener('keydown', (e) => {
+    
+    let body = eGet('body');
+    body.addEventListener('keydown', (e) => {
         if (!Session.edit)
             e.preventDefault();
     });
+    
     // Load any user logged in
     let left = eGet('.left');
     let right = eGet('.right');
@@ -28,11 +31,14 @@ function index(pageId, sitekey, siteName) {
         left.style.display = Session.user.isAdmin || Session.user.username === Session.page.author ? 'block' : 'none';
         right.style.display = Session.user.isAdmin ? 'block' : 'none';
     }
+
+    Navbar.refresh();
+
     // Load current page and then draw everyting
     getPage(pageId).then((page) => {
         Session.page = page;
         loadPageTheme(pageId);
-        getTop();
+        Navbar.refresh();
         getSub(pageId);
         getContents(pageId);
         bottom();

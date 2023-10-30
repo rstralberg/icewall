@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../utils/load.php';
+require_once __DIR__ . '/../tools/loadForm.php';
 
 function th_sizes(stdClass $args) : Reply {
 

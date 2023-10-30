@@ -6,8 +6,8 @@ require_once __DIR__ . '/../../tools/loadForm.php';
 
 function editPages(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
 
     $pages = $db->select('page', ['id', 'title', 'isParent'], null, $db->name('pos') . ' asc');
 

@@ -1,16 +1,16 @@
 <?php
 
 //  
-const DEV_HOSTNAME = 'roland';
+const DEV_HOSTNAME = 'mx';
 const SERVER_HOSTNAME = 'localhost';
 const HOSTNAME = DEV_HOSTNAME;
 
 //  MySQL access
 const DB_HOST = 'localhost';
-const DB_USER = 'root';
+const DB_USER = 'icewall';
 const DB_DATABASE = 'icewall';
 
-const DB_PASSW_DEVEL = 'p5sk06a';
+const DB_PASSW_DEVEL = 'winterfall';
 const DB_PASSW_SERVER = 'p5sk06a';
 const DB_PASSW = DB_PASSW_DEVEL;
 

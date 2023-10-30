@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/../utils/reqrep.php';
-require_once __DIR__ . '/../utils/load.php';
+require_once __DIR__ . '/../tools/reply.php';
+require_once __DIR__ . '/../tools/loadForm.php';
 require_once __DIR__ . '/page.php';
 
 function delPage(stdClass $args): Reply
@@ -9,8 +9,8 @@ function delPage(stdClass $args): Reply
 
     $options = '';
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
     $pages = $db->select('page', ['id', 'author', 'title'], null, 'title asc');
     $db->close();
 
@@ -31,15 +31,15 @@ function delPage(stdClass $args): Reply
 
 function removePage(stdClass $args): Reply
 {
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     if ($db->delete('page', $db->name('id') . '=' . $args->pageId)) {
         deletePageResources($db, $args->key, $args->pageId);
     }
 
     // ensure that we returns to an existing page
-    $firstId = getFirstPageId($db);
+    $firstId = dbPages::first($db);
 
     $db->close();
     return new Reply(true, $firstId);

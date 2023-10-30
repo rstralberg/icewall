@@ -1,12 +1,12 @@
 <?php
 
 require_once __DIR__ . '/page.php';
-require_once __DIR__ . '/../utils/load.php';
+require_once __DIR__ . '/../tools/loadForm.php';
 
 function editPageTheme(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
 
     $pages = selectPage($db, $args->pageId);
     if( !$pages ) {

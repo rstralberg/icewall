@@ -4,8 +4,8 @@ require_once __DIR__ . '/page.php';
 
 function getPage(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
 
     $pages = selectPage($db, $args->pageId);
     $db->close();
@@ -19,8 +19,8 @@ function getPage(stdClass $args) : Reply {
 
 function getPageGroup(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     
     $pages = selectPage($db, $args->pageId);
     if( $pages ) {

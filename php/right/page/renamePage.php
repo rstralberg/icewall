@@ -13,8 +13,8 @@ function renamePage(stdClass $args): Reply
         return $argErr;
 
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $pages = $db->select('page', ['title'], $db->name('id') . '=' . $args->pageId);
     $page = $pages[0];

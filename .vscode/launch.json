@@ -1,6 +1,5 @@
 {
     "configurations": [
-        
         {
             "name": "Launch GrafitGubben",
             "type": "php",
@@ -21,7 +20,7 @@
                 "uriFormat": "http://localhost:%s/?site=gg",
                 "action": "openExternally"
             },
-            "runtimeExecutable": "c:/php/php.exe"
+            "runtimeExecutable": "/usr/bin/php"
         },
         {
             "name": "Launch KalixMixen",
@@ -43,7 +42,7 @@
                 "uriFormat": "http://localhost:%s/?site=km",
                 "action": "openExternally"
             },
-            "runtimeExecutable": "c:/php/php.exe"
+            "runtimeExecutable": "/usr/bin/php"
         }
     ]
 }

@@ -11,8 +11,8 @@ function deletePage(stdClass $args): Reply
 
     $options = '';
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
     $pages = $db->select('page', ['id', 'author', 'title'], null, 'title asc');
     $db->close();
 
@@ -33,8 +33,8 @@ function deletePage(stdClass $args): Reply
 
 function removePage(stdClass $args): Reply
 {
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     if ($db->delete('page', $db->name('id') . '=' . $args->pageId)) {
         deletePageResources($db, $args->key, $args->pageId);

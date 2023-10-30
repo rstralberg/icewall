@@ -5,8 +5,8 @@ require_once __DIR__ . '/theme.php';
 
 function getTheme(stdClass|null $args): Reply
 {
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
 
     $themes = selectTheme($db, $args->themeName);
     if (!$themes) {
@@ -20,8 +20,8 @@ function getTheme(stdClass|null $args): Reply
 
 function getThemeNames(stdClass|null $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
 
     $themenames = selectThemeNames($db);
     if( $themenames ) {

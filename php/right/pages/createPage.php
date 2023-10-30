@@ -9,8 +9,8 @@ function createPage(stdClass $args) : Reply {
     $argErr = argError('createPage', $args, []);
     if ($argErr) return $argErr;
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
     
     $pages = $db->select('page', ['id', 'title', 'isParent'], null, $db->name('pos').' asc');
     $users = $db->select('user', ['username', 'fullname'], null, $db->name('username') . ' asc');

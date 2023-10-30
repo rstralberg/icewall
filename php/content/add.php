@@ -4,12 +4,12 @@ require_once __DIR__ . '/../content/content.php';
 
 function addContent(stdClass $args) : Reply {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $id = insertContent($db, [
         $args->pageId,
-        $db->string(rawurldecode('Här är ett nytt avsnitt')),
+        rawurldecode('Här är ett nytt avsnitt'),
         $args->pos,
         $db->bool(false)
     ]);

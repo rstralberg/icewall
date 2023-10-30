@@ -1,11 +1,11 @@
 
-function popup(title, message) {
-    webForm('popup', {
-        title: title,
-        message: message
-    });
-}
+// function popup(title, message) {
+//     webForm('popup', {
+//         title: title,
+//         message: message
+//     });
+// }
 
-function closePopup() {
-    closeForm('popup');
-}
+// function closePopup() {
+//     closeForm('popup');
+// }

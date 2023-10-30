@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../utils/reqrep.php';
-require_once __DIR__ . '/../utils/load.php';
+require_once __DIR__ . '/../tools/reply.php';
+require_once __DIR__ . '/../tools/loadForm.php';
 require_once __DIR__ . '/page.php';
 
 function renamePage(stdClass $args) : Reply {
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     
     $pages = selectPage($db, $args->pageId);
     $db->close();

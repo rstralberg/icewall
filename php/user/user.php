@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../utils/db.php';
+require_once __DIR__ . '/../db/db.php';
 require_once __DIR__ . '/../config.php';
 
 const UserCols = [
@@ -40,8 +40,8 @@ function createUser(Db $db, string $username, string $email, string $logo): void
 function updateUser(stdClass $args): Reply
 {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     if ($args->password && strlen($args->password) > 7) {
         $res = $db->update(
@@ -78,8 +78,8 @@ function updateUser(stdClass $args): Reply
 function deleteUser(stdClass $args): Reply
 {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     // check if we can remove the user picture
     $users = $db->select('user', ['picture'], $db->name('username') . '=' . $db->string($args->username));
@@ -113,8 +113,8 @@ function deleteUser(stdClass $args): Reply
 function addUser(stdClass $args): Reply
 {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $users = $db->select('user', ['id'], $db->name('username') . '=' . $db->string($args->username));
     if ($users) {
@@ -157,8 +157,8 @@ function getUser(stdClass $args): Reply
     if ($args->username === null)
         return new Reply(false, 'getUser anropades utan info om användare');
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $res = $db->select(
         'user',
@@ -179,8 +179,8 @@ function getUser(stdClass $args): Reply
 }
 function getUserNames(stdClass $args): Reply
 {
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $res = $db->select('user', ['username'], null, $db->name('username') . ' asc');
     $lastError = $db->lastError();
@@ -193,8 +193,8 @@ function getUserNames(stdClass $args): Reply
 function changePassword(stdClass $args): Reply
 {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $res = $db->update(
         'user',
@@ -212,9 +212,8 @@ function changePassword(stdClass $args): Reply
 }
 function verifyUser(stdClass $args): Reply
 {
-
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $users = $db->select('user', ['password'], $db->name('username') . '=' . $db->string($args->username));
     if (!$users) {

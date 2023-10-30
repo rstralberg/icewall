@@ -5,8 +5,8 @@ require_once __DIR__ . '/../content/content.php';
 
 function pageUpdate(stdClass $args) 
 {
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     
     switch( $args->what ) {
         case 'parentId': updatePageParent($db, $args->pageId, $args->newParent); break;

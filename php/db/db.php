@@ -1,78 +1,13 @@
 <?php
 
 require_once __DIR__ . '/../tools/strings.php';
-require_once __DIR__ . '/../db/sites.php';
+require_once __DIR__ . '/dbSites.php';
 
 class db
 {
     private mysqli $mysqli;
-    private string $dbUser;
-    private string $dbPassword;
-    public string $dbDatabase;
-
-    public function __construct(string|null $key = null)
-    {
-
-        $this->dbUser = DB_USER;
-        $this->dbPassword = gethostname() === DEV_HOSTNAME ? DB_PASSW_DEVEL : DB_PASSW;
-        $this->dbDatabase = DB_DATABASE;
-        $this->open();
-        $this->createTable('sites', [
-            'key',
-            'name',
-            'url',
-            'owner',
-            'logo',
-            'admin',
-            'email',
-            'dbUser',
-            'dbDatabase',
-            'dbPassword'
-        ], [
-            'VARCHAR(64) NOT NULL UNIQUE',
-            // key
-            'VARCHAR(128) NOT NULL',
-            // name
-            'VARCHAR(256) NOT NULL',
-            // url
-            'VARCHAR(256) NOT NULL',
-            // owner
-            'VARCHAR(256) NOT NULL',
-            // logo
-            'VARCHAR(128) NOT NULL',
-            // admin
-            'VARCHAR(128) NOT NULL',
-            // email
-            'VARCHAR(128) NOT NULL',
-            // dbUser
-            'VARCHAR(128) NOT NULL',
-            // dbDatabase
-            'VARCHAR(128) NOT NULL' // dbPassword
-        ]);
-
-        if ($key) {
-            $sites = $this->select('sites', [
-                'name',
-                'url',
-                'owner',
-                'logo',
-                'admin',
-                'email',
-                'dbUser',
-                'dbDatabase',
-                'dbPassword'
-            ], $this->name('key') . '=' . $this->string($key));
-            if (!$sites) {
-                die('Can\'t open database for site key "' . $key . '"');
-            }
-            $site = $sites[0];
-            $this->close();
-            $this->dbDatabase = $site['dbDatabase'];
-            $this->dbUser = $site['dbUser'];
-            $this->dbPassword = $site['dbPassword'];
-        }
-    }
-
+    private string $database = DB_DATABASE;
+    
     static function databaseExist(string $dbName): bool
     {
         $mysqli = mysqli_connect(DB_HOST, DB_USER, gethostname() === DEV_HOSTNAME ? DB_PASSW_DEVEL : DB_PASSW);
@@ -90,29 +25,30 @@ class db
     }
 
 
-    function open(): bool
+    function open(string $database ): bool
     {
-        $this->mysqli = mysqli_connect(DB_HOST, $this->dbUser, $this->dbPassword);
+        $this->mysqli = mysqli_connect(DB_HOST, DB_USER, DB_PASSW);
         if ($this->mysqli === null) {
             throw new Exception('MySQL connection failed');
         }
 
-        mysqli_query($this->mysqli, 'CREATE DATABASE IF NOT EXISTS ' . $this->dbDatabase);
+        mysqli_query($this->mysqli, 'CREATE DATABASE IF NOT EXISTS ' . $database);
         $this->mysqli->close();
 
         $this->mysqli = mysqli_connect(DB_HOST, DB_USER, gethostname() === DEV_HOSTNAME ? DB_PASSW_DEVEL : DB_PASSW);
         if ($this->mysqli->connect_error) {
-            throw new Exception('Failed to open database ' . $this->dbDatabase . ': ' . $this->mysqli->connect_error);
+            throw new Exception('Failed to open database ' . $database . ': ' . $this->mysqli->connect_error);
         }
 
-        mysqli_query($this->mysqli, 'USE ' . $this->dbDatabase);
-
+        mysqli_query($this->mysqli, 'USE ' . $database);
+        $this->database = $database;
         return $this->mysqli !== null;
     }
 
     function close(): void {
-        if ($this->mysqli)
-            mysqli_close($this->mysqli);
+        if(is_resource($this->mysqli) && get_resource_type($this->mysqli)==='mysql link'){
+            mysqli_close($this->mysqli); //Procedural style 
+        } 
     }
 
     // returns true if table was created
@@ -135,7 +71,7 @@ class db
 
     function tableExist(string $table): bool {
         
-        $query = 'SELECT count(*) FROM information_schema.tables WHERE table_schema = "' . $this->dbDatabase . '" AND table_name = "' . $table . '"';
+        $query = 'SELECT count(*) FROM information_schema.tables WHERE table_schema = "' . $this->database . '" AND table_name = "' . $table . '"';
         try {
             $res = mysqli_query($this->mysqli, $query);
         } catch (Exception $e) {
@@ -191,7 +127,7 @@ class db
         while ($record = mysqli_fetch_assoc($result)) {
             array_push($rows, $record);
         }
-        return $rows;
+        return count($rows)===0?false:$rows;
     }
 
     function insert(string $table, array $cols, array $values) : int|bool|string {
@@ -204,7 +140,12 @@ class db
         $query = trimEnd($query, 1);
         $query .= ') VALUES (';
         for ($i = 0; $i < count($values); $i++) {
-            $query .= $values[$i] . ',';
+            if( gettype($values[$i]) === 'string' ) 
+                $query .= $this->string($values[$i]) . ',';
+            else if( gettype($values[$i]) === 'boolean' ) 
+                $query .= $this->bool($values[$i]) . ',';
+            else
+                $query .= $values[$i] . ',';
         }
         $query = trimEnd($query, 1);
         $query .= ')';
@@ -232,7 +173,12 @@ class db
 
         $values = array_values($values);
         for ($i = 0; $i < count($cols); $i++) {
-            $query .= $this->name($cols[$i]) . '=' . $values[$i] . ',';
+            if( gettype($values[$i]) === 'string' ) 
+                $query .= $this->name($cols[$i]) . '=' . $this->string($values[$i]) . ',';
+            else if( gettype($values[$i]) === 'boolean' ) 
+                $query .= $this->name($cols[$i]) . '=' . $this->bool($values[$i]) . ',';
+            else
+                $query .= $this->name($cols[$i]) . '=' . $values[$i] . ',';
         }
         $query = trimEnd($query, 1);
         $query .= ' ';
@@ -266,7 +212,6 @@ class db
         catch (mysqli_sql_exception $e) { 
             return $e->getMessage();
         }
-        return true;
     }
 
     function string(string $str): string
@@ -289,13 +234,15 @@ class db
         return mysqli_error($this->mysqli);
     }
 
-    function whereInt(string $left, int $right) {
-        return $this->name($left).'='.$right;
+    function where(string $left, $right) {
+        if( gettype($right) === 'string')
+            return $this->name($left).'='.$this->string($right);
+        else if( gettype($right) === 'boolean') 
+            return $this->name($left).'='.$this->bool($right);
+        else 
+            return $this->name($left).'='.$right;
     }
-
-    function whereStr(string $left, string $right) {
-        return $this->name($left).'='.$this->string($right);
-    }
+        
 }
 
 

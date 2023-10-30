@@ -1,14 +1,14 @@
 <?php
 
 require_once __DIR__ . '/page.php';
-require_once __DIR__ . '/../utils/load.php';
+require_once __DIR__ . '/../tools/loadForm.php';
 
 function createNewPage(stdClass $args): Reply
 {
 
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
     $pages = selectPages($db);
 
     $users = $db->select('user', ['username', 'fullname'], null, 'username asc');
@@ -40,8 +40,8 @@ function createNewPage(stdClass $args): Reply
 function saveNewPage(stdClass $args)
 {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $id = $db->insert('page', [
         'title',

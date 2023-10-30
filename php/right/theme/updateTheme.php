@@ -7,8 +7,8 @@ require_once __DIR__ . '/../../tools/reply.php';
 function updateTheme(stdClass $args): Reply
 {
 
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     // $res = updateTheme($db, $args->theme[0], $args->theme);
     $res = null;

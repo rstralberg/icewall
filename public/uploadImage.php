@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../php/utils/reqrep.php';
+require_once __DIR__ . '/../php/tools/reply.php';
 
 $image = $_POST['image'];
 $key = $_POST['key'];

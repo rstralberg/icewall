@@ -1,14 +1,14 @@
 <?php
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/tools/error.php';
+require_once __DIR__ . '/db/db.php';
+require_once __DIR__ . '/db/dbManager.php';
+require_once __DIR__ . '/generate/generateHtml.php';
 
 class App
 {
-
     public function start(): void
     {
-
-        // ==========================
-        // === AND HERE WE GO !!! ===
-        // ==========================
 
         $dbManager = new dbManager();
         $dbManager->init();
@@ -28,11 +28,10 @@ class App
             die('IceWall: #ERROR. Failed to open database for "' . $siteKey . '"');
         }
 
-        $db->open();
-        $sites = $db->select('sites', ['key', 'title'], $db->whereStr('key', $siteKey));
-        if ($sites === false) {
+        if (!$db->open($siteKey)) {
             die('IceWall: #ERROR. Requested site wont load. Aborting!');
         }
+        $sites = $db->select('sites', ['key', 'title'], $db->where('key', $siteKey));
         $site = $sites[0];
 
         // Greate. Were ready to start
@@ -41,19 +40,19 @@ class App
         // Lets generate the basic page
         // and then scripts will do the rest
         try {
-            $pageId = getFirstPageId($db);
-
-            echo (generateHTML(
-                $db,
-                $pageId,
-                $site['key'],
-                $site['title']
-            )
-            );
+            $pageId = dbPages::first($db);
+            echo (
+                generateHtml(
+                    $db,
+                    $pageId,
+                    $site['key'],
+                    $site['title']
+                ));
 
             $db->close();
         } catch (Exception $e) {
             echo ('<br>IceWall: #EXCEPTION ' . $e->getMessage());
         }
+
     }
 }

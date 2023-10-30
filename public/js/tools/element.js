@@ -1,3 +1,4 @@
+
 function eGet(id) {
     return document.querySelector(id);
 }

@@ -10,16 +10,20 @@ class dbThemes extends dbTable{
 
         if( $db->createTable($this->tableName, [
             'name',
+            'wLeft',
             'wCenter',
+            'wRight',
             'vGap',
             'hGap',
             'hApp'
         ], [
-            'VARCHAR(64) NOT NULL DEFAULT \'IceWall\' UNIQUE',// name
-            'TINYINT NOT NULL DEFAULT 80',// wCenter (%)
-            'TINYINT NOT NULL DEFAULT 20',// vGap (px)
-            'TINYINT NOT NULL DEFAULT 30',// hGap (px)
-            'TINYINT NOT NULL DEFAULT 98'// hApp (vh)
+            'VARCHAR(64) NOT NULL UNIQUE',// name
+            'TINYINT NOT NULL',// wLeft (%)
+            'TINYINT NOT NULL',// wCenter (%)
+            'TINYINT NOT NULL',// wRight (%)
+            'TINYINT NOT NULL',// vGap (px)
+            'TINYINT NOT NULL',// hGap (px)
+            'TINYINT NOT NULL'// hApp (vh)
         ]) ) return true;
         else return $db->lastError();
     }

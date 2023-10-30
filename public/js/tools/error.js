@@ -1,15 +1,18 @@
+
 function error(message) {
     webForm('errorMsg', [
         { key: 'message', value: message },
         { key: 'stack', value: parseCaller(Error().stack) }
     ]);
 }
-function oseErrorMsg() {
+function closeErrorMsg() {
     closeForm('errorMsg');
 }
+
 function parseCaller(stack) {
     if (typeof stack === 'undefined')
         return '';
+
     let subs = stack.split('at').reverse();
     let caller = '';
     let line = 1;

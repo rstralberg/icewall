@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../utils/db.php';
+require_once __DIR__ . '/../db/db.php';
 require_once __DIR__ . '/content.php';
 require_once __DIR__ . '/../page/page.php';
 require_once __DIR__ . '/../site/site.php';
@@ -29,7 +29,7 @@ function createContents(Db $db, $sitename ): void
     ) {
 
         $contentId = $db->addDefaultRow('content');
-        $pageId = getFirstPageId($db);
+        $pageId = dbPages::first($db);
         $db->update( 'content', ['pageId'], [$pageId], 'id=' . $contentId);
     }
 }
@@ -76,8 +76,8 @@ function getContent(stdClass|null $args) : Reply {
 
     if( $args === null ) return new Reply(false, "Tom fråga!");
     
-    $db = new Db($args->database);
-    $db->open();
+    $db = new db();
+    $db->open($args->database);
 
     $page = selectPage($db, $args->pageId);
     $contents = selectContents($db, $args->pageId);

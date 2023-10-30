@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../utils/db.php';
+require_once __DIR__ . '/../db/db.php';
 require_once __DIR__ . '/../config.php';
 
 const PageCols = [
@@ -70,7 +70,7 @@ function createPage(Db $db): void
 function selectPage(Db $db, int|null $id): array
 {
     if( $id === null || $id === 0 ) {
-        $id = getFirstPageId($db);
+        $id = dbPages::first($db);
     }
     return $db->select( 'page', array_merge(['id'],PageCols), $db->name('id') . '=' . $id);
 }

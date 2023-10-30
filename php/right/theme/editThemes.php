@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../tools/reply.php';
 require_once __DIR__ . '/../../tools/loadForm.php';
-require_once __DIR__ . '/../../tools/fonts.php';
+require_once __DIR__ . '/../../generate/generateFonts.php';
 require_once __DIR__ . '/../../db/db.php';
 
 
@@ -11,8 +11,8 @@ function editThemes(stdClass|null $args) : Reply {
     $argErr = argError('editPageTheme', $args);
     if ($argErr) return $argErr;
 
-    $db = new Db($args->database); 
-    $db->open();
+    $db = new db(); 
+    $db->open($args->database);
     
     $themes = $db->select('theme', ['name'], null, $db->name('name').' asc');
     $db->close();
