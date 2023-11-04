@@ -1,51 +1,40 @@
 .navbar-logo {
-    height: calc(2 * var(--fzNavbar));
+    height: calc(2 * var(--navbarFontsize));
     width: auto;
     margin-top: 0 !important;
-}
-
-.navcontainer {
-    width: 100%;
-    margin: 0px auto;
 }
 
 #toggle-icon {
     display: none;
 }
 
-nav {
-    width: 100%;
-    float: left;
-    position: sticky;
-    top: 0;
-    box-shadow: 0px 1px 6px 0px var(--shNavbar);
-
-}
-
 nav .logo {
     float: left;
     box-sizing: border-box;
-    margin-top: 1.5em;
+    margin-top: 0.7em;
     margin-left: 1.5em;
 }
 
 nav .menu {
     width: 90%;
     float: left;
+    height: inherit;
     margin-left: 1vw;
 }
 
 nav .menu .links {
     text-align: left;
     width: 100%;
+    height: inherit;
     float: left;
-    font-weight: var(--fwNavbar);
-    font-style: var(--fsNavbar);
-    font-size: var(--fzNavbar);
+    font-weight: var(--navbarFontweight);
+    font-style: var(--navbarFontstyle);
+    font-size: var(--navbarFontsize);
 }
 
 nav .menu .links li {
     display: inline-block;
+    height: inherit;
     margin-top: 10px;
     margin-right: 4px;
 }
@@ -63,16 +52,16 @@ nav .menu .links li:hover {
 nav .menu .links li a {
     display: block;
     padding: 10px 30px;
-    background-color: var(--bgNavbar);
-    color: var(--fgNavbar);
+    background-color: var(--navbarBg);
+    color: var(--navbarFg);
     letter-spacing: 1px;
     text-decoration: none;
 }
 
 nav .menu .links li a:hover {
-    background-color: var(--bgHover);
-    color: var(--fgHover);
-    border-radius: var(--rNavbar);
+    background-color: var(--navbarBgHi);
+    color: var(--navbarFgHi);
+    border-radius: var(--navbarBorderRadius);
 }
 
 nav .menu .links .parent {
@@ -80,8 +69,8 @@ nav .menu .links .parent {
     text-decoration: solid;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    text-decoration-color: var(--fgHover);
-    border-radius: var(--rNavbar);
+    text-decoration-color: var(--navbarFgHi);
+    border-radius: var(--navbarBorderRadius);
 
 }
 
@@ -97,13 +86,13 @@ nav .menu .links .parent .rotate {
 nav .menu .links .parent .childs {
     position: absolute;
 
-    background-color: var(--bgNavbar);
+    background-color: var(--navbarBg);
     top: 100%;
     left: 0px;
     width: 200px;
     text-align: left;
     display: none;
-    box-shadow: 0px 1px 6px 0px var(--shNavbar);
+    box-shadow: 0px 1px 6px 0px var(--navbarShadows);
 
 }
 
@@ -139,14 +128,17 @@ nav .menu .icons li a {
     height: 40px;
     text-align: center;
     line-height: 40px;
-    color: var(--fgNavbar);
-    background: var(--bgNavbar);
-    font-size: var(f--fzNabar);
+    color: var(--navbarFg);
+    background: var(--navbarBg);
+    font-size: var(f--navbarFontsize);
 
 }
 
 nav ul {
     outline: none;
+    height: inherit;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .nav-burger {
@@ -257,7 +249,7 @@ nav ul {
     nav .menu .links {
         text-align: center;
         width: 100%;
-        background-color: var(--bgNavbar);
+        background-color: var(--navbarBg);
     }
 
     nav .menu .links li {
@@ -271,7 +263,7 @@ nav ul {
 
     nav .menu .links .parent .childs {
         position: static;
-        background-color: var(--bgNavbar);
+        background-color: var(--navbarBg);
         width: 100%;
 
         text-align: center;

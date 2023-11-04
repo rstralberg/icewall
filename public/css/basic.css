@@ -1,0 +1,208 @@
+
+body {
+	background: var(--appBg);
+	color: var(--appFg);
+	font-family: var(--appFontfam);
+	font-size: var(--appFontsize);
+    height: var(--appHeight);
+    width: 100vw;
+}
+
+nav {
+	position: fixed;
+	left: var(--sidebarsWidth) ;
+	top: 2vh;
+    height: var(--navbarHeight);
+    width: var(--navbarWidth);
+    
+	background: var(--navbarBg);
+	color: var(--navbarFg);
+	
+	font-family: var(--navbarFontfam);
+	font-size: var(--navbarFontsize);
+	font-weight: var(--navbarFontweight);
+	font-style: var(--navbarFontstyle);
+    
+	border-radius: var(--navbarBorderRadius);
+    outline-color: var(--navbarBorderColor);
+    outline-width: var(--navbarBorderSize);
+    outline-style: solid;
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--navbarShadows));
+
+}
+
+nav:hover,
+nav:active {
+	background: var(--navbarBgHi);
+	color: var(--navbarFgHi);
+}
+
+nav:disabled {
+	background: var(--navbarBgDis);
+	color: var(--navbarFgDis);
+}
+
+
+header {
+	position: fixed;
+	left: var(--sidebarsWidth);
+	top: calc( 5vh + var(--navbarHeight) );
+    height: var(--titlebarHeight);
+    width: var(--titlebarWidth);
+
+	background: var(--titlebarBg);
+	color: var(--titlebarFg);
+	
+	font-family: var(--titlebarFontfam);
+	font-size: var(--titlebarFontsize);
+	font-weight: var(--titlebarFontweight);
+	font-style: var(--titlebarFontstyle);
+    
+	border-radius: var(--titlebarBorderRadius);
+    outline-color: var(--titlebarBorderColor);
+    outline-width: var(--titlebarBorderSize);
+    outline-style: solid;
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--titlebarsShadows));
+
+}
+
+header:hover,
+header:active {
+	background: var(--titlebarBgHi);
+	color: var(--titlebarFgHi);
+}
+
+header:disabled {
+	background: var(--titlebarBgDis);
+	color: var(--titlebarFgDis);
+}
+
+
+main {
+	position: fixed;
+	left: var(--sidebarsWidth);
+	top: calc( 6vh + var(--navbarHeight) + var(--titlebarHeight) ) ;
+    height: calc( 100vh - 6vh - 6vh - var(--navbarHeight) - var(--titlebarHeight) - var(--footerHeight) );
+    width: var(--pageWidth);
+
+	background: var(--pageBg);
+	color: var(--pageFg);
+	
+	font-family: var(--pageFontfam);
+	font-size: var(--pageFontsize);
+	font-weight: var(--pageFontweight);
+	font-style: var(--pageFontstyle);
+    
+	border-radius: var(--pageBorderRadius);
+    outline-color: var(--pageBorderColor);
+    outline-width: var(--pageBorderSize);
+    outline-style: solid;
+}
+
+main:hover,
+main:active {
+	background: var(--pageBgHi);
+	color: var(--pageFgHi);
+}
+
+main:disabled {
+	background: var(--pageBgDis);
+	color: var(--pageFgDis);
+}
+
+footer {
+	position: fixed;
+	left: var(--sidebarsWidth);
+	bottom: 2vh;
+    height: var(--footerHeight);
+    width: var(--footerWidth);
+
+
+	background: var(--footerBg);
+	color: var(--footerFg);
+	font-family: var(--footerFontfam);
+	font-size: var(--footerFontsize);
+	font-weight: var(--footerFontweight);
+	font-style: var(--footerFontstyle);
+    border-radius: var(--footerBorderRadius);
+    outline-color: var(--footerBorderColor);
+    outline-width: var(--footerBorderSize);
+    outline-style: solid;
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--footerShadows));
+
+}
+
+footer:hover,
+footer:active {
+	background: var(--footerBgHi);
+	color: var(--footerFgHi);
+}
+
+footer:disabled {
+	background: var(--footerBgDis);
+	color: var(--footerFgDis);
+}
+
+
+aside {
+	background: var(--sidebarsBg);
+	color: var(--sidebarsFg);
+
+    height: var(--sidebarsHeight);
+    width: calc( 0.9 * var(--sidebarsWidth) );
+
+	font-family: var(--sidebarsFontfam);
+	font-size: var(--sidebarsFontsize);
+	font-weight: var(--sidebarsFontweight);
+	font-style: var(--sidebarsFontstyle);
+
+    border-radius: var(--sidebarsBorderRadius);
+    outline-color: var(--sidebarsBorderColor);
+    outline-width: var(--sidebarsBorderSize);
+    outline-style: solid;
+}
+
+aside:hover,
+aside:active {
+	background: var(--sidebarsBgHi);
+	color: var(--sidebarsFgHi);
+}
+
+aside:disabled {
+	background: var(--sidebarsBgDis);
+	color: var(--sidebarsFgDis);
+}
+
+button,
+input[type=button] {
+	display: block;
+	width: var(--buttonWidth);
+	min-width: 100px;
+	margin-top: 12px;
+	
+	background: var(--buttonBg);
+	color: var(--buttonFg);
+
+	
+	border-radius: var(--buttonBorderRadius);
+	outline-color: var(--buttonBorderColor);
+	outline-width: var(--buttonBorderSize);
+	outline-style: solid;
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--buttonhadows));
+
+}
+
+button:hover,
+input[type=button]:hover {
+	background: var(--buttonBgHi);
+	color: var(--buttonFgHi);
+}
+
+
+figure {
+	margin: 16px 16px 16px 8px;
+}

@@ -1,0 +1,302 @@
+.navbar-logo {
+    height: calc(2 * var(--fzNavbar));
+    width: auto;
+    margin-top: 0 !important;
+}
+
+.navcontainer {
+    width: 100%;
+    margin: 0px auto;
+}
+
+#toggle-icon {
+    display: none;
+}
+
+nav {
+    width: 100%;
+    float: left;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 1px 6px 0px var(--shNavbar);
+
+}
+
+nav .logo {
+    float: left;
+    box-sizing: border-box;
+    margin-top: 1.5em;
+    margin-left: 1.5em;
+}
+
+nav .menu {
+    width: 90%;
+    float: left;
+    margin-left: 1vw;
+}
+
+nav .menu .links {
+    text-align: left;
+    width: 100%;
+    float: left;
+    font-weight: var(--fwNavbar);
+    font-style: var(--fsNavbar);
+    font-size: var(--fzNavbar);
+}
+
+nav .menu .links li {
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 4px;
+}
+
+nav .childs {
+    padding: 4px;
+}
+
+
+nav .menu .links li:hover {
+
+    margin-top: 0px;
+}
+
+nav .menu .links li a {
+    display: block;
+    padding: 10px 30px;
+    background-color: var(--bgNavbar);
+    color: var(--fgNavbar);
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+nav .menu .links li a:hover {
+    background-color: var(--bgHover);
+    color: var(--fgHover);
+    border-radius: var(--rNavbar);
+}
+
+nav .menu .links .parent {
+    position: relative;
+    text-decoration: solid;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--fgHover);
+    border-radius: var(--rNavbar);
+
+}
+
+nav .menu .links .parent .arrow-icon {
+    display: inline-block;
+    transition: 0.4s;
+}
+
+nav .menu .links .parent .rotate {
+    transform: rotate(90deg);
+}
+
+nav .menu .links .parent .childs {
+    position: absolute;
+
+    background-color: var(--bgNavbar);
+    top: 100%;
+    left: 0px;
+    width: 200px;
+    text-align: left;
+    display: none;
+    box-shadow: 0px 1px 6px 0px var(--shNavbar);
+
+}
+
+
+nav .menu .links .parent .childs li {
+    display: block;
+    margin-top: 0px;
+}
+
+/* nav .menu .links .parent .childs li {
+  border-top: 1px solid var(--bdColNavbar);
+} */
+
+nav .menu .links .parent .childs li a {
+    padding: 10px 3px;
+}
+
+nav .menu .icons {
+    text-align: right;
+    width: 20%;
+    float: left;
+
+}
+
+nav .menu .icons li {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+nav .menu .icons li a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: var(--fgNavbar);
+    background: var(--bgNavbar);
+    font-size: var(f--fzNabar);
+
+}
+
+nav ul {
+    outline: none;
+}
+
+.nav-burger {
+    height: 40px;
+    width: 40px;
+    margin-top: -8px;
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+    /* CSS */
+
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    /* CSS */
+
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    /* CSS */
+
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    /* CSS */
+
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+    .container {
+        width: 100%;
+    }
+
+    #toggle-icon {
+        display: block;
+        position: absolute;
+        top: 19px;
+        right: 15px;
+        z-index: 1;
+        font-size: 18px;
+        border: none;
+        padding: 2px 5px;
+        cursor: pointer;
+    }
+
+    .toggle-icon {
+        display: none;
+    }
+
+
+    nav .logo {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        position: relative;
+        margin-top: 0.7em;
+        margin-left: 0.7em;
+
+    }
+
+
+
+    nav .menu {
+        width: 100%;
+        /*background-color: #000;
+    position: absolute;
+    top: 73px;
+    left: -100%;
+    transition:0.4s;*/
+        display: none;
+
+    }
+
+    nav .active-menu {
+        left: 0%;
+    }
+
+    nav .menu .links {
+        text-align: center;
+        width: 100%;
+        background-color: var(--bgNavbar);
+    }
+
+    nav .menu .links li {
+        display: block;
+        margin-top: 0px;
+    }
+
+    nav .menu .links li a {
+        background-color: transparent;
+    }
+
+    nav .menu .links .parent .childs {
+        position: static;
+        background-color: var(--bgNavbar);
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    nav .menu .links .parent .childs li {
+        border: 0px;
+    }
+
+
+
+    nav .menu .icons {
+        text-align: center;
+        width: 100%;
+        padding: 10px 0px;
+    }
+
+    nav .menu .icons li {
+        margin-top: 0px;
+    }
+
+    .nav-burger {
+        height: 40px;
+        width: 40px;
+        margin-top: -8px;
+    }
+}
