@@ -2,11 +2,24 @@
 // Entry point called from server
 function index(pageid, sitekey) {
 
-    init_session( pageid, sitekey);
-    init_usertools();
-    init_admintools();
-    update_navbar();
+    if (parseInt(pageid) === 0) alert('index pageid === 0');
+    if (sitekey === '') alert('index sitekey === ""');
 
+    init_session(pageid, sitekey).then(
+        () => {
+            init_usertools();
+            init_admintools();
+            update_navbar();
+            update_footer();
+            update_titlebar();
+            update_content();
+
+            query_id('rt-public').style.color = 
+                get_session_page().isPublic === '1'? 
+                get_style('sidebarsFgHi') : 
+                get_style('sidebarsFg');
+
+        });
 
     // Session.edit = false;
     // Session.key = sitekey;
@@ -15,13 +28,13 @@ function index(pageid, sitekey) {
     //     key: sitekey,
     //     name: siteName
     // };
-    
+
     // let body = eGet('body');
     // body.addEventListener('keydown', (e) => {
     //     if (!Session.edit)
     //         e.preventDefault();
     // });
-    
+
     // // Load any user logged in
     // let left = eGet('.left');
     // let right = eGet('.right');
@@ -42,7 +55,7 @@ function index(pageid, sitekey) {
 
     // // update navbar with available pages
     // refreshNavbar();
-    
+
     // // Load current page and then draw everyting
     // getpage(pageId);
     //     // Session.page = page;

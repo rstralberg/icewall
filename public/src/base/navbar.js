@@ -1,5 +1,6 @@
 
 function update_navbar() {
+    
     server('update_navbar', {
         pageid: get_session_page().id,
         username: get_session_user().username
@@ -13,28 +14,14 @@ function update_navbar() {
     )
 }
 
-
-function navbar_logout() {
-    alert("navbar_logout");
-}
-
-function navbar_login() {
-    alert("navbar_login");
-}
-
-function navbar_toggle_icon(src) {
-    alert("navbar_toggle_icon");
-}
-
-function navbar_page_selected(pageid) {
-    alert("navbar_page_selected");
-}
-
-function navbar_parent_selected(src) {
-    alert("navbar_parent_selected");
-}
-
-function navbar_theme_selected(themename) {
-    alert("navbar_theme_selected");
+function on_toggle_burger() {
+    let menu = query_id('menu');
+    toggle_display(menu);
+    let burger = query_id('#nav-burger');
+    let close = query_id('#nav-close');
+    if (burger && close) {
+        burger.style.display = burger.style.display === 'none' ? 'content' : 'none';
+        close.style.display = burger.style.display === 'none' ? 'content' : 'none';
+    }
 }
 

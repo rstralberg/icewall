@@ -18,7 +18,7 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--appWRight:' . $theme['wRight'] . ';';
 
     $root .= '--appVGap:' . $theme['vGap'] . ';';
-    $root .= '--appGGap:' . $theme['hGap'] . ';';
+    $root .= '--appHGap:' . $theme['hGap'] . ';';
 
     $styles = db_select($db, 'styles',['*'], db_where($db, 'theme', $theme['name']));
     foreach($styles as $style ) {

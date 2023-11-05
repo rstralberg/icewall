@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/html.php';
+require_once __DIR__ . '/load_html.php';
 
 function loadForm(string $form, array $args ) : void {
 

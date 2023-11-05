@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/strings.php';
 
 function compress_html(string $html): string {
     $res = preg_replace('/\s+/', ' ', $html);

@@ -6,71 +6,52 @@ function init_admintools() {
 }
 
 
-function page_rename() {
-    alert('page_rename');
+function on_add_content() {
+    alert('on_add_content');
 }
 
-function page_toggle_title() {
-    alert('page_toggle_title');
+function on_admin_pages() {
+    alert('on_admin_pages');
 }
 
-function page_add_content() {
-    alert('page_add_content');
+function on_admin_users() {
+    alert('on_admin_users');
 }
 
-function page_toggle_public(src) {
-    alert('page_toggle_public');
+function on_admin_sites() {
+    alert('on_admin_sites');
 }
 
-function page_create() {
-    alert('page_create');
+function on_theme_colors() {
+    alert('on_theme_colors');
 }
 
-function page_delete() {
-    alert('page_delete');
+function on_theme_borders() {
+    alert('on_theme_borders');
 }
 
-function admin_pages() {
-    alert('admin_pages');
+function on_theme_fonts() {
+    alert('on_theme_fonts');
 }
 
-function admin_users() {
-    alert('admin_users');
+function on_theme_sizes() {
+    alert('on_theme_sizes');
 }
 
-function admin_sites() {
-    alert('admin_sites');
+function on_theme_shadows() {
+    alert('on_theme_shadows');
 }
 
-function theme_colors() {
-    alert('theme_colors');
+function on_theme_save() {
+    alert('on_theme_save');
 }
 
-function theme_borders() {
-    alert('theme_borders');
+function on_theme_save_as() {
+    alert('on_theme_save_as');
 }
 
-function theme_fonts() {
-    alert('theme_fonts');
+function on_theme_delete() {
+    alert('on_theme_delete');
 }
 
-function theme_sizes() {
-    alert('theme_sizes');
-}
-
-function theme_shadows() {
-    alert('theme_shadows');
-}
-
-function theme_save() {
-    alert('theme_save');
-}
-
-function theme_save_as() {
-    alert('theme_save_as');
-}
-
-function theme_delete() {
-    alert('theme_delete');
-}
 

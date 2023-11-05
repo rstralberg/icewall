@@ -22,3 +22,19 @@
     background: var(--sidebarsBg);
     color: var(--sidebarsFg);
 }
+
+.tool-button-left {
+	padding: 2px 2px 2px 2px;
+	box-shadow: none;
+	border: none;
+	height: auto;
+    text-align: right;
+}
+
+.tool-button-right {
+	padding: 2px 2px 2px 2px;
+	box-shadow: none;
+	border: none;
+	height: auto;
+    text-align: left;
+}

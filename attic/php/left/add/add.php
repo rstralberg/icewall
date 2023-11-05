@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../tools/html.php';
+require_once __DIR__ . '/../../tools/load_html.php';
 require_once __DIR__ . '/../../tools/reply.php';
 require_once __DIR__ . '/../../db/content.php';
 

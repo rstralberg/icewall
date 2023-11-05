@@ -25,8 +25,19 @@ function session_site_item(name) {
 
 function set_session_user(user) {
     if (validate_session()) {
-        sessionStorage.setItem(session_site_item('user'),
-            JSON.stringify(user));
+        if (user === null) {
+            sessionStorage.setItem(session_site_item('user'),
+                JSON.stringify({
+                    username: '',
+                    fullname: '',
+                    email: '',
+                    picture: ''
+                }));
+        }
+        else {
+            sessionStorage.setItem(session_site_item('user'),
+                JSON.stringify(user));
+        }
     }
 }
 
@@ -47,7 +58,8 @@ function get_session_user() {
 
 function set_session_page(page) {
     if (validate_session()) {
-        sessionStorage.setItem(session_site_item('page'), JSON.stringify(page));
+        let pg = JSON.stringify(page);
+        sessionStorage.setItem(session_site_item('page'), pg);
     }
 }
 
@@ -90,13 +102,20 @@ function get_session_site() {
 
 function init_session(pageid, sitekey) {
 
-    set_session_key(sitekey);
-    server('getsite', { key: sitekey }).then(
-        (resolve) => { set_session_site(JSON.parse(resolve)); },
-        (reject) => { alert(reject) });
+    return new Promise( (resolve,reject ) => {
+        set_session_key(sitekey);
+        server('getsite', { key: sitekey }).then(
+            (site) => {
+                set_session_site(JSON.parse(site));
+                server('getpage', { pageid: pageid }).then(
+                    (page) => { set_session_page(JSON.parse(page)); 
+                    resolve();
+                },
+                (page_error) => { alert(page_error); reject(); });
+            },
+            (siteerror) => { alert(siteerror); reject();  }
+        );
+    });
 
-    server('getpage', { pageid: pageid }).then(
-        (resolve) => { set_session_page(JSON.parse(resolve)); },
-        (reject) => { alert(reject) });
 
 }

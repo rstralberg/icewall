@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Reply.php';
-require_once __DIR__ . '/html.php';
+require_once __DIR__ . '/load_html.php';
 
 class SrvReq
 {

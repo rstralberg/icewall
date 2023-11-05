@@ -31,7 +31,16 @@ function db_where(mysqli $db, string $left, $right) {
     return db_name($left).'='.$right;
 }
 
-function db_order_by( $col, $dir) {
+function db_where_not(mysqli $db, string $left, $right) {
+    if( gettype($right) === 'string')
+    return db_name($left).'<>'.db_string($db, $right);
+    else if( gettype($right) === 'boolean') 
+    return db_name($left).'<>'.db_bool($right);
+    else 
+    return db_name($left).'<>'.$right;
+}
+
+function db_order_by( string $col, string $dir) {
     return db_name($col) . ' ' . $dir;
 }
 

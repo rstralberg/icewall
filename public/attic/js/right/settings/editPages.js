@@ -148,13 +148,11 @@ function moveDown() {
     for (let i = 0; i < ul.childElementCount; i++) {
         newList.push(ul.children[i]);
         if (ul.children[i].id === selectedPage) {
-            console.log('Current pos ' + i);
             pos = i;
         }
     }
     // swap
     if (pos < ul.childElementCount - 1) {
-        console.log('Swapping ' + pos + ' and ' + (pos + 1));
         let temp = newList[pos + 1];
         newList[pos + 1] = newList[pos];
         newList[pos] = temp;
@@ -163,7 +161,6 @@ function moveDown() {
     // rebuild
     ul.innerHTML = '';
     for (let i = 0; i < newList.length; i++) {
-        console.log('Building ' + i);
         let li = document.createElement('li');
         li.id = newList[i].id;
         li.style.listStyle = 'none';

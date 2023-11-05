@@ -3,7 +3,7 @@ require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/tools/error.php';
 require_once __DIR__ . '/db/db.php';
 require_once __DIR__ . '/db/dbManager.php';
-require_once __DIR__ . '/generate/generateHtml.php';
+require_once __DIR__ . '/generate/generateload_html.php';
 
 class App
 {

@@ -71,7 +71,6 @@ nav .menu .links .parent {
     text-decoration-thickness: 2px;
     text-decoration-color: var(--navbarFgHi);
     border-radius: var(--navbarBorderRadius);
-
 }
 
 nav .menu .links .parent .arrow-icon {
@@ -207,7 +206,7 @@ nav ul {
         position: absolute;
         top: 19px;
         right: 15px;
-        z-index: 1;
+        z-index: 20;
         font-size: 18px;
         border: none;
         padding: 2px 5px;

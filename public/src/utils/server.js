@@ -4,6 +4,7 @@ function server(php, args) {
     return new Promise((reply, reject) => {
         args.key = get_session_key();
         args.php = php;
+        
         fetch('/src/redirect.php', {
             method: 'POST',
             body: JSON.stringify(args),

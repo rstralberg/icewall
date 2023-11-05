@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/generateHead.php';
-require_once __DIR__ . '/../tools/html.php';
+require_once __DIR__ . '/../tools/load_html.php';
 
 function generateHtml(Db $db, int $pageId, string $sitekey, string $siteName): string
 {

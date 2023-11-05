@@ -1,53 +1,15 @@
 <?php
 
 require_once __DIR__ . '/../db/db.php';
+require_once __DIR__ . '/styles_table.php';
 
 // returns true if table was created 
 function verify_styles_table(mysqli $db, string $database): bool | string
 {
     if (db_table_exist($db, $database, 'styles') === false) {
-        return db_create($db, $database, 'styles', [
-            'theme',
-            'name',
-            'bg',
-            'fg',
-            'bgHi',
-            'fgHi',
-            'bgDis',
-            'fgDis',
-            'borderSize',
-            'borderColor',
-            'borderRadius',
-            'fontfam',
-            'fontsize',
-            'fontweight',
-            'fontstyle',
-            'height',
-            'width',
-            'shadows',
-        ], [
-            'VARCHAR(64) NOT NULL', // name
-            'VARCHAR(32) NOT NULL', // name
-            'VARCHAR(16) NOT NULL', // bg (#rrggbb)
-            'VARCHAR(16)  NOT NULL', // fg (#rrggbb)
-            'VARCHAR(16)  NOT NULL', // bgHi (#rrggbb)
-            'VARCHAR(16)  NOT NULL', // fgHi (#rrggbb)
-            'VARCHAR(16)  NOT NULL', // bgDis (#rrggbb)
-            'VARCHAR(16)  NOT NULL', // fgDis (#rrggbb)
-            'TINYINT NOT NULL', // borderSize (px)
-            'VARCHAR(16)  NOT NULL', // borderColor (#rrggbb)
-            'TINYINT NOT NULL', // borderRadius (px)
-            'VARCHAR(64)  NOT NULL', // fontfam
-            'FLOAT(5,2) NOT NULL', // fontsize (em)
-            'VARCHAR(16)  NOT NULL', // fontweight (normal or bold)
-            'VARCHAR(16)  NOT NULL', // fontstyle (normal or italic)
-            'VARCHAR(16) NOT NULL', // height (vh)
-            'VARCHAR(16) NOT NULL', // width 
-            'TINYINT NOT NULL', // shadows (0 or 1)
-        ]);
+        return create_styles_table($db, $database);
     }
     return false;
-
 }
 
 function get_default_styles(): array
@@ -116,7 +78,7 @@ function get_default_styles(): array
             'fgHi' => '#ffffff', // fgHi (#rrggbb)
             'bgDis' => '#202020', // bgDis (#rrggbb)
             'fgDis' => '#ffffff', // fgDis (#rrggbb)
-            'borderSize' => 0, // borderSize (px)
+            'borderSize' => 1, // borderSize (px)
             'borderColor' => '#ffffff', // borderColor (#rrggbb)
             'borderRadius' => 16, // borderRadius (px)
             'fontfam' => '"Ariel"', // fontfam ("string")
@@ -148,22 +110,22 @@ function get_default_styles(): array
         ]
         ,
         [   'name' => 'content',
-            'bg' => '#202020', // bg (#rrggbb)
+            'bg' => '#303030', // bg (#rrggbb)
             'fg' => '#ffffff', // fg (#rrggbb)
-            'bgHi' => '#202020', // bgHi (#rrggbb)
+            'bgHi' => '#404040', // bgHi (#rrggbb)
             'fgHi' => '#ffffff', // fgHi (#rrggbb)
             'bgDis' => '#202020', // bgDis (#rrggbb)
             'fgDis' => '#ffffff', // fgDis (#rrggbb)
-            'borderSize' => 0, // borderSize (px)
-            'borderColor' => '#202020', // borderColor (#rrggbb)
-            'borderRadius' => 0, // borderRadius (px)
+            'borderSize' => 1, // borderSize (px)
+            'borderColor' => '#ffffff', // borderColor (#rrggbb)
+            'borderRadius' => 16, // borderRadius (px)
             'fontfam' => '"Ariel"', // fontfam ("string")
             'fontsize' => 1, // fontsize (em)
             'fontweight' => 'normal', // fontweight (normal | bold )
             'fontstyle' => 'normal', // fontstyle (normal | italic)
-            'height' => '6vh', // height 
+            'height' => '2vh', // height 
             'width' => '80%', // width
-            'shadows' => 0,
+            'shadows' => 1,
         ]
         ,
         [   'name' => 'form',
@@ -173,27 +135,27 @@ function get_default_styles(): array
             'fgHi' => '#ffffff', // fgHi (#rrggbb)
             'bgDis' => '#202020', // bgDis (#rrggbb)
             'fgDis' => '#ffffff', // fgDis (#rrggbb)
-            'borderSize' => 0, // borderSize (px)
-            'borderColor' => '#202020', // borderColor (#rrggbb)
-            'borderRadius' => 0, // borderRadius (px)
+            'borderSize' => 2, // borderSize (px)
+            'borderColor' => '#ffffff', // borderColor (#rrggbb)
+            'borderRadius' => 16, // borderRadius (px)
             'fontfam' => '"Ariel"', // fontfam ("string")
             'fontsize' => 1, // fontsize (em)
             'fontweight' => 'normal', // fontweight (normal | bold )
             'fontstyle' => 'normal', // fontstyle (normal | italic)
-            'height' => 'auto', // height 
-            'width' => 'auto', // width 
-            'shadows' => 0,
+            'height' => '30vh', // height 
+            'width' => '60vw', // width 
+            'shadows' => 1,
         ]
         ,
         [   'name' => 'fields',
-            'bg' => '#202020', // bg (#rrggbb)
-            'fg' => '#ffffff', // fg (#rrggbb)
-            'bgHi' => '#202020', // bgHi (#rrggbb)
-            'fgHi' => '#ffffff', // fgHi (#rrggbb)
-            'bgDis' => '#202020', // bgDis (#rrggbb)
-            'fgDis' => '#ffffff', // fgDis (#rrggbb)
+            'bg' => '#e0e0e0', // bg (#rrggbb)
+            'fg' => '#000000', // fg (#rrggbb)
+            'bgHi' => '#ffffff', // bgHi (#rrggbb)
+            'fgHi' => '#000000', // fgHi (#rrggbb)
+            'bgDis' => '#808080', // bgDis (#rrggbb)
+            'fgDis' => '#404040', // fgDis (#rrggbb)
             'borderSize' => 1, // borderSize (px)
-            'borderColor' => '#202020', // borderColor (#rrggbb)
+            'borderColor' => '#ffffff', // borderColor (#rrggbb)
             'borderRadius' => 8, // borderRadius (px)
             'fontfam' => '"Ariel"', // fontfam ("string")
             'fontsize' => 1, // fontsize (em)
@@ -201,7 +163,7 @@ function get_default_styles(): array
             'fontstyle' => 'normal', // fontstyle (normal | italic)
             'height' => '2vh', // height 
             'width' => 'auto', // width
-            'shadows' => 0,
+            'shadows' => 1,
         ]
         ,
         [   'name' => 'button',
@@ -209,8 +171,8 @@ function get_default_styles(): array
             'fg' => '#ffffff', // fg (#rrggbb)
             'bgHi' => '#EFC931', // bgHi (#rrggbb)
             'fgHi' => '#000000', // fgHi (#rrggbb)
-            'bgDis' => '#202020', // bgDis (#rrggbb)
-            'fgDis' => '#ffffff', // fgDis (#rrggbb)
+            'bgDis' => '#808080', // bgDis (#rrggbb)
+            'fgDis' => '#404040', // fgDis (#rrggbb)
             'borderSize' => 1, // borderSize (px)
             'borderColor' => '#202020', // borderColor (#rrggbb)
             'borderRadius' => 8, // borderRadius (px)
@@ -220,33 +182,33 @@ function get_default_styles(): array
             'fontstyle' => 'normal', // fontstyle (normal | italic)
             'height' => '2vh', // height 
             'width' => '100px', // width 
-            'shadows' => 0,
+            'shadows' => 1,
         ]
         ,
         [   'name' => 'title',
             'bg' => '#202020', // bg (#rrggbb)
-            'fg' => '#ffffff', // fg (#rrggbb)
+            'fg' => '#e1c21a', // fg (#rrggbb)
             'bgHi' => '#202020', // bgHi (#rrggbb)
-            'fgHi' => '#ffffff', // fgHi (#rrggbb)
+            'fgHi' => '#e1c21a', // fgHi (#rrggbb)
             'bgDis' => '#202020', // bgDis (#rrggbb)
             'fgDis' => '#ffffff', // fgDis (#rrggbb)
             'borderSize' => 0, // borderSize (px)
             'borderColor' => '#202020', // borderColor (#rrggbb)
             'borderRadius' => 0, // borderRadius (px)
             'fontfam' => '"Ariel"', // fontfam ("string")
-            'fontsize' => 1, // fontsize (em)
-            'fontweight' => 'normal', // fontweight (normal | bold )
+            'fontsize' => 1.3, // fontsize (em)
+            'fontweight' => 'bold', // fontweight (normal | bold )
             'fontstyle' => 'normal', // fontstyle (normal | italic)
             'height' => 'auto', // height 
             'width' => 'auto', // width
-            'shadows' => 0,
+            'shadows' => 1,
         ]
         ,
         [   'name' => 'sidebars',
             'bg' => '#202020', // bg (#rrggbb)
             'fg' => '#ffffff', // fg (#rrggbb)
             'bgHi' => '#202020', // bgHi (#rrggbb)
-            'fgHi' => '#ffffff', // fgHi (#rrggbb)
+            'fgHi' => '#ff0000', // fgHi (#rrggbb)
             'bgDis' => '#202020', // bgDis (#rrggbb)
             'fgDis' => '#ffffff', // fgDis (#rrggbb)
             'borderSize' => 0, // borderSize (px)

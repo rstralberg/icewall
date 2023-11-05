@@ -1,0 +1,36 @@
+<figure class="tool-section">
+    <figcaption class="tool-section-title">Avsnitt</figcaption>
+    <hr class="tool-section-ruler">
+    <button id="lt-delete-content" class="tool-button-left" onclick="content_delete()">Radera</button>
+    <button id="lt-save-content" class="tool-button-left" onclick="content_save()">Spara</button>
+    <button id="lt-move-up" class="tool-button-left" onclick="content_move(-1)">Flytta <b>&uarr;</b></button>
+    <button id="lt-move-down" class="tool-button-left" onclick="content_move(1)">Flytta <b>&darr;</b></button>
+    <button id="content-public" class="tool-button-left" onclick="content_toggle_public(this)">Publik</button>
+</figure>
+
+<figure class="tool-section">
+    <figcaption class="tool-section-title">Innehåll</figcaption>
+    <hr class="tool-section-ruler">
+    <button id="lt-bold" class="tool-button-left" onclick="content_bold()">Fet stil</button>
+    <button id="lt-italic" class="tool-button-left" onclick="content_italic()">Kursiv stil</button>
+    <button id="lt-fontsize-plus" class="tool-button-left" onclick="content_fontsize(1)">Tecken <b>&uarr;</b></button>
+    <button id="lt-fontsize-minus" class="tool-button-left" onclick="content_fontsize(-1)">Tecken <b>&darr;</b></button>
+    <button id="lt-align-left" class="tool-button-left" onclick="content_align('left')">Vänster</button>
+    <button id="lt-align-center" class="tool-button-left" onclick="content_align('center')">Mitten</button>
+    <button id="lt-align-right" class="tool-button-left" onclick="content_align('right')">Höger</button>
+    <button id="lt-shadown" class="tool-button-left" onclick="content_shadow()">Skugga</button>
+</figure>
+
+<figure class="tool-section">
+    <figcaption class="tool-section-title">Lägg in</figcaption>
+    <hr class="tool-section-ruler">
+    <button id="lt-weblink" class="tool-button-left" onclick="content_add('link')">Webblänk</button>
+    <button id="lt-title" class="tool-button-left" onclick="content_add('title')">Titel</button>
+    <button id="lt-hr" class="tool-button-left" onclick="content_add('line')">Streck</button>
+    <button id="lt-image" class="tool-button-left" onclick="content_add('image')">Bild</button>
+    <button id="lt-audio" class="tool-button-left" onclick="content_add('audio')">Ljud MP3</button>
+    <button id="lt-spotify" class="tool-button-left" onclick="content_add('spotify')">Spotify</button>
+    <button id="lt-soundcloud" class="tool-button-left" onclick="content_add('soundcloud')">Soundcloud</button>
+    <button id="lt-youtube" class="tool-button-left" onclick="content_add('youtube')">Youtube</button>
+</figure>
+

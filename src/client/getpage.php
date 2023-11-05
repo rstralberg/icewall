@@ -13,6 +13,7 @@ if (verify_client_args($args, ['pageid'])) {
         send_reject('Failed to load page');
     } else {
         db_close($db);
-        send_resolve(json_encode($pages[0]));
+        $page = $pages[0];
+        send_resolve(json_encode($page));
     }
 }

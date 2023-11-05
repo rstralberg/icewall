@@ -30,6 +30,8 @@ nav {
 
 	box-shadow: 10px 10px 15px rgba(0,0,0,var(--navbarShadows));
 
+	z-index: 15;
+
 }
 
 nav:hover,
@@ -58,6 +60,7 @@ header {
 	font-size: var(--titlebarFontsize);
 	font-weight: var(--titlebarFontweight);
 	font-style: var(--titlebarFontstyle);
+	line-height: var(--titlebarHeight);
     
 	border-radius: var(--titlebarBorderRadius);
     outline-color: var(--titlebarBorderColor);
@@ -84,7 +87,7 @@ main {
 	position: fixed;
 	left: var(--sidebarsWidth);
 	top: calc( 6vh + var(--navbarHeight) + var(--titlebarHeight) ) ;
-    height: calc( 100vh - 6vh - 6vh - var(--navbarHeight) - var(--titlebarHeight) - var(--footerHeight) );
+    height: calc( 100vh - 6vh - 4vh - var(--navbarHeight) - var(--titlebarHeight) - var(--footerHeight) );
     width: var(--pageWidth);
 
 	background: var(--pageBg);
@@ -99,6 +102,9 @@ main {
     outline-color: var(--pageBorderColor);
     outline-width: var(--pageBorderSize);
     outline-style: solid;
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--pageShadows));
+
 }
 
 main:hover,
@@ -126,7 +132,9 @@ footer {
 	font-size: var(--footerFontsize);
 	font-weight: var(--footerFontweight);
 	font-style: var(--footerFontstyle);
-    border-radius: var(--footerBorderRadius);
+    line-height: var(--footerHeight);
+
+	border-radius: var(--footerBorderRadius);
     outline-color: var(--footerBorderColor);
     outline-width: var(--footerBorderSize);
     outline-style: solid;
@@ -176,12 +184,70 @@ aside:disabled {
 	color: var(--sidebarsFgDis);
 }
 
+section {
+	background: var(--contentBg);
+	color: var(--contentFg);
+
+    height: auto;
+    width: calc( 0.9 * var(--contentWidth) );
+
+	font-family: var(--contentFontfam);
+	font-size: var(--contentFontsize);
+	font-weight: var(--contentFontweight);
+	font-style: var(--contentFontstyle);
+
+    border-radius: var(--contentBorderRadius);
+    outline-color: var(--contentBorderColor);
+    outline-width: var(--contentBorderSize);
+    outline-style: solid;
+
+	margin-top:  var(--contentHeight);
+	margin-bottom:  var(--contentHeight);
+	margin-left: calc( ( 100% - var(--contentWidth) ) / 2 );
+	margin-right: calc( 100% - (var(--contentWidth) / 2) );
+	padding: calc( var(--contentHeight) / 2 );
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--contentShadows));
+
+}
+
+input {
+	background: var(--fieldsBg);
+	color: var(--fieldsFg);
+
+	border-radius: var(--fieldsBorderRadius);
+	outline-color: var(--fieldsBorderColor);
+	outline-width: var(--fieldsBorderSize);
+	outline-style: solid;
+
+	font-family: var(--fieldsFontfam);
+	font-size: var(--fieldsFontsize);
+	font-weight: var(--fieldsFontweight);
+	font-style: var(--fieldsFontstyle);
+
+
+	margin: 8px 2px 8px 0px;
+}
+
+input:hover {
+	background: var(--fieldsBgHi);
+	color: var(--fieldsFgHi);
+}
+
+input:disabled {
+	background: var(--fieldsBgDis);
+	color: var(--fieldsFgDis);
+	cursor: not-allowed;
+}
+
+
 button,
 input[type=button] {
 	display: block;
 	width: var(--buttonWidth);
 	min-width: 100px;
 	margin-top: 12px;
+	height: calc( 2 * var(--buttonFontsize) );
 	
 	background: var(--buttonBg);
 	color: var(--buttonFg);
@@ -192,7 +258,7 @@ input[type=button] {
 	outline-width: var(--buttonBorderSize);
 	outline-style: solid;
 
-	box-shadow: 10px 10px 15px rgba(0,0,0,var(--buttonhadows));
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--buttonShadows));
 
 }
 
@@ -202,7 +268,83 @@ input[type=button]:hover {
 	color: var(--buttonFgHi);
 }
 
+button:disabled,
+input[type=button]:disabled {
+	background: var(--buttonBgDis);
+	color: var(--buttonFgDis);
+	cursor: not-allowed;
+}
+
+input[type=checkbox] {
+	margin-left: 0;
+	margin-right: 95%;
+	border:none;
+	outline: none;
+}
+
+select {
+	background: var(--fieldsBg);
+	color: var(--fieldsFg);
+
+	font-family: var(--fieldsFontfam);
+	font-size: var(--fieldsFontsize);
+	font-weight: var(--fieldsFontweight);
+	font-style: var(--fieldsFontstyle);
+
+	border-radius: var(--fieldsBorderRadius);
+
+	height: 3vh;
+	border:none;
+	outline: none;
+}
+
+select:hover {
+	background: var(--fieldsBgHi);
+	color: var(--fieldsFgHi);
+}
+
+select:disabled {
+	background: var(--fieldsBgDis);
+	color: var(--fieldsFgDis);
+	cursor:not-allowed;
+}
+
+form {
+	display: block;
+	position: absolute;
+
+	left: var(--sidebarsWidth);
+	top: calc( var(--navbarHeight) + var(--titlebarHeight) + 6vh );
+
+	width: auto;
+	height: auto;
+
+	background: var(--formBg);
+	color: var(--formFg);
+
+	padding: 8px;
+
+	min-width: var(--formWidth);
+	min-height: var(--formHeight);
+
+	border-radius: var(--formBorderRadius);
+	outline-color: var(--formBorderColor);
+	outline-width: var(--formBorderSize);
+	outline-style: solid;
+
+	box-shadow: 10px 10px 15px rgba(0,0,0,var(--formShadows));
+
+	z-index: 10;
+}
+
+form input[type=button] {
+	width: auto !important;
+}
 
 figure {
 	margin: 16px 16px 16px 8px;
+}
+
+figcaption {
+	color: var(--appFg);
 }

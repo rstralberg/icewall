@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/generate_head.php';
-require_once __DIR__ . '/../utils/html.php';
+require_once __DIR__ . '/../utils/load_html.php';
 
 function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteName): string
 {
@@ -9,14 +9,14 @@ function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteNam
     $html .= generate_head($db, $siteName, DEFAULT_THEME);
 
     $html .= '<body>';
-    $html .= '<aside class="left">' . load_html(__DIR__ . '/_left.html') . '</aside>';
+    $html .= '<aside class="left">' . load_html(__DIR__ . '/_usertools.html') . '</aside>';
     $html .= '<div class="container">';
     $html .= '<nav></nav>';
     $html .= '<header></header>';
     $html .= '<main></main>';
     $html .= '<footer></footer>';
     $html .= '</div>';
-    $html .= '<aside class="right">' . load_html(__DIR__ . '/_right.html') . '</aside>';
+    $html .= '<aside class="right">' . load_html(__DIR__ . '/_admintools.html') . '</aside>';
     $html .= '</body>';
 
     // Jscript loading ....
