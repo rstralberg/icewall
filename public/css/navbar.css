@@ -1,5 +1,5 @@
 .navbar-logo {
-    height: calc(2 * var(--navbarFontsize));
+    height: calc(2 * var(--nbarFsize));
     width: auto;
     margin-top: 0 !important;
 }
@@ -27,9 +27,9 @@ nav .menu .links {
     width: 100%;
     height: inherit;
     float: left;
-    font-weight: var(--navbarFontweight);
-    font-style: var(--navbarFontstyle);
-    font-size: var(--navbarFontsize);
+    font-weight: var(--nbarBold);
+    font-style: var(--nbarItalic);
+    font-size: var(--nFsize);
 }
 
 nav .menu .links li {
@@ -52,16 +52,16 @@ nav .menu .links li:hover {
 nav .menu .links li a {
     display: block;
     padding: 10px 30px;
-    background-color: var(--navbarBg);
-    color: var(--navbarFg);
+    background-color: var(--barsBg);
+    color: var(--barsFg);
     letter-spacing: 1px;
     text-decoration: none;
 }
 
 nav .menu .links li a:hover {
-    background-color: var(--navbarBgHi);
-    color: var(--navbarFgHi);
-    border-radius: var(--navbarBorderRadius);
+    background-color: var(--nbarBgHi);
+    color: var(--nbarFgHi);
+    border-radius: var(--radius);
 }
 
 nav .menu .links .parent {
@@ -69,8 +69,8 @@ nav .menu .links .parent {
     text-decoration: solid;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    text-decoration-color: var(--navbarFgHi);
-    border-radius: var(--navbarBorderRadius);
+    text-decoration-color: var(--nbarFgHi);
+    border-radius: var(--radius);
 }
 
 nav .menu .links .parent .arrow-icon {
@@ -85,13 +85,13 @@ nav .menu .links .parent .rotate {
 nav .menu .links .parent .childs {
     position: absolute;
 
-    background-color: var(--navbarBg);
+    background-color: var(--barsBg);
     top: 100%;
     left: 0px;
     width: 200px;
     text-align: left;
     display: none;
-    box-shadow: 0px 1px 6px 0px var(--navbarShadows);
+    box-shadow: 0px 1px 6px 0px var(--barsShadow);
 
 }
 
@@ -127,9 +127,9 @@ nav .menu .icons li a {
     height: 40px;
     text-align: center;
     line-height: 40px;
-    color: var(--navbarFg);
-    background: var(--navbarBg);
-    font-size: var(f--navbarFontsize);
+    color: var(--barsFg);
+    background: var(--barsBg);
+    font-size: var(f--nbarFsize);
 
 }
 

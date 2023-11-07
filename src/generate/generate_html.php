@@ -10,12 +10,12 @@ function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteNam
 
     $html .= '<body>';
     $html .= '<aside class="left">' . load_html(__DIR__ . '/_usertools.html') . '</aside>';
-    $html .= '<div class="container">';
+    // $html .= '<div class="container">';
     $html .= '<nav></nav>';
     $html .= '<header></header>';
     $html .= '<main></main>';
     $html .= '<footer></footer>';
-    $html .= '</div>';
+    // $html .= '</div>';
     $html .= '<aside class="right">' . load_html(__DIR__ . '/_admintools.html') . '</aside>';
     $html .= '</body>';
 

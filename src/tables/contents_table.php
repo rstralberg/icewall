@@ -16,3 +16,12 @@ function create_contents_table(mysqli $db, string $database): bool
         'TINYINT NOT NULL', // isPublic
     ]);
 }
+
+// returns true if table was created 
+function verify_contents_table(mysqli $db, string $database): bool 
+{
+    if (db_table_exist($db, $database, 'contents') === false) {
+        return create_contents_table($db, $database);
+    } 
+    return false ;
+}

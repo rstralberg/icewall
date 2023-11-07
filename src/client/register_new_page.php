@@ -22,10 +22,10 @@ if (verify_client_args($args, ['title','author','isParent','parentId','pos','sho
     }
     else {
 
-        db_insert($db, 'contents', ['pageId', 'pos', 'html','isPublic'],
+        $id = db_insert($db, 'contents', ['pageId', 'pos', 'html','isPublic'],
             [$res, 0, $sites[0]['title'] . ' ' . $args->title, false]);
 
         db_close($db);
-        send_resolve('');
+        send_resolve($id);
     }
 }

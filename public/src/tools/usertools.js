@@ -7,22 +7,6 @@ function init_usertools() {
 
 }
 
-function content_delete() {
-    alert('content_delete');
-}
-
-function content_save() {
-    alert('content_save');
-}
-
-function content_move(dir) {
-    alert('content_move');
-}
-
-function content_toggle_public(src) {
-    alert('content_toggle_public');
-}
-
 function content_bold() {
     alert('content_bold');
 }

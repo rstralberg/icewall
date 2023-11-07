@@ -4,7 +4,7 @@ require_once __DIR__ . '/db/db.php';
 require_once __DIR__ . '/sites/init_sites.php';
 require_once __DIR__ . '/sites/load_site_from_args.php';
 require_once __DIR__ . '/generate/generate_html.php';
-require_once __DIR__ . '/tables/verify_pages_table.php';
+require_once __DIR__ . '/tables/pages_table.php';
 
 // create and/or update sites databases and folders
 init_sites();

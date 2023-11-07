@@ -25,6 +25,6 @@ if (verify_client_args($args, ['pageid'])) {
         send_reject('Failed to delete page');
     } else {
         db_close($db);
-        send_resolve('');
+        send_resolve(true);
     }
 }

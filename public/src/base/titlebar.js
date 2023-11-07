@@ -17,26 +17,12 @@ function update_titlebar() {
             //  Note! Verify the style formulas against 
             //  basic.css values for main
             if( header.style.display == 'none') {
-                let top = vh2px('6vh') 
-                    + vh2px(get_style('navbarHeight')); 
-                main.style.top = top + 'px';
-
-                let height =  vh2px( (100 - 6 - 4)+'vh') 
-                    - vh2px(get_style('navbarHeight')) 
-                    - vh2px(get_style('footerHeight'));
-                main.style.height = height + 'px';
+                main.classList.remove('main-header');
+                main.classList.add('main-no-header');
             }
             else {
-                let top = vh2px('6vh') 
-                    + vh2px(get_style('navbarHeight')) 
-                    + vh2px(get_style('titlebarHeight')); 
-                main.style.top = top + 'px';
-            
-                let height =  vh2px( (100 - 6 - 4)+'vh') 
-                    - vh2px(get_style('navbarHeight')) 
-                    - vh2px(get_style('titlebarHeight'))
-                    - vh2px(get_style('footerHeight'));
-                main.style.height = height + 'px';
+                main.classList.remove('main-no-header');
+                main.classList.add('main-header');
             }
 
         },

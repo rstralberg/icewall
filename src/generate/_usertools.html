@@ -1,36 +1,35 @@
-<figure class="tool-section">
-    <figcaption class="tool-section-title">Avsnitt</figcaption>
-    <hr class="tool-section-ruler">
-    <button id="lt-delete-content" class="tool-button-left" onclick="content_delete()">Radera</button>
-    <button id="lt-save-content" class="tool-button-left" onclick="content_save()">Spara</button>
-    <button id="lt-move-up" class="tool-button-left" onclick="content_move(-1)">Flytta <b>&uarr;</b></button>
-    <button id="lt-move-down" class="tool-button-left" onclick="content_move(1)">Flytta <b>&darr;</b></button>
-    <button id="content-public" class="tool-button-left" onclick="content_toggle_public(this)">Publik</button>
+<figure>
+    <figcaption>Avsnitt</figcaption>
+    <hr>
+    <input type="button" id="lt-delete-content" style="text-align:right" onclick="content_delete()" value="Radera">
+    <input type="button" id="lt-save-content" style="text-align:right" onclick="content_save()" value="Spara">
+    <input type="button" id="lt-move-up" style="text-align:right" onclick="content_move(-1)" value="Uppåt">
+    <input type="button" id="lt-move-down" style="text-align:right" onclick="content_move(1)" value="Nedåt">
+    <input type="button" id="lt-public" style="text-align:right" onclick="content_toggle_public()" value="Publik">
 </figure>
 
-<figure class="tool-section">
-    <figcaption class="tool-section-title">Innehåll</figcaption>
-    <hr class="tool-section-ruler">
-    <button id="lt-bold" class="tool-button-left" onclick="content_bold()">Fet stil</button>
-    <button id="lt-italic" class="tool-button-left" onclick="content_italic()">Kursiv stil</button>
-    <button id="lt-fontsize-plus" class="tool-button-left" onclick="content_fontsize(1)">Tecken <b>&uarr;</b></button>
-    <button id="lt-fontsize-minus" class="tool-button-left" onclick="content_fontsize(-1)">Tecken <b>&darr;</b></button>
-    <button id="lt-align-left" class="tool-button-left" onclick="content_align('left')">Vänster</button>
-    <button id="lt-align-center" class="tool-button-left" onclick="content_align('center')">Mitten</button>
-    <button id="lt-align-right" class="tool-button-left" onclick="content_align('right')">Höger</button>
-    <button id="lt-shadown" class="tool-button-left" onclick="content_shadow()">Skugga</button>
+<figure>
+    <figcaption>Innehåll</figcaption>
+    <hr>
+    <input type="button" id="lt-bold" style="text-align:right" onclick="content_bold()" value="Fet stil">
+    <input type="button" id="lt-italic" style="text-align:right" onclick="content_italic()" value="Kursiv stil">
+    <input type="button" id="lt-fontsize-plus" style="text-align:right" onclick="content_fontsize(1)" value="Storlek +">
+    <input type="button" id="lt-fontsize-minus" style="text-align:right" onclick="content_fontsize(-1)" value="Storlek -"">
+    <input type="button" id="lt-align-left" style="text-align:right" onclick="content_align('left')" value="Vänster">
+    <input type="button" id="lt-align-center" style="text-align:right" onclick="content_align('center')" value="Mitten">
+    <input type="button" id="lt-align-right" style="text-align:right" onclick="content_align('right')" value="Höger">
+    <input type="button" id="lt-shadown" style="text-align:right" onclick="content_shadow()" value="Skugga">
 </figure>
 
-<figure class="tool-section">
-    <figcaption class="tool-section-title">Lägg in</figcaption>
-    <hr class="tool-section-ruler">
-    <button id="lt-weblink" class="tool-button-left" onclick="content_add('link')">Webblänk</button>
-    <button id="lt-title" class="tool-button-left" onclick="content_add('title')">Titel</button>
-    <button id="lt-hr" class="tool-button-left" onclick="content_add('line')">Streck</button>
-    <button id="lt-image" class="tool-button-left" onclick="content_add('image')">Bild</button>
-    <button id="lt-audio" class="tool-button-left" onclick="content_add('audio')">Ljud MP3</button>
-    <button id="lt-spotify" class="tool-button-left" onclick="content_add('spotify')">Spotify</button>
-    <button id="lt-soundcloud" class="tool-button-left" onclick="content_add('soundcloud')">Soundcloud</button>
-    <button id="lt-youtube" class="tool-button-left" onclick="content_add('youtube')">Youtube</button>
+<figure>
+    <figcaption>Lägg in</figcaption>
+    <hr>
+    <input type="button" id="lt-weblink" style="text-align:right" onclick="content_add('link')" value="Webblänk">
+    <input type="button" id="lt-title" style="text-align:right" onclick="content_add('title')" value="Titel">
+    <input type="button" id="lt-hr" style="text-align:right" onclick="content_add('line')" value="Streck">
+    <input type="button" id="lt-image" style="text-align:right" onclick="content_add('image')" value="Bild">
+    <input type="button" id="lt-audio" style="text-align:right" onclick="content_add('audio')" value="Ljud MP3">
+    <input type="button" id="lt-spotify" style="text-align:right" onclick="content_add('spotify')" value="Spotify">
+    <input type="button" id="lt-soundcloud" style="text-align:right" onclick="content_add('soundcloud')" value="Soundcloud">
+    <input type="button" id="lt-youtube" style="text-align:right" onclick="content_add('youtube')" value="Youtube">
 </figure>
-

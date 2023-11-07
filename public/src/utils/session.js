@@ -100,6 +100,20 @@ function get_session_site() {
     };
 }
 
+function set_session_selection(element) {
+    if( validate_session()) {
+        sessionStorage.setItem(session_site_item('selected'), element ? element.id  : null);
+    }
+}
+
+function get_session_selection() {
+    if( validate_session()) {
+        let id = sessionStorage.getItem(session_site_item('selected'));
+        if( is_valid(id)) return query_id(id);
+    }
+    return null;
+}
+
 function init_session(pageid, sitekey) {
 
     return new Promise( (resolve,reject ) => {
@@ -115,6 +129,7 @@ function init_session(pageid, sitekey) {
             },
             (siteerror) => { alert(siteerror); reject();  }
         );
+        set_session_selection(null);
     });
 
 

@@ -15,7 +15,7 @@ if (verify_client_args($args, ['pageid','title'])) {
         send_reject($res);
     }
     else {
-        send_resolve('');
+        send_resolve($res);
     }
 }
 

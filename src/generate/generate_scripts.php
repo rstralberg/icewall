@@ -31,6 +31,13 @@ function generate_scripts() : string {
     $html.= script('src/actions/toggle_titlebar');
     $html.= script('src/actions/page_public');
     $html.= script('src/actions/add_content');
+    $html.= script('src/actions/delete_content');
+    $html.= script('src/actions/save_content');
+    $html.= script('src/actions/move_content');
+    $html.= script('src/actions/update_content_positions');
+    $html.= script('src/actions/toggle_content_public');
+    $html.= script('src/actions/content_textedits');
+    
 
     $html.= script('index');
     

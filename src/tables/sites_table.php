@@ -21,3 +21,13 @@ function create_sites_table(mysqli $db, string $database): bool
         'VARCHAR(128) NOT NULL',
     ]);
 }
+
+
+// returns true if table was created 
+function verify_sites_table(mysqli $db, string $database): bool | string
+{
+    if (db_table_exist($db, $database, 'sites') === false) {
+        return create_sites_table($db, $database);
+    } 
+    return false;
+}
