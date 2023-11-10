@@ -3,7 +3,7 @@ function webLink() {
     if (EditorSelection) {
         webForm('weblink', {
             text: getSelectedText(),
-            cursorPos: getCaretPosition()
+            cursorPos: get_caret_pos()
         });
     }
 }

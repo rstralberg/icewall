@@ -10,7 +10,7 @@ if (verify_client_args($args, ['pageid'])) {
 
     if ($contents === false) {
         db_close($db);
-        send_reject('Failed to load page content');
+        send_reject('Sidan saknar innehåll');
     } else {
         db_close($db);
         send_resolve(json_encode($contents));

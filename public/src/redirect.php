@@ -21,7 +21,12 @@ try {
         exit(0);
     }
     $require  = __DIR__ . '/../../src/client/' . $args->php . '.php'; 
-    require_once  $require;
+    if( !file_exists( $require )) {
+        send_reject('Could not find "' . $require . '"');
+    }
+    else {
+        require_once  $require;
+    }
 } 
 catch (Exception $ex) {
     send_reject($ex);

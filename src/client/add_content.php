@@ -11,8 +11,8 @@ if (verify_client_args($args, ['pageid'])) {
     $sites = db_select($db, 'sites', ['title'], db_where($db, 'key', $args->key));
 
     $res = db_insert($db, 'contents',
-        ['pageId', 'pos', 'html', 'isPublic'],
-        [$args->pageid, 0, $sites[0]['title'], 0]);
+        ['pageId', 'pos', 'style', 'html', 'isPublic'],
+        [$args->pageid, 0, '', $sites[0]['title'], 0]);
 
     if ($res === false) {
         send_reject('Failed to create new content');

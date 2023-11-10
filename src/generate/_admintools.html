@@ -1,36 +1,36 @@
 <figure>
     <figcaption>Denna sida</figcaption>
     <hr>
-    <button id="rt-rename-page" style="text-align: right" onclick="on_page_rename()">Ändra titel</button>
-    <button id="rt-show-title" style="text-align: right" onclick="on_toggle_title()">Titel synlig</button>
-    <button id="rt-add-content" style="text-align: right" onclick="on_add_content()">Nytt avsnitt</button>
-    <button id="rt-public"  style="text-align: right" onclick="on_page_public(this)">Publik</button>
+    <input type="button" id="adt-rename-page" style="text-align: right" onclick="adt_rename_page()" value="Ändra titel">
+    <input type="button" id="adt-show-title" style="text-align: right" onclick="adt_show_title()" value="Titel synlig">
+    <input type="button" id="adt-add-content" style="text-align: right" onclick="adt_add_content()" value="Nytt avsnitt">
+    <input type="button" id="adt-public"  style="text-align: right" onclick="adt_public()" value="Publik">
     </figure>
 
 <figure>
     <figcaption>Sidor</figcaption>
     <hr>
-    <button id="rt-create-page" style="text-align: right"  onclick="on_page_create()">Ny sida</button>
-    <button id="rt-delete-pages" style="text-align: right"  onclick="on_page_delete()">Radera</button>
+    <input type="button" id="adt-create-page"  class="tool" style="text-align: left"  onclick="adt_create_page()" value="Ny sida" >
+    <input type="button" id="adt-delete-pages" class="tool" style="text-align: left"  onclick="adt_delete_pages()" value="Radera sida">
     </figure>
 
 <figure>
     <figcaption>System</figcaption>
     <hr>
-    <button id="rt-edit-pages" style="text-align: right"  onclick="on_admin_pages()">Sidor</button>
-    <button id="rt-edit-users" style="text-align: right"  onclick="on_admin_users()">Användare</button>
-    <button id="rt-edit-settings" style="text-align: right"  onclick="on_admin_sites()">Inställningar</button>
+    <input type="button" id="adt-edit-pages"    class="tool" style="text-align: left"  onclick="adt_edit_pages()" value="Sidor">
+    <input type="button" id="adt-edit-users"    class="tool" style="text-align: left"  onclick="adt_edit_users()" value="Användare">
+    <input type="button" id="adt-edit-settings" class="tool" style="text-align: left"  onclick="adt_edit_settings()" value="Inställningar">
 </figure>
 
 <figure>
     <figcaption>Utseende</figcaption>
     <hr>
-    <button style="text-align: right" onclick="on_theme_colors()">Färger</button>
-    <button style="text-align: right" onclick="on_theme_borders()">Ramar</button>
-    <button style="text-align: right" onclick="on_theme_fonts()">Tecken</button>
-    <button style="text-align: right" onclick="on_theme_sizes()">Storlekar</button>
-    <button style="text-align: right" onclick="on_theme_shadows()">Skuggor</button>
-    <button style="text-align: right" onclick="on_theme_save()">Spara</button>
-    <button style="text-align: right" onclick="on_theme_save_as()">Spara som</button>
-    <button style="text-align: right" onclick="on_theme_delete()">Radera</button>
+    <input id="adt-theme-colors" type="button" style="text-align: left" class="tool" onclick="adt_theme_colors()" value="Färger">
+    <input id="adt-theme-borders" type="button" style="text-align: left" class="tool" onclick="adt_theme_borders()" value="Ramar">
+    <input id="adt-theme-fonts" type="button" style="text-align: left" class="tool" onclick="adt_theme_fonts()" value="Tecken">
+    <input id="adt-theme-sizes" type="button" style="text-align: left" class="tool" onclick="adt_theme_sizes()" value="Storlekar">
+    <input id="adt-theme-shadows" type="button" style="text-align: left" class="tool" onclick="adt_theme_shadows()" value="Skuggor">
+    <input id="adt-theme-save" type="button" style="text-align: left" class="tool" onclick="adt_theme_save()" value="Spara">
+    <input id="adt-theme-save_as" type="button" style="text-align: left" class="tool" onclick="adt_theme_save_as()" value="Spara" >
+    <input id="adt-theme-delete" type="button" style="text-align: left" class="tool" onclick="adt_theme_delete()" value="Radera">
 </figure>

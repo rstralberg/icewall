@@ -53,8 +53,8 @@ header {
 
 main {
 	background: var(--appBg);
-	text-align: center;
 	margin-top: calc( var(--nbarH) + var(--tbarH) + (2.5 * var(--vGap) ) );
+	padding-bottom: calc( 2* var(--fbarH) );
 }
 
 footer {
@@ -88,44 +88,70 @@ section {
 	outline: var(--contBorder);
 	margin-left: calc( var(--left) );
 	margin-right: calc( var(--left) );
-	margin-top: 1.0em;
+	margin-top: var(--vGap);
 	min-height: 3.2em;
 	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--contShadow));
+	padding: 16px 16px 0px 16px;
 }
 
-section:hover,
+section:hover ,
 .active-section {
+	background: var(--contBg);
 	outline-width: calc(2 * var(--contBorder));
 }
 
+h1 {
+	outline: 1px solid var(--linkFg);
+	font-size: large;
+	width: -moz-available;
+	display: block;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	border-radius: calc( var(--radius) / 2 );
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	height: 2em;
+	line-height: 2em;
+	text-align: center;
+}
 
+h2 {
+	outline: 1px solid var(--linkFg);
+	font-size: large;
+	width: auto;
+	display: inline-block;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	border-radius: calc( var(--radius) / 2 );
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
 
 input {
-	background: var(--fieldsBg);
-	color: var(--fieldsFg);
+	background: var(--inpBg);
+	color: var(--inpFg);
 
-	border-radius: var(--fieldsBorderRadius);
-	outline-color: var(--fieldsBorderColor);
-	outline-width: var(--fieldsBorderSize);
-	outline-style: solid;
+	border-radius: calc( var(--radius) / 2 );
+	outline: var(--inpBorder);
 
-	font-family: var(--fieldsFontfam);
-	font-size: var(--fieldsFontsize);
-	font-weight: var(--fieldsFontweight);
-	font-style: var(--fieldsFontstyle);
+	font-size: var(--inpFsize);
+	font-weight: var(--inpBold);
+	font-style: var(--inpItalic);
 
 
 	margin: 8px 2px 8px 0px;
 }
 
 input:hover {
-	background: var(--fieldsBgHi);
-	color: var(--fieldsFgHi);
+	background: var(--inpBgHi);
+	color: var(--inpFgHi);
 }
 
 input:disabled {
-	background: var(--fieldsBgDis);
-	color: var(--fieldsFgDis);
+	background: var(--inpBgDis);
+	color: var(--inpFgDis);
 	cursor: not-allowed;
 }
 
@@ -133,34 +159,32 @@ input:disabled {
 button,
 input[type=button] {
 	display: block;
-	width: var(--buttonWidth);
+	width: var(--btnWidth);
 	min-width: 100px;
 	margin-top: 12px;
-	height: calc(2 * var(--buttonFontsize));
+	height: calc(2 * var(--btnFsize));
 
-	background: var(--buttonBg);
-	color: var(--buttonFg);
+	background: var(--btnBg);
+	color: var(--btnFg);
 
 
-	border-radius: var(--buttonBorderRadius);
-	outline-color: var(--buttonBorderColor);
-	outline-width: var(--buttonBorderSize);
-	outline-style: solid;
+	border-radius: calc( var(--radius) / 2 );
+	outline: var(--btnBorderSize);
 
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--buttonShadows));
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--btnShadow));
 
 }
 
 button:hover,
 input[type=button]:hover {
-	background: var(--buttonBgHi);
-	color: var(--buttonFgHi);
+	background: var(--btnBgHi);
+	color: var(--btnFgHi);
 }
 
 button:disabled,
 input[type=button]:disabled {
-	background: var(--buttonBgDis);
-	color: var(--buttonFgDis);
+	background: var(--btnBgDis);
+	color: var(--btnFgDis);
 	cursor: not-allowed;
 }
 
@@ -172,15 +196,14 @@ input[type=checkbox] {
 }
 
 select {
-	background: var(--fieldsBg);
-	color: var(--fieldsFg);
+	background: var(--inpBg);
+	color: var(--inpFg);
 
-	font-family: var(--fieldsFontfam);
-	font-size: var(--fieldsFontsize);
-	font-weight: var(--fieldsFontweight);
-	font-style: var(--fieldsFontstyle);
+	font-size: var(--inpFsize);
+	font-weight: var(--inpBold);
+	font-style: var(--inpItalic);
 
-	border-radius: var(--fieldsBorderRadius);
+	border-radius: calc( var(--radius) / 2 );
 
 	height: 3vh;
 	border: none;
@@ -188,13 +211,13 @@ select {
 }
 
 select:hover {
-	background: var(--fieldsBgHi);
-	color: var(--fieldsFgHi);
+	background: var(--inpBgHi);
+	color: var(--inpFgHi);
 }
 
 select:disabled {
-	background: var(--fieldsBgDis);
-	color: var(--fieldsFgDis);
+	background: var(--inpBgDis);
+	color: var(--inpFgDis);
 	cursor: not-allowed;
 }
 
@@ -202,26 +225,26 @@ form {
 	display: block;
 	position: absolute;
 
-	left: var(--sidebarsWidth);
-	top: calc(var(--navbarHeight) + var(--titlebarHeight) + 6vh);
+	left: var(--left);
+	top: calc(var(--nbarH) + var(--tbarH) + ( 2 * var(--vGap) ) );
 
 	width: auto;
 	height: auto;
 
+	margin: 2vh;
+	padding: 4vh;
+	
 	background: var(--formBg);
 	color: var(--formFg);
 
-	padding: 8px;
 
 	min-width: var(--formWidth);
 	min-height: var(--formHeight);
 
-	border-radius: var(--formBorderRadius);
-	outline-color: var(--formBorderColor);
-	outline-width: var(--formBorderSize);
-	outline-style: solid;
+	border-radius: var(--radius);
+	outline: var(--formBorder);
 
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadows));
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadow));
 
 	z-index: 10;
 }
@@ -263,8 +286,7 @@ aside hr {
 	color: #808080;
 }
 
-aside button,
-aside input[type=button] {
+aside button, aside input[type="button"] {
 	background: #202020 !important;
 	padding: 2px 2px 2px 2px;
 	box-shadow: none;
@@ -276,19 +298,33 @@ aside input[type=button] {
 	width: calc((100% - var(--width)) / 3);
 	box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
 	margin-bottom: 4px !important;
+	font-size: small;
 }
 
 aside button:hover,
 aside input[type=button]:hover {
 	background: yellow !important;
 	color: black;
-	font-weight: bold;
-	font-size: medium;
+}
+
+aside input[type=button]:disabled {
+	background: #404040 !important;
+	color: #808080 !important;
+}
+
+aside input[type=button]:active {
+	background: orange !important;
+	color: black !important;
 }
 
 aside .active {
 	color: yellow !important;
 	font-weight: bold;
+}
+
+.shadow {
+    -webkit-box-shadow: 10px 10px 15px black;
+    box-shadow: 10px 10px 15px black;
 }
 
 
@@ -313,3 +349,9 @@ aside .active {
 
 	display: block;
 }
+
+
+figcaption {
+	font-size: small;
+}
+

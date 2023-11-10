@@ -55,7 +55,7 @@ function insertElement(element, at) {
         selection.addRange(range);
     }
 }
-function getCaretPosition() {
+function get_caret_pos() {
     const content = Session.selected;
     if (content === null)
         return false;
@@ -93,7 +93,7 @@ function setCaretPosition(pos) {
 }
 function getSelectedNode(start, nodes) {
     return new Promise((resolve, reject) => {
-        let caretPos = getCaretPosition();
+        let caretPos = get_caret_pos();
         let nodeNumber = 0;
         let end = 0;
         nodes.forEach(node => {

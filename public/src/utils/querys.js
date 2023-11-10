@@ -22,26 +22,6 @@ function query_value( id ) {
     return query_id(id).value;
 }
 
-function query_src( id ) {
-    return query_id(id).src;
-}
-
-function query_text( id ) {
-    return query_id(id).innerText;
-}
-
-function query_html( id ) {
-    return query_id(id).innerHTML;
-}
-
-function query_checked(id) {
-    return query_id(id).checked;
-}
-
-function query_style( id ) {
-    return query_id(id).style;
-}
-
 function enable_element(id, enable) {
     if( enable ) query_id(id).removeAttribute('disabled');
     else query_id(id).setAttribute('disabled','');

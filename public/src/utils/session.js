@@ -25,7 +25,7 @@ function session_site_item(name) {
 
 function set_session_user(user) {
     if (validate_session()) {
-        if (user === null) {
+        if ( user === null) {
             sessionStorage.setItem(session_site_item('user'),
                 JSON.stringify({
                     username: '',
@@ -44,12 +44,12 @@ function set_session_user(user) {
 function get_session_user() {
     if (validate_session()) {
         let u = sessionStorage.getItem(session_site_item('user'));
-        if (u) {
+        if (is_valid(u) ) {
             return JSON.parse(u);
         }
     }
     return {
-        username: '',
+        username: '...',
         fullname: '',
         email: '',
         picture: ''
@@ -69,6 +69,7 @@ function get_session_page() {
         if (page) return JSON.parse(page);
     }
     return {
+        id: 0,
         title: '',
         parentId: 0,
         author: '',
@@ -109,7 +110,7 @@ function set_session_selection(element) {
 function get_session_selection() {
     if( validate_session()) {
         let id = sessionStorage.getItem(session_site_item('selected'));
-        if( is_valid(id)) return query_id(id);
+        if( is_valid(id) && id !== 'null') return query_id(id);
     }
     return null;
 }

@@ -8,7 +8,7 @@ function weblink() {
     if (EditorSelection) {
         webForm('weblink', [
             { key: 'text', value: getSelectedText() },
-            { key: 'cursorpos', value: getCaretPosition() }
+            { key: 'cursorpos', value: get_caret_pos() }
         ]);
     }
 }

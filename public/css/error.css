@@ -1,0 +1,14 @@
+
+.error {
+    background: red;
+    color: white;
+}
+
+.error h1 {
+    background: darkred;
+    color: white;
+    outline: 1px solid white;
+    border-radius: 16px;
+    font-weight: bold;
+}
+

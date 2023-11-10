@@ -9,7 +9,7 @@ function update_navbar() {
             query('nav').innerHTML = resolve;
         },
         (reject) => {
-            alert(reject);
+            popup('Meny',reject);
         }
     )
 }

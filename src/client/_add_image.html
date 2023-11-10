@@ -1,0 +1,31 @@
+<form enctype="multipart/form-data">
+
+    <h1>Bild</h1>
+
+    <hr>
+
+    <div class="cols-100">
+        <div id="ai-image"></div>
+    </div>
+
+    <div class="cols-40-60">
+        <label for="ai-file">Välj:</label>
+        <input accept="image/jpeg, image/png, image/jpg" type="file" id="ai-file" name="file" onchange="ai_file()">
+    </div>
+
+    <div class="cols-40-60">
+        <label for="ai-caption">Kommentar:</label>
+        <input type="text" id="ai-caption" value="${caption}">
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input disabled type="button" id="ai-save" value="OK" onclick="ai_save()">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="ai_close()">
+    </div>
+
+</form>

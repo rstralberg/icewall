@@ -72,7 +72,7 @@ function create_themes_table(mysqli $db, string $database): bool
         'inpItalic',
         'inpFsize',
         'inpShadow',
-        'intBorder',
+        'inpBorder',
     ], [
         'VARCHAR(64) NOT NULL UNIQUE',// name
         'VARCHAR(64) NOT NULL',// font
@@ -140,7 +140,7 @@ function create_themes_table(mysqli $db, string $database): bool
         'VARCHAR(16) NOT NULL',//inpItalic
         'VARCHAR(16) NOT NULL',//inpFsize
         'VARCHAR(8) NOT NULL',//inpShadow
-        'VARCHAR(32) NOT NULL'//intBorder
+        'VARCHAR(32) NOT NULL'//inpBorder
     ]);
 }
 
@@ -195,7 +195,7 @@ function get_default_theme(string $name) : array {
         
         '#202020',// formBg
         '#ffffff',// formFg
-        '1px solid #ffffff',// formBorder
+        '2px solid #ffffff',// formBorder
         '1',// formShadow
         
         '2em',// btnH
@@ -222,6 +222,6 @@ function get_default_theme(string $name) : array {
         'normal',// inpItalic
         'medium',// inpFsize
         '1',// inpShadow
-        '1px solid #ffffff'// intBorder
+        '1px solid #ffffff'// inpBorder
     ];
 }

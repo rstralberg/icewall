@@ -23,7 +23,7 @@ function on_page_selected(pageid) {
 
                     
                 },
-                (reject) => { alert(reject);}
+                (reject) => { popup('Sidans innehåll', reject);}
             )
         },
         (reject) => { alert(reject); }

@@ -51,8 +51,8 @@ function create_contents(mysqli $db, int $pageId, array $site): void
 {
     if (verify_contents_table($db, $site['key'] )) {
         db_insert($db, 'contents',
-            ['pageId', 'pos', 'html', 'isPublic'],
-            [$pageId, 0, $site['title'], 1]
+            ['pageId', 'pos', 'html', 'style', 'isPublic'],
+            [$pageId, 0, $site['title'], 'text-align="center"', 1]
         );
     }
 }
@@ -128,7 +128,7 @@ function create_themes(mysqli $db, array $site): void
             'inpItalic',
             'inpFsize',
             'inpShadow',
-            'intBorder'],
+            'inpBorder'],
             get_default_theme($site['theme'])
         );
     }

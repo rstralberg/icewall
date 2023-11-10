@@ -14,7 +14,7 @@ function index(pageid, sitekey) {
             update_titlebar();
             update_content();
 
-            query_id('rt-public').style.color = 
+            query_id('adt-public').style.color = 
                 get_session_page().isPublic === '1'? 
                 get_style('sidebarsFgHi') : 
                 get_style('sidebarsFg');

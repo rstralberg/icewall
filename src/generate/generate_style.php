@@ -79,7 +79,7 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--inpItalic:' . $theme['inpItalic'] . ';';
     $root .= '--inpFsize:' . $theme['inpFsize'] . ';';
     $root .= '--inpShadow:' . $theme['inpShadow'] . ';';
-    $root .= '--intBorder:' . $theme['intBorder'] . ';';
+    $root .= '--inpBorder:' . $theme['inpBorder'] . ';';
 
     $root .= '}';
     return '<style>' . $root . '</style>';

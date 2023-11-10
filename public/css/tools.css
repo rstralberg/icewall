@@ -1,0 +1,20 @@
+
+
+.tool-active {
+    background: orange;
+    color: black;
+}
+
+.tool-normal  {
+    background: #202020;
+    color: wheat;
+}
+
+.tool-disabled  {
+    background: #202020;
+    color: gray;
+    font-weight: normal;
+    cursor: not-allowed;
+}
+
+

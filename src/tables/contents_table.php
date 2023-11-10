@@ -8,11 +8,13 @@ function create_contents_table(mysqli $db, string $database): bool
         'pageId',
         'pos',
         'html',
+        'style',
         'isPublic',
     ], [
         'INT(11) NOT NULL', // pageId
         'TINYINT NOT NULL', // pos
         'TEXT NOT NULL', //html
+        'VARCHAR(256) NOT NULL', //style
         'TINYINT NOT NULL', // isPublic
     ]);
 }
