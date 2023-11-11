@@ -1,27 +1,26 @@
 <?php
 require_once __DIR__ . '/../src/utils/send_reply.php';
 
-$image = $_POST['image'];
-$key = $_POST['key'];
-$name = $_POST['name'];
-$mp3 = $_POST['file'];
-$pageId = $_POST['pageid'];
-$contentId = $_POST['contentid'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_FILES['mp3']['error'] === UPLOAD_ERR_OK) {
 
+        $key = $_POST['key'];
+        $pageid = $_POST['pageid'];
+        $contentid = $_POST['contentid'];
 
-$data = base64_decode($mp3);
+        $uploadDir = 'sites/' . $key . '/' . $pageid . '/' . $contentid . '/mp3';
+        if (!file_exists($uploadDir))  mkdir($uploadDir, 0777, true);
+        $uploadDir .= '/';
 
-$folder = 'sites/' . $key . '/' . $pageId . '/' . $contentId;
-if (!file_exists($folder)) {
-    mkdir($folder, 0777, true);
+        $uploadFile = $uploadDir . basename($_FILES['mp3']['name']);
+
+        if (move_uploaded_file($_FILES['mp3']['tmp_name'], $uploadFile)) {
+            send_resolve( $uploadFile);
+            exit(0);
+        }
+    }
 }
-
-$file = $folder.'/'.$name;
-
-$bytes = file_put_contents($file, $data);
-
-if( $bytes > 0 ) send_resolve($name);
-else send_reject('Failed to upload file');
+send_reject('Uppladningen misslyckades');
+exit(0);
 
 ?> 
-

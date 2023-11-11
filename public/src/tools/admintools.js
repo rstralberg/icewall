@@ -134,7 +134,7 @@ function adt_add_content() {
         pageid: get_session_page().id
     }).then(
         () => {
-            update_content();
+            get_content();
         }
     );
 

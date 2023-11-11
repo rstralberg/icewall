@@ -114,7 +114,7 @@ function ust_delete_content() {
             contentid: parseInt(select.id.substring(1))
         }).then(
             () => {
-                update_content();
+                get_content();
             },
             (reject) => { alert(reject); }
         );
@@ -125,40 +125,7 @@ function ust_delete_content() {
 //  SAVE
 //  =================================
 function ust_save_content() {
-
-    let select = get_session_selection();
-    if (select) {
-
-        let container = query('main');
-        let pos = 0;
-        for (; pos < container.childElementCount; pos++) {
-            let sec = container.children[pos];
-            if (sec.id === select.id) {
-                break;
-            }
-        }
-        let isPublic = get_tool_state('ust-public') === 'active';
-
-        // we just catch a few 
-        let cstyle = window.getComputedStyle(select);
-        let style = '';
-        if (cstyle.textAlign !== '') style += 'text-align:' + cstyle.textAlign;
-
-        let content = {
-            id: parseInt(select.id.substring(1)),
-            pos: pos,
-            html: select.innerHTML,
-            style: style,
-            isPublic: isPublic
-        };
-
-        server('update_content', content).then(
-            () => {
-                alert('Sparat!');
-            },
-            (reject) => { alert(reject); }
-        );
-    }
+    save_content();
 }
 
 //  =================================
@@ -242,6 +209,24 @@ function ust_alignright() {
     alignement('right');
 }
 
+function alignement(cmd) {
+
+    let section = get_session_selection();
+    if( is_valid(section)) {
+        let node = get_selected_node();
+        if( is_valid(node) && is_valid(node.parentNode)) {
+            node.parentNode.style.textAlign = cmd; 
+            save_content();
+        }
+        else {
+            section.style.textAlign = cmd;
+            update_section_style();
+        }
+    }
+}
+
+
+
 //  =================================
 //  SHADOWS
 //  =================================
@@ -257,7 +242,7 @@ function ust_shadows() {
                     node.classList.remove('shadow');
                 else
                     node.classList.add('shadow');
-                content_save();
+                save_content();
             }
         }
     }
@@ -266,14 +251,46 @@ function ust_shadows() {
 //  =================================
 //  LINK
 //  =================================
+var ust_webnode = null;
 function ust_weblink() {
-
+    let node = get_selected_node();
+    if (node.nodeName === '#text') {
+        ust_webnode = node;
+        simple('Webblänk', 'Länk', 'https://', 'on_weblink');
+    }
 }
+
+function on_weblink(valueElement) {
+    if (ust_webnode) {
+        let wnode = document.createElement('a');
+        wnode.href = valueElement.value;
+        wnode.taget = '_blank';
+        wnode.innerText = ust_webnode.textContent;
+
+        ust_webnode.replaceWith(wnode);
+
+        ust_webnode = null;
+        save_content();
+
+    }
+    remove_form('simple');
+}
+
 
 //  =================================
 //  TITLE
 //  =================================
 function ust_title() {
+    simple('Titel', 'Text', '?', 'on_title');
+}
+
+function on_title(valueElement) {
+    let h1 = document.createElement('h1');
+    h1.innerText = valueElement.value;
+    get_session_selection().append(h1);
+    get_session_selection().innerHTML += '<br>';
+    remove_form('simple');
+    save_content();
 
 }
 
@@ -281,6 +298,10 @@ function ust_title() {
 //  LINE
 //  =================================
 function ust_line() {
+    let hr = document.createElement('hr');
+    get_session_selection().append(hr);
+    get_session_selection().innerHTML += '<br>';
+    save_content();
 
 }
 
@@ -327,7 +348,7 @@ function ai_save() {
     get_session_selection().innerHTML += html;
     remove_form('ai-form');
 
-    content_save();
+    save_content();
 }
 
 function ai_close() {
@@ -339,6 +360,82 @@ function ai_close() {
 //  =================================
 function ust_audio() {
 
+    server('audio', {
+        url:'',
+        comment:''
+    }).then( 
+        (resolve) => {
+            add_form('audio-form', resolve);
+        },
+        (reject) => {
+            error(reject);
+        }
+    )
+}
+
+function mp3Selected() {
+    const audioInput = query_id('au-file');
+    if (audioInput === null) return;
+    if (audioInput.files === null) return;
+    if (audioInput.files.length === 0) return;
+    
+    const selectedAudio = audioInput.files[0];
+    upload_mp3(selectedAudio).then(
+        (resolve) => { 
+            if( resolve.ok ) {
+                console.log(resolve.content);
+                query_id('au-player').src = resolve.content; 
+            }
+            else {
+                error( resolve.content);
+            }
+        }, 
+        (reject) => { 
+            error(reject);
+         }
+    );
+}
+
+
+function saveAudio() {
+    let content = get_session_selection();
+    if (content === null) return;
+
+    let figure = document.createElement('figure');
+    figure.style.width = (content.clientWidth / 4 + 32) + 'px';
+    figure.style.height = 'auto';
+
+    let audio = document.createElement('audio');
+    audio.classList.add('shadow');
+    audio.controls = true;
+    audio.src = query_id('au-player').src;
+    audio.style.width = 'inherit';
+    audio.style.width = 'inherit';
+    figure.appendChild(audio);
+
+    let caption = document.createElement('figcaption');
+    caption.innerText = query_value('au-caption');
+    caption.style.width = 'inherit';
+    caption.style.width = 'inherit';
+    figure.appendChild(caption);
+    
+    content.appendChild(figure);
+
+    let div = document.createElement('div');
+    content.appendChild(div);
+
+    // keeping shadow space
+    new ResizeObserver(() => {
+        figure.style.width = figure.style.width + 32 + 'px';
+        audio.style.width = figure.style.width;
+        audio.style.height = 'auto';
+    }).observe(figure);
+
+    remove_form('audio-form');
+    save_content();
+}
+function closeAudio() {
+    remove_form('audio-form');
 }
 
 //  =================================
@@ -346,18 +443,105 @@ function ust_audio() {
 //  =================================
 function ust_spotify() {
 
+    server('spotify', {
+        url: ''
+    }).then(
+        (resolve) => {
+            add_form('spotify-form', resolve);
+        },
+        (reject) => {
+            error( reject );
+        }
+    );
 }
+
+function spotify_selected() {
+    let frame = query_id('sp-frame');
+    let url = query_value('sp-url');
+    frame.innerHTML = url;
+}
+
+function spotify_save() {
+    let frame = query_id('sp-frame');
+    get_session_selection().innerHTML += frame.innerHTML;
+    get_session_selection().innerHTML += '<br>';
+    save_content();
+    remove_form('spotify-form');
+}
+
+function spotify_close() {
+    remove_form('spotify-form');
+}
+
+
 
 //  =================================
 //  SOUNDCLOUD
 //  =================================
 function ust_soundcloud() {
 
+    server('soundcloud', {
+        url: ''
+    }).then(
+        (resolve) => {
+            add_form('soundcloud-form', resolve);
+        },
+        (reject) => {
+            error( reject );
+        }
+    );
 }
+
+function soundcloud_selected() {
+    let frame = query_id('sc-frame');
+    let url = query_value('sc-url');
+    frame.innerHTML = url;
+}
+
+function soundcloud_save() {
+    let frame = query_id('sc-frame');
+    get_session_selection().innerHTML += frame.innerHTML;
+    get_session_selection().innerHTML += '<br>';
+    save_content();
+    remove_form('soundcloud-form');
+}
+
+function soundcloud_close() {
+    remove_form('soundcloud-form');
+}
+
 
 //  =================================
 //  YOUTUBE
 //  =================================
 function ust_youtube() {
 
+    server('youtube', {
+        url: ''
+    }).then(
+        (resolve) => {
+            add_form('youtube-form', resolve);
+        },
+        (reject) => {
+            error( reject );
+        }
+    );
+}
+
+function youtube_selected() {
+    let frame = query_id('yt-frame');
+    let url = query_value('yt-url');
+    frame.innerHTML = url;
+}
+
+function youtube_save() {
+    let frame = query_id('yt-frame');
+    get_session_selection().innerHTML += frame.innerHTML;
+    get_session_selection().innerHTML += '<br>';
+    save_content();
+    remove_form('youtube-form');
+}
+
+function youtube_close() {
+    remove_form('youtube-form');
 }

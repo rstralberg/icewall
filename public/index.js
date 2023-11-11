@@ -12,7 +12,7 @@ function index(pageid, sitekey) {
             update_navbar();
             update_footer();
             update_titlebar();
-            update_content();
+            get_content();
 
             query_id('adt-public').style.color = 
                 get_session_page().isPublic === '1'? 

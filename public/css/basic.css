@@ -355,3 +355,9 @@ figcaption {
 	font-size: small;
 }
 
+
+section a {
+	color: var(--linkFg);
+	font-weight: bold;
+	font-style: italic;
+}

@@ -17,6 +17,7 @@ function generate_scripts() : string {
     $html.= script('src/utils/images');
     $html.= script('src/utils/popup');
     $html.= script('src/utils/error');
+    $html.= script('src/utils/simple');
 
     $html.= script('src/tools/tools');
     $html.= script('src/tools/usertools');
@@ -31,10 +32,7 @@ function generate_scripts() : string {
     
     $html.= script('src/editor/editor');
     $html.= script('src/editor/tags');
-    $html.= script('src/editor/alignement');
     $html.= script('src/editor/utils');
-    $html.= script('src/editor/image');
-    $html.= script('src/editor/alignement');
     $html.= script('src/editor/audio');
     $html.= script('src/editor/line');
     $html.= script('src/editor/link');
