@@ -6,22 +6,14 @@ function on_page_selected(pageid) {
     }).then(
         (resolve) => {
             set_session_page(JSON.parse(resolve));
+            set_tool_state('adt-public', get_session_page().isPublic ? 'active' : 'nomrmal');
             update_titlebar();
+
             server('getcontent', {
                 pageid: pageid
             }).then( 
                 (resolve) => {
-                    let container = query('main');
-                    container.innerHTML = '';
-
-                    let contents = JSON.parse(resolve);
-                    contents.forEach(content => {
-                        let section = document.createElement('section');
-                        section.innerHTML = content.html;
-                        container.appendChild(section);
-                    });
-
-                    
+                    draw_content(JSON.parse(resolve));
                 },
                 (reject) => { popup('Sidans innehåll', reject);}
             )
@@ -42,3 +34,30 @@ function on_page_parent_selected(e) {
     }
 }
 
+function update_page( pageid, cols, values ) {
+
+    server('update_page', {
+        pageid: pageid,
+        cols: cols,
+        values: values
+    }).then(
+        (resolve) => {
+            set_session_page(JSON.parse(resolve));
+        },
+        (reject) => {
+            error(reject);
+        }
+    )
+}
+
+
+function update_page_positions(pos_array)
+{
+    pos_array.forEach(item => {
+        update_page( item.id, ['pos'], [item.pos] );
+    });
+}
+
+function update_page_parent(id, parentid) {
+    update_page(id, ['parentId'], [parentid]);
+}

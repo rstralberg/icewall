@@ -25,18 +25,19 @@ if (verify_client_args($args, ['pageid', 'username'])) {
         send_reject('Failed to load sites');
         return;
     }
-    $site = $srecs[0];
+    $site = $sites[0];
 
     // which image to use as logo
     // either the user picture is a user is logged in
     // the company logo if not
     $logo = '';
-    $logoResque = 'icons/icewall-512x512.png'; // if everything else fails
+    $logoResque = 'avatar.png'; // if everything else fails
     if ($args->username && !empty($args->username)) {
         $users = db_select($db, 'users', ['picture'], db_where($db, 'username', $args->username));
         if ($users !== false) {
+            $resolution = 200;
             $user = $users[0];
-            $logoSrc = 'sites/' . $args->key . '/images' . '/' . $user['picture'];
+            $logoSrc = 'sites/' . $args->key . '/users/'. $resolution  . '/' . $user['picture'];
             if (!file_exists(__DIR__ . '/../../public/' . $logoSrc)) {
                 $logoSrc = $logoResque;
             }
@@ -45,7 +46,7 @@ if (verify_client_args($args, ['pageid', 'username'])) {
                     </a>';
         }
     } else {
-        $logoSrc = 'sites/' . $args->key . '/images' . '/' . $site['logo'];
+        $logoSrc = 'sites/' . $args->key . '/users/'. $resolution  . '/' . $site['logo'];
         if (!file_exists(__DIR__ . '/../../../public/' . $logoSrc)) {
             $logoSrc = $logoResque;
         }

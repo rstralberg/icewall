@@ -1,18 +1,18 @@
 
 
 .tool-active {
-    background: orange;
-    color: black;
+    background: orange !important; 
+    color: black !important;
 }
 
 .tool-normal  {
-    background: #202020;
-    color: wheat;
+    background: #202020 !important;
+    color: white !important;
 }
 
 .tool-disabled  {
-    background: #202020;
-    color: gray;
+    background: #202020 !important;
+    color: gray !important;
     font-weight: normal;
     cursor: not-allowed;
 }

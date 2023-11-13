@@ -6,6 +6,7 @@ require_once __DIR__ . '/../utils/verify_client_args.php';
 if (verify_client_args($args, ['pageid'])) {
 
     $db = db_open($args->key);
+   
     $contents = db_select($db, 'contents', ['*'], db_where($db, 'pageId', $args->pageid), db_order_by('pos', 'asc'));
 
     if ($contents === false) {

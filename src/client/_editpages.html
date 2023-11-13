@@ -1,0 +1,51 @@
+<form enctype="multipart/form-data">
+
+    <h1>Redigera sidor</h1>
+
+    <hr>
+
+    <div class="cols-40-60">
+        <label for="ep-pages">Välj sida:</label>
+        <select id="ep-pages" onchange="ep_page_selected()">
+            <option value="none">Välj!</option>
+            ${pages}
+        </select>
+    </div>
+
+    <div class="cols-10-90">
+        <div style="width:min-content">
+            <img id="ep-up" class="tool" src="icons/white/arrow_up.svg" onclick="ep_move_up()">
+            <img id="ep-down" class="tool" src="icons/white/arrow_down.svg" onclick="ep_move_down()">
+        </div>
+        <ul id="ep-pagelist">
+        </ul>
+    </div>
+
+    <input type="hidden" id="ep-selected">
+    <input type="hidden" id="ep-selected-name">
+
+    <div class="cols-100">
+        <input disabled id="ep-delete" type="button" value="Radera" onclick="ep_delete()">
+    </div>
+
+    <div class="cols-40-60">
+        <input disabled id="ep-rename-button" type="button" value="Ändra" onclick="ep_rename()">
+        <input disabled type="text" id="ep-rename" oninput="ep_new_name()">
+    </div>
+
+    <div class="cols-40-60">
+        <label for="ep-parent-select">Lägg sidan under</label>
+        <select id="ep-parent-select" onchange="ep_parent_selected()">
+            <option value="none">Välj!</option>
+            <option value="0">Toppnivå!</option>
+            ${parents}
+        </select>
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="Klar" onclick="ep_close()">
+    </div>
+
+</form>

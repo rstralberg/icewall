@@ -41,6 +41,7 @@ nav .menu .links li {
 
 nav .childs {
     padding: 4px;
+    border-radius: var(--radius);
 }
 
 
@@ -95,6 +96,15 @@ nav .menu .links .parent .childs {
 
 }
 
+nav .menu .links .parent a {
+	text-decoration: underline;
+	text-decoration-color: var(--nbarBgHi);
+	text-decoration-thickness: 3px;
+}
+
+nav .menu .links .childs a {
+	text-decoration: none;
+}
 
 nav .menu .links .parent .childs li {
     display: block;

@@ -1,12 +1,14 @@
 <?php
 
 function generate_scripts() : string {
-
+    
     function script($file) :string  {
         return '<script type="application/javascript" src="'. $file . '.js"></script>';
     }
+    
+    $html = script('src/const');
 
-    $html = script('src/utils/server');
+    $html.= script('src/utils/server');
     $html.= script('src/utils/querys');
     $html.= script('src/utils/session');
     $html.= script('src/utils/form');
@@ -18,11 +20,21 @@ function generate_scripts() : string {
     $html.= script('src/utils/popup');
     $html.= script('src/utils/error');
     $html.= script('src/utils/simple');
+    $html.= script('src/utils/yesno');
 
     $html.= script('src/tools/tools');
     $html.= script('src/tools/usertools');
     $html.= script('src/tools/admintools');
-
+    $html.= script('src/tools/adt_theme_bars');
+    $html.= script('src/tools/adt_theme_buttons');
+    $html.= script('src/tools/adt_theme_content');
+    $html.= script('src/tools/adt_theme_footer');
+    $html.= script('src/tools/adt_theme_forms');
+    $html.= script('src/tools/adt_theme_general');
+    $html.= script('src/tools/adt_theme_inputs');
+    $html.= script('src/tools/adt_theme_menu');
+    $html.= script('src/tools/adt_theme_titlebar');
+ 
     $html.= script('src/base/navbar');
     $html.= script('src/base/footer');
     $html.= script('src/base/titlebar');

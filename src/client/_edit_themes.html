@@ -1,0 +1,26 @@
+<form enctype="multipart/form-data">
+
+    <h1>Välj tema som ska redigeras</h1>
+
+    <hr>
+    <div style="width:30vw"></div>
+    <div class="cols-40-60">
+        <label for="et-themes">Teman</label>
+        <select id="et-themes" onchange="et_selected()">
+            <option value="none">Välj!</option>
+            ${themes}
+        </select>
+    </div>
+
+    <hr>
+
+    <div class="cols-50-50">
+        <input id='et-new' type="button" value="Nytt" onclick="et_new()">
+    </div>
+
+    <div class="cols-50-50">
+        <input id="et-delete" disabled type="button" value="Radera" onclick="et_delete()">
+        <input type="button" value="Klar" onclick="et_close()">
+    </div>
+
+</form>

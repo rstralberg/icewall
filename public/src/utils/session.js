@@ -49,7 +49,7 @@ function get_session_user() {
         }
     }
     return {
-        username: '...',
+        username: 'admin',
         fullname: '',
         email: '',
         picture: ''
@@ -123,8 +123,9 @@ function init_session(pageid, sitekey) {
             (site) => {
                 set_session_site(JSON.parse(site));
                 server('getpage', { pageid: pageid }).then(
-                    (page) => { set_session_page(JSON.parse(page)); 
-                    resolve();
+                    (page) => { 
+                        set_session_page(JSON.parse(page)); 
+                        resolve();
                 },
                 (page_error) => { alert(page_error); reject(); });
             },

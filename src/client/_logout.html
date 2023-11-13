@@ -2,7 +2,9 @@
 
     <h1>Logga ut ${username}</h1>
 
+    <input type="hidden" id="logout-username" value="${username}">
     <hr>
+    
     <div class="cols-100" style="text-align: center;">
         Vad du vill göra?
     </div>
@@ -13,10 +15,6 @@
 
     <div class="cols-100">
         <input type="button" value="Redigera ditt konto" onclick="on_edit_account()">
-    </div>
-
-    <div class="cols-100">
-        <input type="button" value="Ändra ditt lösenord" onclick="on_change_password()">
     </div>
 
     <div class="cols-100">

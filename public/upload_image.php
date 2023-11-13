@@ -11,6 +11,7 @@ $name = $_POST['name'];
 $type = $_POST['type'];
 $pageId = $_POST['pageid'];
 $contentId = $_POST['contentid'];
+$opt = $_POST['option'];
 
 
 $image = str_replace('data:image/' . $type . ';base64,', '', $image);
@@ -19,6 +20,9 @@ $image = str_replace(' ', '+', $image);
 $data = base64_decode($image);
 
 $folder = $_SERVER['DOCUMENT_ROOT'] .'/sites/' . $key . '/' . $pageId . '/' . $contentId;
+if( $opt !== '') 
+    $folder = $_SERVER['DOCUMENT_ROOT'] .'/sites/' . $key . '/' . $opt;
+
 if (!file_exists($folder))  mkdir($folder, 0777, true);
 
 $scaling = [
@@ -45,19 +49,25 @@ for( $i = 0; $i < count($scaling); $i++ ) {
     scale_image($src, $scale['w'], $scale['h'], $dir . '/'. $name);
 }
 
-$basefolder = 'sites/' . $key . '/' . $pageId . '/' . $contentId;
-$html = 
-    '<figure><picture>   ';
-    for( $i = 0; $i < count($scaling); $i++ ) {
-        $scale = $scaling[$i];
-        $dir = $basefolder . '/' . $scale['folder'];
-        $html .= '<source media="(min-width:'. $scale['w'] . 'px)" srcset="' . $dir .'/'. $name . '">';
-    }
-    $html .= '<img onwheel="resize_img_by_wheel" class="shadow" style="width:256px;height=auto" src="' . $src . '" alt="' .$name. '" style="width:256px;height:auto">'
-    . '</picture>'
-    . '<figcaption>' . $name . '</figcaption>'
-    . '</figure><br>';
+// if( $opt === '') {
+// $basefolder = 'sites/' . $key . '/' . $pageId . '/' . $contentId;
 
-send_resolve(compress_html($html));
+// $html = 
+//     '<figure><picture>   ';
+//     for( $i = 0; $i < count($scaling); $i++ ) {
+//         $scale = $scaling[$i];
+//         $dir = $basefolder . '/' . $scale['folder'];
+//         $html .= '<source media="(min-width:'. $scale['w'] . 'px)" srcset="' . $dir .'/'. $name . '">';
+//     }
+//     $html .= '<img onwheel="resize_img_by_wheel" class="shadow" style="width:256px;height=auto" src="' . $src . '" alt="' .$name. '" style="width:256px;height:auto">'
+//     . '</picture>'
+//     . '<figcaption>' . $name . '</figcaption>'
+//     . '</figure><br>';
+
+//     send_resolve(compress_html($html));
+// }
+// else {
+    send_resolve($name);
+    exit(0);
 
 ?> 

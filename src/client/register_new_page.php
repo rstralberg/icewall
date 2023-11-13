@@ -21,11 +21,19 @@ if (verify_client_args($args, ['title','author','isParent','parentId','pos','sho
         send_reject($res);
     }
     else {
-
-        $id = db_insert($db, 'contents', ['pageId', 'pos', 'html','isPublic'],
-            [$res, 0, $sites[0]['title'] . ' ' . $args->title, false]);
-
+        $id = db_insert($db, 'contents', 
+            ['pageId', 'pos', 'html','style','isPublic'],
+            [$res, 0, $sites[0]['title'] . ' ' . $args->title, '', true]);
         db_close($db);
-        send_resolve($id);
+        if( $id === false ) {
+            send_reject( 'Kunde inte skapa innehåll till sidan');
+            exit(0);
+        }
+        else if ( gettype($id) === 'string') {
+            send_reject($id);
+        }
+        else {
+            send_resolve($id);
+        }
     }
 }

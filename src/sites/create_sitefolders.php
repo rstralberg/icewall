@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../config.php';
+
 function create_sitefolders(array $site)
 {
 
@@ -8,16 +10,42 @@ function create_sitefolders(array $site)
         mkdir($sitefolder, 0777, true);
     }
 
-    $assetsfolder = $sitefolder . '/assets';
+    $assetsfolder = $sitefolder . '/users';
     if (!file_exists($assetsfolder)) {
         mkdir($assetsfolder, 0777, true);
     }
 
-    $sharedfolder = $sitefolder . '/shared';
-    if (!file_exists($sharedfolder)) {
-        mkdir($sharedfolder, 0777, true);
+    if (!file_exists($assetsfolder.'/org')) {
+        mkdir($assetsfolder.'/org', 0777, true);
     }
-    copy(__DIR__ . '/../../public/icons/avatar.png', $sharedfolder . '/avatar.png');
+    copy(__DIR__ . '/../../public/icons/avatar.png', $assetsfolder . '/org/avatar.png');
+
+    if (!file_exists($assetsfolder.'/'. PC_SIZE)) {
+        mkdir($assetsfolder.'/'. PC_SIZE, 0777, true);
+    }
+    copy(__DIR__ . '/../../public/icons/avatar.png', $assetsfolder . '/' . PC_SIZE . '/avatar.png');
+
+    if (!file_exists($assetsfolder.'/'. PAD_SIZE)) {
+        mkdir($assetsfolder.'/'. PAD_SIZE, 0777, true);
+    }
+    copy(__DIR__ . '/../../public/icons/avatar.png', $assetsfolder . '/' . PAD_SIZE . '/avatar.png');
+
+    if (!file_exists($assetsfolder.'/'. MOBILE_SIZE)) {
+        mkdir($assetsfolder.'/'. MOBILE_SIZE, 0777, true);
+    }
+    copy(__DIR__ . '/../../public/icons/avatar.png', $assetsfolder . '/' . MOBILE_SIZE . '/avatar.png');
+
+    if (!file_exists($assetsfolder.'/'. THUMB_SIZE)) {
+        mkdir($assetsfolder.'/'. THUMB_SIZE, 0777, true);
+    }
+    copy(__DIR__ . '/../../public/icons/avatar.png', $assetsfolder . '/' . THUMB_SIZE . '/avatar.png');
+
+    $assetsfolder .= '/users';
+    if (!file_exists($assetsfolder)) {
+        mkdir($assetsfolder, 0777, true);
+    }
+    copy(__DIR__ . '/../../public/icons/avatar.png', $assetsfolder . '/avatar.png');
+
 
     $readme = $sitefolder . '/readme.txt';
     if (!file_exists($readme)) {

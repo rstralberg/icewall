@@ -1,32 +1,9 @@
 
-// ust-delete-content
-// ust-save-content
-// ust-move-up
-// ust-move-down
-// ust-public"
-// ust-bold
-// ust-italic
-// ust-normal
-// ust-mark
-// ust-alignleft
-// ust-aligncenter
-// ust-alignright
-// ust-shadows
-// ust-weblink
-// ust-title
-// ust-line
-// ust-image
-// ust-audio
-// ust-spotify
-// ust-soundcloud
-// ust-youtube
-
 function init_usertools() {
 
     release_user_tools();
     let left = query_class('left');
     left.style.display = get_session_user().username === '' ? 'none' : 'block';
-
 }
 
 function init_user_tools() {
@@ -52,7 +29,6 @@ function init_user_tools() {
     set_tool_state('ust-soundcloud', 'normal');
     set_tool_state('ust-youtube', 'normal');
 }
-
 
 function update_user_tools(section) {
 
@@ -225,8 +201,6 @@ function alignement(cmd) {
     }
 }
 
-
-
 //  =================================
 //  SHADOWS
 //  =================================
@@ -326,12 +300,11 @@ function ai_file() {
     const imageInput = query_id('ai-file');
     if (imageInput.files.length > 0) {
         const selectedImage = imageInput.files[0];
-        const maxWidth = 1024;
-
-        upload_image(selectedImage, maxWidth).then(
+        
+        upload_image(selectedImage, MAX_IMAGE_SIZE).then(
             (resolve) => {
                 if (resolve.ok) {
-                    query_id('ai-image').innerHTML = resolve.content;
+                    query_id('ai-image').innerHTML = picture_code(resolve.content, null, 300);
                     query_id('ai-save').removeAttribute('disabled');
                 }
             },
@@ -396,7 +369,6 @@ function mp3Selected() {
     );
 }
 
-
 function saveAudio() {
     let content = get_session_selection();
     if (content === null) return;
@@ -434,6 +406,7 @@ function saveAudio() {
     remove_form('audio-form');
     save_content();
 }
+
 function closeAudio() {
     remove_form('audio-form');
 }
@@ -472,8 +445,6 @@ function spotify_save() {
 function spotify_close() {
     remove_form('spotify-form');
 }
-
-
 
 //  =================================
 //  SOUNDCLOUD

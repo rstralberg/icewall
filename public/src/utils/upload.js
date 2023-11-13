@@ -1,5 +1,5 @@
 
-function upload_image(fileFromInput, maxWidth) {
+function upload_image(fileFromInput, maxWidth, opt='') {
 
     return new Promise((resolve, reject) => {
 
@@ -39,8 +39,9 @@ function upload_image(fileFromInput, maxWidth) {
                 var fd = new FormData();
                 fd.append("image", srcEncoded);
                 fd.append('key', get_session_key());
-                fd.append('pageid', get_session_page().id);
-                fd.append('contentid', get_session_selection().id.substring(1));
+                fd.append('pageid', opt===''?get_session_page().id:0);
+                fd.append('contentid', opt==''?get_session_selection().id.substring(1):0);
+                fd.append('option', opt);
                 fd.append('name', fileFromInput.name);
 
                 let types = item.type.split('/');

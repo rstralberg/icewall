@@ -3,9 +3,27 @@ function set_tool_state(toolId, state) {
     let tool = query_id(toolId);
     if (is_valid(tool)) {
         switch (state) {
-            case 'normal': enable_tool(tool); break;
-            case 'active': activate_tool(tool); break;
-            case 'disabled': disable_tool(tool); break;
+            case 'normal': 
+                enable_tool(tool); 
+                if (!tool.classList.contains('tool-normal')) tool.classList.add('tool-normal');
+                if (tool.classList.contains('tool-active')) tool.classList.remove('tool-active');
+                if (tool.classList.contains('tool-disabled')) tool.classList.remove('tool-disabled');
+                 break;
+            
+            case 'active': 
+                activate_tool(tool); 
+                if (tool.classList.contains('tool-normal')) tool.classList.remove('tool-normal');
+                if (!tool.classList.contains('tool-active')) tool.classList.add('tool-active');
+                if (tool.classList.contains('tool-disabled')) tool.classList.remove('tool-disabled');
+
+                break;
+
+            case 'disabled': 
+                disable_tool(tool); 
+                if (tool.classList.contains('tool-normal')) tool.classList.remove('tool-normal');
+                if (tool.classList.contains('tool-active')) tool.classList.remove('tool-active');
+                if (!tool.classList.contains('tool-disabled')) tool.classList.add('tool-disabled');
+                break;
         }
     }
 }

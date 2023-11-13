@@ -74,10 +74,16 @@
     grid-template-columns: 25% 25% 25% 25%;
 }
 
-.cols-40-40-30 {
+.cols-40-40-20 {
     display: grid;
     margin-bottom: 0.5em;
-    grid-template-columns: 25% 60% !important;
+    grid-template-columns: 40% 40% 20% !important;
+}
+
+.cols-30-30-30 {
+    display: grid;
+    margin-bottom: 0.5em;
+    grid-template-columns: 30% 30% 30% !important;
 }
 
 

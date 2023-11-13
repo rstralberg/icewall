@@ -2,7 +2,7 @@
 
 function yesno(title, message, callback_yes, callback_no ) {
 
-    server('popup', {
+    server('yesno', {
         title: title, 
         message: message,
         yes: callback_yes,
@@ -14,3 +14,6 @@ function yesno(title, message, callback_yes, callback_no ) {
     );
 }
 
+function close_yesno() {
+    remove_form('yesno');
+}

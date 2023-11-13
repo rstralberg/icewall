@@ -100,6 +100,10 @@ section:hover ,
 	outline-width: calc(2 * var(--contBorder));
 }
 
+section picture {
+	margin: 10px;
+}
+
 h1 {
 	outline: 1px solid var(--linkFg);
 	font-size: large;
@@ -280,6 +284,7 @@ aside figcaption {
 	font-weight: bold;
 	text-align: center;
 	margin-top: 2vh;
+	text-align: left;
 }
 
 aside hr {
@@ -287,7 +292,7 @@ aside hr {
 }
 
 aside button, aside input[type="button"] {
-	background: #202020 !important;
+	background: #202020;
 	padding: 2px 2px 2px 2px;
 	box-shadow: none;
 	border-radius: 8px;
@@ -360,4 +365,17 @@ section a {
 	color: var(--linkFg);
 	font-weight: bold;
 	font-style: italic;
+}
+
+
+form ul {
+	list-style: none;
+}
+
+.selected-listitem {
+	list-style: none;
+	background: #303030;
+	border-radius: 4px;
+	outline: 1px solid yellow;
+
 }

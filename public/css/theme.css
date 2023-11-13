@@ -1,0 +1,138 @@
+
+.theme {
+    display: grid;
+    grid-template-columns: 20vw 50vw;
+    background: #202020;
+    color: white;
+    font-size: normal;
+    font-weight: normal;
+    outline: 2px solid white;
+}
+
+.theme nav {
+	height: var(--nbarH);
+	width: 80%;
+	background: var(--barsBg);
+	color: var(--barsFg);
+	font-size: var(--nbarFsize);
+	font-weight: var(--nbarBold);
+	font-style: var(--nbarItalic);
+	border-radius: var(--radius);
+	outline: var(--barsBorder);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--barsShadow ));
+	z-index: 15;
+	position: relative;
+	/* margin-left: 5%; */
+	line-height: 2em;
+	left: 10%;
+	top: 20px;
+}
+
+.theme a {
+    display: block;
+    padding: 10px 30px;
+    background-color: var(--barsBg);
+    color: var(--barsFg);
+    letter-spacing: 1px;
+    text-decoration: none;
+    max-width: 120px;
+}
+
+.theme a:hover {
+    background-color: var(--nbarBgHi);
+    color: var(--nbarFgHi);
+    border-radius: var(--radius);
+}
+
+.theme header {
+	position: relative;
+	/* left: var(--left); */
+	top: 2vh;
+	height: var(--tbarH);
+	width: 80%;
+	background: var(--barsBg);
+	color: var(--barsFg);
+	font-size: var(--tbarFsize);
+	font-weight: var(--tbarBold);
+	font-style: var(--tbarItalic);
+	line-height: calc( var(--tbarH) );
+	border-radius: var(--radius);
+	outline: var(--barsBorder);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--barsShadow));
+	padding-left: 24px;
+	left: 10%;
+	top: 40px;
+}
+
+.theme main {
+	background: var(--appBg);
+	margin-top: 40px;
+	padding-bottom: calc( 2* var(--fbarH) );
+	height: 389px;
+	left: 0;
+	top: 20px;
+	position: relative;
+}
+
+.theme section {
+	background: var(--contBg);
+	color: var(--contFg);
+	height: 104px;
+	width: 80%;
+	border-radius: var(--radius);
+	outline: var(--contBorder);
+	margin-left: 10%;
+	margin-right: calc( var(--left) );
+	margin-top: var(--vGap);
+	min-height: 3.2em;
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--contShadow));
+	padding: 16px 16px 0px 16px;
+}
+
+.theme section:hover ,
+.theme .active-section {
+	background: var(--contBg);
+	outline-width: calc(2 * var(--contBorder));
+}
+
+.theme footer {
+	position: relative;
+	left: var(--left);
+	bottom: 20px;
+	height: var(--fbarH);
+	width: 80%;
+	background: var(--barsBg);
+	color: var(--barsFg);
+	font-size: var(--fbarFsize);
+	font-weight: var(--fbarBold);
+	font-style: var(--fbarItalic);
+	line-height: var(--fbarH);
+	border-radius: var(--radius);
+	outline: var(--barsBorder);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--barsShadow));
+	left: 10%;
+}
+
+.theme .form {
+	display: block;
+	position: absolute;
+	left: 220px;
+	top: -80px;
+	width: 240px;
+	height: auto;
+	margin: 2vh;
+	padding: 1vh;
+	background: var(--formBg);
+	color: var(--formFg);
+	min-width: var(--formWidth);
+	min-height: var(--formHeight);
+	border-radius: var(--radius);
+	outline: var(--formBorder);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadow));
+	z-index: 10;
+}
+
+.theme .form input {
+    max-width: 120px;
+    margin: 10px;
+}

@@ -30,5 +30,5 @@ function verify_users_table(mysqli $db, string $database): bool | string
 }
 
 function get_default_user(string $fullname, string $email) : array {
-    return [ 'admin', $fullname, $email, '/icons/avatar.png', password_hash('winterfall', PASSWORD_DEFAULT) ];
+    return [ 'admin', $fullname, $email, 'avatar.png', password_hash('winterfall', PASSWORD_DEFAULT) ];
 }
