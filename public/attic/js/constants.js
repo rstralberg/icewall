@@ -1,5 +1,0 @@
-const SHADOW_DISTANCE = 32;
-const IMAGE_MAX_WIDTH = 1024;
-const MIN_FONTSIZE = 0.5;
-const MAX_FONTSIZE = 3.0;
-const FONTSIZE_STEP = 0.1;

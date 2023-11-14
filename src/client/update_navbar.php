@@ -31,7 +31,7 @@ if (verify_client_args($args, ['pageid', 'username'])) {
     // either the user picture is a user is logged in
     // the company logo if not
     $logo = '';
-    $logoResque = 'avatar.png'; // if everything else fails
+    $logoResque = 'icons/avatar.png'; // if everything else fails
     if ($args->username && !empty($args->username)) {
         $users = db_select($db, 'users', ['picture'], db_where($db, 'username', $args->username));
         if ($users !== false) {
