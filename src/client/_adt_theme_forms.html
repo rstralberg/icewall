@@ -1,75 +1,31 @@
-<form enctype="multipart/form-data">
+<form class="theme" enctype="multipart/form-data">
 
-    <h1>Knappar</h1>
 
-    <div style="display:flex;">
-        <figure>
-            <figcaption>Övergripande</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgApp}" oninput="onBgApp(this)">
-            <input title="Text" type="color" value="${fgApp}" oninput="onFgApp(this)">
-        </figure>
+    <div>
+        <h1>Formulär</h1>
 
-        <figure>
-            <figcaption>Meny</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgNavbar}" oninput="onBgNavbar(this)">
-            <input title="Text" type="color" value="${fgNavbar}" oninput="onFgNavbar(this)">
-        </figure>
+        <div class="cols-30-30-30">
+            <label for="ato-borderwidth">Ram</label>
+            <input type="number" min="0" nax="10" id="ato-borderwidth" value=${formBorderWidth} oninput="ato_borderwidth(this)">
+            <input type="color" id="ato-bordercolor" value=${formBorderColor} oninput="ato_bordercolor(this)">
+        </div>
 
-        <figure>
-            <figcaption>Markering</figcaption>
-            <input title="Markerad Bakgrund" type="color" value="${bgHover}" oninput="onBgHover(this)">
-            <input title="Markerad Text" type="color" value="${fgHover}" oninput="onFgHover(this)">
-        </figure>
+        <div class="cols-60-40">
+            <label for="ato-bg">Bakgrundsfärg</label>
+            <input type="color" id="ato-bg" value=${formBg} oninput="ato_bg(this)">
+        </div>
 
-        <figure>
-            <figcaption>Titlar</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgTitle}" oninput="onBgTitle(this)">
-            <input title="Text" type="color" value="${fgTitle}" oninput="onFgTitle(this)">
-        </figure>
-    </div>
-    <div style="display:flex;">
+        <div class="cols-60-40">
+            <label for="ato-fg">Teckenfärg</label>
+            <input type="color" id="ato-fg" value=${formFg} oninput="ato_fg(this)">
+        </div>
 
-        <figure>
-            <figcaption>Innehåll</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgContent}" oninput="onBgContent(this)">
-            <input title="Text" type="color" value="${fgContent}" oninput="onFgContent(this)">
-        </figure>
+        <div class="cols-60-40">
+            <label for="ato-shadow">Skuggning</label>
+            <input type="checkbox" id="ato-shadow" ${formShadow} oninput="ato_shadow(this)">
+        </div>
 
-        <figure>
-            <figcaption>Fotraden</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgFooter}" oninput="onBgFooter(this)">
-            <input title="Text" type="color" value="${fgFooter}" oninput="onFgFooter(this)">
-        </figure>
-        <figure>
-            <figcaption>Formulär</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgForm}" oninput="onBgForm(this)">
-            <input title="Text" type="color" value="${fgForm}" oninput="onFgForm(this)">
-        </figure>
-    </div>
-    <div style="display:flex;">
-
-        <figure>
-            <figcaption>Knappar</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgButton}" oninput="onBgButton(this)">
-            <input title="Text" type="color" value="${fgButton}" oninput="onFgButton(this)">
-        </figure>
-
-        <figure>
-            <figcaption>Skrivfält</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgInput}" oninput="onBgInput(this)">
-            <input title="Text" type="color" value="${fgInput}" oninput="onFgInput(this)">
-        </figure>
-
-        <figure>
-            <figcaption>Verktyg</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgTools}" oninput="onBgTools(this)">
-            <input title="Text" type="color" value="${fgTools}" oninput="onFgTools(this)">
-        </figure>
-    </div>
-    <hr>
-
-    <div class="cols-100">
-        <input type="button" value="Klar" onclick="closeColors()">
-    </div>
-
+        <div class="cols-100">
+            <input type="button" value="Klar" onclick="ato_close()">
+        </div>
 </form>

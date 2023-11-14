@@ -11,7 +11,7 @@ if (verify_client_args($args, ['theme', 'barsBg', 'barsFg', 'barsBorder', 'barsS
     $res = db_update($db, 'themes',
         ['barsBg', 'barsFg', 'barsBorder', 'barsShadow'],
         [$args->barsBg, $args->barsFg, $args->barsBorder, $args->barsShadow],
-        db_where($db, 'name', $args->theme));
+        db_where($db, 'name', trim($args->theme,'"')));
     db_close($db);
 
     if( $res === false ) {

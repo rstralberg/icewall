@@ -24,6 +24,10 @@ function surround(string $str, string $char) : string {
     return $char . $str . $char;
 }
 
+function remove_tag(string $str, string $tag) : string {
+    return trim($str, '<'.$tag.'></'.$tag.'>');
+}
+
 function replace( string $str, string $replace, stdClass|string|null $replacement ) {
     if( $replacement === null ) return  $str ;
     else if( gettype($replacement) === 'object' ) return json_encode($replacement) ;

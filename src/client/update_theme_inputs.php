@@ -14,7 +14,7 @@ if (verify_client_args($args, ['theme', 'inpH','inpBg','inpFg','inpBgHi','inpFgH
         'inpFgDis','inpBold','inpItalic','inpFsize','inpShadow','inpBorder'],
         [$args->inpH,$args->inpBg,$args->inpFg,$args->inpBgHi,$args->inpFgHi,$args->inpBgDis,
         $args->inpFgDis,$args->inpBold,$args->inpItalic,$args->inpFsize,$args->inpShadow,$args->inpBorder],
-        db_where($db, 'name', $args->theme));
+        db_where($db, 'name', trim($args->theme,'"')));
     db_close($db);
 
     if( $res === false ) {

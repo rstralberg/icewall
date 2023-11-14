@@ -1,7 +1,6 @@
 
 .theme {
-    display: grid;
-    grid-template-columns: 20vw 50vw;
+    display: block;
     background: #202020;
     color: white;
     font-size: normal;
@@ -84,16 +83,9 @@
 	margin-left: 10%;
 	margin-right: calc( var(--left) );
 	margin-top: var(--vGap);
-	min-height: 3.2em;
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--contShadow));
-	padding: 16px 16px 0px 16px;
-}
+	min-height: 3.2em;	}
+	
 
-.theme section:hover ,
-.theme .active-section {
-	background: var(--contBg);
-	outline-width: calc(2 * var(--contBorder));
-}
 
 .theme footer {
 	position: relative;
@@ -132,7 +124,99 @@
 	z-index: 10;
 }
 
+.theme h1 {
+	outline: 1px solid var(--linkFg);
+	font-size: large;
+	width: -moz-available;
+	display: block;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	border-radius: calc( var(--radius) / 2 );
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	margin-bottom: 1.5em;
+	height: 2em;
+	line-height: 2em;
+	text-align: center;
+}
+
+
 .theme .form input {
     max-width: 120px;
     margin: 10px;
+}
+
+.theme input[type='number'] {
+    max-width: 120px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.theme input[type='color'] {
+	margin: 8px;
+	border: none;
+	outline: none;
+}
+
+
+.theme input[type='checkbox'] {
+    min-width: 22px;
+    min-height: 22px;
+}
+
+.theme .input-hover {
+	background: var(--inpBgHi);
+	color: var(--inpFgHi);
+}
+
+.theme input[type='text'] {
+	background: var(--inpBg);
+	color: var(--inpFg);
+
+	border-radius: calc( var(--radius) / 2 );
+	outline: var(--inpBorder);
+
+	font-size: var(--inpFsize);
+	font-weight: var(--inpBold);
+	font-style: var(--inpItalic);
+
+	height: var(--inpH);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--inpShadow));
+	border:none ;
+
+
+	margin: 8px 2px 8px 0px;
+}
+
+.theme input[type=button] {
+	display: block;
+	width: var(--btnWidth);
+	min-width: 100px;
+	margin-top: 12px;
+	height: var(--btnH);
+
+	background: var(--btnBg);
+	color: var(--btnFg);
+	font-size: var(--btnFsize);
+
+	border-radius: calc( var(--radius) / 2 );
+	outline: var(--btnBorder);
+	border:none;
+
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--btnShadow));
+
+}
+
+.theme input[type=button]:disabled {
+	background: var(--btnBgDis);
+	color: var(--btnFgDis);
+	cursor: not-allowed;
+}
+
+.button-hover {
+	background: var(--btnBgHi) !important;
+	color: var(--btnFgHi) !important;
+
 }

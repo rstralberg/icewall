@@ -1,47 +1,31 @@
 <form class="theme" enctype="multipart/form-data">
 
-
-
     <div>
-        <h1>Knappar</h1>
+        <h1>Top och botten</h1>
         <figure>
-            <figcaption>Övergripande</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgApp}" oninput="onBgApp(this)">
-            <input title="Text" type="color" value="${fgApp}" oninput="onFgApp(this)">
+            <figcaption>Normal</figcaption>
+            <input type="color" value="${barsBg}" oninput="adt_theme_bars_bg(this)">
+            <input type="color" value="${barsFg}" oninput="adt_theme_bars_fg(this)">
         </figure>
 
         <figure>
-            <figcaption>Meny</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgNavbar}" oninput="onBgNavbar(this)">
-            <input title="Text" type="color" value="${fgNavbar}" oninput="onFgNavbar(this)">
+            <figcaption>Ram</figcaption>
+            <input type="color" value="${barsBorderColor}" oninput="adt_theme_border_color(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Ramens tjocklek</figcaption>
+            <input type="number" min="0" max="10" value="${barsBorderWidth}" oninput="adt_theme_borders_width(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Skuggning</figcaption>
+            <input type="checkbox" checked="${barsShadow}" oninput="adt_theme_bars_shadow(this)">
         </figure>
 
         <div class="cols-100">
             <input type="button" value="Klar" onclick="adt_theme_bars_close()">
         </div>
     </div>
-    <div style="margin-left:30px; border-radius:16px; outline: 2px solid white;">
-        <nav><a href="#">Meny</a></nav>
-        <header>Rubrik</Head></a></header>
-        <main>
-            <section>Innehåll</section>
-            <div class="form">
-                <figure>
-                    <figcaption>Knappar</figcaption>
-                    <input type="button" value="Normal">
-                    <input type="button" value="Vald">
-                    <input disabled type="button" value="Spärrad">
-                </figure>
-                <figure>
-                    <figcaption>Skrivfält</figcaption>
-                    <input type="text" value="Normal">
-                    <input type="text" value="Vald">
-                    <input disabled type="text" value="Spärrad">
-                </figure>
-        </div>
-        </main>
-        <footer style="text-align: center;">Fotrad</footer>
-    </div>
-
 
 </form>

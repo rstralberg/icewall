@@ -11,7 +11,7 @@ if (verify_client_args($args, ['theme','font', 'left', 'width', 'vGap', 'radius'
     $res = db_update($db, 'themes',
         ['font','left','width','vGap','radius','linkFg','appBg'],
         [$args->font,$args->left,$args->width,$args->vGap,$args->radius,$args->linkFg,$args->appBg],
-        db_where($db, 'name', $args->theme));
+        db_where($db, 'name', trim($args->theme,'"')));
     db_close($db);
 
     if( $res === false ) {

@@ -139,11 +139,14 @@ input {
 
 	border-radius: calc( var(--radius) / 2 );
 	outline: var(--inpBorder);
+	border:none ;
 
 	font-size: var(--inpFsize);
 	font-weight: var(--inpBold);
 	font-style: var(--inpItalic);
 
+	height: var(--inpH);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--inpShadow));
 
 	margin: 8px 2px 8px 0px;
 }
@@ -162,18 +165,23 @@ input:disabled {
 
 button,
 input[type=button] {
+
 	display: block;
 	width: var(--btnWidth);
 	min-width: 100px;
 	margin-top: 12px;
-	height: calc(2 * var(--btnFsize));
+	height: var(--btnH);
 
 	background: var(--btnBg);
 	color: var(--btnFg);
 
+	font-weight: var(--btnBold);
+	font-style: var(--btnItalic);
+	font-size: var(--btnFsize);
 
 	border-radius: calc( var(--radius) / 2 );
-	outline: var(--btnBorderSize);
+	outline: var(--btnBorder);
+	border: none;
 
 	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--btnShadow));
 

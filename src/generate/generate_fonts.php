@@ -24,7 +24,7 @@ function generate_fonts() : void {
 function get_fontnames() : array {
    
     $fonts = array();
-    $fontfiles = glob('../public/fonts/*.ttf');
+    $fontfiles = glob( __DIR__ . '/../../public/fonts/*.ttf');
     foreach ($fontfiles as $font) {
         $parts = pathinfo($font);
         array_push($fonts, $parts['filename']);

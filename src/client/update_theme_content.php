@@ -4,14 +4,14 @@ require_once __DIR__ . '/../db/db.php';
 require_once __DIR__ . '/../utils/send_reply.php';
 require_once __DIR__ . '/../utils/verify_client_args.php';
 
-if (verify_client_args($args, ['theme', 'contBg', 'contFg', 'contW', 'contBorder', 'contShadow' ])) {
+if (verify_client_args($args, ['theme', 'contBg', 'contFg', 'contBorder', 'contShadow' ])) {
 
     $db = db_open($args->key);
 
     $res = db_update($db, 'themes',
-        ['contBg','contFg','contW','contBorder','contShadow'],
-        [$args->contBg,$args->contFg,$args->contW,$args->contBorder,$args->contShadow],
-        db_where($db, 'name', $args->theme));
+        ['contBg','contFg','contBorder','contShadow'],
+        [$args->contBg,$args->contFg,$args->contBorder,$args->contShadow],
+        db_where($db, 'name', trim($args->theme,'"')));
     db_close($db);
 
     if( $res === false ) {

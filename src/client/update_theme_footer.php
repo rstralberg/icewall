@@ -11,7 +11,7 @@ if (verify_client_args($args, ['theme','fbarH', 'fbarBold', 'fbarItalic', 'fbarF
     $res = db_update($db, 'themes',
         ['fbarH', 'fbarBold', 'fbarItalic', 'fbarFsize'],
         [$args->fbarH, $args->fbarBold, $args->fbarItalic, $args->fbarFsize],
-        db_where($db, 'name', $args->theme));
+        db_where($db, 'name', trim($args->theme,'"')));
     db_close($db);
 
     if( $res === false ) {

@@ -1,75 +1,46 @@
-<form enctype="multipart/form-data">
+<form class="theme" enctype="multipart/form-data">
 
-    <h1>Knappar</h1>
+    <div>
+        <h1>Allmänt</h1>
 
-    <div style="display:flex;">
-        <figure>
-            <figcaption>Övergripande</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgApp}" oninput="onBgApp(this)">
-            <input title="Text" type="color" value="${fgApp}" oninput="onFgApp(this)">
-        </figure>
+        <div class="cols-60-40">
+            <label for="atg-font">Teckensnitt</label>
+            <select id="atg-font">
+                ${fonts}
+            </select>
+        </div>
 
-        <figure>
-            <figcaption>Meny</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgNavbar}" oninput="onBgNavbar(this)">
-            <input title="Text" type="color" value="${fgNavbar}" oninput="onFgNavbar(this)">
-        </figure>
+        <div class="cols-60-40">
+            <label for="atg-left">Vänster Marginal</label>
+            <input type="number" min="10" max="30" id="atg-left" value="${left}" oninput="atg_left(this)">
+        </div>
 
-        <figure>
-            <figcaption>Markering</figcaption>
-            <input title="Markerad Bakgrund" type="color" value="${bgHover}" oninput="onBgHover(this)">
-            <input title="Markerad Text" type="color" value="${fgHover}" oninput="onFgHover(this)">
-        </figure>
+        <div class="cols-60-40">
+            <label for="atg-width">Bredd</label>
+            <input type="number" min="50" max="80" id="atg-width" value="${width}" oninput="atg_width(this)">
+        </div>
+        <div class="cols-60-40">
+            <label for="atg-vgap">Mellanrum</label>
+            <input type="number" min="0" max="10" id="atg-vgap" value="${vGap}" oninput="atg_vgap(this)">
+        </div>
 
-        <figure>
-            <figcaption>Titlar</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgTitle}" oninput="onBgTitle(this)">
-            <input title="Text" type="color" value="${fgTitle}" oninput="onFgTitle(this)">
-        </figure>
+        <div class="cols-60-40">
+            <label for="atg-radius">Rundning av hörn</label>
+            <input type="number" min="0" max="20" id="atg-radius" value="${radius}" oninput="atg_radius(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="atg-linkfg">Länkars färg</label>
+            <input type="color" id="atg-linkfg" value="${linkFg}" oninput="atg_linkfg(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="atg-appbg">Bakgrund</label>
+            <input type="color" id="atg-appbg" value="${appBg}" oninput="atg_appbg(this)">
+        </div>
+
+        <div class="cols-100">
+            <input type="button" value="Klar" onclick="atg_close()">
+        </div>
     </div>
-    <div style="display:flex;">
-
-        <figure>
-            <figcaption>Innehåll</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgContent}" oninput="onBgContent(this)">
-            <input title="Text" type="color" value="${fgContent}" oninput="onFgContent(this)">
-        </figure>
-
-        <figure>
-            <figcaption>Fotraden</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgFooter}" oninput="onBgFooter(this)">
-            <input title="Text" type="color" value="${fgFooter}" oninput="onFgFooter(this)">
-        </figure>
-        <figure>
-            <figcaption>Formulär</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgForm}" oninput="onBgForm(this)">
-            <input title="Text" type="color" value="${fgForm}" oninput="onFgForm(this)">
-        </figure>
-    </div>
-    <div style="display:flex;">
-
-        <figure>
-            <figcaption>Knappar</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgButton}" oninput="onBgButton(this)">
-            <input title="Text" type="color" value="${fgButton}" oninput="onFgButton(this)">
-        </figure>
-
-        <figure>
-            <figcaption>Skrivfält</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgInput}" oninput="onBgInput(this)">
-            <input title="Text" type="color" value="${fgInput}" oninput="onFgInput(this)">
-        </figure>
-
-        <figure>
-            <figcaption>Verktyg</figcaption>
-            <input title="Bakgrund" style="outline:none" type="color" value="${bgTools}" oninput="onBgTools(this)">
-            <input title="Text" type="color" value="${fgTools}" oninput="onFgTools(this)">
-        </figure>
-    </div>
-    <hr>
-
-    <div class="cols-100">
-        <input type="button" value="Klar" onclick="closeColors()">
-    </div>
-
 </form>
