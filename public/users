@@ -1,1 +1,0 @@
-INSERT INTO `users` (`username`,`fullname`,`email`,`picture`,`password`) VALUES ('admin','Roland Strålberg','rstralberg@pm.me','avatar.png','$2y$10$A95Le6UKCuklcB44v8Ig0OZQqTt4QLAE84020.0TwjjGAMfDVg68i')
