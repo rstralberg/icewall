@@ -66,7 +66,7 @@ function generate_scripts() : string {
     $html.= script('src/actions/update_section_style');
     $html.= script('src/actions/update_content_positions');
 
-    $html.= script('index');
+    // $html.= script('index');
     
     return $html;
     
