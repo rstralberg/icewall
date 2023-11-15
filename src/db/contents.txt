@@ -1,0 +1,1 @@
+INSERT INTO `contents` (`pageId`,`pos`,`html`,`style`,`isPublic`) VALUES (1,0,'KalixMixen','text-align=\"center\"',1)

@@ -25,6 +25,22 @@
 	text-align: center;
 }
 
+.theme h2 {
+	background: var(--markBg);
+	color: var(--markFg);
+	outline: var(--markBorder);
+	font-size: var(--markFsize);
+	font-weight: var(--markBold);
+	font-style: var(--markItalic);
+	width: auto;
+	display: inline-block;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	border-radius: calc( var(--radius) / 2 );
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--markShadow));
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
 
 .theme .form input {
     max-width: 120px;

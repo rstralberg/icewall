@@ -1,0 +1,51 @@
+<form class="theme" style="width:40vw;display: grid;grid-template-columns: 50% 50%;" enctype="multipart/form-data">
+
+    <div>
+        <h1>Markering</h1>
+        <figure>
+            <figcaption>Färg</figcaption>
+            <input type="color" value="${markBg}" oninput="th_mark_bg(this)">
+            <input type="color" value="${markFg}" oninput="th_mark_fg(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Ram</figcaption>
+            <input type="color" value="${markBorderColor}" oninput="th_mark_border_color(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Ramens tjocklek</figcaption>
+            <input type="number" min="0" max="10" value="${markBorderWidth}" oninput="th_mark_border_width(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Skuggning</figcaption>
+            <input type="checkbox" checked="${markShadow}" oninput="th_mark_shadow(this)">
+        </figure>
+
+        <div class="cols-60-40">
+            <label for="th-mark-bold">Fet stil</label>
+            <input type="checkbox" id="th-mark-bold" ${markBold} oninput="th_mark_bold(this)">
+        </div>
+    
+        <div class="cols-60-40">
+            <label for="th-mark-italic">Kursiv stil</label>
+            <input type="checkbox" id="th-mark-italic" ${markItalic} oninput="th_mark_italic(this)">
+        </div>
+        
+        <div class="cols-60-40">
+            <label for="th-mark-fontsize">Teckenstorlek</label>
+            <select id="th-mark-fontsize" onchange="th_mark_fontsize(this)">
+                ${fontsizes}
+            </select>
+        </div>
+    
+    
+        <div class="cols-100">
+            <input type="button" value="Klar" onclick="th_mark_close()">
+        </div>
+    </div>
+    <div style="margin-left:10px;outline:1px dashed white;border-radius: var(--radius);">
+        <span style="margin-left:20px">En <h2>Markerad</h2> text ser ut så här</span>
+    </div>
+</form>

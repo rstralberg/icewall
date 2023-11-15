@@ -23,6 +23,7 @@ function db_insert(mysqli $db, string $table, array $cols, array $values): int |
     $query = trimEnd($query, 1);
     $query .= ')';
 
+    
     try {
         $result = mysqli_query($db, $query);
         if ($result === false) {

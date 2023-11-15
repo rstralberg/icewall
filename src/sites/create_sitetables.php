@@ -95,7 +95,6 @@ function create_themes(mysqli $db, array $site): void
             
             'contBg',
             'contFg',
-            'contW',
             'contBorder',
             'contShadow',
             
@@ -128,7 +127,17 @@ function create_themes(mysqli $db, array $site): void
             'inpItalic',
             'inpFsize',
             'inpShadow',
-            'inpBorder'],
+            'inpBorder',
+
+            'markBg',
+            'markFg',
+            'markBorder',
+            'markShadow',
+            'markFsize',
+            'markBold',
+            'markItalic'
+    
+        ],
             get_default_theme($site['theme'])
         );
     }

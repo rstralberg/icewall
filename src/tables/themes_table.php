@@ -39,7 +39,6 @@ function create_themes_table(mysqli $db, string $database): bool
 
         'contBg',
         'contFg',
-        'contW',
         'contBorder',
         'contShadow',
 
@@ -73,9 +72,18 @@ function create_themes_table(mysqli $db, string $database): bool
         'inpFsize',
         'inpShadow',
         'inpBorder',
+
+        'markBg',
+        'markFg',
+        'markBorder',
+        'markShadow',
+        'markFsize',
+        'markBold',
+        'markItalic'
+
     ], [
         'VARCHAR(64) NOT NULL UNIQUE',// name
-        'VARCHAR(64) NOT NULL',// font
+        'VARCHAR(64) NOT NULL',//font
         'VARCHAR(16) NOT NULL',//left
         'VARCHAR(16) NOT NULL',//width
         'VARCHAR(16) NOT NULL',//vGap
@@ -107,7 +115,6 @@ function create_themes_table(mysqli $db, string $database): bool
 
         'VARCHAR(16) NOT NULL',//contBg
         'VARCHAR(16) NOT NULL',//contFg
-        'VARCHAR(16) NOT NULL',//contW
         'VARCHAR(32) NOT NULL',//contBorder
         'VARCHAR(8) NOT NULL',//contShadow
 
@@ -140,7 +147,15 @@ function create_themes_table(mysqli $db, string $database): bool
         'VARCHAR(16) NOT NULL',//inpItalic
         'VARCHAR(16) NOT NULL',//inpFsize
         'VARCHAR(8) NOT NULL',//inpShadow
-        'VARCHAR(32) NOT NULL'//inpBorder
+        'VARCHAR(32) NOT NULL',//inpBorder
+
+        'VARCHAR(16) NOT NULL',//markBg
+        'VARCHAR(16) NOT NULL',//markFg
+        'VARCHAR(32) NOT NULL',//markBorder
+        'VARCHAR(8) NOT NULL',//markShadow
+        'VARCHAR(16) NOT NULL',//markFsize
+        'VARCHAR(16) NOT NULL',//markBold
+        'VARCHAR(16) NOT NULL'//markItalic
     ]);
 }
 
@@ -157,7 +172,7 @@ function get_default_theme(string $name) : array {
 
     return [
         $name,
-        '"Ariel"',// font
+        '"Arial"',// font
         '10vw',// left
         '80vw',// width
         '2vh',// vGap
@@ -189,7 +204,6 @@ function get_default_theme(string $name) : array {
         
         '#303030',// contBg
         '#ffffff',// contFg
-        'fit-content%',// contW
         '1px solid #ffffff',// contBorder
         '1',// contShadow
         
@@ -222,6 +236,14 @@ function get_default_theme(string $name) : array {
         'normal',// inpItalic
         'medium',// inpFsize
         '1',// inpShadow
-        '1px solid #ffffff'// inpBorder
+        '1px solid #ffffff',// inpBorder
+        
+        '#303030',//markBg
+        '#ffa500',//markFg
+        '1px solid #ffa500',//markBorder
+        '1',//markShadow
+        'medium',//markFsize
+        'bold',//markBold
+        'normal'//markItalic
     ];
 }

@@ -28,6 +28,7 @@ function init_admin_tools() {
     set_tool_state('adt-theme-forms', state);
     set_tool_state('adt-theme-buttons', state);
     set_tool_state('adt-theme-inputs', state);
+    set_tool_state('adt-theme-marks', state);
 }
 
 function release_admin_tools() {
@@ -50,6 +51,7 @@ function release_admin_tools() {
     set_tool_state('adt-theme-forms', 'disabled');
     set_tool_state('adt-theme-buttons', 'disabled');
     set_tool_state('adt-theme-inputs', 'disabled');
+    set_tool_state('adt-theme-marks', 'disabled');
 }
 
 //  =================================

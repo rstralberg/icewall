@@ -40,6 +40,7 @@ function generate_scripts() : string {
     $html.= script('src/th/th_inputs');
     $html.= script('src/th/th_menu');
     $html.= script('src/th/th_titlebar');
+    $html.= script('src/th/th_mark');
  
     $html.= script('src/base/navbar');
     $html.= script('src/base/footer');

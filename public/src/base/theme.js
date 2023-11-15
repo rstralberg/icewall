@@ -35,7 +35,6 @@ function styles_to_theme() {
         fbarFsize: get_style('fbarFsize'),
         contBg: get_style('contBg'),
         contFg: get_style('contFg'),
-        contW: get_style('contW'),
         contBorder: get_style('contBorder'),
         contShadow: get_style('contShadow'),
         formBg: get_style('formBg'),
@@ -100,7 +99,6 @@ function theme_to_styles(theme) {
     set_style('fbarFsize', theme.fbarFsize);
     set_style('contBg', theme.contBg);
     set_style('contFg', theme.contFg);
-    set_style('contW', theme.contW);
     set_style('contBorder', theme.contBorder);
     set_style('contShadow', theme.contShadow);
     set_style('formBg', theme.formBg);

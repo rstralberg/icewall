@@ -46,7 +46,6 @@ function generate_style(mysqli $db, string $themeName): string
     
     $root .= '--contBg:' . $theme['contBg'] . ';';
     $root .= '--contFg:' . $theme['contFg'] . ';';
-    $root .= '--contW:' . $theme['contW'] . ';';
     $root .= '--contBorder:' . $theme['contBorder'] . ';';
     $root .= '--contShadow:' . $theme['contShadow'] . ';';
     
@@ -80,6 +79,14 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--inpFsize:' . $theme['inpFsize'] . ';';
     $root .= '--inpShadow:' . $theme['inpShadow'] . ';';
     $root .= '--inpBorder:' . $theme['inpBorder'] . ';';
+
+    $root .= '--markBg:' . $theme['markBg'] . ';';
+    $root .= '--markFg:' . $theme['markFg'] . ';';
+    $root .= '--markBorder:' . $theme['markBorder'] . ';';
+    $root .= '--markShadow:' . $theme['markShadow'] . ';';
+    $root .= '--markFsize:' . $theme['markFsize'] . ';';
+    $root .= '--markBold:' . $theme['markBold'] . ';';
+    $root .= '--markItalic:' . $theme['markItalic'] . ';';
 
     $root .= '}';
     return '<style>' . $root . '</style>';
