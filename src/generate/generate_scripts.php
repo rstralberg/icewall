@@ -26,20 +26,20 @@ function generate_scripts() : string {
     $html.= script('src/tools/usertools');
     $html.= script('src/tools/admintools');
     
-    $html.= script('src/tools/sys/sys_pages');
-    $html.= script('src/tools/sys/sys_settings');
-    $html.= script('src/tools/sys/sys_themes');
-    $html.= script('src/tools/sys/sys_users');
+    $html.= script('src/sys/sys_pages');
+    $html.= script('src/sys/sys_settings');
+    $html.= script('src/sys/sys_themes');
+    $html.= script('src/sys/sys_users');
 
-    $html.= script('src/tools/th/th_bars');
-    $html.= script('src/tools/th/th_buttons');
-    $html.= script('src/tools/th/th_content');
-    $html.= script('src/tools/th/th_footer');
-    $html.= script('src/tools/th/th_forms');
-    $html.= script('src/tools/th/th_general');
-    $html.= script('src/tools/th/th_inputs');
-    $html.= script('src/tools/th/th_menu');
-    $html.= script('src/tools/th/th_titlebar');
+    $html.= script('src/th/th_bars');
+    $html.= script('src/th/th_buttons');
+    $html.= script('src/th/th_content');
+    $html.= script('src/th/th_footer');
+    $html.= script('src/th/th_forms');
+    $html.= script('src/th/th_general');
+    $html.= script('src/th/th_inputs');
+    $html.= script('src/th/th_menu');
+    $html.= script('src/th/th_titlebar');
  
     $html.= script('src/base/navbar');
     $html.= script('src/base/footer');
@@ -61,6 +61,7 @@ function generate_scripts() : string {
     
     $html.= script('src/actions/login');
     $html.= script('src/actions/logout');
+    $html.= script('src/actions/password');
     $html.= script('src/actions/update_section_style');
     $html.= script('src/actions/update_content_positions');
 

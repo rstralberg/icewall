@@ -122,7 +122,7 @@ function init_session(pageid, sitekey) {
         server('getsite', { key: sitekey }).then(
             (site) => {
                 set_session_site(JSON.parse(site));
-                server('getpage', { pageid: pageid }).then(
+                server('pg/pg_get', { pageid: pageid }).then(
                     (page) => { 
                         set_session_page(JSON.parse(page)); 
                         resolve();

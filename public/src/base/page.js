@@ -1,7 +1,7 @@
 
 function on_page_selected(pageid) {
 
-    server('getpage', {
+    server('pg/pg_get', {
         pageid: pageid
     }).then(
         (resolve) => {

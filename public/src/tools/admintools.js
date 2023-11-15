@@ -56,7 +56,7 @@ function release_admin_tools() {
 //  RENAME
 //  =================================
 function adt_rename_page() {
-    server('on_page_rename', {
+    server('pg/pg_rename_form', {
         pageid: get_session_page().id
     }).then(
         (resolve) => {
@@ -65,11 +65,11 @@ function adt_rename_page() {
     );
 }
  
-function on_rename_page(pageid) {
+function pg_rename_form_rename(pageid) {
 
-    server('rename_page', {
+    server('pg/pg_rename', {
         pageid: pageid,
-        title: query_value('rp-new')
+        title: query_value('page-rename-form-new')
     }).then( 
         () => {
             update_navbar();
@@ -79,7 +79,7 @@ function on_rename_page(pageid) {
     );
 }
 
-function on_close_rename_page() {
+function pg_rename_form_close() {
     remove_form('page-rename-form');
 }
 
@@ -117,7 +117,7 @@ function adt_add_content() {
 //  PUBLIC
 //  =================================
 function adt_public() {
-    server('toggle_page_public', {
+    server('pg/pg_public', {
         pageid: get_session_page().id
     }).then(
         (resolve) => {
@@ -134,7 +134,7 @@ function adt_public() {
 function adt_create_page() {
     let username = get_session_user().username;
     if (username === 'admin') { 
-        server('on_page_create', {
+        server('pg/pg_create_form', {
             username: username
         }).then(
             (resolve) => {
@@ -143,9 +143,9 @@ function adt_create_page() {
         );
     }
 }
-function on_create_page() {
+function pg_create_form_create() {
  
-    let placement = query_value('cp-placement');
+    let placement = query_value('pg-create-form-placement');
     
     let isParent, parentid, pos;
     if( placement === 'top') {
@@ -164,13 +164,13 @@ function on_create_page() {
         isParent = false;
     }
 
-    server('register_new_page', {
-        title: query_value('cp-title'),
-        author: query_value('cp-author'),
+    server('pg/pg_create', {
+        title: query_value('pg-create-form-title'),
+        author: query_value('pg-create-form-author'),
         isParent: isParent,
         parentId: parentid,
         pos: pos,
-        showtitle: query_id('cp-showtitle').checked
+        showtitle: query_id('pg-create-form-showtitle').checked
     }).then(
         () => {
             remove_form('page_create_form');
@@ -183,7 +183,7 @@ function on_create_page() {
     );
 }
 
-function on_close_pagecreate() {
+function pg_create_form_close() {
     remove_form('page_create_form');
 }
 
@@ -192,7 +192,7 @@ function on_close_pagecreate() {
 //  =================================
 function adt_delete_pages() {
 
-    server('on_page_delete', {
+    server('pg/pg_delete_form', {
         pageid: get_session_page().id
     }).then(
         (resolve) => {
@@ -201,10 +201,10 @@ function adt_delete_pages() {
     );
 }
 
-function do_delete_page() {
+function yes_delete_page() {
     remove_form('yesno');
-    server('unregister_page', {
-        pageid: query_value('dp-pages')
+    server('pg/pg_delete', {
+        pageid: query_value('pg-delete-form-pages')
     }).then(
         () => {
             remove_form('page_delete_form');
@@ -217,16 +217,16 @@ function do_delete_page() {
     );
 }
 
-function skip_delete_page() {
+function no_delete_page() {
     remove_form('yesno');
     remove_form('page_delete_form');
 }
 
-function on_delete_page() {
-    yesno('Radera sida', 'Är du säker', 'do_delete_page', 'skip_delete_page');
+function pg_delete_form_delete() {
+    yesno('Radera sida', 'Är du säker', 'yes_delete_page', 'no_delete_page');
 }
 
-function on_close_delete_page() {
+function pg_delete_form_close() {
     remove_form('page_delete_form');
 }
 

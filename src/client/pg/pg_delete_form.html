@@ -1,0 +1,29 @@
+<form enctype="multipart/form-data">
+    
+    <h1>Radera sida</h1>
+
+        <hr>
+
+        <div class="cols-100">
+            Kom ihåg att om du raderar en sida som har undersidor så
+            raderas även dessa. Så tänk två gånger.
+        </div>
+
+        <div class="cols-40-60">
+            <label for="pg-delete-form-pages">Välj sida att radera:</label>
+            <select id="pg-delete-form-pages">
+                ${pages}
+            </select>
+        </div>
+        
+        <hr>
+        
+        <div class="cols-100">
+            <input id="pg-delete-form-delete" type="button" value="Radera" onclick="pg_delete_form_delete()">
+        </div>
+        
+        <div class="cols-100">
+            <input type="button" value="Stäng" onclick="pg_form_delete_close()">
+        </div>
+        
+</form>
