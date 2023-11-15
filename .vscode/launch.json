@@ -17,7 +17,7 @@
             "port": 9003,
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
-                "uriFormat": "http://localhost:%s/?site=gg",
+                "uriFormat": "http://localhost:%s/gg",
                 "action": "openExternally"
             },
             "runtimeExecutable": "/usr/bin/php"
@@ -39,7 +39,7 @@
             "port": 9003,
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
-                "uriFormat": "http://localhost:%s/?site=km",
+                "uriFormat": "http://localhost:%s/km",
                 "action": "openExternally"
             },
             "runtimeExecutable": "/usr/bin/php"

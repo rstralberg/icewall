@@ -6,8 +6,8 @@ function load_site_from_args() : array | bool {
 
     // Get site and page id to load
     $siteKey = '';
-    if (array_key_exists('site', $_GET)) {
-        $siteKey = $_GET['site'];
+    if (array_key_exists('REQUEST_URI', $_SERVER)) {
+        $siteKey = substr($_SERVER['REQUEST_URI'],1);
     }
     if ($siteKey === '') {
         return false;
