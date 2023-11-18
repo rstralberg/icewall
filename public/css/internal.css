@@ -1,0 +1,146 @@
+
+/* 	Internals not editable by user 
+	------------------------------------------------
+*/
+
+.tools {
+	grid-row: 1 / 5;
+	background: transparent !important;
+	color: #ffffff;
+	font-size: small;
+	padding-bottom: -12.4vh !important;
+	outline: none;
+	border: none;
+	z-index: 18;
+}
+
+
+.tool-active {
+    background: orange !important; 
+    color: black !important;
+}
+
+.tool-normal  {
+    background: #202020 !important;
+    color: white !important;
+}
+
+.tool-disabled  {
+    background: #202020 !important;
+    color: gray !important;
+    font-weight: normal;
+    cursor: not-allowed;
+}
+
+
+
+.tools figure {
+	background: transparent !important;
+	width: 86%;
+	margin-left: 6%;
+	padding-left: 0.5vw;
+}
+
+.tools figcaption {
+	font-weight: bold;
+	text-align: center;
+	margin-top: 2vh;
+	text-align: left;
+}
+
+.tools hr {
+	color: #808080;
+}
+
+.tools button, .tools input[type="button"] {
+	background: #202020;
+	padding: 2px 2px 2px 2px;
+	box-shadow: none;
+	border-radius: 8px;
+	outline: 1px solid #ffffff;
+	text-align: center !important;
+	border: none;
+	height: auto;
+	width: calc((100% - var(--width)) / 3);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
+	margin-bottom: 4px !important;
+	font-size: small;
+}
+
+.tools button:hover,
+.tools input[type=button]:hover {
+	background: yellow !important;
+	color: black !important;
+}
+
+.tools input[type=button]:disabled {
+	background: #404040 !important;
+	color: #808080 !important;
+}
+
+.tools input[type=button]:active {
+	background: orange !important;
+	color: black !important;
+}
+
+.tools .active {
+    background: orange !important;
+	color: black !important;
+	font-weight: bold;
+}
+
+.shadow {
+    -webkit-box-shadow: 10px 10px 15px black;
+    box-shadow: 10px 10px 15px black;
+}
+
+
+#user-menu {
+	position: fixed;
+	left: 0;
+	top: var(--headerH);
+	/* height: 99%; */
+	width: 10%;
+	display: block;
+}
+
+#admin-menu {
+	position: fixed;
+	right: 1vw;
+	top: var(--headerH);
+	/* height: 99%; */
+	width: 10%;
+	display: block;
+}
+
+figcaption {
+	font-size: small;
+}
+
+section a {
+	color: var(--linkFg);
+	font-weight: bold;
+	font-style: italic;
+}
+
+
+form ul {
+	list-style: none;
+}
+
+.selected-listitem {
+	list-style: none;
+	background: #303030;
+	border-radius: 4px;
+	outline: 1px solid yellow;
+
+}
+
+
+@media screen and (max-width: 1024px) {
+
+	.tools {
+		display: none !important;
+	}
+
+}

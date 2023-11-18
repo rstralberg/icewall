@@ -1,0 +1,51 @@
+<form enctype="multipart/form-data">
+
+    <h1>Redigera sidor</h1>
+
+    <hr>
+
+    <div class="cols-40-60">
+        <label for="sys-pages-form-pages">Välj sida:</label>
+        <select id="sys-pages-form-pages" onchange="rename_page_selected()">
+            <option value="none">Välj!</option>
+            ${pages}
+        </select>
+    </div>
+
+    <div class="cols-10-90">
+        <div style="width:min-content">
+            <img id="sys-pages-form-up" class="tool" src="icons/white/arrow_up.svg" onclick="page_move_up()">
+            <img id="sys-pages-form-down" class="tool" src="icons/white/arrow_down.svg" onclick="page_move_down()">
+        </div>
+        <ul id="sys-pages-form-pagelist">
+        </ul>
+    </div>
+
+    <input type="hidden" id="sys-pages-form-selected">
+    <input type="hidden" id="sys-pages-form-selected-name">
+
+    <div class="cols-100">
+        <input disabled id="sys-pages-form-delete" type="button" value="Radera" onclick="delete_page()">
+    </div>
+
+    <div class="cols-40-60">
+        <input disabled id="sys-pages-form-rename-button" type="button" value="Ändra" onclick="change_pagename()">
+        <input disabled type="text" id="sys-pages-form-rename" oninput="new_pagename()">
+    </div>
+
+    <div class="cols-40-60">
+        <label for="sys-pages-form-parent-select">Lägg sidan under</label>
+        <select id="sys-pages-form-parent-select" onchange="parent_selected()">
+            <option value="none">Välj!</option>
+            <option value="0">Toppnivå!</option>
+            ${parents}
+        </select>
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" value="Klar" onclick="renameform_close()">
+    </div>
+
+</form>

@@ -15,9 +15,29 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--theme:"' . $theme['name'] . '";';
 
     $root .= '--font:' . $theme['font'] . ';';
-    $root .= '--left:' . $theme['left'] . ';';
-    $root .= '--width:' . $theme['width'] . ';';
-    $root .= '--vGap:' . $theme['vGap'] . ';';
+
+    $root .= '--headerT:' . $theme['headerT'] . ';';
+    $root .= '--headerH:' . $theme['headerH'] . ';';
+    $root .= '--footerB:' . $theme['footerB'] . ';';
+    $root .= '--footerH:' . $theme['footerH'] . ';';
+    $root .= '--titleH:' . $theme['titleH'] . ';';
+
+    $root .= '--headerP:' . $theme['headerP'] . ';';
+    $root .= '--logoL:' . $theme['logoL'] . ';';
+    $root .= '--logoW:' . $theme['logoW'] . ';';
+    $root .= '--menuL:' . $theme['menuL'] . ';';
+    $root .= '--menuW:' . $theme['menuW'] . ';';
+    $root .= '--themeL:' . $theme['themeL'] . ';';
+    $root .= '--themeW:' . $theme['themeW'] . ';';
+    $root .= '--avatarL:' . $theme['avatarL'] . ';';
+    $root .= '--avatarW:' . $theme['avatarW'] . ';';
+
+    $root .= '--infoW:' . $theme['infoW'] . ';';
+    $root .= '--titleW:' . $theme['titleW'] . ';';
+    $root .= '--contentW:' . $theme['contentW'] . ';';
+    $root .= '--contentD:' . $theme['contentD'] . ';';
+
+
     $root .= '--radius:' . $theme['radius'] . ';';
     $root .= '--linkFg:' . $theme['linkFg'] . ';';
     $root .= '--appBg:' . $theme['appBg'] . ';';
@@ -27,19 +47,16 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--barsBorder:' . $theme['barsBorder'] . ';';
     $root .= '--barsShadow:' . $theme['barsShadow'] . ';';
             
-    $root .= '--tbarH:' . $theme['tbarH'] . ';';
     $root .= '--tbarBold:' . $theme['tbarBold'] . ';';
     $root .= '--tbarItalic:' . $theme['tbarItalic'] . ';';
     $root .= '--tbarFsize:' . $theme['tbarFsize'] . ';';
     
-    $root .= '--nbarH:' . $theme['nbarH'] . ';';
     $root .= '--nbarBold:' . $theme['nbarBold'] . ';';
     $root .= '--nbarItalic:' . $theme['nbarItalic'] . ';';
     $root .= '--nbarFsize:' . $theme['nbarFsize'] . ';';
     $root .= '--nbarBgHi:' . $theme['nbarBgHi'] . ';';
     $root .= '--nbarFgHi:' . $theme['nbarFgHi'] . ';';
             
-    $root .= '--fbarH:' . $theme['fbarH'] . ';';
     $root .= '--fbarBold:' . $theme['fbarBold'] . ';';
     $root .= '--fbarItalic:' . $theme['fbarItalic'] . ';';
     $root .= '--fbarFsize:' . $theme['fbarFsize'] . ';';

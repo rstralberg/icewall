@@ -1,0 +1,143 @@
+
+h1 {
+	display: block;
+	
+	width: -moz-available;
+	height: 2em;
+	line-height: 2em;
+	text-align: center;
+
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+
+	outline: 1px solid var(--linkFg);
+
+	font-size: large;
+	border-radius: calc( var(--radius) / 2 );
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
+}
+
+h2 {
+	display: inline-block;
+
+	background: var(--markBg);
+	color: var(--markFg);
+	
+	width: auto;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+
+	font-size: var(--markFsize);
+	font-weight: var(--markBold);
+	font-style: var(--markItalic);
+
+	outline: var(--markBorder);
+	border-radius: calc( var(--radius) / 2 );
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--markShadow));
+}
+
+input {
+	background: var(--inpBg);
+	color: var(--inpFg);
+
+	border-radius: calc( var(--radius) / 2 );
+	outline: var(--inpBorder);
+	border:none ;
+
+	font-size: var(--inpFsize);
+	font-weight: var(--inpBold);
+	font-style: var(--inpItalic);
+
+	height: var(--inpH);
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--inpShadow));
+
+	margin: 8px 2px 8px 0px;
+}
+
+input:hover {
+	background: var(--inpBgHi);
+	color: var(--inpFgHi);
+}
+
+input:disabled {
+	background: var(--inpBgDis);
+	color: var(--inpFgDis);
+	cursor: not-allowed;
+}
+
+
+button,
+input[type=button] {
+
+	display: block;
+	width: var(--btnWidth);
+	min-width: 100px;
+	margin-top: 12px;
+	height: var(--btnH);
+
+	background: var(--btnBg);
+	color: var(--btnFg);
+
+	font-weight: var(--btnBold);
+	font-style: var(--btnItalic);
+	font-size: var(--btnFsize);
+
+	border-radius: calc( var(--radius) / 2 );
+	outline: var(--btnBorder);
+	border: none;
+
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--btnShadow));
+
+}
+
+button:hover,
+input[type=button]:hover {
+	background: var(--btnBgHi);
+	color: var(--btnFgHi);
+}
+
+button:disabled,
+input[type=button]:disabled {
+	background: var(--btnBgDis);
+	color: var(--btnFgDis);
+	cursor: not-allowed;
+}
+
+input[type=checkbox] {
+	margin-left: 0;
+	margin-right: 95%;
+	border: none;
+	outline: none;
+}
+
+select {
+	background: var(--inpBg);
+	color: var(--inpFg);
+
+	font-size: var(--inpFsize);
+	font-weight: var(--inpBold);
+	font-style: var(--inpItalic);
+
+	border-radius: calc( var(--radius) / 2 );
+
+	height: 3vh;
+	border: none;
+	outline: none;
+}
+
+select:hover {
+	background: var(--inpBgHi);
+	color: var(--inpFgHi);
+}
+
+select:disabled {
+	background: var(--inpBgDis);
+	color: var(--inpFgDis);
+	cursor: not-allowed;
+}
+
+

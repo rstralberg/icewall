@@ -1,0 +1,39 @@
+section {
+	background: var(--contBg);
+	color: var(--contFg);
+
+	height: auto;
+	min-height: 3.2em;
+	margin-top: var(--contentD);
+	padding: 16px 16px 0px 16px;
+
+	border-radius: var(--radius);
+	outline: var(--contBorder);
+
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--contShadow));
+}
+
+section:last-child {
+    padding-bottom: calc( var(--footerB) + var(--footerH) + var(--contentD) );
+}
+
+.active-section {
+	background: var(--contBg);
+	outline-width: calc(2 * var(--contBorder)); 
+}
+
+section picture {
+	margin: 10px;
+}
+
+section img {
+    max-width: calc( 0.8 * var(--contentW ));
+}
+
+@media screen and (max-width: 1024px) {
+
+    section img {
+        max-width: 98%;
+    }
+        
+}

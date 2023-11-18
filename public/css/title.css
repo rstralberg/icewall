@@ -1,0 +1,21 @@
+#title {
+	background: var(--appBg);
+	color: var(--barsFg);
+
+	position: fixed;
+	top: calc( var(--headerT) + var(--headerH) + var(--contentD) );
+	height: var(--titleH);
+	width: var(--titleW);
+
+	outline: var(--barsBorder);
+	border-radius: var(--radius);
+
+    font-size: var(--tbarFsized);
+    font-weight: var(--tbarBold);
+    font-style: var(--tbarItalic);
+    line-height: var(--titleH);
+
+	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--barsShadow));
+
+}
+

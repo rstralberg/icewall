@@ -1,5 +1,6 @@
 {
     "configurations": [
+        
         {
             "name": "Launch GrafitGubben",
             "type": "php",
@@ -43,6 +44,7 @@
                 "action": "openExternally"
             },
             "runtimeExecutable": "/usr/bin/php"
+           
         }
     ]
 }

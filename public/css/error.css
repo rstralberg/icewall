@@ -2,6 +2,9 @@
 .error {
     background: red;
     color: white;
+    position: absolute;
+    left: 30vw;
+    top: 10vw;
 }
 
 .error h1 {

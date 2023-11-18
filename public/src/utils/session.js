@@ -110,7 +110,7 @@ function set_session_selection(element) {
 function get_session_selection() {
     if( validate_session()) {
         let id = sessionStorage.getItem(session_site_item('selected'));
-        if( is_valid(id) && id !== 'null') return query_id(id);
+        if( is_valid(id) && id !== 'null') return document.getElementById(id);
     }
     return null;
 }
@@ -122,7 +122,7 @@ function init_session(pageid, sitekey) {
         server('getsite', { key: sitekey }).then(
             (site) => {
                 set_session_site(JSON.parse(site));
-                server('pg/pg_get', { pageid: pageid }).then(
+                server('pages/get', { pageid: pageid }).then(
                     (page) => { 
                         set_session_page(JSON.parse(page)); 
                         resolve();

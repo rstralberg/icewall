@@ -5,10 +5,7 @@ function server(php, args) {
         args.key = get_session_key();
         args.php = php;
         
-        let test = JSON.stringify(args);
-        test = JSON.parse(test);
-
-
+        
         fetch('/src/redirect.php', {
             method: 'POST',
             body: JSON.stringify(args),

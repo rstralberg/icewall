@@ -62,11 +62,31 @@ function create_themes(mysqli $db, array $site): void
 {
     if (verify_themes_table($db, $site['key'])) {
         db_insert($db,'themes', 
-            ['name',
+            [
+            'name',
             'font',
-            'left',
-            'width',
-            'vGap',
+            
+            'headerT',
+            'headerH',
+            'footerB',
+            'footerH',
+            'titleH',
+
+            'headerP',
+            'logoL',
+            'logoW',
+            'menuL',
+            'menuW',
+            'themeL',
+            'themeW',
+            'avatarL',
+            'avatarW',
+    
+            'infoW',
+            'titleW',
+            'contentW',
+            'contentD',
+
             'radius',
             'linkFg',
             'appBg',
@@ -76,19 +96,16 @@ function create_themes(mysqli $db, array $site): void
             'barsBorder',
             'barsShadow',
                     
-            'tbarH',
             'tbarBold',
             'tbarItalic',
             'tbarFsize',
             
-            'nbarH',
             'nbarBold',
             'nbarItalic',
             'nbarFsize',
             'nbarBgHi',
             'nbarFgHi',
                     
-            'fbarH',
             'fbarBold',
             'fbarItalic',
             'fbarFsize',

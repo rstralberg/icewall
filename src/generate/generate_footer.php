@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../db/db_select.php';
+require_once __DIR__ . '/../utils/send_reply.php';
 require_once __DIR__ . '/../utils/load_form.php';
 
 function generate_footer(stdClass $args) : void {
@@ -9,13 +10,13 @@ function generate_footer(stdClass $args) : void {
     $sites = db_select($db, 'sites', ['owner'], db_where($db, 'id',1));
     
     if(!$sites) {
-        sendReply(false, db_error($db));
+        send_reject(db_error($db));
     }
     
      $site = $sites[0];
-     load_form(__DIR__.'/_footer', [
+     send_resolve(load_form(__DIR__.'/footer', [
             'owner' => $site['owner'],
             'year' => Date('Y')
-        ]);
+     ]));
 }
 ?>

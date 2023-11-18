@@ -1,6 +1,27 @@
 <?php
 require_once __DIR__ . '/generate_head.php';
+require_once __DIR__ . '/generate_user_menu.php';
+require_once __DIR__ . '/generate_admin_menu.php';
 require_once __DIR__ . '/../utils/load_html.php';
+
+/*
+    ---------------------------------------------------------------------
+    |                           HEADER                                  |
+    | AVATAR|                  TOP-MENU                         | THEME |
+    |-------------------------------------------------------------------|
+    |           |               TITLEBAR                    |           |
+    |-------------------------------------------------------------------|
+    |               |           CONTENT                 |               |
+    |               |                                   |               |
+    |               |                                   |               |
+    |               |                                   |               |
+    |               |                                   |               |
+    |               |                                   |               |
+    |-------------------------------------------------------------------|
+    |                           FOOTER                                  |
+    |       |                    INFO                           |       |
+    |--------------------------------------------------------------------
+*/
 
 function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteName): string
 {
@@ -8,16 +29,21 @@ function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteNam
     $html = '<!DOCTYPE html><html lang="sv">';
     $html .= generate_head($db, $siteName, DEFAULT_THEME);
 
-    $html .= '<body>';
-    $html .= '<aside class="left">' . load_html(__DIR__ . '/_usertools.html') . '</aside>';
-    // $html .= '<div class="container">';
-    $html .= '<nav></nav>';
-    $html .= '<header></header>';
-    $html .= '<main></main>';
-    $html .= '<footer></footer>';
-    // $html .= '</div>';
-    $html .= '<aside class="right">' . load_html(__DIR__ . '/_admintools.html') . '</aside>';
-    $html .= '</body>';
+    $html .=
+    '<body>
+        <div id="user-menu" class="tools">' . generate_user_menu() . '</div>
+        <div id="header" >
+            <div id="top-logo"></div>
+            <div id="top-menu"></div>
+            <div id="top-avatar"></div>
+        </div>
+        <div id="title"></div>
+        <div id="content"></div>
+        <div id="footer">
+            <div id="info"></div>
+        </div>
+        <div id="admin-menu" class="tools">' . generate_admin_menu() . '</div>
+    </body>';
 
     // Jscript loading ....
     $html .= '<script type="module">
