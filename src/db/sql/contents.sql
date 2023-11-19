@@ -1,0 +1,1 @@
+INSERT INTO `contents` (`pageId`,`pos`,`style`,`html`,`isPublic`) VALUES ('4',0,'','KalixMixen',0)

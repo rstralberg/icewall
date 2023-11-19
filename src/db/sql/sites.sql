@@ -1,1 +1,1 @@
-UPDATE `sites` SET `theme`='Kontoret' WHERE `id`=1
+UPDATE `sites` SET `title`='KalixMixen',`owner`='Roland Strålberg',`email`='rstralberg@pm.me',`logo`='logo.png',`theme`='IceWall' WHERE `key`='km'
