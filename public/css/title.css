@@ -1,4 +1,6 @@
 #title {
+
+	display: var(--tbarDisplay);
 	background: var(--appBg);
 	color: var(--barsFg);
 

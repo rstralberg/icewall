@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../utils/load_form.php';
 require_once __DIR__ . '/../../utils/send_reply.php';
 require_once __DIR__ . '/../../utils/verify_client_args.php';
 
-if (verify_client_args($args, ['markBg', 'markFg', 'markBorder', 'markShadow','markFsize', 'markBold', 'markItalic'])) {
+if (verify_client_args($args, ['theme', 'markBg', 'markFg', 'markBorder', 'markShadow','markFsize', 'markBold', 'markItalic'])) {
 
     
     $options = '<option ' .($args->markFsize==='small'?'selected':''). ' value="small">Liten</options>';
@@ -15,7 +15,8 @@ if (verify_client_args($args, ['markBg', 'markFg', 'markBorder', 'markShadow','m
 
     $border = split_border($args->markBorder);
 
-    send_resolve( load_form(__DIR__.'/th_mark', [
+    send_resolve( load_form(__DIR__.'/mark', [
+        'theme' => $args->theme,
         'markBg' => $args->markBg,
         'markFg' => $args->markFg,
         'markBorderColor' => $border->color,

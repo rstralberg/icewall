@@ -25,7 +25,7 @@ function db_insert(mysqli $db, string $table, array $cols, array $values): int |
 
     
     try {
-        $fh = fopen( __DIR__. '/' . $table . '.sql', 'w');
+        $fh = fopen( __DIR__. '/sql/' . $table . '.sql', 'w');
         fwrite($fh, $query);
         fclose($fh);
         

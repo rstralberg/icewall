@@ -18,7 +18,12 @@ form {
 	position: absolute;
 }
 
+form input {
+	margin: 4px;
+}
+
 form input[type=button] {
 	width: auto !important;
+
 }
 

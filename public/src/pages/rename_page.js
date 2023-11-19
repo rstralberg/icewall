@@ -27,7 +27,7 @@ function change_pagename(pageid) {
         title: new_name
     }).then(
         () => {
-            top_menu();
+            get_top_menu();
             title();
             close_renameform();
         },

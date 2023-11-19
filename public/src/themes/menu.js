@@ -1,10 +1,10 @@
 
-function th_menu() {
+function on_menu() {
 
     if( is_valid(document.querySelector('#theme-menu-form') )) return;
 
-    server('th/th_menu', {
-        nbarH: get_style('nbarH'),
+    server('themes/menu', {
+        theme: get_style('theme'),
         nbarBold: get_style('nbarBold'),
         nbarItalic: get_style('nbarItalic'),
         nbarFsize: get_style('nbarFsize'),
@@ -17,10 +17,9 @@ function th_menu() {
     )
 }
 
-function atm_close() {
-    server('update_theme_menu', {
+function close_menu() {
+    server('themes/menu_upd', {
         theme: get_style('theme'),
-        nbarH: get_style('nbarH'),
         nbarBold: get_style('nbarBold'),
         nbarItalic: get_style('nbarItalic'),
         nbarFsize: get_style('nbarFsize'),
@@ -30,30 +29,25 @@ function atm_close() {
     remove_form('theme-menu-form');
 }
 
-function atm_nbarh(element) {
-    let h = parseInt(element.value);
-    set_style('nbarH', h + 'vh');
-}
-
-function atm_nbarBold(element) {
+function on_nbarBold(element) {
     let bold = element.checked;
     set_style('nbarBold', bold?'bold':'normal');
 }
 
-function atm_tbarItalic(element) {
+function on_nbarItalic(element) {
     let italic = element.checked;
     set_style('nbarItalic', italic?'italic':'normal');
 }
 
-function atm_nbarfsize(element) {
+function on_nbarFsize(element) {
     set_style('nbarFsize', element.value);
 }
 
-function atm_nbarbghi(element) {
+function on_nbarBgHi(element) {
     set_style('nbarBgHi', element.value);
 }
 
-function atm_nbarfghi(element) {
+function on_nbarFgHi(element) {
     set_style('nbarFgHi', element.value);
 }
 

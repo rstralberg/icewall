@@ -1,8 +1,9 @@
 
-function th_content() {
+function on_content() {
     if( is_valid(document.querySelector('#theme-content-form') )) return;
 
-    server('th/th_content', {
+    server('themes/content', {
+        theme: get_style('theme'),
         contBg: get_style('contBg'),
         contFg: get_style('contFg'),
         contBorder: get_style('contBorder'),
@@ -14,8 +15,8 @@ function th_content() {
     )
 }
 
-function atc_close() {
-    server('update_theme_content', {
+function close_content() {
+    server('themes/content_upd', {
         theme: get_style('theme'),
         contBg: get_style('contBg'),
         contFg: get_style('contFg'),
@@ -25,26 +26,26 @@ function atc_close() {
     remove_form('theme-content-form');
 }
 
-function atc_borderwidth(element) {
+function on_contentBorderWidth(element) {
     let border = split_border(get_style('contBorder'));
     border.width = parseInt(element.value);
     set_style('contBorder', build_border(border));
 }
 
-function atc_bordercolor(element) {
+function on_contentBorderColor(element) {
     let border = split_border(get_style('contBorder'));
     border.color = element.value;
     set_style('contBorder', build_border(border));
 }
 
-function atc_bg(element) {
+function on_contentBg(element) {
     set_style('contBg', element.value);
 }
-function atc_fg(element) {
+function on_contentFg(element) {
     set_style('contFg', element.value);
 }
 
-function atc_shadow(element) {
+function on_contentShadow(element) {
     set_style('contShadow', element.checked? '1': '0');
 }
 

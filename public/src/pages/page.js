@@ -1,8 +1,7 @@
 
 function page_selected(pageid) {
 
-    console.log( 'pages/get('+pageid+')' );
-    server('pages/get', {
+    server('pages/get_page', {
         pageid: pageid
     }).then(
         (resolve) => {
@@ -38,7 +37,7 @@ function on_page_parent_selected(e) {
 
 function update_page( pageid, cols, values ) {
 
-    server('pages/update', {
+    server('pages/update_page', {
         pageid: pageid,
         cols: cols,
         values: values

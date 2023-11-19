@@ -22,6 +22,7 @@ session_start();
 // and then scripts will do the rest
 try {
     $db = db_open($site['key']);
+    $site = db_select($db,'sites',['*', db_where($db, 'id', 1)])[0];
     $pageId = get_first_page_id($db);
     db_close($db);
     echo (
@@ -29,7 +30,8 @@ try {
             $db,
             $pageId,
             $site['key'],
-            $site['title']
+            $site['title'],
+            $site['theme']
         ));
 
 } 

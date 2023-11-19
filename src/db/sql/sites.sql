@@ -1,0 +1,1 @@
+UPDATE `sites` SET `theme`='Kontoret' WHERE `id`=1

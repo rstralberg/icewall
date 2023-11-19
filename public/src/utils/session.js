@@ -119,10 +119,10 @@ function init_session(pageid, sitekey) {
 
     return new Promise( (resolve,reject ) => {
         set_session_key(sitekey);
-        server('getsite', { key: sitekey }).then(
+        server('get_site', { key: sitekey }).then(
             (site) => {
                 set_session_site(JSON.parse(site));
-                server('pages/get', { pageid: pageid }).then(
+                server('pages/get_page', { pageid: pageid }).then(
                     (page) => { 
                         set_session_page(JSON.parse(page)); 
                         resolve();

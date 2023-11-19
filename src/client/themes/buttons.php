@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../utils/load_form.php';
 require_once __DIR__ . '/../../utils/send_reply.php';
 require_once __DIR__ . '/../../utils/verify_client_args.php';
 
-if (verify_client_args($args, ['btnH', 'btnBg', 'btnFg', 'btnBgHi', 'btnFgHi',
+if (verify_client_args($args, ['theme','btnH', 'btnBg', 'btnFg', 'btnBgHi', 'btnFgHi',
 'btnBgDis', 'btnFgDis', 'btnBold', 'btnItalic', 'btnFsize', 'btnShadow', 'btnBorder'])) {
 
     $options = '<option ' .($args->btnFsize==='small'?'selected':''). ' value="small">Liten</options>';
@@ -14,7 +14,8 @@ if (verify_client_args($args, ['btnH', 'btnBg', 'btnFg', 'btnBgHi', 'btnFgHi',
 
     $border = split_border($args->btnBorder);
 
-    send_resolve( load_form(__DIR__.'/th_buttons', [
+    send_resolve( load_form(__DIR__.'/buttons', [
+        'theme' => $args->theme,
         'btnH' => (int)$args->btnH,
         'btnBg' => $args->btnBg,
         'btnFg' => $args->btnFg,

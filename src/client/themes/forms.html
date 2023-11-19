@@ -2,30 +2,30 @@
 
 
     <div>
-        <h1>Formulär</h1>
+        <h1>${theme} Formulär</h1>
 
         <div class="cols-30-30-30">
             <label for="ato-borderwidth">Ram</label>
-            <input type="number" min="0" nax="10" id="ato-borderwidth" value=${formBorderWidth} oninput="ato_borderwidth(this)">
-            <input type="color" id="ato-bordercolor" value=${formBorderColor} oninput="ato_bordercolor(this)">
+            <input type="number" min="0" nax="10" id="ato-borderwidth" value=${formBorderWidth} oninput="on_formBorderWidth(this)">
+            <input type="color" id="ato-bordercolor" value=${formBorderColor} oninput="on_formBorderColor(this)">
         </div>
 
         <div class="cols-60-40">
             <label for="ato-bg">Bakgrundsfärg</label>
-            <input type="color" id="ato-bg" value=${formBg} oninput="ato_bg(this)">
+            <input type="color" id="ato-bg" value=${formBg} oninput="on_formBg(this)">
         </div>
 
         <div class="cols-60-40">
             <label for="ato-fg">Teckenfärg</label>
-            <input type="color" id="ato-fg" value=${formFg} oninput="ato_fg(this)">
+            <input type="color" id="ato-fg" value=${formFg} oninput="on_formFg(this)">
         </div>
 
         <div class="cols-60-40">
             <label for="ato-shadow">Skuggning</label>
-            <input type="checkbox" id="ato-shadow" ${formShadow} oninput="ato_shadow(this)">
+            <input type="checkbox" id="ato-shadow" ${formShadow} oninput="on_formShadow(this)">
         </div>
 
         <div class="cols-100">
-            <input type="button" value="Klar" onclick="ato_close()">
+            <input type="button" value="Klar" onclick="close_forms()">
         </div>
 </form>

@@ -1,1 +1,0 @@
-INSERT INTO `pages` (`title`,`author`,`isParent`,`parentId`,`pos`,`showTitle`,`isPublic`) VALUES ('Om','admin',0,0,0,1,0)

@@ -1,18 +1,22 @@
 <?php
 
+require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../db/db.php';
 
 function generate_style(mysqli $db, string $themeName): string
 {
     $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', $themeName));
-    if( !$themes ) {
-        throw new Exception('Kunde inte ladda applikationens tema ' . $themeName);
+    if( $themes === false || gettype($themes) === 'string' ) {
+        $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', DEFAULT_THEME ));
+        if( $themes === false || gettype($themes) === 'string' ) {
+            throw new Exception('Kunde inte ladda applikationens tema ' . $themeName);
+        }
     }
     $theme = $themes[0];
 
     $root = ':root {';
 
-    $root .= '--theme:"' . $theme['name'] . '";';
+    $root .= '--theme:' . $theme['name'] . ';';
 
     $root .= '--font:' . $theme['font'] . ';';
 
@@ -47,6 +51,7 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--barsBorder:' . $theme['barsBorder'] . ';';
     $root .= '--barsShadow:' . $theme['barsShadow'] . ';';
             
+    $root .= '--tbarDisplay:' . $theme['tbarDisplay'] . ';';
     $root .= '--tbarBold:' . $theme['tbarBold'] . ';';
     $root .= '--tbarItalic:' . $theme['tbarItalic'] . ';';
     $root .= '--tbarFsize:' . $theme['tbarFsize'] . ';';

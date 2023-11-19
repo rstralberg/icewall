@@ -1,36 +1,33 @@
 <form class="theme" enctype="multipart/form-data">
 
-    <h1>Meny</h1>
+    <h1>${theme} Meny</h1>
 
     <div class="cols-60-40">
-        <label for="atm-nbarh">Höjd</label>
-        <input type="number" min="10" max="30" id="atm-nbarh" value="${nbarH}" oninput="atm_nbarh(this)">
+        <label for="nbarBold">Fet stil</label>
+        <input type="checkbox" id="nbarBold" ${nbarBold} oninput="on_nbarBold(this)">
     </div>
 
     <div class="cols-60-40">
-        <label for="atm-bold">Fet stil</label>
-        <input type="checkbox" id="atm-bold" ${nbarBold} oninput="atm_nbarBold(this)">
+        <label for="nbarItalic">Kursiv stil</label>
+        <input type="checkbox" id="nbarItalic" ${nbarItalic} oninput="on_nbarItalic(this)">
     </div>
 
     <div class="cols-60-40">
-        <label for="atm-italic">Kursiv stil</label>
-        <input type="checkbox" id="atm-italic" ${nbarItalic} oninput="atm_tbarItalic(this)">
-    </div>
-
-    <div class="cols-60-40">
-        <label for="atm-fontsize">Teckenstorlek</label>
-        <select id="atm-fontsize" onchange="atm_nbarfsize(this)">
+        <label for="nbarFsize">Teckenstorlek</label>
+        <select id="nbarFsize" onchange="on_nbarFsize(this)">
             ${fontsizes}
         </select>
     </div>
 
     <div class="cols-60-40">
-        <label for="atm-bghi">Markerad färg</label>
-        <input type="color" id="atm-bghi" value="${nbarBgHi}" oninput="atm_nbarbghi(this)">
-        <input type="color" id="atm-fghi" value="${nbarFgHi}" oninput="atm_nbarfghi(this)">
+        <label for="nbarBgHi">Markerad färg</label>
+        <div>
+            <input type="color" id="nbarBgHi" value="${nbarBgHi}" oninput="on_nbarBgHi(this)">
+            <input type="color" id="nbarFgHi" value="${nbarFgHi}" oninput="on_nbarFgHi(this)">
+        </div>
     </div>
 
     <div class="cols-100">
-        <input type="button" value="Klar" onclick="atm_close()">
+        <input type="button" value="Klar" onclick="close_menu()">
     </div>
 </form>

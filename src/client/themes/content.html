@@ -2,30 +2,30 @@
 
 
     <div>
-        <h1>Innehåll</h1>
+        <h1>${theme} Innehåll</h1>
 
         <div class="cols-30-30-30">
             <label for="atc-borderwidth">Ram</label>
-            <input type="number" min="0" nax="10" id="atc-borderwidth" value=${contBorderWidth} oninput="atc_borderwidth(this)">
-            <input type="color" id="atc-bordercolor" value=${contBorderColor} oninput="atc_bordercolor(this)">
+            <input type="number" min="0" nax="10" id="atc-borderwidth" value=${contBorderWidth} oninput="on_contentBorderWidth(this)">
+            <input type="color" id="atc-bordercolor" value=${contBorderColor} oninput="on_contentBorderColor(this)">
         </div>
 
         <div class="cols-60-40">
             <label for="atc-bg">Bakgrundsfärg</label>
-            <input type="color" id="atc-bg" value=${contBg} oninput="atc_bg(this)">
+            <input type="color" id="atc-bg" value=${contBg} oninput="on_contentBg(this)">
         </div>
 
         <div class="cols-60-40">
             <label for="atc-fg">Teckenfärg</label>
-            <input type="color" id="atc-fg" value=${contFg} oninput="atc_fg(this)">
+            <input type="color" id="atc-fg" value=${contFg} oninput="on_contentFg(this)">
         </div>
 
         <div class="cols-60-40">
             <label for="atc-shadow">Skuggning</label>
-            <input type="checkbox" id="atc-shadow" ${contShadow} oninput="atc_shadow(this)">
+            <input type="checkbox" id="atc-shadow" ${contShadow} oninput="on_contentShadow(this)">
         </div>
 
         <div class="cols-100">
-            <input type="button" value="Klar" onclick="atc_close()">
+            <input type="button" value="Klar" onclick="close_content()">
         </div>
 </form>

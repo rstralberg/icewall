@@ -12,17 +12,17 @@ function generate_icons() : string {
             "short_name": "",
             "icons": [
                 {
-                    "src": "/' . ICON_PREFIX . '-180x180.png",
+                    "src": "/icons/' . ICON_PREFIX . '-180x180.png",
                     "sizes": "180x180",
                     "type": "image/png"
                 },
                 {
-                    "src": "/' . ICON_PREFIX . '-32x32.png",
+                    "src": "/icons/' . ICON_PREFIX . '-32x32.png",
                     "sizes": "32x32",
                     "type": "image/png"
                 },
                 {
-                    "src": "/' . ICON_PREFIX . '-16x16.png.png",
+                    "src": "/icons/' . ICON_PREFIX . '-16x16.png.png",
                     "sizes": "16x16",
                     "type": "image/png"
                 }

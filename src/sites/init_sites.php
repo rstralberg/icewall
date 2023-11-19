@@ -25,14 +25,6 @@ function init_sites()
             db_close($db);
             create_sitefolders($site);
         }
-        else {
-            db_update($db, 'sites',
-                ['title', 'owner', 'email', 'logo', 'theme'],
-                [$site['title'], $site['owner'], $site['email'], $site['logo'], $site['theme']],
-                db_where($db, 'key', $site['key'])
-            );
-            db_close($db);
-        }
         create_sitetables($site);
     }
 }

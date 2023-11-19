@@ -1,9 +1,10 @@
 
-function th_mark() {
+function on_mark() {
 
     if( is_valid(document.querySelector('#theme-mark-form') )) return;
 
-    server('th/th_mark', {
+    server('themes/mark', {
+        theme: get_style('theme'),
         markH: get_style('markH'),
         markBg: get_style('markBg'),
         markFg: get_style('markFg'),
@@ -19,8 +20,8 @@ function th_mark() {
     )
 }
 
-function th_mark_close() {
-    server('update_theme_mark', {
+function close_mark() {
+    server('themes/mark_upd', {
         theme: get_style('theme'),
         markH: get_style('markH'),
         markBg: get_style('markBg'),
@@ -35,43 +36,43 @@ function th_mark_close() {
 }
 
 
-function th_mark_bold(element) {
+function on_markBold(element) {
     let v = element.checked;
     set_style('markBold', v?'bold':'italic');
 }
 
-function th_mark_italic(element) {
+function on_markItalic(element) {
     let v = element.checked;
     set_style('markItalic', v?'italic':'normal');
 }
 
-function th_mark_fontsize(element) {
+function on_markFsize(element) {
     let v = element.value;
     set_style('markFsize', v );
 }
 
-function th_mark_shadow(element) {
+function on_markShadow(element) {
     let v = element.checked;
     set_style('markShadow', v?'1':'0');
 }
 
-function th_mark_bg(element) {
+function on_markBg(element) {
     let v = element.value;
     set_style('markBg', v);
 }
 
-function th_mark_fg(element) {
+function on_markFg(element) {
     let v = element.value;
     set_style('markFg', v);
 }
 
-function th_mark_border_color(element) {
+function on_markBorderColor(element) {
     let border = split_border(get_style('markBorder'));
     border.color = element.value;
     set_style('markBorder', build_border(border));
 }
 
-function th_mark_border_width(element) {
+function on_markBorderWidth(element) {
     let border = split_border(get_style('markBorder'));
     border.width = parseInt(element.value);
     set_style('markBorder', build_border(border));

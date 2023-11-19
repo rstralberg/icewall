@@ -1,9 +1,10 @@
 
-function th_buttons() {
+function on_buttons() {
 
     if( is_valid(document.querySelector('#theme-buttons-form') )) return;
 
-    server('th/th_buttons', {
+    server('themes/buttons', {
+        theme: get_style('theme'),
         btnH: get_style('btnH'),
         btnBg: get_style('btnBg'),
         btnFg: get_style('btnFg'),
@@ -23,8 +24,8 @@ function th_buttons() {
     )
 }
 
-function atb_close() {
-    server('update_theme_buttons', {
+function close_buttons() {
+    server('themes/buttons_upd', {
         theme: get_style('theme'),
         btnH: get_style('btnH'),
         btnBg: get_style('btnBg'),
@@ -42,47 +43,47 @@ function atb_close() {
     remove_form('theme-buttons-form');
 }
 
-function atb_btnh(element) {
+function on_btnH(element) {
     let v = parseInt(element.value);
     set_style('btnH', v + 'em');
 }
 
-function atb_btnBold(element) {
+function on_btnBold(element) {
     let v = element.checked;
     set_style('btnBold', v?'bold':'italic');
 }
 
-function atb_btnItalic(element) {
+function on_btnItalic(element) {
     let v = element.checked;
     set_style('btnItalic', v?'italic':'normal');
 }
 
-function atb_btnfsize(element) {
+function on_btnFsize(element) {
     let v = element.value;
     set_style('btnFsize', v);
 }
 
-function atb_btnShadow(element) {
+function on_btnShadow(element) {
     let v = element.checked;
     set_style('btnShadow', v?'1':'0');
 }
 
-function atb_btnbg(element) {
+function on_btnBg(element) {
     let v = element.value;
     set_style('btnBg', v);
 }
 
-function atb_btnfg(element) {
+function on_btnFg(element) {
     let v = element.value;
     set_style('btnFg', v);
 }
 
-function atb_btnbghi(element) {
+function on_btnBgHi(element) {
     let v = element.value;
     set_style('btnBgHi', v);
 }
 
-function atb_btnfghi(element) {
+function on_btnFgHi(element) {
     let v = element.value;
     set_style('btnFgHi', v);
 }

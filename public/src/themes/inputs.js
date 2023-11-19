@@ -1,9 +1,10 @@
 
-function th_inputs() {
+function on_inputs() {
 
     if( is_valid(document.querySelector('#theme-inputs-form') )) return;
 
-    server('th/th_inputs', {
+    server('themes/inputs', {
+        theme: get_style('theme'),
         inpH: get_style('inpH'),
         inpBg: get_style('inpBg'),
         inpFg: get_style('inpFg'),
@@ -23,8 +24,8 @@ function th_inputs() {
     )
 }
 
-function ati_close() {
-    server('update_theme_inputs', {
+function close_inputs() {
+    server('themes/inputs_upd', {
         theme: get_style('theme'),
         inpH: get_style('inpH'),
         inpBg: get_style('inpBg'),
@@ -42,68 +43,68 @@ function ati_close() {
     remove_form('theme-inputs-form');
 }
 
-function ati_inph(element) {
+function on_inpH(element) {
     let v = parseInt(element.value);
     set_style('inpH', v + 'em');
 }
 
-function ati_inpBold(element) {
+function on_inpBold(element) {
     let v = element.checked;
     set_style('inpBold', v ? 'bold' : 'italic');
 }
 
-function ati_inpItalic(element) {
+function on_inpItalic(element) {
     let v = element.checked;
     set_style('inpItalic', v ? 'italic' : 'normal');
 }
 
-function ati_inpfsize(element) {
+function on_inpFsize(element) {
     let v = element.value;
     set_style('inpFSize', v);
 }
 
-function ati_inpShadow(element) {
+function on_inpShadow(element) {
     let v = element.checked;
     set_style('inpShadow', v ? '1' : '0');
 }
 
-function ati_inpbg(element) {
+function on_inpBbg(element) {
     let v = element.value;
     set_style('inpBg', v);
 }
 
-function ati_inpfg(element) {
+function on_inpFg(element) {
     let v = element.value;
     set_style('inpFg', v);
 }
 
-function ati_inpbghi(element) {
+function on_inpBgHi(element) {
     let v = element.value;
     set_style('inpBgHi', v);
 }
 
-function ati_inpfghi(element) {
+function on_inpFgHi(element) {
     let v = element.value;
     set_style('inpFgHi', v);
 }
 
-function ati_inpbgdis(element) {
+function on_inpBgDis(element) {
     let v = element.value;
     set_style('inpBgDis', v);
 }
 
-function ati_inpfgdis(element) {
+function on_inpFgDis(element) {
     let v = element.value;
     set_style('inpFgDis', v);
 }
 
-function ati_bordercolor(element) {
+function on_inpBorderColor(element) {
     let border = split_border(get_style('inpBorder'));
     border.color = element.value;
     set_style('inpBorder', build_border(border));
 }
 
-function ati_borderwidth(element) {
+function on_inpBorderWidth(element) {
     let border = split_border(get_style('inpBorder'));
     border.width = parseInt(element.value);
     set_style('inpBorder', build_border(border));

@@ -39,7 +39,7 @@ function create_new_page() {
 
     close_createform();
     
-    server('pages/create', {
+    server('pages/create_page', {
         title: title,
         author: author,
         isParent: isParent,
@@ -49,7 +49,7 @@ function create_new_page() {
     }).then(
         (page) => {
             set_session_page(JSON.parse(page));
-            top_menu();
+            get_top_menu();
             get_title();
             get_content();
         },

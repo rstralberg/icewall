@@ -23,11 +23,11 @@ require_once __DIR__ . '/../utils/load_html.php';
     |--------------------------------------------------------------------
 */
 
-function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteName): string
+function generate_html(mysqli $db, int $pageId, string $sitekey, string $siteName, string $siteTheme): string
 {
 
     $html = '<!DOCTYPE html><html lang="sv">';
-    $html .= generate_head($db, $siteName, DEFAULT_THEME);
+    $html .= generate_head($db, $siteName, $siteTheme);
 
     $html .=
     '<body>

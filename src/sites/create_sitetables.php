@@ -27,12 +27,6 @@ function create_site(mysqli $db, array $site): void
             ['key', 'title', 'owner', 'email', 'logo', 'theme'],
             [$site['key'], $site['title'], $site['owner'], $site['email'], $site['logo'], $site['theme']]
         );
-    } else {
-        db_update($db, 'sites',
-            ['title', 'owner', 'email', 'logo', 'theme'],
-            [$site['title'], $site['owner'], $site['email'], $site['logo'], $site['theme']],
-            db_where($db, 'key', $site['key'])
-        );
     }
 }
 
@@ -71,17 +65,7 @@ function create_themes(mysqli $db, array $site): void
             'footerB',
             'footerH',
             'titleH',
-
-            'headerP',
-            'logoL',
-            'logoW',
-            'menuL',
             'menuW',
-            'themeL',
-            'themeW',
-            'avatarL',
-            'avatarW',
-    
             'infoW',
             'titleW',
             'contentW',
@@ -96,6 +80,7 @@ function create_themes(mysqli $db, array $site): void
             'barsBorder',
             'barsShadow',
                     
+            'tbarDisplay',
             'tbarBold',
             'tbarItalic',
             'tbarFsize',

@@ -1,69 +1,69 @@
 <form class="theme" style="width:80vw;display: grid;grid-template-columns: 50% 50%;" enctype="multipart/form-data">
 
     <div>
-    <h1>Knappar</h1>
+    <h1>${theme} Knappar</h1>
 
     <div class="cols-60-40">
         <label for="atb-btnh">Höjd</label>
-        <input type="number" min="1" max="10" id="atb-btnh" value="${btnH}" oninput="atb_btnh(this)">
+        <input type="number" min="1" max="10" id="atb-btnh" value="${btnH}" oninput="on_btnH(this)">
     </div>
 
     <div class="cols-60-40">
         <label for="atb-bold">Fet stil</label>
-        <input type="checkbox" id="atb-bold" ${btnBold} oninput="atb_btnBold(this)">
+        <input type="checkbox" id="atb-bold" ${btnBold} oninput="on_btnBold(this)">
     </div>
 
     <div class="cols-60-40">
         <label for="atb-italic">Kursiv stil</label>
-        <input type="checkbox" id="atb-italic" ${btnItalic} oninput="atb_btnItalic(this)">
+        <input type="checkbox" id="atb-italic" ${btnItalic} oninput="on_btnItalic(this)">
     </div>
 
     <div class="cols-60-40">
         <label for="atb-fontsize">Teckenstorlek</label>
-        <select id="atb-fontsize" onchange="atb_btnfsize(this)">
+        <select id="atb-fontsize" onchange="on_btnFsize(this)">
             ${fontsizes}
         </select>
     </div>
 
     <div class="cols-60-40">
         <label for="atb-shadow">Skuggning</label>
-        <input type="checkbox" id="atb-shadow" ${btnShadow} oninput="atb_btnShadow(this)">
+        <input type="checkbox" id="atb-shadow" ${btnShadow} oninput="on_btnShadow(this)">
     </div>
 
     <div class="cols-40-60">
         <label for="atb-bghi">Normal</label>
         <div style="display: flex;">
-            <input type="color" id="atb-bg" value="${btnBg}" oninput="atb_btnbg(this)">
-            <input type="color" id="atb-fg" value="${btnFg}" oninput="atb_btnfg(this)">
+            <input type="color" id="atb-bg" value="${btnBg}" oninput="on_btnBg(this)">
+            <input type="color" id="atb-fg" value="${btnFg}" oninput="on_btnFg(this)">
         </div>
     </div>
 
     <div class="cols-40-60">
         <label for="atb-bghi">Markerad</label>
         <div style="display: flex;">
-            <input type="color" id="atb-bghi" value="${btnBgHi}" oninput="atb_btnbghi(this)">
-            <input type="color" id="atb-fghi" value="${btnFgHi}" oninput="atb_btnfghi(this)">
+            <input type="color" id="atb-bghi" value="${btnBgHi}" oninput="on_btnBgHi(this)">
+            <input type="color" id="atb-fghi" value="${btnFgHi}" oninput="on_btnFgHi(this)">
         </div>
     </div>
 
     <div class="cols-40-60">
         <label for="atb-bgdis">Spärrad</label>
         <div style="display: flex;">
-            <input type="color" id="atb-bgdis" value="${btnBgDis}" oninput="atb_btnbgdis(this)">
-            <input type="color" id="atb-fgdis" value="${btnFgDis}" oninput="atb_btnfgdis(this)">
+            <input type="color" id="atb-bgdis" value="${btnBgDis}" oninput="on_btnBgDis(this)">
+            <input type="color" id="atb-fgdis" value="${btnFgDis}" oninput="on_btnFgDis(this)">
         </div>
     </div>
 
     <div class="cols-40-60">
         <label for="atb-bgdis">Ram</label>
         <div style="display: flex;">
-            <input type="color" id="atb-bordercolor" value="${btnBorderColor}" oninput="atb_bordercolor(this)">
-            <input style="width:5vw" type="number" id="atb-borderwidth" value="${btnBorderWidth}" oninput="atb_borderwidth(this)">
+            <input type="color" id="atb-bordercolor" value="${btnBorderColor}" oninput="on_btnBorderColor(this)">
+            <input style="width:5vw" type="number" id="atb-borderwidth" value="${btnBorderWidth}" oninput="on_btnBorderWidth(this)">
         </div>
     </div>
 
     <div class="cols-100">
-        <input type="button" value="Klar" onclick="atb_close()">
+        <input type="button" value="Klar" onclick="close_buttons()">
     </div>
 </div>
 <div style="margin-left:10px;outline:1px dashed white;border-radius: var(--radius);">

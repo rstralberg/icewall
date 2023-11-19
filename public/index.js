@@ -9,11 +9,10 @@ function index(pageid, sitekey) {
         () => {
             usr_menu();
             adm_menu();
-            logo();
-            top_menu();
-            avatar();
-
-            footer();
+            get_logo();
+            get_top_menu();
+            get_avatar();
+            get_footer();
             get_title();
             get_content();
 

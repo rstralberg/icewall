@@ -1,9 +1,10 @@
 
-function th_bars() {
+function on_bars() {
 
-    if( is_valid(document.querySelector('#theme-bars-form') )) return;
+    if( is_valid(document.getElementById('theme-bars-form') )) return;
 
-    server('th/th_bars', {
+    server('themes/bars', {
+        theme: get_style('theme'),
         barsBg: get_style('barsBg'),
         barsFg: get_style('barsFg'),
         barsBorder: get_style('barsBorder'),
@@ -15,32 +16,32 @@ function th_bars() {
     )
 }
 
-function th_bars_bg(element) {
+function on_barsBg(element) {
     set_style('barsBg', element.value);
 }
 
-function th_bars_fg(element) {
+function on_barsFg(element) {
     set_style('barsFg', element.value);
 }
 
-function th_border_color(element) {
+function on_barsBorderColor(element) {
     let border = split_border(get_style('barsBorder'));
     border.color = element.value;
     set_style('barsBorder',build_border(border));
 }
 
-function th_borders_width(element) {
+function on_barsBorderWidth(element) {
     let border = split_border(get_style('barsBorder'));
     border.width = parseInt(element.value);
     set_style('barsBorder',build_border(border));
 }
 
-function th_bars_shadow(element) {
+function on_barsShadow(element) {
     set_style('barsShadow', element.checked ? '1' : '0');
 }
 
-function th_bars_close() {
-    server('update_theme_bars', {
+function close_bars() {
+    server('themes/bars_upd', {
         theme: get_style('theme'),
         barsBg: get_style('barsBg'),
         barsFg: get_style('barsFg'),

@@ -3,31 +3,30 @@
     <div>
         <h1>Titelrad</h1>
         
-        
         <div class="cols-60-40">
-            <label for="att-tbarh">Höjd</label>
-            <input type="number" min="10" max="30" id="att-tbarh" value="${tbarH}" oninput="att_tbarh(this)">
+            <label for="tbarDisplay">Synlig</label>
+            <input type="checkbox" id="tbarVisible" ${tbarDisplay} oninput="on_tbarDisplay(this)">
         </div>
 
         <div class="cols-60-40">
-            <label for="att-bold">Fet stil</label>
-            <input type="checkbox" id="att-bold" ${tbarBold} oninput="att_tbarBold(this)">
+            <label for="tbarBold">Fet stil</label>
+            <input type="checkbox" id="tbarBold" ${tbarBold} oninput="on_tbarBold(this)">
         </div>
 
         <div class="cols-60-40">
-            <label for="att-italic">Kursiv stil</label>
-            <input type="checkbox" id="att-italic" ${tbarItalic} oninput="att_tbarItalic(this)">
+            <label for="tbarItalic">Kursiv stil</label>
+            <input type="checkbox" id="tbarItalic" ${tbarItalic} oninput="on_tbarItalic(this)">
         </div>
 
         <div class="cols-60-40">
-            <label for="att-fontsize">Teckenstorlek</label>
-            <select id="att-fontsize" onchange="att_tbarfsize(this)">
+            <label for="tbarFontsize">Teckenstorlek</label>
+            <select id="tbarFontsize" onchange="on_tbarFsize(this)">
                 ${fontsizes}
             </select>
         </div>
 
         <div class="cols-100">
-            <input type="button" value="Klar" onclick="att_close()">
+            <input type="button" value="Klar" onclick="close_tbar()">
         </div>
 
     </div>

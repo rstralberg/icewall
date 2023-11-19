@@ -6,7 +6,8 @@ require_once __DIR__ . '/../../utils/load_form.php';
 require_once __DIR__ . '/../../utils/send_reply.php';
 require_once __DIR__ . '/../../utils/verify_client_args.php';
 
-if (verify_client_args($args, ['font','left','width','vGap','radius','linkFg','appBg',])) {
+if (verify_client_args($args, ['theme', 'font', 'headerT', 'headerH', 'footerB', 'footerH', 'titleH', 
+    'menuW', 'infoW', 'titleW', 'contentW', 'contentD', 'radius', 'linkFg', 'appBg' ])) {
 
     $fontnames = get_fontnames();
     $fonts = '';
@@ -19,14 +20,22 @@ if (verify_client_args($args, ['font','left','width','vGap','radius','linkFg','a
     }
 
 
-    send_resolve( load_form(__DIR__.'/th_general', [
+    send_resolve( load_form(__DIR__.'/general', [
+        'theme' => $args->theme,
         'fonts' => $fonts,
-        'font' => $args->font, 
-        'left' => (int)$args->left, 
-        'width' => (int)$args->width, 
-        'vGap' => (int)$args->vGap, 
-        'radius' => (int)$args->radius, 
-        'linkFg' => $args->linkFg, 
-        'appBg' => $args->appBg
+        'font' => $args->font,
+        'headerT' => (int)$args->headerT,
+        'headerH' => (int)$args->headerH,
+        'footerB' => (int)$args->footerB,
+        'footerH' => (int)$args->footerH,
+        'titleH' => (int)$args->titleH,
+        'menuW' => (int)$args->menuW,
+        'infoW' => (int)$args->infoW,
+        'titleW' => (int)$args->titleW,
+        'contentW' => (int)$args->contentW,
+        'contentD' => (int)$args->contentD,
+        'radius' => (int)$args->radius,
+        'linkFg' => $args->linkFg,
+        'appBg' => $args->appBg,
     ]));
 }

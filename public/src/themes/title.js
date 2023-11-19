@@ -1,9 +1,11 @@
 
-function th_titlebar() {
+function on_titlebar() {
 
     if( is_valid(document.querySelector('#theme-titlebar-form') )) return;
 
-    server('th/th_titlebar', {
+    server('themes/title', {
+        theme: get_style('theme'),
+        tbarDisplay: get_style('tbarDisplay'),
         tbarH: get_style('tbarH'),
         tbarBold: get_style('tbarBold'),
         tbarItalic: get_style('tbarItalic'),
@@ -15,9 +17,10 @@ function th_titlebar() {
     )
 }
 
-function att_close() {
-    server('update_theme_titlebar', {
+function close_tbar() {
+    server('themes/title_upd', {
         theme: get_style('theme'),
+        tbarDisplay: get_style('tbarDisplay'),
         tbarH: get_style('tbarH'),
         tbarBold: get_style('tbarBold'),
         tbarItalic: get_style('tbarItalic'),
@@ -26,23 +29,26 @@ function att_close() {
     remove_form('theme-titlebar-form');
 }
 
-function att_tbarh(element) {
+function on_tbarDisplay(element) {
+    set_style('tbarDisplay', element.checked ? 'block': 'none');
+}
+
+function on_tbarH(element) {
     let h = element.value;
     set_style('tbarH', h + 'vh');
 }
 
-function att_tbarBold(element) {
+function on_tbarBold(element) {
     let bold = element.checked;
     set_style('tbarBold', bold?'bold':'normal');
 }
 
-function att_tbarItalic(element) {
+function on_tbarItalic(element) {
     let bold = element.checked;
     set_style('tbarItalic', bold?'italic':'normal');
 }
 
-function att_tbarfsize(element) {
+function on_tbarFsize(element) {
     let size = element.value;
     set_style('tbarFsize', size );
-
 }

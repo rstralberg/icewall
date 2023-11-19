@@ -10,7 +10,7 @@ if (verify_client_args($args, ['theme', 'markBg', 'markFg', 'markBorder', 'markS
 
     $res = db_update($db, 'themes',
         ['markBg', 'markFg', 'markBorder', 'markShadow','markFsize', 'markBold', 'markItalic'],
-        [$args->markBg, $args->markFg, $args->markBorder, $args->markShadow, $args->makrFsize, $args->markBold, $args->markItalic],
+        [$args->markBg, $args->markFg, $args->markBorder, $args->markShadow, $args->markFsize, $args->markBold, $args->markItalic],
         db_where($db, 'name', trim($args->theme,'"')));
     db_close($db);
 

@@ -1,9 +1,10 @@
 
-function th_forms() {
+function on_forms() {
 
     if( is_valid(document.querySelector('#theme-form-form') )) return;
 
-    server('th/th_forms', {
+    server('themes/forms', {
+        theme: get_style('theme'),
         formBg: get_style('formBg'),
         formFg: get_style('formFg'),
         formBorder: get_style('formBorder'),
@@ -15,8 +16,8 @@ function th_forms() {
     )
 }
 
-function ato_close() {
-    server('update_theme_forms', {
+function close_forms() {
+    server('themes/forms_upd', {
         theme: get_style('theme'),
         formBg: get_style('formBg'),
         formFg: get_style('formFg'),
@@ -26,26 +27,26 @@ function ato_close() {
     remove_form('theme-form-form');
 }
 
-function ato_borderwidth(element) {
+function on_formBorderWidth(element) {
     let border = split_border(get_style('formBorder'));
     border.width = parseInt(element.value);
     set_style('formBorder', build_border(border));
 }
 
-function ato_bordercolor(element) {
+function on_borderBorderColor(element) {
     let border = split_border(get_style('formBorder'));
     border.color = element.value;
     set_style('formBorder', build_border(border));
 }
 
-function ato_bg(element) {
+function on_formBg(element) {
     set_style('formBg', element.value);
 }
-function ato_fg(element) {
+function on_formFg(element) {
     set_style('formFg', element.value);
 }
 
-function ato_shadow(element) {
+function on_formShadow(element) {
     set_style('formShadow', element.checked? '1': '0');
 }
 
