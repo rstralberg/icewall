@@ -12,7 +12,7 @@ if (verify_client_args($args, ['username'])) {
     $html = '';
     $avatarResque = 'sites/' . $args->key . '/images/avatar.png'; // if everything else fails
     if ($args->username && !empty($args->username)) {
-        $users = db_select($db, 'users', ['picture'], db_where($db, 'username', $args->username));
+        $users = db_select($db, 'users', ['picture', 'username'], db_where($db, 'username', $args->username));
         if ($users !== false) {
             $resolution = 200;
             $user = $users[0];

@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data">
+<form style="width:40vw" enctype="multipart/form-data">
     
     <h1>MP3 Musik</h1>
 
@@ -8,23 +8,25 @@
             <audio id="au-player" controls src="${url}"></audio>
         </div>
         
+        <hr>
+
         <div class="cols-40-60">
-            <label for="au-file">Välj:</label>
-            <input accept=".mp3" type="file" id="au-file" onchange="mp3Selected()">
+            <label for="au-file">Klicka för att ladda up MP3</label>
+            <input accept=".mp3" type="file" id="au-file" onchange="on_audio_selected(this)">
         </div>
         
         <div class="cols-40-60">
             <label for="au-caption">Kommentar:</label>
-            <input type="text" id="au-caption" value="${comment}">
+            <input type="text" id="au-caption" placeholder="Skriv en kort Kommentar" value="${comment}">
         </div>
         <hr>
         
         <div class="cols-100">
-            <input type="button" value="OK" onclick="saveAudio()">
+            <input disabled id="au-save-button" type="button" value="OK" onclick="on_save_audio()">
         </div>
         
         <div class="cols-100">
-            <input type="button" value="Stäng" onclick="closeAudio()">
+            <input type="button" value="Stäng" onclick="close_audio()">
         </div>
         
 </form>

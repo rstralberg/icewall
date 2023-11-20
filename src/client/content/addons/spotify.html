@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data">
+<form style="width:60vw" enctype="multipart/form-data">
 
     <h1>Spotify</h1>
 
@@ -10,17 +10,17 @@
 
     <div class="cols-20-80">
         <label for="sp-url">Klistra in:</label>
-        <input type="text" id="sp-url" onchange="spotify_selected()">
+        <input type="text" id="sp-url" onchange="on_spotify_pasted(this)">
     </div>
 
     <hr>
 
     <div class="cols-100">
-        <input type="button" value="OK" onclick="spotify_save()">
+        <input id="sp-save-button" disabled type="button" value="OK" onclick="on_spotify_save()">
     </div>
 
     <div class="cols-100">
-        <input type="button" value="Stäng" onclick="spotify_close()">
+        <input type="button" value="Stäng" onclick="close_spotify()">
     </div>
 
 </form>

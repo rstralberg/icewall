@@ -19,23 +19,29 @@ function generate_scripts() : string {
     $html.= script('src/utils/tools');  
     $html.= script('src/utils/upload');
     
+    $html.= script('src/content/content');
+    $html.= script('src/content/on_delete_content');
     $html.= script('src/content/get_content');
     $html.= script('src/content/add_content');
-    $html.= script('src/content/positions');
+    $html.= script('src/content/update_content_positions');
     $html.= script('src/content/style');
+    $html.= script('src/content/on_delete_content');
+    $html.= script('src/content/on_save_content');
+    $html.= script('src/content/on_move_content');
+    $html.= script('src/content/on_public_content');
+    $html.= script('src/content/on_format_content');
     
-    $html.= script('src/content/addons/audio');
-    $html.= script('src/content/addons/line');
-    $html.= script('src/content/addons/link');
-    $html.= script('src/content/addons/soundcloud');
-    $html.= script('src/content/addons/spotify');
-    $html.= script('src/content/addons/title');
-    $html.= script('src/content/addons/youtube');
+    $html.= script('src/content/addons/on_audio');
+    $html.= script('src/content/addons/on_image');
+    $html.= script('src/content/addons/on_line');
+    $html.= script('src/content/addons/on_soundcloud');
+    $html.= script('src/content/addons/on_spotify');
+    $html.= script('src/content/addons/on_title');
+    $html.= script('src/content/addons/on_youtube');
+    $html.= script('src/content/addons/on_weblink');
     
-    $html.= script('src/editor/editor');
-    $html.= script('src/editor/tags');
-    $html.= script('src/editor/utils');
-
+    $html.= script('src/image/add_image');
+    
     $html.= script('src/forms/popup');
     $html.= script('src/forms/error');
     $html.= script('src/forms/simple');

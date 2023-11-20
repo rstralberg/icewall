@@ -10,13 +10,13 @@
 
     <div class="cols-20-80">
         <label for="sc-url">Klistra in:</label>
-        <input type="text" id="sc-url" onchange="soundcloud_selected()">
+        <input type="text" id="sc-url" onchange="on_soundcloud_pasted(this)">
     </div>
 
     <hr>
 
     <div class="cols-100">
-        <input type="button" value="OK" onclick="soundcloud_save()">
+        <input disabled id="sc-save-button" type="button" value="OK" onclick="soundcloud_save()">
     </div>
 
     <div class="cols-100">

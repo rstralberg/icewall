@@ -17,10 +17,12 @@ function server(php, args) {
                     reply(res.content);
                 }
                 else {
+                    error(res.content);
                     reject(res.content);
                 }
             })
             .catch(e => {
+                error(e);
                 reject(e);
             });
     }

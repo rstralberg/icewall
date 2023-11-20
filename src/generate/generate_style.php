@@ -25,22 +25,11 @@ function generate_style(mysqli $db, string $themeName): string
     $root .= '--footerB:' . $theme['footerB'] . ';';
     $root .= '--footerH:' . $theme['footerH'] . ';';
     $root .= '--titleH:' . $theme['titleH'] . ';';
-
-    $root .= '--headerP:' . $theme['headerP'] . ';';
-    $root .= '--logoL:' . $theme['logoL'] . ';';
-    $root .= '--logoW:' . $theme['logoW'] . ';';
-    $root .= '--menuL:' . $theme['menuL'] . ';';
     $root .= '--menuW:' . $theme['menuW'] . ';';
-    $root .= '--themeL:' . $theme['themeL'] . ';';
-    $root .= '--themeW:' . $theme['themeW'] . ';';
-    $root .= '--avatarL:' . $theme['avatarL'] . ';';
-    $root .= '--avatarW:' . $theme['avatarW'] . ';';
-
     $root .= '--infoW:' . $theme['infoW'] . ';';
     $root .= '--titleW:' . $theme['titleW'] . ';';
     $root .= '--contentW:' . $theme['contentW'] . ';';
     $root .= '--contentD:' . $theme['contentD'] . ';';
-
 
     $root .= '--radius:' . $theme['radius'] . ';';
     $root .= '--linkFg:' . $theme['linkFg'] . ';';

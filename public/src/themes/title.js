@@ -6,7 +6,6 @@ function on_titlebar() {
     server('themes/title', {
         theme: get_style('theme'),
         tbarDisplay: get_style('tbarDisplay'),
-        tbarH: get_style('tbarH'),
         tbarBold: get_style('tbarBold'),
         tbarItalic: get_style('tbarItalic'),
         tbarFsize: get_style('tbarFsize')
@@ -21,7 +20,6 @@ function close_tbar() {
     server('themes/title_upd', {
         theme: get_style('theme'),
         tbarDisplay: get_style('tbarDisplay'),
-        tbarH: get_style('tbarH'),
         tbarBold: get_style('tbarBold'),
         tbarItalic: get_style('tbarItalic'),
         tbarFsize: get_style('tbarFsize')
@@ -31,11 +29,6 @@ function close_tbar() {
 
 function on_tbarDisplay(element) {
     set_style('tbarDisplay', element.checked ? 'block': 'none');
-}
-
-function on_tbarH(element) {
-    let h = element.value;
-    set_style('tbarH', h + 'vh');
 }
 
 function on_tbarBold(element) {

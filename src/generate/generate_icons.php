@@ -22,7 +22,7 @@ function generate_icons() : string {
                     "type": "image/png"
                 },
                 {
-                    "src": "/icons/' . ICON_PREFIX . '-16x16.png.png",
+                    "src": "/icons/' . ICON_PREFIX . '-16x16.png",
                     "sizes": "16x16",
                     "type": "image/png"
                 }

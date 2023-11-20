@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data">
+<form style="width:48vw" enctype="multipart/form-data">
 
     <h1>Bild</h1>
 
@@ -6,26 +6,27 @@
 
     <div class="cols-100">
         <div id="ai-image"></div>
+        <input type="hidden" id="'ai-src">
     </div>
 
     <div class="cols-40-60">
-        <label for="ai-file">Välj:</label>
-        <input accept="image/jpeg, image/png, image/jpg" type="file" id="ai-file" name="file" onchange="ai_file()">
+        <label for="ai-file">Klicka för att välja bild:</label>
+        <input accept="image/jpeg, image/png, image/jpg" type="file" id="ai-file" name="file" onchange="on_image_file(this)">
     </div>
 
     <div class="cols-40-60">
         <label for="ai-caption">Kommentar:</label>
-        <input type="text" id="ai-caption" value="${caption}">
+        <input type="text" id="ai-caption" placeholder="Skriv en kort kommentar till bilden" value="${caption}">
     </div>
 
     <hr>
 
     <div class="cols-100">
-        <input disabled type="button" id="ai-save" value="OK" onclick="ai_save()">
+        <input disabled type="button" id="ai-save" value="Spara" onclick="on_image_save()">
     </div>
 
     <div class="cols-100">
-        <input type="button" value="Stäng" onclick="ai_close()">
+        <input type="button" value="Stäng" onclick="close_image()">
     </div>
 
 </form>

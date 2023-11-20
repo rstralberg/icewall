@@ -7,27 +7,27 @@ function usr_menu() {
 }
 
 function init_user_tools() {
-    set_tool_state('ust-delete-content', 'normal');
-    set_tool_state('ust-save-content', 'normal');
-    set_tool_state('ust-move-up', 'normal');
-    set_tool_state('ust-move-down', 'normal');
-    set_tool_state('ust-public', 'normal');
-    set_tool_state('ust-bold', 'normal');
-    set_tool_state('ust-italic', 'normal');
-    set_tool_state('ust-normal', 'normal');
-    set_tool_state('ust-mark', 'normal');
-    set_tool_state('ust-alignleft', 'normal');
-    set_tool_state('ust-aligncenter', 'normal');
-    set_tool_state('ust-alignright', 'normal');
-    set_tool_state('ust-shadows', 'normal');
-    set_tool_state('ust-weblink', 'normal');
-    set_tool_state('ust-title', 'normal');
-    set_tool_state('ust-line', 'normal');
-    set_tool_state('ust-image', 'normal');
-    set_tool_state('ust-audio', 'normal');
-    set_tool_state('ust-spotify', 'normal');
-    set_tool_state('ust-soundcloud', 'normal');
-    set_tool_state('ust-youtube', 'normal');
+    set_tool_state('cont-delete-content', 'normal');
+    set_tool_state('cont-save-content', 'normal');
+    set_tool_state('cont-move-up', 'normal');
+    set_tool_state('cont-move-down', 'normal');
+    set_tool_state('cont-public', 'normal');
+    set_tool_state('cont-bold', 'normal');
+    set_tool_state('cont-italic', 'normal');
+    set_tool_state('cont-normal', 'normal');
+    set_tool_state('cont-mark', 'normal');
+    set_tool_state('cont-alignleft', 'normal');
+    set_tool_state('cont-aligncenter', 'normal');
+    set_tool_state('cont-alignright', 'normal');
+    set_tool_state('cont-shadows', 'normal');
+    set_tool_state('cont-weblink', 'normal');
+    set_tool_state('cont-title', 'normal');
+    set_tool_state('cont-line', 'normal');
+    set_tool_state('cont-image', 'normal');
+    set_tool_state('cont-audio', 'normal');
+    set_tool_state('cont-spotify', 'normal');
+    set_tool_state('cont-soundcloud', 'normal');
+    set_tool_state('cont-youtube', 'normal');
 }
 
 function update_user_tools(section) {
@@ -35,48 +35,48 @@ function update_user_tools(section) {
     let cstyle = window.getComputedStyle(section);
     switch (cstyle.textAlign) {
         case 'left':
-            set_tool_state('ust-alignleft', 'active');
-            set_tool_state('ust-aligncenter', 'normal');
-            set_tool_state('ust-alignright', 'normal');
+            set_tool_state('cont-alignleft', 'active');
+            set_tool_state('cont-aligncenter', 'normal');
+            set_tool_state('cont-alignright', 'normal');
             break;
 
         case 'center':
-            set_tool_state('ust-alignleft', 'normal');
-            set_tool_state('ust-aligncenter', 'active');
-            set_tool_state('ust-alignright', 'normal');
+            set_tool_state('cont-alignleft', 'normal');
+            set_tool_state('cont-aligncenter', 'active');
+            set_tool_state('cont-alignright', 'normal');
             break;
 
         case 'right':
-            set_tool_state('ust-alignleft', 'normal');
-            set_tool_state('ust-aligncenter', 'normal');
-            set_tool_state('ust-alignright', 'active');
+            set_tool_state('cont-alignleft', 'normal');
+            set_tool_state('cont-aligncenter', 'normal');
+            set_tool_state('cont-alignright', 'active');
             break;
     }
 
 }
 
 function release_user_tools() {
-    set_tool_state('ust-delete-content', 'disabled');
-    set_tool_state('ust-save-content', 'disabled');
-    set_tool_state('ust-move-up', 'disabled');
-    set_tool_state('ust-move-down', 'disabled');
-    set_tool_state('ust-public', 'disabled');
-    set_tool_state('ust-bold', 'disabled');
-    set_tool_state('ust-italic', 'disabled');
-    set_tool_state('ust-normal', 'disabled');
-    set_tool_state('ust-mark', 'disabled');
-    set_tool_state('ust-alignleft', 'disabled');
-    set_tool_state('ust-aligncenter', 'disabled');
-    set_tool_state('ust-alignright', 'disabled');
-    set_tool_state('ust-shadows', 'disabled');
-    set_tool_state('ust-weblink', 'disabled');
-    set_tool_state('ust-title', 'disabled');
-    set_tool_state('ust-line', 'disabled');
-    set_tool_state('ust-image', 'disabled');
-    set_tool_state('ust-audio', 'disabled');
-    set_tool_state('ust-spotify', 'disabled');
-    set_tool_state('ust-soundcloud', 'disabled');
-    set_tool_state('ust-youtube', 'disabled');
+    set_tool_state('cont-delete-content', 'disabled');
+    set_tool_state('cont-save-content', 'disabled');
+    set_tool_state('cont-move-up', 'disabled');
+    set_tool_state('cont-move-down', 'disabled');
+    set_tool_state('cont-public', 'disabled');
+    set_tool_state('cont-bold', 'disabled');
+    set_tool_state('cont-italic', 'disabled');
+    set_tool_state('cont-normal', 'disabled');
+    set_tool_state('cont-mark', 'disabled');
+    set_tool_state('cont-alignleft', 'disabled');
+    set_tool_state('cont-aligncenter', 'disabled');
+    set_tool_state('cont-alignright', 'disabled');
+    set_tool_state('cont-shadows', 'disabled');
+    set_tool_state('cont-weblink', 'disabled');
+    set_tool_state('cont-title', 'disabled');
+    set_tool_state('cont-line', 'disabled');
+    set_tool_state('cont-image', 'disabled');
+    set_tool_state('cont-audio', 'disabled');
+    set_tool_state('cont-spotify', 'disabled');
+    set_tool_state('cont-soundcloud', 'disabled');
+    set_tool_state('cont-youtube', 'disabled');
 
 }
 
@@ -105,12 +105,6 @@ function ust_delete_content() {
     }
 }
 
-//  =================================
-//  SAVE
-//  =================================
-function ust_save_content() {
-    save_content();
-}
 
 //  =================================
 //  MOVE
@@ -148,10 +142,10 @@ function ust_public() {
     if (selection) {
         server('toggle_content_public', {
             id: parseInt(selection.id.substring(1)),
-            curstate: get_tool_state('ust-public') === 'active'
+            curstate: get_tool_state('cont-public') === 'active'
         }).then(
             (resolve) => {
-                set_tool_state('ust-public', resolve ? 'active' : 'normal');
+                set_tool_state('cont-public', resolve ? 'active' : 'normal');
                 selection.setAttribute('ispublic', resolve ? 'true' : 'false');
             },
             (reject) => { alert(reject); }
@@ -242,39 +236,22 @@ function ust_weblink() {
     }
 }
 
-function on_weblink(valueElement) {
-    if (ust_webnode) {
-        let wnode = document.createElement('a');
-        wnode.href = valueElement.value;
-        wnode.taget = '_blank';
-        wnode.innerText = ust_webnode.textContent;
+// function on_weblink(valueElement) {
+//     if (ust_webnode) {
+//         let wnode = document.createElement('a');
+//         wnode.href = valueElement.value;
+//         wnode.taget = '_blank';
+//         wnode.innerText = ust_webnode.textContent;
 
-        ust_webnode.replaceWith(wnode);
+//         ust_webnode.replaceWith(wnode);
 
-        ust_webnode = null;
-        save_content();
+//         ust_webnode = null;
+//         save_content();
 
-    }
-    remove_form('simple');
-}
+//     }
+//     remove_form('simple');
+// }
 
-
-//  =================================
-//  TITLE
-//  =================================
-function ust_title() {
-    simple('Titel', 'Text', '?', 'on_title');
-}
-
-function on_title(valueElement) {
-    let h1 = document.createElement('h1');
-    h1.innerText = valueElement.value;
-    get_session_selection().append(h1);
-    get_session_selection().innerHTML += '<br>';
-    remove_form('simple');
-    save_content();
-
-}
 
 //  =================================
 //  LINE

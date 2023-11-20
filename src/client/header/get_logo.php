@@ -9,7 +9,7 @@ if (verify_client_args($args, [])) {
 
     $db = db_open($args->key);
 
-    $sites = db_select($db, 'sites', ['logo'], db_where($db, 'key', $args->key));
+    $sites = db_select($db, 'sites', ['title','logo'], db_where($db, 'key', $args->key));
     if (!$sites) {
         db_close($db);
         send_reject('Failed to load logo');

@@ -1,1 +1,1 @@
-UPDATE `themes` SET `font`='Arial',`headerT`='1vh',`headerH`='6vh',`footerB`='1vh',`footerH`='4vh',`titleH`='3vh',`menuW`='50vw',`infoW`='80vw',`titleW`='40vw',`contentW`='40vw',`contentD`='2vh',`radius`='16px',`linkFg`='#ffff00',`appBg`='#202020' WHERE `name`='IceWall'
+UPDATE `themes` SET `tbarDisplay`='block',`tbarBold`='bold',`tbarItalic`='normal',`tbarFsize`='large' WHERE `name`='IceWall'

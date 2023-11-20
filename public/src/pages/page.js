@@ -10,7 +10,7 @@ function page_selected(pageid) {
             set_tool_state('adt-public', get_session_page().isPublic ? 'active' : 'nomrmal');
             get_title();
 
-            server('content/get', {
+            server('content/get_content', {
                 pageid: pageid
             }).then( 
                 (resolve) => {

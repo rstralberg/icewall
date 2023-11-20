@@ -87,6 +87,7 @@ function upload_mp3(fileFromInput) {
                 resolve(r) ;
             })
             .catch(err => {
+                error(err);
                 reject(err);
             });
     });
