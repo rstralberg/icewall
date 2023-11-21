@@ -1,6 +1,6 @@
 <?php 
 
-function generate_css() : string {
+function css() : string {
 
     $cssfiles = glob('../public/css/*.css');
     $css = '';

@@ -1,31 +1,42 @@
-  .topnav a {
+.topnav {
+	outline: none;
+	border:none;
+}
+
+
+.topnav a {
   	background-color: var(--barsBg);
   	color: var(--barsFg);
 
   	float: left;
   	display: block;
-	font-weight: var(--nbarBold) ;
-	font-style: var(--nbarItalic) ;
-  	border-radius: var(--radius);
+  	font-weight: var(--nbarBold);
+  	font-style: var(--nbarItalic);
+  	border-radius: calc( var(--radius) / 2 );
+	
   	text-align: center;
   	padding: 14px 16px;
   	text-decoration: none;
   	font-size: var(--nbarFsize);
-  }
+
+
+ }
+
+ /* .topnav .dropbtn:last-child {
+	margin-right: 1vw;
+ }
+
+.topnav a:first-child {
+	margin-left: 1vw;
+ } */
 
   .toplink {
-  	background-color: var(--barsBg);
-  	color: var(--barsFg);
-
-  	font-size: var(--nbarFsize);
   	border: none;
   	outline: none;
-  	padding: 18px 16px !important;
   	font-family: inherit;
-  	margin: 0;
   	min-width: 100px;
-  	height: inherit;
-  	font-weight: bold;
+  	height: calc(var(--headerH) - 4px);
+  	margin: 2px;
   }
 
   .active {
@@ -42,13 +53,14 @@
   	overflow: hidden;
   }
 
+
   .dropdown .dropbtn {
 
   	background-color: var(--barsBg);
   	color: var(--barsFg);
-	  font-weight: var(--nbarBold) ;
-	  font-style: var(--nbarItalic) ;
-  
+  	font-weight: var(--nbarBold);
+  	font-style: var(--nbarItalic);
+
   	padding: 14px 16px;
   	font-size: var(--nbarFsize);
   	border: none;
@@ -71,9 +83,9 @@
   .dropdown-content a {
   	background-color: var(--barsBg);
   	color: var(--barsFg);
-	  font-weight: var(--nbarBold) ;
-	  font-style: var(--nbarItalic) ;
-  
+  	font-weight: var(--nbarBold);
+  	font-style: var(--nbarItalic);
+
   	float: none;
   	padding: 12px 16px;
   	text-decoration: none;

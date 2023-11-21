@@ -1,36 +1,38 @@
 
-function usr_menu() {
+function content_menu() {
 
-    release_user_tools();
-    let left = document.getElementById('user-menu');
+    enable_content_tools(false);
+    let left = document.getElementById('content-menu');
     left.style.display = get_session_user().username === '' ? 'none' : 'block';
 }
 
-function init_user_tools() {
-    set_tool_state('cont-delete-content', 'normal');
-    set_tool_state('cont-save-content', 'normal');
-    set_tool_state('cont-move-up', 'normal');
-    set_tool_state('cont-move-down', 'normal');
-    set_tool_state('cont-public', 'normal');
-    set_tool_state('cont-bold', 'normal');
-    set_tool_state('cont-italic', 'normal');
-    set_tool_state('cont-normal', 'normal');
-    set_tool_state('cont-mark', 'normal');
-    set_tool_state('cont-alignleft', 'normal');
-    set_tool_state('cont-aligncenter', 'normal');
-    set_tool_state('cont-alignright', 'normal');
-    set_tool_state('cont-shadows', 'normal');
-    set_tool_state('cont-weblink', 'normal');
-    set_tool_state('cont-title', 'normal');
-    set_tool_state('cont-line', 'normal');
-    set_tool_state('cont-image', 'normal');
-    set_tool_state('cont-audio', 'normal');
-    set_tool_state('cont-spotify', 'normal');
-    set_tool_state('cont-soundcloud', 'normal');
-    set_tool_state('cont-youtube', 'normal');
+function enable_content_tools(enable) {
+    let state = enable ? 'normal' : 'disabled';
+    set_tool_state('cont-delete-content', state);
+    set_tool_state('cont-save-content', state);
+    set_tool_state('cont-move-up', state);
+    set_tool_state('cont-move-down', state);
+    set_tool_state('cont-public', state);
+    set_tool_state('cont-bold', state);
+    set_tool_state('cont-italic', state);
+    set_tool_state('cont-normal', state);
+    set_tool_state('cont-mark', state);
+    set_tool_state('cont-alignleft', state);
+    set_tool_state('cont-aligncenter', state);
+    set_tool_state('cont-alignright', state);
+    set_tool_state('cont-shadows', state);
+    set_tool_state('cont-weblink', state);
+    set_tool_state('cont-title', state);
+    set_tool_state('cont-line', state);
+    set_tool_state('cont-image', state);
+    set_tool_state('cont-audio', state);
+    set_tool_state('cont-spotify', state);
+    set_tool_state('cont-soundcloud', state);
+    set_tool_state('cont-youtube', state);
 }
 
-function update_user_tools(section) {
+
+function update_content_tools(section) {
 
     let cstyle = window.getComputedStyle(section);
     switch (cstyle.textAlign) {
@@ -55,137 +57,6 @@ function update_user_tools(section) {
 
 }
 
-function release_user_tools() {
-    set_tool_state('cont-delete-content', 'disabled');
-    set_tool_state('cont-save-content', 'disabled');
-    set_tool_state('cont-move-up', 'disabled');
-    set_tool_state('cont-move-down', 'disabled');
-    set_tool_state('cont-public', 'disabled');
-    set_tool_state('cont-bold', 'disabled');
-    set_tool_state('cont-italic', 'disabled');
-    set_tool_state('cont-normal', 'disabled');
-    set_tool_state('cont-mark', 'disabled');
-    set_tool_state('cont-alignleft', 'disabled');
-    set_tool_state('cont-aligncenter', 'disabled');
-    set_tool_state('cont-alignright', 'disabled');
-    set_tool_state('cont-shadows', 'disabled');
-    set_tool_state('cont-weblink', 'disabled');
-    set_tool_state('cont-title', 'disabled');
-    set_tool_state('cont-line', 'disabled');
-    set_tool_state('cont-image', 'disabled');
-    set_tool_state('cont-audio', 'disabled');
-    set_tool_state('cont-spotify', 'disabled');
-    set_tool_state('cont-soundcloud', 'disabled');
-    set_tool_state('cont-youtube', 'disabled');
-
-}
-
-//  =================================
-//  DELETE 
-//  =================================
-function yes_delete_content() {
-    close_yesno();
-    server('unregister_content', {
-        contentid: parseInt(get_session_selection().id.substring(1))
-    }).then(
-        () => {
-            get_content();
-        },
-        (reject) => { alert(reject); }
-    );
-}
-function no_delete_content() {
-    close_yesno();
-}
-
-function ust_delete_content() {
-    let select = get_session_selection();
-    if (select) {
-        yesno('Radera innehåll', 'Är du säker på att du vill radera vald innehållsavdelning?', 'yes_delete_content', 'no_delete_content');
-    }
-}
-
-
-//  =================================
-//  MOVE
-//  =================================
-function ust_move_up() {
-
-    let content = get_session_selection();
-    if (!is_valid(content)) return;
-
-    if (content.previousElementSibling) {
-        content.parentNode.insertBefore(content, content.previousElementSibling);
-        update_content_positions();
-    }
-
-}
-
-function ust_move_down() {
-
-    let content = get_session_selection();
-    if (!is_valid(content)) return;
-
-    if (content.nextElementSibling) {
-        content.parentNode.insertBefore(content.nextElementSibling, content);
-        update_content_positions();
-    }
-
-}
-
-//  =================================
-//  PUBLIC
-//  =================================
-function ust_public() {
-
-    let selection = get_session_selection();
-    if (selection) {
-        server('toggle_content_public', {
-            id: parseInt(selection.id.substring(1)),
-            curstate: get_tool_state('cont-public') === 'active'
-        }).then(
-            (resolve) => {
-                set_tool_state('cont-public', resolve ? 'active' : 'normal');
-                selection.setAttribute('ispublic', resolve ? 'true' : 'false');
-            },
-            (reject) => { alert(reject); }
-        );
-    }
-}
-
-//  =================================
-//  TAGS
-//  =================================
-function ust_bold() {
-    toggle_tag('STRONG');
-}
-
-function ust_italic() {
-    toggle_tag('EM');
-}
-
-function ust_normal() {
-    clear_tags();
-}
-
-function ust_mark() {
-    toggle_tag('H2');
-}
-
-//  =================================
-//  ALIGN
-//  =================================
-function ust_alignleft() {
-    alignement('left');
-}
-
-function ust_aligncenter() {
-    alignement('center');
-}
-
-function ust_alignright() {
-    alignement('right');
-}
 
 function alignement(cmd) {
 

@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../config.php';
 
-function generate_icons() : string {
+function icons() : string {
     
     $fh = fopen(__DIR__. '/../../public/icons/site.webmanifest', 'w');
     if($fh) {

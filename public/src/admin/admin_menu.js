@@ -1,5 +1,5 @@
 
-function adm_menu() {
+function admin_menu() {
     let right = document.getElementById('admin-menu');
     right.style.display = get_session_user().username === '' ? 'none' : 'block';
     init_admin_tools();

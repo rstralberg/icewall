@@ -18,7 +18,7 @@ if (verify_client_args($args, ['pageid', 'theme'])) {
         return;
     }
 
-    $html = '<div class="topnav" id="top-menu">';
+    $html = '<div class="topnav">';
     for($i=0; $i < count($pages); $i++) {
         $page = $pages[$i];
         

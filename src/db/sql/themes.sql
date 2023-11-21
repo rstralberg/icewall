@@ -1,1 +1,1 @@
-UPDATE `themes` SET `tbarDisplay`='block',`tbarBold`='bold',`tbarItalic`='normal',`tbarFsize`='large' WHERE `name`='IceWall'
+UPDATE `themes` SET `fbarBold`='normal',`fbarItalic`='italic',`fbarFsize`='small' WHERE `name`='IceWall'

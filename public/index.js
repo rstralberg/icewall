@@ -7,8 +7,8 @@ function index(pageid, sitekey) {
 
     init_session(pageid, sitekey).then(
         () => {
-            usr_menu();
-            adm_menu();
+            content_menu();
+            admin_menu();
             get_logo();
             get_top_menu();
             get_avatar();

@@ -4,6 +4,9 @@ function add_form(form_id, html) {
     let container = document.createElement('div');
     container.classList.add('form');
     container.id = form_id;
+    container.style.position = 'fixed';
+    container.style.left = '2vw';
+    container.style.top = '6vh';
     container.innerHTML = html;
     body.appendChild(container);
 }

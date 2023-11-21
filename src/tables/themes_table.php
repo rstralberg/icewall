@@ -194,7 +194,7 @@ function get_default_theme(string $name) : array {
         '4vh',// footerH
         '3vh',// titleH
         '50vw',// menuW
-        '80vw',// infoW
+        '50vw',// infoW
         '40vw',// titleW
         '40vw',// contentW
         '2vh',// contentD
@@ -221,7 +221,7 @@ function get_default_theme(string $name) : array {
                 
         'normal',// fbarBold
         'italic',// fbarItalic
-        'medium',// fbarFsize
+        'small',// fbarFsize
         
         '#303030',// contBg
         '#ffffff',// contFg

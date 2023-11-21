@@ -1,6 +1,6 @@
 <?php
 
-function generate_scripts() : string {
+function scripts() : string {
     
     function script($file) :string  {
         return '<script type="application/javascript" src="'. $file . '.js"></script>';
@@ -20,6 +20,7 @@ function generate_scripts() : string {
     $html.= script('src/utils/upload');
     
     $html.= script('src/content/content');
+    $html.= script('src/content/content_menu');
     $html.= script('src/content/on_delete_content');
     $html.= script('src/content/get_content');
     $html.= script('src/content/add_content');
@@ -47,9 +48,8 @@ function generate_scripts() : string {
     $html.= script('src/forms/simple');
     $html.= script('src/forms/yesno');
 
-    $html.= script('src/menus/adm_menu');
-    $html.= script('src/menus/usr_menu');
-
+    $html.= script('src/admin/admin_menu');
+    
     $html.= script('src/pages/page');
     $html.= script('src/pages/create_page');
     $html.= script('src/pages/delete_page');

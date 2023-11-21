@@ -1,7 +1,7 @@
 
 function on_general() {
 
-    if( is_valid(document.querySelector('#theme-general-form') )) return;
+    if( is_valid(document.getElementById('theme-general-form') )) return;
 
     server('themes/general', {
         theme: get_style('theme'),

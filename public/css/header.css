@@ -1,4 +1,3 @@
-
 #header {
     display: inline-flex;
     background: var(--appBg);
@@ -27,7 +26,7 @@
 }
 
 #top-logo img {
-    height: var(--headerH) ;
+    height: var(--headerH);
     width: auto;
 }
 
@@ -36,18 +35,22 @@
     min-width: var(--menuW);
     background-color: var(--barsBg);
     color: var(--barsFg);
-	border-radius: var(--radius);
-	outline: var(--barsBorder);
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--barsShadow ));
+    border-radius: var(--radius);
+    outline: var(--barsBorder);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--barsShadow));
     border: none;
-}    
+    padding-left: 4px;
+    padding-right: 4px;
+}
 
 #top-menu button {
-    border:none;
+    border: none;
     outline: none;
-    height: var(--headerH);
-    margin-top: 0;
+    height: calc(var(--headerH) - 4px);
+    margin: 2px;
 }
+
+
 
 #top-avatar {
     position: fixed;

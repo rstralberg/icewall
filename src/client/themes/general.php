@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../generate/generate_fonts.php';
+require_once __DIR__ . '/../../generate/fonts.php';
 require_once __DIR__ . '/../../utils/style.php';
 require_once __DIR__ . '/../../utils/load_form.php';
 require_once __DIR__ . '/../../utils/send_reply.php';

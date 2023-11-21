@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../db/db.php';
 
-function generate_style(mysqli $db, string $themeName): string
+function style(mysqli $db, string $themeName): string
 {
     $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', $themeName));
     if( $themes === false || gettype($themes) === 'string' ) {

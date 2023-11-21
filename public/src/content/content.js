@@ -3,16 +3,16 @@ function get_content_style(section) {
     // we just catch a few 
     let cstyle = window.getComputedStyle(section);
     let style = '';
-    if( cstyle.textAlign !== '') style += 'text-align:' + cstyle.textAlign;
+    if (cstyle.textAlign !== '') style += 'text-align:' + cstyle.textAlign;
     return style;
 }
 
 function get_content_position(section) {
     let container = document.getElementById('content');
     let pos = 0;
-    for( ; pos < container.childElementCount; pos++) {
+    for (; pos < container.childElementCount; pos++) {
         let child = container.children[pos];
-        if( child.id === section.id ) {
+        if (child.id === section.id) {
             break;
         }
     }
@@ -22,44 +22,127 @@ function get_content_position(section) {
 
 
 function content_shadow() {
-    alert('content_shadow');
+    if (!is_valid(cur_element)) {
+        cur_element.classList.add('shadow');
+    }
 }
 
 
+//  ===================================================
+//  Attach editing possibilites to selected section
+//  ===================================================
 var edit_target = null;
+var cur_element = null;
 function attach_editor(element) {
 
     edit_target = element;
     edit_target.classList.add('active-section');
     edit_target.contentEditable = true;
 
-    init_user_tools();
+    enable_content_tools(true);
 
     let btn_public = document.getElementById('cont-public');
-    if( element.getAttribute('ispublic') === 'true' ) {
-        if(!btn_public.classList.contains('active')) btn_public.classList.add('active');
+    if (element.getAttribute('ispublic') === 'true') {
+        if (!btn_public.classList.contains('active')) btn_public.classList.add('active');
     }
     else {
-        if(btn_public.classList.contains('active')) btn_public.classList.remove('active');
+        if (btn_public.classList.contains('active')) btn_public.classList.remove('active');
     }
 
-
-    ce_add_events();
-    update_user_tools(edit_target);
+    update_content_tools(edit_target);
+    add_borders(edit_target);
 
     let images = edit_target.querySelectorAll('img');
-    for( let i=0; i < images.length; i++ ) {
+    for (let i = 0; i < images.length; i++) {
         let child = images[i];
-        child.addEventListener( 'wheel', (e) => { resize_img_by_wheel(e); } );
+        child.addEventListener('wheel', (e) => { resize_img_by_wheel(e); });
     }
 }
 
+function add_events(element) {
+    element.addEventListener('mouseenter', (e) => {
+        e.target.style.border = '1px dashed ' + get_style('contentFg');
+    });
+    element.addEventListener('mouseleave', (e) => {
+        e.target.style.border = 'none';
+    });
+    element.addEventListener('click', (e) => {
+        if (is_valid(cur_element)) {
+            cur_element.style.outline = 'none';
+            set_tool_state('cont-bold', 'normal');
+            set_tool_state('cont-italic', 'normal');
+            set_tool_state('cont-mark', 'normal');
+            set_tool_state('cont-weblink', 'normal');
+            set_tool_state('cont-image', 'normal');
+            set_tool_state('cont-title', 'normal');
+            set_tool_state('cont-alignleft', 'normal');
+            set_tool_state('cont-aligncenter', 'normal');
+            set_tool_state('cont-alignright', 'normal');
+        }
+        cur_element = e.target;
+        console.log(cur_element.tagName);
+        cur_element.style.outline = '2px solid ' + get_style('linkFg');
+        if (cur_element.tagName === 'STRONG') set_tool_state('cont-bold', 'active');
+        if (cur_element.tagName === 'EM') set_tool_state('cont-italic', 'active');
+        if (cur_element.tagName === 'H2') set_tool_state('cont-mark', 'active');
+        if (cur_element.tagName === 'A') set_tool_state('cont-weblink', 'active');
+        if (cur_element.tagName === 'IMG') set_tool_state('cont-image', 'active');
+        if (cur_element.tagName === 'H1') set_tool_state('cont-title', 'active');
+
+        if (cur_element.tagName === 'IMG' &&
+            is_valid(cur_element.parentElement) &&
+            is_valid(cur_element.parentElement.parentElement) &&
+            is_valid(cur_element.parentElement.parentElement.style.textAlign)) {
+            let e = cur_element.parentElement.parentElement;
+            if (e.style.textAlign === 'left') set_tool_state('cont-alignleft', 'active');
+            if (e.style.textAlign === 'center') set_tool_state('cont-aligncenter', 'active');
+            if (e.style.textAlign === 'right') set_tool_state('cont-alignright', 'active');
+        } 
+
+    })
+}
+
+
+function add_borders(container) {
+
+    for (let i = 0; i < container.childElementCount; i++) {
+        let child = container.children[i];
+        add_events(child);
+
+        if (child.childElementCount > 0) {
+            add_borders(child);
+        }
+    }
+}
+
+function remove_events(element) {
+    if (element.tagName === 'H1') {
+        element.style.outline = '1px solid ' + get_style('linkFg');
+    }
+    else {
+        element.style.outline = 'none';
+    }
+    element.style.border = 'none';
+    element.removeEventListener('mouseenter', (e) => { });
+    element.removeEventListener('mouseleave', (e) => { });
+    element.removeEventListener('click', (e) => { });
+}
+
+function remove_borders(container) {
+    for (let i = 0; i < container.childElementCount; i++) {
+        let child = container.children[i];
+        remove_events(child);
+
+        if (child.childElementCount > 0) {
+            remove_borders(child);
+        }
+    }
+}
 
 function detach_editor() {
     if (edit_target) {
-        ce_remove_events();
 
-        for( let i=0; i < edit_target.childElementCount; i++ ) {
+        for (let i = 0; i < edit_target.childElementCount; i++) {
             let child = edit_target.children[i];
             child.style.resize = 'none';
         }
@@ -67,61 +150,13 @@ function detach_editor() {
         let btn_public = document.getElementById('cont-public');
         btn_public.classList.contains('active');
 
+        remove_borders(edit_target);
         edit_target.classList.remove('active-section');
         edit_target.contentEditable = false;
         edit_target = null;
-        release_user_tools(edit_target);
+        cur_element = null;
+        enable_content_tools(false);
     }
-}
-
-function ce_add_events() {
-    if (edit_target === null) return;
-    edit_target.addEventListener('click', ce_click);
-    edit_target.addEventListener('mousedown', ce_mouse_down);
-    edit_target.addEventListener('mouseup', ce_mouse_up);
-    edit_target.addEventListener('mousemove', ce_mouse_move);
-    edit_target.addEventListener('mouseleave', ce_mouse_leave);
-    edit_target.addEventListener('mouseenter', ce_mouse_enter);
-    edit_target.addEventListener('keydown', ce_keydown);
-    edit_target.addEventListener('keyup', ce_keyup);
-}
-
-function ce_remove_events() {
-    if (edit_target === null) return;
-    edit_target.removeEventListener('click', ce_click);
-    edit_target.removeEventListener('mousedown', ce_mouse_down);
-    edit_target.removeEventListener('mouseup', ce_mouse_up);
-    edit_target.removeEventListener('mousemove', ce_mouse_move);
-    edit_target.removeEventListener('mouseleave', ce_mouse_leave);
-    edit_target.removeEventListener('mouseenter', ce_mouse_enter);
-    edit_target.removeEventListener('keydown', ce_keydown);
-    edit_target.removeEventListener('keyup', ce_keyup);
-}
-
-function ce_click(e) {
-   
-    let selection = window.getSelection();
-    if (selection.rangeCount === 0) return;
-
-
-    let range = selection.getRangeAt(0);
-    let node = null;
-    if (range.startContainer === range.endContainer) {
-        node = range.startContainer;
-    }
-    else {
-        node = range.startContainer.nextSibling;
-    }
-
-    let tagName = '#text';
-    if (is_valid(node.parentNode)) {
-        tagName = node.parentNode.nodeName;
-    }
-
-    set_tool_state('ust-bold', tagName === 'STRONG' ? 'active' : 'normal');
-    set_tool_state('ust-italic', tagName === 'EM' ? 'active' : 'normal');
-    set_tool_state('ust-mark', tagName === 'H2' ? 'active' : 'normal');
-
 }
 
 function get_selected_node() {
@@ -139,40 +174,6 @@ function get_selected_node() {
     }
     return node;
 }
-
-function ce_mouse_down(e) {
-}
-
-function ce_mouse_up(e) {
-}
-
-function ce_mouse_move(e) {
-}
-
-function ce_mouse_leave(e) {
-}
-
-function ce_mouse_enter(e) {
-}
-
-function ce_keydown(e) {
-}
-
-function ce_keyup(e) {
-}
-
-
-
-
-
-function content_editor_mousedown(e) {
-
-}
-
-function content_editor_mousedown(e) {
-
-}
-
 
 function get_caret_pos() {
     let pos = 0;

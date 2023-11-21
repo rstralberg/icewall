@@ -1,5 +1,7 @@
 
 function on_format_content(arg) {
+    if( !is_valid(cur_element) ) return;
+    
     switch (arg) {
         case 'normal': break;
 
@@ -8,17 +10,31 @@ function on_format_content(arg) {
         case 'mark': toggle_tag('h2'); break;
 
         case 'align-left':
+            if( cur_element.tagName === 'IMG') align_image(cur_element, 'left');
             break;
 
         case 'align-center':
+            if( cur_element.tagName === 'IMG') align_image(cur_element, 'center');
             break;
 
         case 'align-right':
+            if( cur_element.tagName === 'IMG') align_image(cur_element, 'right');
             break;
 
         case 'shadows':
+            if( is_valid(cur_element) ) {
+                cur_element.classList.add('shadow');
+            }
             break;
     }
+}
+
+function align_image(element, align) {
+    if( !is_valid(element)) return;
+    if( !is_valid(element.parentElement)) return;
+    if( !is_valid(element.parentElement.parentElement)) return;
+    element.parentElement.parentElement.style.textAlign = align;
+
 }
 
 
