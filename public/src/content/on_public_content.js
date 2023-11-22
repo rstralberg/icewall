@@ -12,11 +12,16 @@ function on_public_content() {
         public: public
     }).then(
         (resolve) => {
+            let section = get_session_selection();
             if( resolve ) {
-                if( !btn.classList.contains('active') ) btn.classList.add('active');
+                if( !btn.classList.contains('active') ) {
+                    btn.classList.add('active');
+                    section.setAttribute('ispublic', 'true');
+                }
             }
             else {
                 if( btn.classList.contains('active') ) btn.classList.remove('active');
+                section.setAttribute('ispublic', 'false');
             }
         }
     );

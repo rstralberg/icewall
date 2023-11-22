@@ -21,6 +21,7 @@ function scripts() : string {
     
     $html.= script('src/content/content');
     $html.= script('src/content/content_menu');
+    $html.= script('src/content/content_pop');
     $html.= script('src/content/on_delete_content');
     $html.= script('src/content/get_content');
     $html.= script('src/content/add_content');
@@ -37,6 +38,7 @@ function scripts() : string {
     $html.= script('src/content/addons/on_line');
     $html.= script('src/content/addons/on_soundcloud');
     $html.= script('src/content/addons/on_spotify');
+    $html.= script('src/content/addons/on_text');
     $html.= script('src/content/addons/on_title');
     $html.= script('src/content/addons/on_youtube');
     $html.= script('src/content/addons/on_weblink');
@@ -48,7 +50,7 @@ function scripts() : string {
     $html.= script('src/forms/simple');
     $html.= script('src/forms/yesno');
 
-    $html.= script('src/admin/admin_menu');
+    $html.= script('src/admin/admin_pop');
     
     $html.= script('src/pages/page');
     $html.= script('src/pages/create_page');
@@ -62,6 +64,7 @@ function scripts() : string {
     $html.= script('src/header/get_avatar');
     $html.= script('src/header/get_logo');
     $html.= script('src/header/get_top_menu');
+    $html.= script('src/header/menu_pop');
 
     $html.= script('src/settings/edit_settings');
         

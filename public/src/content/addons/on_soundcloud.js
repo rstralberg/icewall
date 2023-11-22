@@ -1,6 +1,7 @@
 
 function on_soundcloud() {
-    
+    hide_content_pop();
+  
     server('content/addons/soundcloud', {
         url: ''
     }).then(

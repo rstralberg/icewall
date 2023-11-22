@@ -1,5 +1,6 @@
 
 function on_weblink() {
+    hide_content_pop();
 
     server('content/addons/weblink', {
         url: '',

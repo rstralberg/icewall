@@ -7,8 +7,13 @@ function index(pageid, sitekey) {
 
     init_session(pageid, sitekey).then(
         () => {
-            content_menu();
-            admin_menu();
+            // we will take over broser righ clicks
+            let body = document.querySelector('body');
+            body.addEventListener('contextmenu', (e) => { e.preventDefault();})
+
+            init_content_pop();
+            init_menu_pop();
+            init_admin_pop();
             get_logo();
             get_top_menu();
             get_avatar();

@@ -1,0 +1,72 @@
+
+.content_pop {
+	display: none;
+	width: auto;
+	height: auto;
+    z-index: 1000;
+    background-color: var(--formBg);
+	color: var(--formFg);
+	border: none;
+	outline: var(--formBorder);
+	font-size: small;
+	margin:0 !important;
+	padding:0 !important;
+	border-radius: var(--radius);
+	text-align: center;
+}
+
+.content_pop input[type=button] {
+	outline: none;
+	border:none;
+	font-size: small;
+	margin: 0;
+	box-shadow: none;
+}
+
+.admin_pop {
+	display: none;
+	width: auto;
+	height: auto;
+    z-index: 1000;
+    background-color: var(--formBg);
+	color: var(--formFg);
+	border: none;
+	outline: var(--formBorder);
+	font-size: small;
+	margin:0 !important;
+	padding:0 !important;
+	border-radius: var(--radius);
+	text-align: center;
+}
+
+.admin_pop input[type=button] {
+	outline: none;
+	border:none;
+	font-size: small;
+	margin: 0;
+	box-shadow: none;
+}
+
+.menu_pop {
+	display: none;
+	width: auto;
+	height: auto;
+    z-index: 1000;
+    background-color: var(--formBg);
+	color: var(--formFg);
+	border: none;
+	outline: var(--formBorder);
+	font-size: small;
+	margin:0 !important;
+	padding:0 !important;
+	border-radius: var(--radius);
+	text-align: center;
+}
+
+.menu_pop input[type=button] {
+	outline: none;
+	border:none;
+	font-size: small;
+	margin: 0;
+	box-shadow: none;
+}

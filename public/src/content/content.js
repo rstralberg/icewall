@@ -38,18 +38,17 @@ function attach_editor(element) {
     edit_target = element;
     edit_target.classList.add('active-section');
     edit_target.contentEditable = true;
+    // enable_content_tools(true);
 
-    enable_content_tools(true);
+    // let btn_public = document.getElementById('cont-public');
+    // if (element.getAttribute('ispublic') === 'true') {
+    //     if (!btn_public.classList.contains('active')) btn_public.classList.add('active');
+    // }
+    // else {
+    //     if (btn_public.classList.contains('active')) btn_public.classList.remove('active');
+    // }
 
-    let btn_public = document.getElementById('cont-public');
-    if (element.getAttribute('ispublic') === 'true') {
-        if (!btn_public.classList.contains('active')) btn_public.classList.add('active');
-    }
-    else {
-        if (btn_public.classList.contains('active')) btn_public.classList.remove('active');
-    }
-
-    update_content_tools(edit_target);
+    // update_content_tools(edit_target);
     add_borders(edit_target);
 
     let images = edit_target.querySelectorAll('img');
@@ -60,51 +59,60 @@ function attach_editor(element) {
 }
 
 function add_events(element) {
-    element.addEventListener('mouseenter', (e) => {
-        e.target.style.border = '1px dashed ' + get_style('contentFg');
-    });
-    element.addEventListener('mouseleave', (e) => {
-        e.target.style.border = 'none';
-    });
+    // element.addEventListener('mouseenter', (e) => {
+    //     // e.target.style.border = '1px dashed ' + get_style('contentFg');
+    // });
+    // element.addEventListener('mouseleave', (e) => {
+    //     // e.target.style.border = 'none';
+    // });
+    // element.addEventListener( 'mouseup', (e) => { 
+    //     e.preventDefault();
+    //     console.log(e.button);
+    //     if( e.button === 2)
+
+    //     show_content_pop(e); 
+    // } );
+
     element.addEventListener('click', (e) => {
         if (is_valid(cur_element)) {
             cur_element.style.outline = 'none';
-            set_tool_state('cont-bold', 'normal');
-            set_tool_state('cont-italic', 'normal');
-            set_tool_state('cont-mark', 'normal');
-            set_tool_state('cont-weblink', 'normal');
-            set_tool_state('cont-image', 'normal');
-            set_tool_state('cont-title', 'normal');
-            set_tool_state('cont-alignleft', 'normal');
-            set_tool_state('cont-aligncenter', 'normal');
-            set_tool_state('cont-alignright', 'normal');
+            // set_tool_state('cont-text', 'normal');
+            // set_tool_state('cont-bold', 'normal');
+            // set_tool_state('cont-italic', 'normal');
+            // set_tool_state('cont-mark', 'normal');
+            // set_tool_state('cont-weblink', 'normal');
+            // set_tool_state('cont-image', 'normal');
+            // set_tool_state('cont-title', 'normal');
+            // set_tool_state('cont-alignleft', 'normal');
+            // set_tool_state('cont-aligncenter', 'normal');
+            // set_tool_state('cont-alignright', 'normal');
         }
         cur_element = e.target;
-        console.log(cur_element.tagName);
         cur_element.style.outline = '2px solid ' + get_style('linkFg');
-        if (cur_element.tagName === 'STRONG') set_tool_state('cont-bold', 'active');
-        if (cur_element.tagName === 'EM') set_tool_state('cont-italic', 'active');
-        if (cur_element.tagName === 'H2') set_tool_state('cont-mark', 'active');
-        if (cur_element.tagName === 'A') set_tool_state('cont-weblink', 'active');
-        if (cur_element.tagName === 'IMG') set_tool_state('cont-image', 'active');
-        if (cur_element.tagName === 'H1') set_tool_state('cont-title', 'active');
+        // if (cur_element.tagName === 'STRONG') set_tool_state('cont-bold', 'active');
+        // if (cur_element.tagName === 'EM') set_tool_state('cont-italic', 'active');
+        // if (cur_element.tagName === 'H2') set_tool_state('cont-mark', 'active');
+        // if (cur_element.tagName === 'A') set_tool_state('cont-weblink', 'active');
+        // if (cur_element.tagName === 'IMG') set_tool_state('cont-image', 'active');
+        // if (cur_element.tagName === 'H1') set_tool_state('cont-title', 'active');
+        // if (cur_element.tagName === 'P') set_tool_state('cont-text', 'active');
 
-        if (cur_element.tagName === 'IMG' &&
-            is_valid(cur_element.parentElement) &&
-            is_valid(cur_element.parentElement.parentElement) &&
-            is_valid(cur_element.parentElement.parentElement.style.textAlign)) {
-            let e = cur_element.parentElement.parentElement;
-            if (e.style.textAlign === 'left') set_tool_state('cont-alignleft', 'active');
-            if (e.style.textAlign === 'center') set_tool_state('cont-aligncenter', 'active');
-            if (e.style.textAlign === 'right') set_tool_state('cont-alignright', 'active');
-        } 
+        // if (cur_element.tagName === 'IMG' &&  
+        //     is_valid(cur_element.parentElement) &&
+        //     is_valid(cur_element.parentElement.parentElement) &&
+        //     is_valid(cur_element.parentElement.parentElement.style.textAlign)) {
+        //     let e = cur_element.parentElement.parentElement;
+        //     if (e.style.textAlign === 'left') set_tool_state('cont-alignleft', 'active');
+        //     if (e.style.textAlign === 'center') set_tool_state('cont-aligncenter', 'active');
+        //     if (e.style.textAlign === 'right') set_tool_state('cont-alignright', 'active');
+        // } 
 
     })
 }
 
-
 function add_borders(container) {
 
+    add_events(container);
     for (let i = 0; i < container.childElementCount; i++) {
         let child = container.children[i];
         add_events(child);
@@ -123,12 +131,14 @@ function remove_events(element) {
         element.style.outline = 'none';
     }
     element.style.border = 'none';
-    element.removeEventListener('mouseenter', (e) => { });
-    element.removeEventListener('mouseleave', (e) => { });
+    element.removeEventListener('contextmenu', (e) => { } );
+    // element.removeEventListener('mouseenter', (e) => { });
+    // element.removeEventListener('mouseleave', (e) => { });
     element.removeEventListener('click', (e) => { });
 }
 
 function remove_borders(container) {
+    remove_events(container);
     for (let i = 0; i < container.childElementCount; i++) {
         let child = container.children[i];
         remove_events(child);
@@ -187,4 +197,5 @@ function get_caret_pos() {
     }
     return pos;
 }
+
 

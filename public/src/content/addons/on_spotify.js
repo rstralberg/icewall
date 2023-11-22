@@ -1,6 +1,7 @@
 
 function on_spotify() {
-    
+    hide_content_pop();
+ 
     server('content/addons/spotify', {
         url: ''
     }).then(

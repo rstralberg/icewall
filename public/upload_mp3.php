@@ -15,10 +15,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $uploadDir .= '/';
 
-        $uploadFile = $uploadDir . basename($_FILES['mp3']['name']);
+        $filename = basename($_FILES['mp3']['name']);
+        $uploadFile = $uploadDir . $filename;
 
         if (move_uploaded_file($_FILES['mp3']['tmp_name'], $uploadFile)) {
-            send_resolve($uploadFile);
+            send_resolve($filename);
             exit(0);
         }
     }

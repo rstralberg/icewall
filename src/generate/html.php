@@ -31,7 +31,7 @@ function html(mysqli $db, int $pageId, string $sitekey, string $siteName, string
 
     $html .=
     '<body>
-        <div id="content-menu" class="tools">' . content_menu() . '</div>
+        <div id="left-side"></div>
         <div id="header" >
             <div id="top-logo"></div>
             <div id="top-menu"></div>
@@ -42,7 +42,7 @@ function html(mysqli $db, int $pageId, string $sitekey, string $siteName, string
         <div id="footer">
             <div id="info"></div>
         </div>
-        <div id="admin-menu" class="tools">' . admin_menu() . '</div>
+        <div id="right-side"></div>
     </body>';
 
     // Jscript loading ....

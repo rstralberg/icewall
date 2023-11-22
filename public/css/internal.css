@@ -95,21 +95,21 @@
 }
 
 
-#content-menu {
+#left-side {
 	position: fixed;
 	left: 0;
-	top: var(--headerH);
-	/* height: 99%; */
-	width: 10%;
+	top: calc( var(--headerH) + 2vh);
+	width: calc( ( (100vw - var(--contentW) ) / 2 ) - 2vw);
+	height: 96vh;
 	display: block;
 }
 
-#admin-menu {
+#right-side {
 	position: fixed;
-	right: 1vw;
-	top: var(--headerH);
-	/* height: 99%; */
-	width: 10%;
+	right: 0vw;
+	top: calc( var(--headerH) + 2vh);
+	width: calc( ( (100vw - var(--contentW) ) / 2 ) - 2vw);
+	height: 96vh;
 	display: block;
 }
 

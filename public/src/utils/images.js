@@ -38,6 +38,9 @@ function picture_code(img_file, subfolder, width, caption = null) {
     html += 'src="sites/' + get_session_key() + '/' + subfolder + '/org/' + img_file + '" ';
     html += 'onwheel="resize_img_by_wheel()" >';
 
+    
+    html += '<figcaption>' + (caption ? caption : '') + '</figcaption>';
+
     html += '</picture>';
     return html;
 }

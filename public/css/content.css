@@ -26,9 +26,21 @@ section picture {
 	margin: 10px;
 }
 
+section figcaption {
+	font-size: medium;
+	font-style: italic;
+}
+
+section audio {
+	width: 100%;
+	border: none;
+	outline: none;
+}
+
 section img {
     max-width: calc( 0.8 * var(--contentW ));
 }
+
 
 @media screen and (max-width: 1024px) {
 

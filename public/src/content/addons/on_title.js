@@ -1,5 +1,6 @@
 
 function on_title() {
+    hide_content_pop();
     simple('Titel', 'Text', '', 'on_title_value');
 }
 

@@ -1,6 +1,7 @@
 
 function on_youtube() {
  
+    hide_content_pop();
     server('content/addons/youtube', {
         url: ''
     }).then(
@@ -16,14 +17,34 @@ function close_youtube() {
 
 function on_youtube_pasted(element) {
 
-    document.getElementById('yt-frame').innerHTML = element.value;
-    enable_element('yt-save-button',true);
-    document.getElementById('yt-save-button').focus();
+    let form = document.getElementById('youtube-form');
+
+    form.querySelector('#yt-frame').innerHTML = element.value;
+    form.querySelector('#yt-save-button').removeAttribute('disabled');
+    form.querySelector('#yt-save-button').focus();
 }
 
 function on_youtube_save() {
 
-    let html = document.getElementById('yt-frame').innerHTML;
-    get_session_selection().innerHTML += html + '<br>';
+    let form = document.getElementById('youtube-form');
+    let frame = form.querySelector('#yt-frame');
+    frame.classList.add('shadow');
+    
+    let iframe = frame.firstChild;
+
+    let frame_width = parseInt(iframe.style.width);
+    let frame_height = parseInt(iframe.style.height);
+    let ratio = frame_width/frame_height;
+
+    let section = get_session_selection();
+    let desired_height = Math.round(section.clientWidth/ratio);
+    iframe.style.height = desired_height + 'px';
+    iframe.style.width = '-webkit-fill-available';
+
+    let html = '<div style="text-align:center">' + frame.innerHTML + '</div></br>';
+
+    get_session_selection().innerHTML += html ;
+
+
     close_youtube();
 }

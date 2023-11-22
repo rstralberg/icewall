@@ -1,5 +1,6 @@
 
 function on_format_content(arg) {
+    hide_content_pop();
     if( !is_valid(cur_element) ) return;
     
     switch (arg) {

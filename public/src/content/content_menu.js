@@ -1,59 +1,61 @@
 
 function content_menu() {
 
-    enable_content_tools(false);
+    // enable_content_tools(false);
     let left = document.getElementById('content-menu');
-    left.style.display = get_session_user().username === '' ? 'none' : 'block';
+    left.style.display = 'none'; // get_session_user().username === '' ? 'none' : 'block';
 }
 
 function enable_content_tools(enable) {
-    let state = enable ? 'normal' : 'disabled';
-    set_tool_state('cont-delete-content', state);
-    set_tool_state('cont-save-content', state);
-    set_tool_state('cont-move-up', state);
-    set_tool_state('cont-move-down', state);
-    set_tool_state('cont-public', state);
-    set_tool_state('cont-bold', state);
-    set_tool_state('cont-italic', state);
-    set_tool_state('cont-normal', state);
-    set_tool_state('cont-mark', state);
-    set_tool_state('cont-alignleft', state);
-    set_tool_state('cont-aligncenter', state);
-    set_tool_state('cont-alignright', state);
-    set_tool_state('cont-shadows', state);
-    set_tool_state('cont-weblink', state);
-    set_tool_state('cont-title', state);
-    set_tool_state('cont-line', state);
-    set_tool_state('cont-image', state);
-    set_tool_state('cont-audio', state);
-    set_tool_state('cont-spotify', state);
-    set_tool_state('cont-soundcloud', state);
-    set_tool_state('cont-youtube', state);
+    // let state = enable ? 'normal' : 'disabled';
+    // set_tool_state('cont-delete-content', state);
+    // set_tool_state('cont-save-content', state);
+    // set_tool_state('cont-move-up', state);
+    // set_tool_state('cont-move-down', state);
+    // set_tool_state('cont-public', state);
+    // set_tool_state('cont-bold', state);
+    // set_tool_state('cont-italic', state);
+    // set_tool_state('cont-normal', state);
+    // set_tool_state('cont-mark', state);
+    // set_tool_state('cont-alignleft', state);
+    // set_tool_state('cont-aligncenter', state);
+    // set_tool_state('cont-alignright', state);
+    // set_tool_state('cont-shadows', state);
+    
+    // set_tool_state('cont-text', state);
+    // set_tool_state('cont-weblink', state);
+    // set_tool_state('cont-title', state);
+    // set_tool_state('cont-line', state);
+    // set_tool_state('cont-image', state);
+    // set_tool_state('cont-audio', state);
+    // set_tool_state('cont-spotify', state);
+    // set_tool_state('cont-soundcloud', state);
+    // set_tool_state('cont-youtube', state);
 }
 
 
 function update_content_tools(section) {
 
-    let cstyle = window.getComputedStyle(section);
-    switch (cstyle.textAlign) {
-        case 'left':
-            set_tool_state('cont-alignleft', 'active');
-            set_tool_state('cont-aligncenter', 'normal');
-            set_tool_state('cont-alignright', 'normal');
-            break;
+    // let cstyle = window.getComputedStyle(section);
+    // switch (cstyle.textAlign) {
+    //     case 'left':
+    //         set_tool_state('cont-alignleft', 'active');
+    //         set_tool_state('cont-aligncenter', 'normal');
+    //         set_tool_state('cont-alignright', 'normal');
+    //         break;
 
-        case 'center':
-            set_tool_state('cont-alignleft', 'normal');
-            set_tool_state('cont-aligncenter', 'active');
-            set_tool_state('cont-alignright', 'normal');
-            break;
+    //     case 'center':
+    //         set_tool_state('cont-alignleft', 'normal');
+    //         set_tool_state('cont-aligncenter', 'active');
+    //         set_tool_state('cont-alignright', 'normal');
+    //         break;
 
-        case 'right':
-            set_tool_state('cont-alignleft', 'normal');
-            set_tool_state('cont-aligncenter', 'normal');
-            set_tool_state('cont-alignright', 'active');
-            break;
-    }
+    //     case 'right':
+    //         set_tool_state('cont-alignleft', 'normal');
+    //         set_tool_state('cont-aligncenter', 'normal');
+    //         set_tool_state('cont-alignright', 'active');
+    //         break;
+    // }
 
 }
 
