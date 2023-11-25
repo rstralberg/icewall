@@ -5,7 +5,7 @@ function create_page() {
         username: get_session_user().username
     }).then(
         (resolve) => {
-            add_form('create-page-form', resolve);
+            add_form('create-page-form', resolve, 42);
         },
         (reject) => {
             error(reject);

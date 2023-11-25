@@ -1,7 +1,7 @@
 function login() {
     server('users/login_form', {}).then(
         (resolve) => {
-            add_form('login-form', resolve);
+            add_form('login-form', resolve, 30);
         },
         (reject) => { alert(reject); });
 }

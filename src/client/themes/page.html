@@ -1,75 +1,75 @@
-<form class="theme" enctype="multipart/form-data">
+<h1>Sidans Utseende</h1>
 
-    <div>
-        <h1>Sidans Utseende</h1>
-	
-    <!-- contentW -->
-	<!-- contentD -->
-    <div class="cols-30-30-30">
-        <label for="pg_width">Bredd/Mellanrum</label>
-        <input type="number" min="10" max="90" id="pg-contentW" value=${contentW} oninput="on_contentW(this)">
-        <input type="number" min="0" max="10" id="pg-contentD" value=${contentD} oninput="on_contentD(this)">
-    </div>
-	
-    <!-- contBG -->
-	<!-- contFG -->
-    <div class="cols-30-30-30">
-        <label for="pg_width">Färger Bakgrund/Text</label>
-        <input type="color" id="pg-contBg" value=${contBg} oninput="on_contBg(this)">
-        <input type="color" id="pg-contFg" value=${contFg} oninput="on_contFg(this)">
-    </div>
-	
-    <!-- contBorder -->
-    <div class="cols-30-30-30">
-        <label for="pg-borderColor">Ram</label>
-        <input type="color" id="pg-borderColor" value=${borderColor} oninput="on_page_border_color(this)">
-        <input type="number" min="0" max="10" id="pg-borderWidth" value=${borderWidth} oninput="on_page_border_width(this)">
-    </div> 
-    
-    <!-- contShadow -->
-    <div class="cols-30-30-30">
-        <label for="pg-shadow">Skugga</label>
-        <input type="checkbox" id="pg-shadow" ${contShadow} oninput="on_page_shadow(this)">
-    </div> 
-	
-    <!-- markBg -->
-	<!-- markFg -->
-    <div class="cols-30-30-30">
-        <label for="pg_width">Markering Bakgrund/Text</label>
-        <input type="color" id="pg-markBg" value=${markBg} oninput="on_markBg(this)">
-        <input type="color" id="pg-markFg" value=${markFg} oninput="on_markFg(this)">
-    </div>
-	
-    <!-- markBorder -->
-    <div class="cols-30-30-30">
-        <label for="pg-markBorderColor">Markering Ram</label>
-        <input type="color" id="pg-markBorderColor" value=${markBorderColor} oninput="on_mark_border_color(this)">
-        <input type="number" min="0" max="10" id="pg-markBorderWidth" value=${markBorderWidth} oninput="on_mark_border_width(this)">
-    </div> 
-	
-    <!-- markShadow -->
-    <div class="cols-30-30-30">
-        <label for="pg-markshadow">Markering Skugga</label>
-        <input type="checkbox" id="pg-markshadow" ${markShadow} oninput="on_mark_shadow(this)">
-    </div> 
-	<!-- markFsize -->
-    <div class="cols-30-30-30">
-        <label for="pg-markfsize">Teckenstorlek</label>
-        <select class="tinput" id="pg-markfsize" onchange="on_markFsize(this)">
-            ${fontsizes}
-        </select>
-    </div> 
+<!-- contentW -->
+<!-- contentD -->
+<div class="cols-30-30-30">
+    <label for="pg_width">Bredd/Mellanrum</label>
+    <input type="number" min="10" max="90" id="pg-contentW" value=${contentW} oninput="on_contentW(this)">
+    <input type="number" min="0" max="10" id="pg-contentD" value=${contentD} oninput="on_contentD(this)">
+</div>
 
-	<!-- markBold -->
-	<!-- markItalic -->
-    <div class="cols-30-30-30">
-        <label for="pg-markbold">Markering Fet/Kursiv </label>
-        <input type="checkbox" id="pg-markbold" ${markBold} oninput="on_mark_bold(this)">
-        <input type="checkbox" id="pg-markitalic" ${markItalic} oninput="on_mark_italic(this)">
-    </div> 
+<!-- contBG -->
+<!-- contFG -->
+<div class="cols-30-30-30">
+    <label for="pg_width">Färger Bakgrund/Text</label>
+    <input type="color" id="pg-contBg" value=${contBg} oninput="on_contBg(this)">
+    <input type="color" id="pg-contFg" value=${contFg} oninput="on_contFg(this)">
+</div>
 
-    <hr>
-    <div class="cols-100">
-        <input type="button" value="Klar" onclick="close_page_theme()">
-    </div>
-</form>
+<!-- contBorder -->
+<div class="cols-30-30-30">
+    <label for="pg-borderColor">Ram</label>
+    <input type="color" id="pg-borderColor" value=${contBorderColor} oninput="on_page_border_color(this)">
+    <input type="number" min="0" max="10" id="pg-borderWidth" value=${contBorderWidth} oninput="on_page_border_width(this)">
+</div>
+
+<!-- contShadow -->
+<div class="cols-30-30-30">
+    <label for="pg-shadow">Skugga</label>
+    <input type="checkbox" id="pg-shadow" ${contShadow} oninput="on_page_shadow(this)">
+</div>
+
+<div class="cols-100"> 
+    Det här är en <h2>markering</h2>
+</div>
+
+<!-- markBg -->
+<!-- markFg -->
+<div class="cols-30-30-30">
+    <label for="pg_width">Markering Bakgrund/Text</label>
+    <input type="color" id="pg-markBg" value=${markBg} oninput="on_markBg(this)">
+    <input type="color" id="pg-markFg" value=${markFg} oninput="on_markFg(this)">
+</div>
+
+<!-- markBorder -->
+<div class="cols-30-30-30">
+    <label for="pg-markBorderColor">Markering Ram</label>
+    <input type="color" id="pg-markBorderColor" value=${markBorderColor} oninput="on_mark_border_color(this)">
+    <input type="number" min="0" max="10" id="pg-markBorderWidth" value=${markBorderWidth}
+        oninput="on_mark_border_width(this)">
+</div>
+
+<!-- markShadow -->
+<div class="cols-30-30-30">
+    <label for="pg-markshadow">Markering Skugga</label>
+    <input type="checkbox" id="pg-markshadow" ${markShadow} oninput="on_mark_shadow(this)">
+</div>
+<!-- markFsize -->
+<div class="cols-30-30-30">
+    <label for="pg-markfsize">Teckenstorlek</label>
+    <select class="tinput" id="pg-markfsize" onchange="on_markFsize(this)">
+        ${fontsizes}
+    </select>
+</div>
+
+<!-- markBold -->
+<!-- markItalic -->
+<div class="cols-30-30-30">
+    <label for="pg-markbold">Markering Fet/Kursiv </label>
+    <input type="checkbox" id="pg-markbold" ${markBold} oninput="on_mark_bold(this)">
+    <input type="checkbox" id="pg-markitalic" ${markItalic} oninput="on_mark_italic(this)">
+</div>
+
+<hr>
+<div class="cols-100">
+    <input type="button" value="Klar" onclick="close_page_theme()">

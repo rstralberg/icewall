@@ -3,7 +3,7 @@ let offsetX = 0;
 let offsetY = 0 ;
 let isDragging = false;
 
-function add_form(form_id, html) {
+function add_form(form_id, html, width = 0) {
 
     let body = document.querySelector('body');
 
@@ -14,8 +14,12 @@ function add_form(form_id, html) {
 
     container.style.position = 'fixed';
     container.style.left = '2vw';
-    container.style.top = '6vh';
+    container.style.top = '10vh';
     container.style.zIndex = 2000;
+    if( width > 0 ) {
+        container.style.width = width + 'vw';
+        container.style.left = Math.round( (window.innerWidth - vw2px(width))/2 )+ 'px';
+    }
     
     container.innerHTML = '<h1 class="form-banner"></h1>'  + html;
 

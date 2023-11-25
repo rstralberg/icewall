@@ -4,7 +4,7 @@ function logout() {
         username: get_session_user().username
     }).then(
         (resolve) => {
-            add_form('logout-form', resolve);
+            add_form('logout-form', resolve, 30 );
         }
     );
 }

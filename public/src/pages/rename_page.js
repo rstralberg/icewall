@@ -4,7 +4,7 @@ function rename_page() {
         pageid: get_session_page().id
     }).then(
         (resolve) => {
-            add_form('rename_form', resolve);
+            add_form('rename_form', resolve, 35);
         },
         (reject) => {
             error(reject);

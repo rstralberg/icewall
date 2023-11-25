@@ -20,7 +20,7 @@ function on_page_theme() {
         markItalic: get_style('markItali'),
     }).then(
         (resolve) => {
-            add_form('theme-page-form', resolve);
+            add_form('theme-page-form', resolve, 40);
         }
     )
 }
@@ -78,7 +78,7 @@ function on_page_border_width(element) {
 }
 
 function on_page_shadow(element) {
-    let v = element.value;
+    let v = element.checked;
     set_style('contShadow', v ? '1': '0');
 }
 
@@ -105,7 +105,7 @@ function on_mark_border_width(element) {
 }
 
 function on_mark_shadow(element) {
-    let v = element.value;
+    let v = element.checked;
     set_style('markShadow', v ? '1' : '0');
 }
 
@@ -115,12 +115,12 @@ function on_markFsize(element) {
 }
 
 function on_mark_bold(element) {
-    let v = element.value;
+    let v = element.checked;
     set_style('markBold', v ? 'bold' : 'normal');
 }
 
 function on_mark_italic(element) {
-    let v = element.value;
+    let v = element.checked;
     set_style('markItalic', v ? 'italic' : 'normal');
 }
 

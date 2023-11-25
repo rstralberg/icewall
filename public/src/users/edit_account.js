@@ -10,7 +10,7 @@ function edit_account() {
         picture: user.picture
     }).then(
         (resolve) => {
-            add_form('edit-account-form', resolve);
+            add_form('edit-account-form', resolve, 35);
         },
         (reject) => {
             error(reject);

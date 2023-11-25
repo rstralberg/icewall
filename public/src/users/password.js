@@ -4,7 +4,7 @@ function password(savefunc) {
         savefunc: savefunc
     }).then(
         (resolve) => {
-            add_form('password-form', resolve);
+            add_form('password-form', resolve, 30);
         },
         (reject) => {
             error(reject);

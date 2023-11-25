@@ -3,6 +3,11 @@ function vh2px(vh) {
     return (parseFloat(vh) * window.innerHeight) / 100;
 }
 
+function vw2px(vw) {
+    return (parseFloat(vw) * window.innerWidth) / 100;
+}
+
+
 function buffer_to_base64(buffer) {
     let binary = "";
     const bytes = new Uint8Array(buffer);
