@@ -1,10 +1,8 @@
 
 function on_line() {
-    hide_content_pop();
- 
-    let hr = document.createElement('hr');
-    get_session_selection().append(hr);
-    get_session_selection().innerHTML += '<br>';
+    let  section = get_session_selection();
+    section.innerHTML += '<article type="line"><hr></article>';
     on_save_content();
-
+    attach_editor(section);
+    
 }

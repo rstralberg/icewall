@@ -1,6 +1,6 @@
 
 function on_soundcloud() {
-    hide_content_pop();
+    
   
     server('content/addons/soundcloud', {
         url: ''
@@ -22,10 +22,13 @@ function on_soundcloud_pasted(element) {
     document.getElementById('sc-save-button').focus();
 }
 
-function on_soudcloud_save() {
-
+function on_soundcloud_save() {
     let html = document.getElementById('sc-frame').innerHTML;
-    get_session_selection().innerHTML += html + '<br>';
     close_soundcloud();
+
+    let section = get_session_selection();
+    section.innerHTML += '<article type="soundcloud">' + html + '</article>';
+    on_save_content();
+    attach_editor(section);
 }
 

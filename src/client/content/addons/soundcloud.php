@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../../utils/verify_client_args.php';
 
 if (verify_client_args($args, ['url'])) {
 
-    send_resolve( load_form(__DIR__.'/oundcloud', [
+    send_resolve( load_form(__DIR__.'/soundcloud', [
         'url' => $args->url
     ]) );
 }

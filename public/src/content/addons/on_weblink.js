@@ -1,10 +1,12 @@
 
-function on_weblink() {
-    hide_content_pop();
+function on_weblink(url='', text='', callback='on_save_weblink') {
+    
+    if( text==='' ) text = get_selected_text();
 
     server('content/addons/weblink', {
-        url: '',
-        text: ''
+        url: url,
+        text: text,
+        callback: callback
     }).then(
         (resolve) => {
             add_form('weblink-form', resolve);
@@ -20,6 +22,11 @@ function on_save_weblink() {
 
     let html = '<a target="_blank" href="' + document.getElementById('wl-link').value +
         '">' + document.getElementById('wl-text').value + '</a>';
-    get_session_selection().innerHTML += html + '<br>';
     close_weblink();
+
+    let section = get_session_selection();
+    section.innerHTML += '<article type="weblink">' + html + '</article>';
+    on_save_content();
+    attach_editor(section);
+
 }

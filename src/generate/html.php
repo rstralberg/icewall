@@ -1,7 +1,5 @@
 <?php
 require_once __DIR__ . '/head.php';
-require_once __DIR__ . '/content_menu/content_menu.php';
-require_once __DIR__ . '/admin_menu/admin_menu.php';
 require_once __DIR__ . '/../utils/load_html.php';
 
 /*

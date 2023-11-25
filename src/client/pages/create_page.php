@@ -26,7 +26,7 @@ if (verify_client_args($args, ['title', 'author', 'isParent', 'parentId', 'pos',
 
     $id = db_insert($db, 'contents',
         ['pageId', 'pos', 'html', 'style', 'isPublic'],
-        [$pageid, 0, $sites[0]['title'] . ' ' . $args->title, '', true]);
+        [$pageid, 0, '<article type="title"><h1>' . $sites[0]['title'] . ' ' . $args->title . '</h1></article>', '', true]);
     if ($id === false) {
         db_close($db);
         send_reject('Kunde inte skapa innehåll till sidan');

@@ -18,8 +18,8 @@ section:last-child {
 }
 
 .active-section {
-	background: var(--contBg);
-	outline-width: calc(2 * var(--contBorder)); 
+	background: var(--contBg) !important;
+	outline-width: calc(2 * var(--contBorder)) !important; 
 }
 
 section picture {
@@ -41,6 +41,22 @@ section img {
     max-width: calc( 0.8 * var(--contentW ));
 }
 
+.public {
+	outline: var(--contBorder) !important;
+}
+
+.draft {
+	outline: 2px solid red !important;
+}
+
+article {
+	outline: none;
+	padding: 1em;
+}
+
+article:hover {
+	outline: 1px dashed var(--contFg);
+}
 
 @media screen and (max-width: 1024px) {
 

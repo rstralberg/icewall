@@ -46,7 +46,7 @@ function create_contents(mysqli $db, int $pageId, array $site): void
     if (verify_contents_table($db, $site['key'] )) {
         db_insert($db, 'contents',
             ['pageId', 'pos', 'html', 'style', 'isPublic'],
-            [$pageId, 0, $site['title'], 'text-align="center"', 1]
+            [$pageId, 0, '<article type="title"><h1>' . $site['title'] . '</h1></article>', 'text-align="center"', 1]
         );
     }
 }

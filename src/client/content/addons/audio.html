@@ -1,4 +1,4 @@
-<form style="width:40vw" enctype="multipart/form-data">
+<form enctype="multipart/form-data">
     
     <h1>MP3 Musik</h1>
 
@@ -6,6 +6,7 @@
 
         <div class="cols-100">
             <audio id="au-player" controls src="${url}"></audio>
+            <input type="hidden" id="au-src" src="${url}"></audio>
         </div>
         
         <hr>
@@ -22,7 +23,7 @@
         <hr>
         
         <div class="cols-100">
-            <input disabled id="au-save-button" type="button" value="OK" onclick="on_save_audio()">
+            <input id="au-save-button" type="button" value="OK" onclick="${callback}()">
         </div>
         
         <div class="cols-100">

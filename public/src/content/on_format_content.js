@@ -1,31 +1,35 @@
 
 function on_format_content(arg) {
-    hide_content_pop();
-    if( !is_valid(cur_element) ) return;
+    
+    if( !is_valid(cur_article) ) return;
     
     switch (arg) {
-        case 'normal': break;
+        case 'bold': 
+            toggle_tag('strong'); 
+            break;
+        
+        case 'italic': 
+            toggle_tag('em'); 
+            break;
 
-        case 'bold': toggle_tag('strong'); break;
-        case 'italic': toggle_tag('em'); break;
-        case 'mark': toggle_tag('h2'); break;
+        case 'mark': 
+            toggle_tag('h2'); 
+            break;
 
         case 'align-left':
-            if( cur_element.tagName === 'IMG') align_image(cur_element, 'left');
+            if( cur_article.tagName === 'IMG') align_image(cur_article, 'left');
             break;
 
         case 'align-center':
-            if( cur_element.tagName === 'IMG') align_image(cur_element, 'center');
+            if( cur_article.tagName === 'IMG') align_image(cur_article, 'center');
             break;
 
         case 'align-right':
-            if( cur_element.tagName === 'IMG') align_image(cur_element, 'right');
+            if( cur_article.tagName === 'IMG') align_image(cur_article, 'right');
             break;
 
         case 'shadows':
-            if( is_valid(cur_element) ) {
-                cur_element.classList.add('shadow');
-            }
+            toggle_class(cur_article, 'shadow');
             break;
     }
 }
@@ -35,7 +39,6 @@ function align_image(element, align) {
     if( !is_valid(element.parentElement)) return;
     if( !is_valid(element.parentElement.parentElement)) return;
     element.parentElement.parentElement.style.textAlign = align;
-
 }
 
 
@@ -45,6 +48,8 @@ function toggle_tag(tagName) {
     if (selection.rangeCount === 0) return;
 
     let range = selection.getRangeAt(0);
+    if( !is_valid(range) ) return;
+    
     let node = null;
     if (range.startContainer === range.endContainer) {
         node = range.startContainer;
@@ -65,22 +70,3 @@ function toggle_tag(tagName) {
     }
 }
 
-function clear_tags() {
-    let selection = window.getSelection();
-    if (selection.rangeCount === 0) return;
-
-    let range = selection.getRangeAt(0);
-    let node = null;
-    if (range.startContainer === range.endContainer) {
-        node = range.startContainer;
-    }
-    else {
-        node = range.startContainer.nextSibling;
-    }
-
-    if (is_valid(node.parentNode) && node.parentNode.nodeName !== '#text' ) {
-        let tagElement = node.parentElement;
-        let textNode = tagElement.firstChild;
-        tagElement.parentNode.replaceChild(textNode, tagElement);
-    }
-}   

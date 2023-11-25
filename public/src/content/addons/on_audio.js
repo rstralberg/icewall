@@ -1,10 +1,10 @@
 
-function on_audio() {
-    hide_content_pop();
+function on_audio(url = '',  comment = '', callback = 'on_save_audio') {
 
     server('content/addons/audio', {
-        url: '',
-        comment: ''
+        url: url,
+        comment: comment,
+        callback: callback
     }).then(
         (resolve) => {
             add_form('audio-form', resolve);
@@ -30,7 +30,7 @@ function on_audio_selected(element) {
                     get_session_page().id + '/' +
                     get_session_selection().id.substr(1) + '/' +
                     'mp3/' + resolve.content;
-
+                document.getElementById('au-src').value = player.src;
                 enable_element('au-save-button', true);
             }
             else {
@@ -54,14 +54,15 @@ function on_save_audio() {
     player.id='';
 
     let html = 
-    '<figure style="text-align:center">' +
+    '<article type="audio"><figure style="text-align:center">' +
         player.parentElement.innerHTML + 
         '<figcaption>' + caption + '</figcaption>' +
-    '</figure><br>';
+    '</figure></article>';
     content.innerHTML += html;
     close_audio();
 
-    on_save_content();    
+    on_save_content();
+    attach_editor(content);
 }
 
 function close_audio() {

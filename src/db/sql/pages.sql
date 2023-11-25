@@ -1,1 +1,1 @@
-INSERT INTO `pages` (`title`,`author`,`isParent`,`parentId`,`pos`,`showTitle`,`isPublic`) VALUES ('Roland Strålberg','admin',0,2,0,1,0)
+INSERT INTO `pages` (`title`,`parentId`,`author`,`showTitle`,`pos`,`isParent`,`isPublic`) VALUES ('Start',0,'admin',1,0,0,1)

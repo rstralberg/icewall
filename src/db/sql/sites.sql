@@ -1,1 +1,1 @@
-UPDATE `sites` SET `title`='KalixMixen',`owner`='Roland Strålberg',`email`='rstralberg@pm.me',`logo`='logo.png',`theme`='IceWall' WHERE `key`='km'
+INSERT INTO `sites` (`key`,`title`,`owner`,`email`,`logo`,`theme`) VALUES ('gg','GrafitGubben','Roland Strålberg','rstralberg@pm.me','images/avatar.png','IceWall')

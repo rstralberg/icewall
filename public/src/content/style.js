@@ -12,7 +12,7 @@ function update_section_style() {
             id: parseInt(section.id.substring(1)),
             style: style
         }).then(
-            () => { update_content_tools(section); },
+            () => { },
             (reject) => { alert(reject); }
         );
     }

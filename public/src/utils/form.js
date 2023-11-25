@@ -7,6 +7,7 @@ function add_form(form_id, html) {
     container.style.position = 'fixed';
     container.style.left = '2vw';
     container.style.top = '6vh';
+    container.style.zIndex = 2000;
     container.innerHTML = html;
     body.appendChild(container);
 }

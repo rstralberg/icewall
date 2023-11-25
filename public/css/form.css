@@ -1,21 +1,18 @@
 form {
-	display: block;
-	position: absolute;
-	left: calc( var(--contentW)/2 );
-	top: calc( var(--headerH) + var(--titleH) + ( 2 * var(--contentD) ) );
-	width: auto;
-	height: auto;
-	margin: 2vh;
-	padding: 4vh;
-	background: var(--formBg);
-	color: var(--formFg);
-	min-width: var(--formWidth);
-	min-height: var(--formHeight);
-	border-radius: var(--radius);
-	outline: var(--formBorder);
-	box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadow));
-	z-index: 10;
-	position: absolute;
+    display: block;
+    left: calc( 50vw - (60vw/2));
+    top: 10vh;
+    width: 60vw;
+    height: auto;
+    margin: 2vh;
+    padding: 4vh;
+    background: var(--formBg);
+    color: var(--formFg);
+    border-radius: var(--radius);
+    outline: var(--formBorder);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadow));
+    position: absolute;
+	z-index: 2000 !important;
 }
 
 form input {
@@ -24,6 +21,5 @@ form input {
 
 form input[type=button] {
 	width: auto !important;
-
 }
 

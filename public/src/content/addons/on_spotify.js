@@ -1,9 +1,10 @@
 
-function on_spotify() {
-    hide_content_pop();
+function on_spotify(url='', callback='on_spotify_save') {
+ 
  
     server('content/addons/spotify', {
-        url: ''
+        url: url,
+        callback: callback
     }).then(
         (resolve) => {
             add_form('spotify-form', resolve);
@@ -23,11 +24,11 @@ function on_spotify_pasted(element) {
 }
 
 function on_spotify_save() {
-
     let html = document.getElementById('sp-frame').innerHTML;
-    get_session_selection().innerHTML += html + '<br>';
     close_spotify();
 
+    let section = get_session_selection();
+    section.innerHTML += '<article type="spotify">' + html + '</article>';
 
 }
 

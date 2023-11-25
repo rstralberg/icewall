@@ -5,13 +5,13 @@
     <hr>
 
     <div class="cols-100">
-        <div id="ai-image"></div>
-        <input type="hidden" id="ai-src">
+        <div id="ai-image"><img src="${url}" width="${size}" height="auto"></div>
+        <input type="hidden" id="ai-src" value="${url}">
     </div>
 
     <div class="cols-40-60">
         <label for="ai-file">Klicka för att välja bild:</label>
-        <input accept="image/jpeg, image/png, image/jpg" type="file" id="ai-file" name="file" onchange="on_image_file(this)">
+        <input accept="image/jpeg, image/png, image/jpg" type="file" id="ai-file" name="file" value="${url}" onchange="on_image_file(this)">
     </div>
 
     <div class="cols-40-60">
@@ -22,7 +22,7 @@
     <hr>
 
     <div class="cols-100">
-        <input disabled type="button" id="ai-save" value="Spara" onclick="on_image_save()">
+        <input type="button" id="ai-save" value="Spara" onclick="${save}('ai-src')">
     </div>
 
     <div class="cols-100">

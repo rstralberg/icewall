@@ -1,0 +1,42 @@
+.pop {
+	display: none;
+	width: auto;
+	height: auto;
+    z-index: 1000;
+    background-color: white;
+	color: black;
+	border: none;
+	outline: black;
+	font-size: small;
+	margin:0 !important;
+	padding:0 !important;
+	border-radius: 16px;
+	text-align: center;
+}
+
+.pop input[type=button] {
+	background-color: white;
+	color: black;
+	outline: none;
+	border:none;
+	font-size: small;
+	margin: 2px 2px 2px 2px;
+	box-shadow: none;
+}
+
+.pop input[type=button]:hover {
+	color: white;
+	background-color: black;
+}
+
+.pop figure {
+	background-color: white;
+	color: darkblue;
+	text-decoration: underline;
+	outline: 1px solid darkblue;
+	border-radius: 8px;
+	margin: 4px;
+	padding: 0;
+	font-weight: bold;
+	font-size: medium;
+}

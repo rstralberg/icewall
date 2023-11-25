@@ -1,27 +1,26 @@
 
 function on_public_content() {
     
-    let public = false;
-    let btn = document.getElementById('cont-public');
-    if( !btn.classList.contains('active') ) {
-        public = true;
-    }
+    let section = get_session_selection();
+    if( !is_valid(section) ) return;
+
+    let public = section.getAttribute('ispublic')  === 'true';
 
     server('content/content_public', {
-        id: get_session_selection().id.substr(1),
-        public: public
+        id: section.id.substr(1),
+        public: !public
     }).then(
         (resolve) => {
             let section = get_session_selection();
             if( resolve ) {
-                if( !btn.classList.contains('active') ) {
-                    btn.classList.add('active');
-                    section.setAttribute('ispublic', 'true');
-                }
+                section.setAttribute('ispublic', 'true');
+                replace_class(section, 'draft', 'public');
+                org_class =  'public';
             }
             else {
-                if( btn.classList.contains('active') ) btn.classList.remove('active');
                 section.setAttribute('ispublic', 'false');
+                replace_class(section, 'public', 'draft');
+                org_class =  'draft';
             }
         }
     );

@@ -1,7 +1,7 @@
 
 function on_youtube() {
  
-    hide_content_pop();
+    
     server('content/addons/youtube', {
         url: ''
     }).then(
@@ -31,7 +31,8 @@ function on_youtube_save() {
     frame.classList.add('shadow');
     
     let iframe = frame.firstChild;
-
+    close_youtube();
+    
     let frame_width = parseInt(iframe.style.width);
     let frame_height = parseInt(iframe.style.height);
     let ratio = frame_width/frame_height;
@@ -41,10 +42,8 @@ function on_youtube_save() {
     iframe.style.height = desired_height + 'px';
     iframe.style.width = '-webkit-fill-available';
 
-    let html = '<div style="text-align:center">' + frame.innerHTML + '</div></br>';
-
-    get_session_selection().innerHTML += html ;
-
-
-    close_youtube();
+    let html = '<article type="youtube" style="text-align:center">' + frame.innerHTML + '</article></br>';
+    section.innerHTML += html ;
+    on_save_content();
+    attach_editor(section);
 }

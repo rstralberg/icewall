@@ -1,1 +1,1 @@
-UPDATE `themes` SET `fbarBold`='normal',`fbarItalic`='italic',`fbarFsize`='small' WHERE `name`='IceWall'
+UPDATE `themes` SET `contBg`='#303030',`contFg`='#ffffff',`contBorder`='1px solid #ffffff',`contShadow`='1' WHERE `name`='IceWall'

@@ -21,11 +21,15 @@ if (verify_client_args($args, ['username'])) {
                 $logoSrc = $logoResque;
             }
             $html .= '<a href="" onclick="logout()">
+                        <figure>
                         <img class="avatar-img" src="' . $logoSrc . '" alt="' . $user['username'] . '">
+                        <figcaption>'.$args->username.'</figcaption>
+                        </figure>
                     </a>';
         }
     } else {
-        $html .= '<a href="" onclick="login()">
+        $html .= 
+        '<a href="" onclick="login()">
             <img class="avatar-img" src="' . $logoSrc . '" alt="">
         </a>';
     }

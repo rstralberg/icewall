@@ -12,40 +12,6 @@ function get_content() {
 
 }
 
-// function save_content() {
-//     let select = get_session_selection();
-//     if (select) {
-
-//         let container = document.getElementById('content');
-//         let pos = 0;
-//         for (; pos < container.childElementCount; pos++) {
-//             let sec = container.children[pos];
-//             if (sec.id === select.id) {
-//                 break;
-//             }
-//         }
-//         let isPublic = document.getElementById('cont-public').classList.contains('active');
-
-//         // we just catch a few 
-//         let cstyle = window.getComputedStyle(select);
-//         let style = '';
-//         if (cstyle.textAlign !== '') style += 'text-align:' + cstyle.textAlign;
-
-//         let content = {
-//             id: parseInt(select.id.substring(1)),
-//             pos: pos,
-//             html: select.innerHTML,
-//             style: style,
-//             isPublic: isPublic
-//         };
-
-//         server('content/update', content).then(
-//             () => {
-//             },
-//             (reject) => { error(reject); }
-//         );
-//     }
-// }
 
 function draw_content(contents) {
 
@@ -56,7 +22,14 @@ function draw_content(contents) {
         let section = document.createElement('section');
         section.innerHTML = content.html;
         section.id = 's' + content.id;
-        section.setAttribute('ispublic', content.isPublic === '1' ? 'true' : 'false');
+        if( content.isPublic === '1') {
+            section.setAttribute('ispublic', 'true');
+            replace_class( section, 'draft', 'public' );
+        }
+        else {
+            section.setAttribute('ispublic', 'false');
+            replace_class( section, 'public', 'draft' );
+        }
         if (content.style != '') {
             section.style = content.style;
         }

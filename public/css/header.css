@@ -18,16 +18,31 @@
 }
 
 #top-logo {
+    background-color: transparent !important;
     position: fixed;
-    left: 2vw;
+    left: calc( 50vw - (var(--menuW)/2) - 6vw);
+    margin-left:0;
+    margin-top: calc( var(--headerH)/2 );
     outline: none;
     border: none;
-    box-shadow: none;
+}
+
+#top-logo figcaption {
+    font-style: italic;
+    font-size: small;
+    color: var(--barsFg);
+    padding: 0;
+    margin:0;
+}
+
+#top-logo figure {
+    margin: 0;
 }
 
 #top-logo img {
     height: var(--headerH);
     width: auto;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
 }
 
 #top-menu {
@@ -50,19 +65,32 @@
     margin: 2px;
 }
 
-
-
 #top-avatar {
     position: fixed;
-    right: var(--headerH);
+    left: calc( 50vw + (var(--menuW)/2) + 2vw );
+    margin-top: calc( var(--headerH)/2 );
     outline: none;
     border: none;
-    box-shadow: none;
+}
+
+#top-avatar figure {
+    margin: 0;
+}
+
+
+
+#top-avatar figcaption {
+    font-style: italic;
+    font-size: small;
+    color: var(--barsFg);
+    padding: 0;
+    margin:0;
 }
 
 #top-avatar img {
-    height: var(--headerH);
+    height: calc( var(--headerH) - 1em );
     width: auto;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
 }
 
 @media screen and (max-width: 600px) {

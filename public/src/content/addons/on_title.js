@@ -1,16 +1,18 @@
 
-function on_title() {
-    hide_content_pop();
-    simple('Titel', 'Text', '', 'on_title_value');
+function on_title(text='', callback='on_title_value' ) {
+    
+    simple('Titel', 'Text', text, callback);
 }
 
 function on_title_value(valueElement) {
-    let h1 = document.createElement('h1');
-    h1.innerText = valueElement.value;
+
+    let text  = valueElement.value;
     close_simple();
-    get_session_selection().append(h1);
-    get_session_selection().innerHTML += '<br>';
+    
+    let section = get_session_selection();
+    section.innerHTML += '<article type="title"><h1>' + text + '</h1></article>';
     on_save_content();
+    attach_editor(section);
 
 }
 

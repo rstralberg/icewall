@@ -24,8 +24,12 @@ if (verify_client_args($args, [])) {
     if (!file_exists($path)) {
         $logoSrc = $logoResque;
     }
-    send_resolve( compress_html('<a href="" onclick="logo_clicked()">
+    send_resolve( compress_html('
+        <figure>
+            <a href="" onclick="logo_clicked()">
                 <img class="logo" src="' . $logoSrc . '" alt="' . $site['title'] . '">
-            </a>'));
+            </a>
+            <figcaption>'.$site['title'].'</figcaption>
+        </figure>'));
 }
 
