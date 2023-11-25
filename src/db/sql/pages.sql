@@ -1,1 +1,1 @@
-INSERT INTO `pages` (`title`,`parentId`,`author`,`showTitle`,`pos`,`isParent`,`isPublic`) VALUES ('Start',0,'admin',1,0,0,1)
+INSERT INTO `pages` (`title`,`parentId`,`author`,`showTitle`,`pos`,`isParent`,`isPublic`,`contentW`,`contentD`,`contBg`,`contFg`,`contBorder`,`contShadow`,`markBg`,`markFg`,`markBorder`,`markShadow`,`markFsize`,`markBold`,`markItalic`) VALUES ('Start',0,'admin','1',0,'0','1','40vw','2vh','#303030','#ffffff','1px solid #ffffff','1','#303030','#ffa500','1px solid #ffa500','1','medium','bold','normal')

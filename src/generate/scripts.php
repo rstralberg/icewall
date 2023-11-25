@@ -10,7 +10,6 @@ function scripts() : string {
 
     $html.= script('src/utils/conv');
     $html.= script('src/utils/elements');
-    $html.= script('src/utils/form');
     $html.= script('src/utils/images');
     $html.= script('src/utils/server');
     $html.= script('src/utils/session');
@@ -47,11 +46,11 @@ function scripts() : string {
     
     $html.= script('src/image/add_image');
     
+    $html.= script('src/forms/form');
     $html.= script('src/forms/popup');
     $html.= script('src/forms/error');
     $html.= script('src/forms/simple');
     $html.= script('src/forms/yesno');
-
     
     $html.= script('src/pages/page');
     $html.= script('src/pages/create_page');
@@ -80,11 +79,14 @@ function scripts() : string {
     $html.= script('src/themes/menu');
     $html.= script('src/themes/title');
     $html.= script('src/themes/mark');
+    $html.= script('src/themes/page');
     
     $html.= script('src/users/login');
     $html.= script('src/users/logout');
     $html.= script('src/users/password');
     $html.= script('src/users/edit_users');
+    $html.= script('src/users/edit_account');
+    $html.= script('src/users/delete_account');
     
     $html.= script('src/footer/get_footer');
 

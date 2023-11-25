@@ -26,7 +26,7 @@ if (verify_client_args($args, [])) {
     }
     send_resolve( compress_html('
         <figure>
-            <a href="" onclick="logo_clicked()">
+            <a href="#" onclick="logo_clicked()">
                 <img class="logo" src="' . $logoSrc . '" alt="' . $site['title'] . '">
             </a>
             <figcaption>'.$site['title'].'</figcaption>

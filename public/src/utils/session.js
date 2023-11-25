@@ -49,7 +49,7 @@ function get_session_user() {
         }
     }
     return {
-        username: 'admin',
+        username: '',
         fullname: '',
         email: '',
         picture: ''

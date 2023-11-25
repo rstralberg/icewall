@@ -25,7 +25,7 @@ function html(mysqli $db, int $pageId, string $sitekey, string $siteName, string
 {
 
     $html = '<!DOCTYPE html><html lang="sv">';
-    $html .= head($db, $siteName, $siteTheme);
+    $html .= head($db, $siteName, $siteTheme, $pageId);
 
     $html .=
     '<body>

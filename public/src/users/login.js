@@ -1,5 +1,5 @@
 function login() {
-    server('show_login', {}).then(
+    server('users/login_form', {}).then(
         (resolve) => {
             add_form('login-form', resolve);
         },
@@ -7,33 +7,20 @@ function login() {
 }
 
 
-function on_login_username() {
-    enable_element('li-password', document.getElementById('li-username').value.length>0);
-}
-
-function on_login_password() {
-    enable_element('li-login', document.getElementById('li-password').value.length>0);
-}
-
 function on_login() {
 
-    server( 'login', {
+    server( 'users/login', {
         username: document.getElementById('li-username').value,
         password: document.getElementById('li-password').value
     }).then( 
         (resolve) => {
             let user = JSON.parse(resolve);
             set_session_user(user);
-            document.getElementById('navbar-logo').src = user.picture;
-            get_top_menu();
-            remove_form('login-form');
-            usr_menu();
-            adm_menu();
-            
+            get_avatar();
+            on_close_login();
         },
         (reject) => {
-            alert(reject);
-            remove_form('login-form');
+            on_close_login();
         }
     );
 

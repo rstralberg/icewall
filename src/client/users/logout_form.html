@@ -1,30 +1,28 @@
-<form enctype="multipart/form-data">
 
-    <h1>Logga ut ${username}</h1>
+<h1>${username}</h1>
 
-    <input type="hidden" id="logout-username" value="${username}">
-    <hr>
-    
-    <div class="cols-100" style="text-align: center;">
-        Vad du vill göra?
-    </div>
+<input type="hidden" id="logout-username" value="${username}">
+<hr>
 
-    <div class="cols-100">
-        <input type="button" value="Logga ut" onclick="logout_selected()">
-    </div>
+<div class="cols-100" style="text-align: center;">
+    Vad du vill göra?
+</div>
 
-    <div class="cols-100">
-        <input type="button" value="Redigera ditt konto" onclick="edit_account_selected()">
-    </div>
+<div class="cols-100">
+    <input type="button" value="Logga ut" onclick="on_logout()">
+</div>
 
-    <div class="cols-100">
-        <input ${disabled} type="button" value="Radera ditt konto" onclick="delete_account_selected()">
-    </div>
+<div class="cols-100">
+    <input type="button" value="Redigera ditt konto" onclick="edit_account()">
+</div>
 
-    <hr>
+<div class="cols-100">
+    <input ${disabled} type="button" value="Radera ditt konto" onclick="delete_account()">
+</div>
 
-    <div class="cols-100">
-        <input type="button" value="Stäng" onclick="logout_close()">
-    </div>
+<hr>
 
-</form>
+<div class="cols-100">
+    <input type="button" value="Stäng" onclick="logout_close()">
+</div>
+

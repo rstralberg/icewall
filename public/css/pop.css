@@ -40,3 +40,13 @@
 	font-weight: bold;
 	font-size: medium;
 }
+
+.pop-banner {
+    background-color: black;
+    color: white;
+    box-shadow: none;
+    border:none;
+    outline: 1px solid white;
+    cursor: grab;
+    height: 1em;
+}

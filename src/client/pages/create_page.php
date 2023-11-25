@@ -24,6 +24,19 @@ if (verify_client_args($args, ['title', 'author', 'isParent', 'parentId', 'pos',
         exit(0);
     }
 
+    $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', $sites[0]['theme']));
+    if( $themes !== false && gettype($themes) !== 'string' ) {
+        $theme = $themes[0];
+        db_update($db, 'pages', [
+            'contentW','contentD','contBg','contFg','contBorder','contShadow',
+            'markBg','markFg','markBorder','markShadow','markFsize','markBold','markItalic'], [
+            $theme['contentW'],$theme['contentD'],$theme['contBg'],$theme['contFg'],
+            $theme['contBorder'],$theme['contShadow'], $theme['markBg'],$theme['markFg'],
+            $theme['markBorder'],$theme['markShadow'],$theme['markFsize'],
+            $theme['markBold'],$theme['markItalic']],            
+            db_where($db, 'id', $pageid));
+    }
+
     $id = db_insert($db, 'contents',
         ['pageId', 'pos', 'html', 'style', 'isPublic'],
         [$pageid, 0, '<article type="title"><h1>' . $sites[0]['title'] . ' ' . $args->title . '</h1></article>', '', true]);

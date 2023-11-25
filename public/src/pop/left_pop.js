@@ -10,6 +10,7 @@ function  init_left_pop() {
                 if (is_valid(form)) {
                     form.classList.remove('form');
                     form.classList.add('pop');
+                    replace_class(form.querySelector('h1'),'form-banner', 'pop-banner');
                 }
                 let side = document.getElementById('left-side');
                 side.addEventListener('contextmenu', (e) => { e.preventDefault();})

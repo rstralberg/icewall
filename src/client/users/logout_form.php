@@ -10,5 +10,5 @@ if (verify_client_args($args, ['username'])) {
           'username' => $args->username,
           'disabled' => $args->username === 'admin' ? 'disabled' : ''
      ]));
-
+     exit(0);
 }

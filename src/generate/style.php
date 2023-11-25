@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../db/db.php';
 
-function style(mysqli $db, string $themeName): string
+function style(mysqli $db, string $themeName, int $pageId): string
 {
     $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', $themeName));
     if( $themes === false || gettype($themes) === 'string' ) {
@@ -28,8 +28,6 @@ function style(mysqli $db, string $themeName): string
     $root .= '--menuW:' . $theme['menuW'] . ';';
     $root .= '--infoW:' . $theme['infoW'] . ';';
     $root .= '--titleW:' . $theme['titleW'] . ';';
-    $root .= '--contentW:' . $theme['contentW'] . ';';
-    $root .= '--contentD:' . $theme['contentD'] . ';';
 
     $root .= '--radius:' . $theme['radius'] . ';';
     $root .= '--linkFg:' . $theme['linkFg'] . ';';
@@ -54,12 +52,7 @@ function style(mysqli $db, string $themeName): string
     $root .= '--fbarBold:' . $theme['fbarBold'] . ';';
     $root .= '--fbarItalic:' . $theme['fbarItalic'] . ';';
     $root .= '--fbarFsize:' . $theme['fbarFsize'] . ';';
-    
-    $root .= '--contBg:' . $theme['contBg'] . ';';
-    $root .= '--contFg:' . $theme['contFg'] . ';';
-    $root .= '--contBorder:' . $theme['contBorder'] . ';';
-    $root .= '--contShadow:' . $theme['contShadow'] . ';';
-    
+        
     $root .= '--formBg:' . $theme['formBg'] . ';';
     $root .= '--formFg:' . $theme['formFg'] . ';';
     $root .= '--formBorder:' . $theme['formBorder'] . ';';
@@ -91,6 +84,12 @@ function style(mysqli $db, string $themeName): string
     $root .= '--inpShadow:' . $theme['inpShadow'] . ';';
     $root .= '--inpBorder:' . $theme['inpBorder'] . ';';
 
+    $root .= '--contentW:' . $theme['contentW'] . ';';
+    $root .= '--contentD:' . $theme['contentD'] . ';';
+    $root .= '--contBg:' . $theme['contBg'] . ';';
+    $root .= '--contFg:' . $theme['contFg'] . ';';
+    $root .= '--contBorder:' . $theme['contBorder'] . ';';
+    $root .= '--contShadow:' . $theme['contShadow'] . ';';
     $root .= '--markBg:' . $theme['markBg'] . ';';
     $root .= '--markFg:' . $theme['markFg'] . ';';
     $root .= '--markBorder:' . $theme['markBorder'] . ';';
@@ -99,6 +98,38 @@ function style(mysqli $db, string $themeName): string
     $root .= '--markBold:' . $theme['markBold'] . ';';
     $root .= '--markItalic:' . $theme['markItalic'] . ';';
 
+    $pages = db_select($db, 'pages', ['*'], db_where($db, 'id', $pageId));
+    if( $pages !== false && gettype($pages) !== 'string' ) {
+        $page = $pages[0];
+        $root .= '--contentW:' . $page['contentW'] . ';';
+        $root .= '--contentD:' . $page['contentD'] . ';';
+        $root .= '--contBg:' . $page['contBg'] . ';';
+        $root .= '--contFg:' . $page['contFg'] . ';';
+        $root .= '--contBorder:' . $page['contBorder'] . ';';
+        $root .= '--contShadow:' . $page['contShadow'] . ';';
+        $root .= '--markBg:' . $page['markBg'] . ';';
+        $root .= '--markFg:' . $page['markFg'] . ';';
+        $root .= '--markBorder:' . $page['markBorder'] . ';';
+        $root .= '--markShadow:' . $page['markShadow'] . ';';
+        $root .= '--markFsize:' . $page['markFsize'] . ';';
+        $root .= '--markBold:' . $page['markBold'] . ';';
+        $root .= '--markItalic:' . $page['markItalic'] . ';';
+    } else {
+        $root .= '--contentW:' . $theme['contentW'] . ';';
+        $root .= '--contentD:' . $theme['contentD'] . ';';
+        $root .= '--contBg:' . $theme['contBg'] . ';';
+        $root .= '--contFg:' . $theme['contFg'] . ';';
+        $root .= '--contBorder:' . $theme['contBorder'] . ';';
+        $root .= '--contShadow:' . $theme['contShadow'] . ';';
+        $root .= '--markBg:' . $theme['markBg'] . ';';
+        $root .= '--markFg:' . $theme['markFg'] . ';';
+        $root .= '--markBorder:' . $theme['markBorder'] . ';';
+        $root .= '--markShadow:' . $theme['markShadow'] . ';';
+        $root .= '--markFsize:' . $theme['markFsize'] . ';';
+        $root .= '--markBold:' . $theme['markBold'] . ';';
+        $root .= '--markItalic:' . $theme['markItalic'] . ';';
+    }
+    
     $root .= '}';
     return '<style>' . $root . '</style>';
-    }
+    }   

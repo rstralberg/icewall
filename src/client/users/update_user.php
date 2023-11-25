@@ -21,6 +21,10 @@ if (verify_client_args($args, ['username', 'fullname', 'email', 'picture', 'pass
         [$args->fullname, $args->email, $args->picture, password_hash($args->password, PASSWORD_DEFAULT) ],
         db_where($db,'username', $args->username));
     }
+
+    $users = db_select($db, 'users', ['username', 'fullname', 'email', 'picture', 'password'], db_where($db, 'username', $args->username));
+    $user = $users[0];
+
     db_close($db);
 
     if( $res === false ) {
@@ -32,7 +36,7 @@ if (verify_client_args($args, ['username', 'fullname', 'email', 'picture', 'pass
         exit(0);
     }
 
-    send_resolve(true);
+    send_resolve(json_encode($user));
 }
 
 ?>

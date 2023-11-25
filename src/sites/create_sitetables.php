@@ -12,9 +12,9 @@ function create_sitetables(array $site): void
     $db = db_open($site['key']);
 
     create_site($db, $site);
+    create_themes($db, $site);
     $pageId = create_pages($db, $site);
     create_contents($db, $pageId, $site);
-    create_themes($db, $site);
     create_users($db, $site);
 
     db_close($db);
@@ -34,8 +34,10 @@ function create_pages(mysqli $db, array $site): int
 {
     if (verify_pages_table($db, $site['key']) ) {
         return db_insert($db, 'pages',
-            ['title', 'parentId', 'author', 'showTitle', 'pos', 'isParent', 'isPublic'],
-            ['Start', 0, 'admin', 1, 0, 0, 1]
+            ['title', 'parentId', 'author', 'showTitle', 'pos', 'isParent', 'isPublic','contentW',
+            'contentD','contBg','contFg','contBorder','contShadow','markBg','markFg','markBorder',
+            'markShadow','markFsize','markBold','markItalic'],
+            get_default_page($db, 'Start',  'admin') 
         );
     }
     return 0;

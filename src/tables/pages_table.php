@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../db/db.php';
+require_once __DIR__ . '/../config.php';
 
 function create_pages_table(mysqli $db, string $database): bool
 {
@@ -12,6 +13,19 @@ function create_pages_table(mysqli $db, string $database): bool
         'pos',
         'isParent',
         'isPublic',
+        'contentW',
+        'contentD',
+        'contBg',
+        'contFg',
+        'contBorder',
+        'contShadow',
+        'markBg',
+        'markFg',
+        'markBorder',
+        'markShadow',
+        'markFsize',
+        'markBold',
+        'markItalic',
     ], [
         'VARCHAR(60) NOT NULL UNIQUE', // title
         'INT(11) NOT NULL', // pageId
@@ -20,6 +34,20 @@ function create_pages_table(mysqli $db, string $database): bool
         'TINYINT NOT NULL', // pos
         'TINYINT NOT NULL', // isParent
         'TINYINT NOT NULL', // isPublic
+        'VARCHAR(16) NOT NULL DEFAULT \'40vw\'', //contentW
+        'VARCHAR(16) NOT NULL DEFAULT \'2vh\'', //contentD
+        'VARCHAR(16) NOT NULL DEFAULT \'#303030\'',//contBg
+        'VARCHAR(16) NOT NULL DEFAULT \'#ffffff\'',//contFg
+        'VARCHAR(32) NOT NULL DEFAULT \'1px solid #ffffff\'',//contBorder
+        'VARCHAR(8) NOT NULL DEFAULT \'1\'',//contShadow
+        'VARCHAR(16) NOT NULL DEFAULT \'#303030\'',//markBg
+        'VARCHAR(16) NOT NULL DEFAULT \'#ffa500\'',//markFg
+        'VARCHAR(32) NOT NULL DEFAULT \'1px solid #ffa500\'',//markBorder
+        'VARCHAR(8) NOT NULL DEFAULT \'1\'',//markShadow
+        'VARCHAR(16) NOT NULL DEFAULT \'medium\'',//markFsize
+        'VARCHAR(16) NOT NULL DEFAULT \'bold\'',//markBold
+        'VARCHAR(16) NOT NULL DEFAULT \'normal\''//markItalic
+
     ]);
 }
 
@@ -51,4 +79,42 @@ function get_first_page_id(mysqli $db): int
         );
     }
     return $pages ? $pages[0]['id'] : -1;
+}
+
+
+function get_default_page(mysqli $db, $title, $author) {
+ 
+    $sites = db_select($db, 'sites', ['theme'], db_where($db,'id',1) );
+    if( $sites === false || gettype($sites) === 'string' ) die('Kunde inte ladda sidors startvärden');
+
+    $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', $sites[0]['theme']));
+    if( $themes === false || gettype($themes) === 'string' ) {
+        $themes = db_select($db, 'themes', ['*'], db_where($db, 'name', DEFAULT_THEME));
+        if( $themes === false || gettype($themes) === 'string' ) die('Kunde inte ladda något tema');
+    }
+    $theme = $themes[0];
+
+    return [
+        $title, //title
+        0, //parentId
+        $author, //author
+        '1', //showTitle
+        0, //pos
+        '0', //isParent
+        '1', //isPublic
+        $theme['contentW'],
+        $theme['contentD'],
+        $theme['contBg'],
+        $theme['contFg'],
+        $theme['contBorder'],
+        $theme['contShadow'],
+        $theme['markBg'],
+        $theme['markFg'],
+        $theme['markBorder'],
+        $theme['markShadow'],
+        $theme['markFsize'],
+        $theme['markBold'],
+        $theme['markItalic']
+    ];
+    
 }

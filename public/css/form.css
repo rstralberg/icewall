@@ -1,25 +1,32 @@
-form {
+.form {
     display: block;
-    left: calc( 50vw - (60vw/2));
-    top: 10vh;
+    position: absolute;
     width: 60vw;
     height: auto;
-    margin: 2vh;
     padding: 4vh;
     background: var(--formBg);
     color: var(--formFg);
     border-radius: var(--radius);
     outline: var(--formBorder);
     box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadow));
-    position: absolute;
-	z-index: 2000 !important;
+    z-index: 2000 !important;
 }
 
-form input {
+.form input {
 	margin: 4px;
 }
 
-form input[type=button] {
+.form-banner {
+    background-color: var(--formFg);
+    color: var(--formBg);
+    box-shadow: none;
+    border:none;
+    outline: 1px solid + var(--formFg);
+    cursor: grab;
+    height: 1em;
+}
+
+.form input[type=button] {
 	width: auto !important;
 }
 

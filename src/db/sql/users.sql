@@ -1,1 +1,1 @@
-INSERT INTO `users` (`username`,`fullname`,`email`,`picture`,`password`) VALUES ('admin','Roland Strålberg','rstralberg@pm.me','avatar.png','$2y$10$DRd1FFGG4n8pbwJfJZJmaeSsi01oXRzlY8RisYYda6SK5SmQBKe0W')
+UPDATE `users` SET `fullname`='Roland Strålberg',`email`='rstralberg@pm.me',`picture`='roland-bw-512.jpg' WHERE `username`='admin'
