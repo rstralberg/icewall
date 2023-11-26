@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../db/db.php';
+require_once __DIR__ . '/../config.php';
 
 function load_site_from_args() : array | bool {
 
@@ -9,8 +10,8 @@ function load_site_from_args() : array | bool {
     if (array_key_exists('REQUEST_URI', $_SERVER)) {
         $siteKey = substr($_SERVER['REQUEST_URI'],1);
     }
-    if ($siteKey === '') {
-        return false;
+    if ($siteKey === '') { 
+        $siteKey = DEFAULT_UPLOAD;
     }
 
     // We need site information

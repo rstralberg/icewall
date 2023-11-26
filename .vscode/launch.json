@@ -14,7 +14,10 @@
             ],
             "program": "",
             "cwd": "${workspaceRoot}/public",
-            "port": 9003,
+            "port": [
+                9003,
+                9000
+            ],
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
                 "uriFormat": "http://localhost:%s/gg",
@@ -36,7 +39,10 @@
             ],
             "program": "",
             "cwd": "${workspaceRoot}/public",
-            "port": 9003,
+            "port": [
+                9003,
+                9000
+            ],
             "serverReadyAction": {
                 "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
                 "uriFormat": "http://localhost:%s/km",
