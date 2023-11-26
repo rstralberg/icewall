@@ -8,7 +8,6 @@ require_once __DIR__ . '/tables/pages_table.php';
 
 // create and/or update sites databases and folders
 init_sites();
-
 // argument will tell which site to load
 $site = load_site_from_args();
 if( $site === false ) {
