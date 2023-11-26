@@ -1,0 +1,43 @@
+.form {
+    display: block;
+    position: absolute;
+    width: 60vw;
+    height: auto;
+    padding: 4vh;
+    background: var(--formBg);
+    color: var(--formFg);
+    border-radius: var(--radius);
+    outline: var(--formBorder);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, var(--formShadow));
+    z-index: 2000 !important;
+}
+
+.form input {
+	margin: 4px;
+}
+
+.form-banner {
+    background-color: var(--formFg);
+    color: var(--formBg);
+    box-shadow: none;
+    border:none;
+    outline: 1px solid + var(--formFg);
+    cursor: grab;
+    height: 1em;
+}
+
+.form input[type=button] {
+	width: auto !important;
+}
+
+.form input[type=number] {
+	width: 4em;
+}
+
+.form input[type='checkbox'] {
+	width: 24px;
+	height: 24px;
+	border: none;
+	outline: none;
+	box-shadow: 5px 5px 7px rgba(0, 0, 0, var(--inpShadow));
+}

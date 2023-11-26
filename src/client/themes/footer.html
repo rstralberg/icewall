@@ -1,0 +1,27 @@
+<form class="theme" enctype="multipart/form-data">
+
+
+    <div>
+        <h1>${theme} Fotrad</h1>
+
+        <div class="cols-60-40">
+            <label for="fbarBold">Fet stil</label>
+            <input type="checkbox" id="fbarBold" ${fbarBold} oninput="on_fbarBold(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="fbarItalic">Kursiv stil</label>
+            <input type="checkbox" id="fbarItalic" ${fbarItalic} oninput="on_fbarItalic(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="fbarFsize">Teckenstorlek</label>
+            <select id="fbarFsize" onchange="on_fbarFsize(this)">
+                ${fontsizes}
+            </select>
+        </div>
+
+        <div class="cols-100">
+            <input type="button" value="Klar" onclick="close_footer()">
+        </div>
+</form>

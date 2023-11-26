@@ -1,0 +1,1 @@
+UPDATE `pages` SET `contentW`='40vw',`contentD`='2vh',`contBg`='#303030',`contFg`='#ffffff',`contBorder`='1px solid #ffffff',`contShadow`='1',`markBg`='#21338c',`markFg`='#bcbddc',`markBorder`='3px solid #009dff',`markShadow`='1',`markFsize`='large',`markBold`='normal',`markItalic`='italic' WHERE `id`='1'

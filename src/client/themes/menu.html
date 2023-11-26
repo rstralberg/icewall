@@ -1,0 +1,33 @@
+<form class="theme" enctype="multipart/form-data">
+
+    <h1>${theme} Meny</h1>
+
+    <div class="cols-60-40">
+        <label for="nbarBold">Fet stil</label>
+        <input type="checkbox" id="nbarBold" ${nbarBold} oninput="on_nbarBold(this)">
+    </div>
+
+    <div class="cols-60-40">
+        <label for="nbarItalic">Kursiv stil</label>
+        <input type="checkbox" id="nbarItalic" ${nbarItalic} oninput="on_nbarItalic(this)">
+    </div>
+
+    <div class="cols-60-40">
+        <label for="nbarFsize">Teckenstorlek</label>
+        <select id="nbarFsize" onchange="on_nbarFsize(this)">
+            ${fontsizes}
+        </select>
+    </div>
+
+    <div class="cols-60-40">
+        <label for="nbarBgHi">Markerad färg</label>
+        <div>
+            <input type="color" id="nbarBgHi" value="${nbarBgHi}" oninput="on_nbarBgHi(this)">
+            <input type="color" id="nbarFgHi" value="${nbarFgHi}" oninput="on_nbarFgHi(this)">
+        </div>
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Klar" onclick="close_menu()">
+    </div>
+</form>

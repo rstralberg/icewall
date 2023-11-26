@@ -8,9 +8,18 @@ function create_themes_table(mysqli $db, string $database): bool
     return db_create($db, $database, 'themes', [
         'name',
         'font',
-        'left',
-        'width',
-        'vGap',
+
+        'headerT',
+        'headerH',
+        'footerB',
+        'footerH',
+        'titleH',
+        'menuW',
+        'infoW',
+        'titleW',
+        'contentW',
+        'contentD',
+
         'radius',
         'linkFg',
         'appBg',
@@ -20,19 +29,17 @@ function create_themes_table(mysqli $db, string $database): bool
         'barsBorder',
         'barsShadow',
         
-        'tbarH',
+        'tbarDisplay',
         'tbarBold',
         'tbarItalic',
         'tbarFsize',
 
-        'nbarH',
         'nbarBold',
         'nbarItalic',
         'nbarFsize',
         'nbarBgHi',
         'nbarFgHi',
         
-        'fbarH',
         'fbarBold',
         'fbarItalic',
         'fbarFsize',
@@ -84,9 +91,18 @@ function create_themes_table(mysqli $db, string $database): bool
     ], [
         'VARCHAR(64) NOT NULL UNIQUE',// name
         'VARCHAR(64) NOT NULL',//font
-        'VARCHAR(16) NOT NULL',//left
-        'VARCHAR(16) NOT NULL',//width
-        'VARCHAR(16) NOT NULL',//vGap
+        
+        'VARCHAR(16) NOT NULL',//headerT
+        'VARCHAR(16) NOT NULL',//headerH
+        'VARCHAR(16) NOT NULL',//footerB
+        'VARCHAR(16) NOT NULL',//footerH
+        'VARCHAR(16) NOT NULL',//titleH
+        'VARCHAR(16) NOT NULL',//menuW
+        'VARCHAR(16) NOT NULL', //infoW
+        'VARCHAR(16) NOT NULL', //titleW
+        'VARCHAR(16) NOT NULL', //contentW
+        'VARCHAR(16) NOT NULL', //contentD
+
         'VARCHAR(16) NOT NULL',//radius
         'VARCHAR(16) NOT NULL',//linkFg
         'VARCHAR(16) NOT NULL',//appBg
@@ -96,19 +112,17 @@ function create_themes_table(mysqli $db, string $database): bool
         'VARCHAR(32) NOT NULL',//barsBorder
         'VARCHAR(8) NOT NULL',//barsShadow
         
-        'VARCHAR(16) NOT NULL',//tbarH
+        'VARCHAR(16) NOT NULL',//tbarDisplay
         'VARCHAR(16) NOT NULL',//tbarBold
         'VARCHAR(16) NOT NULL',//tbarItalic
         'VARCHAR(16) NOT NULL',//tbarFsize
 
-        'VARCHAR(16) NOT NULL',//nbarH
         'VARCHAR(16) NOT NULL',//nbarBold
         'VARCHAR(16) NOT NULL',//nbarItalic
         'VARCHAR(16) NOT NULL',//nbarFsize
         'VARCHAR(16) NOT NULL',//nbarBgHi
         'VARCHAR(16) NOT NULL',//nbarFgHi
         
-        'VARCHAR(16) NOT NULL',//fbarH
         'VARCHAR(16) NOT NULL',//fbarBold
         'VARCHAR(16) NOT NULL',//fbarItalic
         'VARCHAR(16) NOT NULL',//fbarFsize
@@ -172,10 +186,19 @@ function get_default_theme(string $name) : array {
 
     return [
         $name,
-        '"Arial"',// font
-        '10vw',// left
-        '80vw',// width
-        '2vh',// vGap
+        'Arial',// font
+
+        '1vh',// headerT
+        '6vh',// headerH
+        '1vh',// footerB
+        '4vh',// footerH
+        '3vh',// titleH
+        '50vw',// menuW
+        '50vw',// infoW
+        '40vw',// titleW
+        '40vw',// contentW
+        '2vh',// contentD
+
         '16px',// radius
         '#ffff00',// linkFg
         '#202020',// appBg
@@ -185,22 +208,20 @@ function get_default_theme(string $name) : array {
         '1px solid #ffffff',// barsBorder
         '1',// barsShadow
                 
-        '6vh',// tbarH
+        'block',// tbarDisplay
         'bold',// tbarBold
         'normal',// tbarItalic
         'large',// tbarFsize
         
-        '6vh',// nbarH
         'bold',// nbarBold
         'normal',// nbarItalic
         'large',// nbarFsize
         '#ffff00',// nbarBgHi
         '#000000',// nbarFgHi
                 
-        '4vh',// fbarH
         'normal',// fbarBold
         'italic',// fbarItalic
-        'medium',// fbarFsize
+        'small',// fbarFsize
         
         '#303030',// contBg
         '#ffffff',// contFg

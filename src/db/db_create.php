@@ -15,6 +15,10 @@ function db_create(mysqli $db, string $database, string $table, array $cols, arr
         $query = trimEnd($query, 1);
         $query .= ') ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_swedish_ci';
 
+        $fh = fopen( __DIR__. '/sql/' . $table . '.sql', 'w');
+        fwrite($fh, $query);
+        fclose($fh);
+
         return mysqli_query($db, $query);
     }
     return false;

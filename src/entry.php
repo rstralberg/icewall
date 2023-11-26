@@ -3,7 +3,7 @@
 require_once __DIR__ . '/db/db.php';
 require_once __DIR__ . '/sites/init_sites.php';
 require_once __DIR__ . '/sites/load_site_from_args.php';
-require_once __DIR__ . '/generate/generate_html.php';
+require_once __DIR__ . '/generate/html.php';
 require_once __DIR__ . '/tables/pages_table.php';
 
 // create and/or update sites databases and folders
@@ -22,14 +22,15 @@ session_start();
 // and then scripts will do the rest
 try {
     $db = db_open($site['key']);
+    $site = db_select($db,'sites',['*', db_where($db, 'id', 1)])[0];
     $pageId = get_first_page_id($db);
     db_close($db);
-    echo (
-        generate_html(
+    echo (  html(
             $db,
             $pageId,
             $site['key'],
-            $site['title']
+            $site['title'],
+            $site['theme']
         ));
 
 } 

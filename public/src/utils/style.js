@@ -1,6 +1,6 @@
 
 function get_style(name) {
-    return getComputedStyle(query('html')).getPropertyValue('--' + name);
+    return getComputedStyle(document.querySelector('html')).getPropertyValue('--' + name);
 }
 
 function set_style(name, value) {

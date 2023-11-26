@@ -1,0 +1,32 @@
+<form style="width:48vw" enctype="multipart/form-data">
+
+    <h1>Bild</h1>
+
+    <hr>
+
+    <div class="cols-100">
+        <div id="ai-image"><img src="${url}" width="${size}" height="auto"></div>
+        <input type="hidden" id="ai-src" value="${url}">
+    </div>
+
+    <div class="cols-40-60">
+        <label for="ai-file">Klicka för att välja bild:</label>
+        <input accept="image/jpeg, image/png, image/jpg" type="file" id="ai-file" name="file" value="${url}" onchange="on_image_file(this)">
+    </div>
+
+    <div class="cols-40-60">
+        <label for="ai-caption">Kommentar:</label>
+        <input type="text" id="ai-caption" placeholder="Skriv en kort kommentar till bilden" value="${caption}">
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input type="button" id="ai-save" value="Spara" onclick="${save}('ai-src')">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="close_image()">
+    </div>
+
+</form>

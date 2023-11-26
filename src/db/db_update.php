@@ -21,6 +21,11 @@ function db_update(mysqli $db, string $table, array $cols, array $values, string
     $query .= 'WHERE ' . $where;
 
     try {
+        $fh = fopen( __DIR__. '/sql/' . $table . '.sql', 'w');
+        fwrite($fh, $query);
+        fclose($fh);
+
+
         return mysqli_query($db, $query);
     } catch (mysqli_sql_exception $e) {
         return $e->getMessage();

@@ -1,0 +1,26 @@
+<form style="width:60vw" enctype="multipart/form-data">
+
+    <h1>Spotify</h1>
+
+    <hr>
+
+    <div class="cols-100" id="sp-frame">
+        ${url}
+    </div>
+
+    <div class="cols-20-80">
+        <label for="sp-url">Klistra in:</label>
+        <input type="text" id="sp-url" onchange="on_spotify_pasted(this)">
+    </div>
+
+    <hr>
+
+    <div class="cols-100">
+        <input id="sp-save-button" disabled type="button" value="OK" onclick="${callback}()">
+    </div>
+
+    <div class="cols-100">
+        <input type="button" value="Stäng" onclick="close_spotify()">
+    </div>
+
+</form>

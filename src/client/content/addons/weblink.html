@@ -1,0 +1,26 @@
+<form style="width:60vw" enctype="multipart/form-data">
+    
+    <h1>Webblänk</h1>
+
+        <hr>
+
+        <div class="cols-20-80">
+            <label for="wl-text">Text</label>
+            <input type="text" placeholder="Texten som visas" id="wl-text" value="${text}">
+        </div>
+        
+        <div class="cols-20-80">
+            <label for="wl-link">Webblänk</label>
+            <input type="text" id="wl-link" placeholder="Skriv webbadressen, tex https://kalixmixen.se" value="${url}">
+        </div>
+        <hr>
+        
+        <div class="cols-100">
+            <input id="wl-save-button" type="button" value="Spara" onclick="${callback}()">
+        </div>
+        
+        <div class="cols-100">
+            <input type="button" value="Stäng" onclick="close_weblink()">
+        </div>
+        
+</form>

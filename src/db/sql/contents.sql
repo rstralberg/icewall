@@ -1,0 +1,1 @@
+UPDATE `contents` SET `pos`=0,`style`='text-align:start',`html`='<article type=\"title\" style=\"outline: none;\" contenteditable=\"false\"><h1 contenteditable=\"false\" style=\"outline: rgb(255, 255, 0) solid 1px;\">KalixMixen</h1></article>',`isPublic`=1 WHERE `id`='1'

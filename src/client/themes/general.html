@@ -1,0 +1,74 @@
+<form class="theme" style="width:60vw;" enctype="multipart/form-data">
+
+    <div>
+        <h1>${theme} allmänt</h1>
+
+        <div class="cols-60-40">
+            <label for="atg-font">Teckensnitt</label>
+            <select id="atg-font">
+                ${fonts}
+            </select>
+        </div>
+
+        <div class="cols-60-40">
+            <label for="headerT">Menyarea Topp/Höjd</label>
+            <div>
+                <input type="number" min="0" max="30" id="headerT" value="${headerT}" oninput="on_headerT(this)">
+                <input type="number" min="1" max="30" id="headerH" value="${headerH}" oninput="on_headerH(this)">
+            </div>
+        </div>
+
+        <div class="cols-60-40">
+            <label for="footerB">Bottenarea Botten/Höjd</label>
+            <div>
+                <input type="number" min="0" max="30" id="footerB" value="${footerB}" oninput="on_footerB(this)">
+                <input type="number" min="1" max="30" id="footerH" value="${footerH}" oninput="on_footerH(this)">
+            </div>
+            
+        </div>
+        <div class="cols-60-40">
+            <label for="titleH">Titelarea Höjd/bredd</label>
+            <div>
+            <input type="number" min="0" max="10" id="titleH" value="${titleH}" oninput="on_titleH(this)">
+            <input type="number" min="1" max="80" id="titleW" value="${titleW}" oninput="on_titleW(this)">
+            </div>
+        </div>
+
+        <div class="cols-60-40">
+            <label for="menuW">Menybredd</label>
+            <input type="number" min="10" max="80" id="menuW" value="${menuW}" oninput="on_menuW(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="infoW">Infobredd</label>
+            <input type="number" min="10" max="80" id="infoW" value="${infoW}" oninput="on_infoW(this)">
+        </div>
+        
+        <div class="cols-60-40">
+            <label for="menuW">Innehåll Bredd/Distans</label>
+            <div>
+                <input type="number" min="10" max="80" id="contentW" value="${contentW}" oninput="on_contentW(this)">
+                <input type="number" min="0" max="10" id="contentD" value="${contentD}" oninput="on_contentD(this)">
+            </div>
+        </div>
+
+        <div class="cols-60-40">
+            <label for="radius">Rundning av hörn</label>
+            <input type="number" min="0" max="20" id="radius" value="${radius}" oninput="on_radius(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="linkfg">Länkars färg</label>
+            <input type="color" id="linkfg" value="${linkFg}" oninput="on_linkFg(this)">
+        </div>
+
+        <div class="cols-60-40">
+            <label for="appBg">Bakgrund</label>
+            <input type="color" id="appBg" value="${appBg}" oninput="on_appBg(this)">
+        </div>
+
+        <div class="cols-100">
+            <input type="button" value="Klar" onclick="close_general()">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<form class="theme" enctype="multipart/form-data">
+
+    <div>
+        <h1>${theme} Top och botten</h1>
+        <figure>
+            <figcaption>Normal</figcaption>
+            <input type="color" value="${barsBg}" oninput="on_barsBg(this)">
+            <input type="color" value="${barsFg}" oninput="on_barsFg(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Ram</figcaption>
+            <input type="color" value="${barsBorderColor}" oninput="on_barsBorderColor(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Ramens tjocklek</figcaption>
+            <input type="number" min="0" max="10" value="${barsBorderWidth}" oninput="on_barsBorderWidth(this)">
+        </figure>
+
+        <figure>
+            <figcaption>Skuggning</figcaption>
+            <input type="checkbox" checked="${barsShadow}" oninput="on_barsShadow(this)">
+        </figure>
+
+        <div class="cols-100">
+            <input type="button" value="Klar" onclick="close_bars()">
+        </div>
+    </div>
+
+</form>

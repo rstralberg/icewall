@@ -5,10 +5,7 @@ function server(php, args) {
         args.key = get_session_key();
         args.php = php;
         
-        let test = JSON.stringify(args);
-        test = JSON.parse(test);
-
-
+        
         fetch('/src/redirect.php', {
             method: 'POST',
             body: JSON.stringify(args),
@@ -20,10 +17,12 @@ function server(php, args) {
                     reply(res.content);
                 }
                 else {
+                    error(res.content);
                     reject(res.content);
                 }
             })
             .catch(e => {
+                error(e);
                 reject(e);
             });
     }

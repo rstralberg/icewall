@@ -1,0 +1,1 @@
+UPDATE `users` SET `fullname`='Roland Strålberg',`email`='rstralberg@pm.me',`picture`='roland-bw-512.jpg' WHERE `username`='admin'

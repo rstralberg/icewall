@@ -12,9 +12,9 @@ function create_sitetables(array $site): void
     $db = db_open($site['key']);
 
     create_site($db, $site);
+    create_themes($db, $site);
     $pageId = create_pages($db, $site);
     create_contents($db, $pageId, $site);
-    create_themes($db, $site);
     create_users($db, $site);
 
     db_close($db);
@@ -27,12 +27,6 @@ function create_site(mysqli $db, array $site): void
             ['key', 'title', 'owner', 'email', 'logo', 'theme'],
             [$site['key'], $site['title'], $site['owner'], $site['email'], $site['logo'], $site['theme']]
         );
-    } else {
-        db_update($db, 'sites',
-            ['title', 'owner', 'email', 'logo', 'theme'],
-            [$site['title'], $site['owner'], $site['email'], $site['logo'], $site['theme']],
-            db_where($db, 'key', $site['key'])
-        );
     }
 }
 
@@ -40,8 +34,10 @@ function create_pages(mysqli $db, array $site): int
 {
     if (verify_pages_table($db, $site['key']) ) {
         return db_insert($db, 'pages',
-            ['title', 'parentId', 'author', 'showTitle', 'pos', 'isParent', 'isPublic'],
-            ['Start', 0, 'admin', 1, 0, 0, 1]
+            ['title', 'parentId', 'author', 'showTitle', 'pos', 'isParent', 'isPublic','contentW',
+            'contentD','contBg','contFg','contBorder','contShadow','markBg','markFg','markBorder',
+            'markShadow','markFsize','markBold','markItalic'],
+            get_default_page($db, 'Start',  'admin') 
         );
     }
     return 0;
@@ -52,7 +48,7 @@ function create_contents(mysqli $db, int $pageId, array $site): void
     if (verify_contents_table($db, $site['key'] )) {
         db_insert($db, 'contents',
             ['pageId', 'pos', 'html', 'style', 'isPublic'],
-            [$pageId, 0, $site['title'], 'text-align="center"', 1]
+            [$pageId, 0, '<article type="title"><h1>' . $site['title'] . '</h1></article>', 'text-align="center"', 1]
         );
     }
 }
@@ -62,11 +58,21 @@ function create_themes(mysqli $db, array $site): void
 {
     if (verify_themes_table($db, $site['key'])) {
         db_insert($db,'themes', 
-            ['name',
+            [
+            'name',
             'font',
-            'left',
-            'width',
-            'vGap',
+            
+            'headerT',
+            'headerH',
+            'footerB',
+            'footerH',
+            'titleH',
+            'menuW',
+            'infoW',
+            'titleW',
+            'contentW',
+            'contentD',
+
             'radius',
             'linkFg',
             'appBg',
@@ -76,19 +82,17 @@ function create_themes(mysqli $db, array $site): void
             'barsBorder',
             'barsShadow',
                     
-            'tbarH',
+            'tbarDisplay',
             'tbarBold',
             'tbarItalic',
             'tbarFsize',
             
-            'nbarH',
             'nbarBold',
             'nbarItalic',
             'nbarFsize',
             'nbarBgHi',
             'nbarFgHi',
                     
-            'fbarH',
             'fbarBold',
             'fbarItalic',
             'fbarFsize',

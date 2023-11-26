@@ -25,6 +25,10 @@ function db_insert(mysqli $db, string $table, array $cols, array $values): int |
 
     
     try {
+        $fh = fopen( __DIR__. '/sql/' . $table . '.sql', 'w');
+        fwrite($fh, $query);
+        fclose($fh);
+        
         $result = mysqli_query($db, $query);
         if ($result === false) {
             return false;
